@@ -1,0 +1,4 @@
+## workspace
+# example.com/thirdparty/uuidlite v1.0.0
+## explicit; go 1.21
+example.com/thirdparty/uuidlite

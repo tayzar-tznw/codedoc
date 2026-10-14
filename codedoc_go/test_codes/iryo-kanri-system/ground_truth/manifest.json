@@ -1,0 +1,7852 @@
+{
+ "version": 1,
+ "fixture": "iryo-kanri-system",
+ "go": "go1.27.2",
+ "build": {
+  "goos": "linux",
+  "goarch": "amd64",
+  "cgo": false,
+  "tags": []
+ },
+ "repos": [
+  {
+   "name": "iryo-kanri-system",
+   "dir": "."
+  }
+ ],
+ "cases": [
+  {
+   "id": "BLD-001",
+   "category": "BLD",
+   "file": "kernel/platform/platform.go",
+   "snippet": "return Name() + \":\" + homeDir() + \":\" + Accel()",
+   "token": "Name",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Name",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/platform/platform_linux.go",
+      "line": 3,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Name",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/platform/platform_windows.go",
+      "line": 3,
+      "col": 6
+     },
+     {
+      "qualname": "Name",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/platform/platform_other.go",
+      "line": 5,
+      "col": 6
+     }
+    ]
+   },
+   "why": "ビルドツイン。linux/amd64 では platform_linux.go が入る",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 4,
+   "col": 9,
+   "offset": 51
+  },
+  {
+   "id": "BLD-002",
+   "category": "BLD",
+   "file": "kernel/platform/platform.go",
+   "snippet": "return Name() + \":\" + homeDir() + \":\" + Accel()",
+   "token": "homeDir",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "homeDir",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/platform/platform_linux.go",
+      "line": 7,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "homeDir",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/platform/platform_windows.go",
+      "line": 7,
+      "col": 6
+     },
+     {
+      "qualname": "homeDir",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/platform/platform_other.go",
+      "line": 9,
+      "col": 6
+     }
+    ]
+   },
+   "why": "未公開関数のビルドツイン",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 4,
+   "col": 24,
+   "offset": 66
+  },
+  {
+   "id": "BLD-003",
+   "category": "BLD",
+   "file": "kernel/platform/platform.go",
+   "snippet": "return Name() + \":\" + homeDir() + \":\" + Accel()",
+   "token": "Accel",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Accel",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/platform/accel_nocgo.go",
+      "line": 5,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Accel",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/platform/accel_cgo.go",
+      "line": 5,
+      "col": 6
+     }
+    ]
+   },
+   "why": "//go:build cgo と !cgo のツイン。CGO_ENABLED=0 なので accel_nocgo.go",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 4,
+   "col": 42,
+   "offset": 84
+  },
+  {
+   "id": "BLD-004",
+   "category": "BLD",
+   "file": "kernel/platform/platform_windows.go",
+   "snippet": "return windowsName()",
+   "token": "windowsName",
+   "site_kind": "call",
+   "expect": {
+    "status": "unresolved",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": "excluded-by-build",
+    "distractors": [
+     {
+      "qualname": "windowsName",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/platform/platform_windows.go",
+      "line": 11,
+      "col": 6
+     }
+    ]
+   },
+   "why": "ファイル名の _windows でビルドから外れるファイルの site。名前の推測もしない",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 4,
+   "col": 9,
+   "offset": 47
+  },
+  {
+   "id": "BLD-005",
+   "category": "BLD",
+   "file": "kernel/platform/platform_debug.go",
+   "snippet": "return fmt.Sprintf(\"debug:%s\", Name())",
+   "token": "Name",
+   "site_kind": "call",
+   "expect": {
+    "status": "unresolved",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": "excluded-by-build",
+    "distractors": [
+     {
+      "qualname": "Name",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/platform/platform_linux.go",
+      "line": 3,
+      "col": 6
+     }
+    ]
+   },
+   "why": "独自タグ iryodebug のファイルは既定のビルドに入らない",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 8,
+   "col": 33,
+   "offset": 108
+  },
+  {
+   "id": "BLD-006",
+   "category": "BLD",
+   "file": "kernel/platform/platform_debug.go",
+   "snippet": "return fmt.Sprintf(\"debug:%s\", Name())",
+   "token": "Sprintf",
+   "site_kind": "call",
+   "expect": {
+    "status": "unresolved",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": "excluded-by-build",
+    "distractors": []
+   },
+   "why": "除外ファイルでは標準ライブラリの呼び出しも unresolved",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 8,
+   "col": 13,
+   "offset": 88
+  },
+  {
+   "id": "BLT-001",
+   "category": "BLT",
+   "file": "reception-desk/internal/flows/maintenance/maintenance.go",
+   "snippet": "size := unsafe.Sizeof(pt)",
+   "token": "Sizeof",
+   "site_kind": "call",
+   "expect": {
+    "status": "builtin",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "unsafe.Sizeof は組み込み ($GOROOT/src/unsafe)",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 74,
+   "col": 17,
+   "offset": 2338
+  },
+  {
+   "id": "BLT-002",
+   "category": "BLT",
+   "file": "reception-desk/internal/flows/maintenance/maintenance.go",
+   "snippet": "shortest := min(len(codes), 2)",
+   "token": "min",
+   "site_kind": "call",
+   "expect": {
+    "status": "builtin",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "組み込みの min",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 75,
+   "col": 14,
+   "offset": 2362
+  },
+  {
+   "id": "BLT-003",
+   "category": "BLT",
+   "file": "reception-desk/internal/flows/maintenance/maintenance.go",
+   "snippet": "clear(counts)",
+   "token": "clear",
+   "site_kind": "call",
+   "expect": {
+    "status": "builtin",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "組み込みの clear",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 77,
+   "col": 2,
+   "offset": 2419
+  },
+  {
+   "id": "BLT-004",
+   "category": "BLT",
+   "file": "reception-desk/internal/flows/maintenance/maintenance.go",
+   "snippet": "visits := new(len(codes) * 2)",
+   "token": "new",
+   "site_kind": "call",
+   "expect": {
+    "status": "builtin",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "Go 1.26 の式を取る new",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 78,
+   "col": 12,
+   "offset": 2444
+  },
+  {
+   "id": "BLT-005",
+   "category": "BLT",
+   "file": "kernel/guard/guard.go",
+   "snippet": "panic(fmt.Sprintf(\"負の値: %d\", n))",
+   "token": "panic",
+   "site_kind": "call",
+   "expect": {
+    "status": "builtin",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "組み込みの panic。振り分けフローの recovered で実際に起きる",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 22,
+   "col": 3,
+   "offset": 308
+  },
+  {
+   "id": "BLT-006",
+   "category": "BLT",
+   "file": "reception-desk/internal/flows/maintenance/maintenance.go",
+   "snippet": "fmt.Fprintln(w, done.Error())",
+   "token": "Error",
+   "site_kind": "call",
+   "expect": {
+    "status": "builtin",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "RequiredError.Error",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/guard/guard.go",
+      "line": 9,
+      "col": 24
+     }
+    ]
+   },
+   "why": "宣言済みの error インタフェースの Error は組み込み扱いで、候補を持たない (master plan C2)。実行時の型は errors.New のもので、リポジトリ内の RequiredError.Error は走らない",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 72,
+   "col": 23,
+   "offset": 2274
+  },
+  {
+   "id": "CNV-001",
+   "category": "CNV",
+   "file": "reception-desk/internal/flows/accounting/accounting.go",
+   "snippet": "consultation := money.Yen(2880)",
+   "token": "Yen",
+   "site_kind": "call",
+   "expect": {
+    "status": "conversion",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Yen.Add",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/money/money.go",
+      "line": 7,
+      "col": 14
+     }
+    ]
+   },
+   "why": "名前付き型 money.Yen への変換。呼び出しではない",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 37,
+   "col": 24,
+   "offset": 949
+  },
+  {
+   "id": "CNV-002",
+   "category": "CNV",
+   "file": "reception-desk/internal/flows/accounting/accounting.go",
+   "snippet": "current.Format(int(total))",
+   "token": "int",
+   "site_kind": "call",
+   "expect": {
+    "status": "conversion",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "基本型 int への変換",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 43,
+   "col": 33,
+   "offset": 1181
+  },
+  {
+   "id": "CNV-003",
+   "category": "CNV",
+   "file": "reception-desk/internal/flows/accounting/accounting.go",
+   "snippet": "medication := money.Points(146).ToYen()",
+   "token": "Points",
+   "site_kind": "call",
+   "expect": {
+    "status": "conversion",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "変換の結果に対するメソッド呼び出しの内側",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 38,
+   "col": 22,
+   "offset": 980
+  },
+  {
+   "id": "CNV-004",
+   "category": "CNV",
+   "file": "reception-desk/internal/flows/accounting/accounting.go",
+   "snippet": "medication := money.Points(146).ToYen()",
+   "token": "ToYen",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Points.ToYen",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/money/money.go",
+      "line": 17,
+      "col": 17
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "ToYen",
+      "module": "example.com/iryo/billing",
+      "kind": "method",
+      "file": "billing/pointmath/pointmath.go",
+      "line": 3,
+      "col": 6
+     },
+     {
+      "qualname": "ToYen",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/pointmath/pointmath.go",
+      "line": 3,
+      "col": 6
+     }
+    ]
+   },
+   "why": "変換の結果に対するメソッド呼び出しは普通に解決する",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 38,
+   "col": 34,
+   "offset": 992
+  },
+  {
+   "id": "CNV-005",
+   "category": "CNV",
+   "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+   "snippet": "steps := []Step{Step(double), billing.Round}",
+   "token": "Step",
+   "site_kind": "call",
+   "expect": {
+    "status": "conversion",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "リポジトリ内の関数型 Step への変換 (一つ目の Step は複合リテラルの型)",
+   "occurrence": 2,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 105,
+   "col": 18,
+   "offset": 1907
+  },
+  {
+   "id": "CNV-006",
+   "category": "CNV",
+   "file": "patient-portal/internal/server/server.go",
+   "snippet": "mux.Handle(\"/health\", http.HandlerFunc(p.handleHealth))",
+   "token": "HandlerFunc",
+   "site_kind": "call",
+   "expect": {
+    "status": "conversion",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "標準ライブラリの関数型 http.HandlerFunc への変換",
+   "occurrence": 1,
+   "entry": "patient-portal",
+   "expect_offline": null,
+   "line": 29,
+   "col": 29,
+   "offset": 613
+  },
+  {
+   "id": "EMB-001",
+   "category": "EMB",
+   "file": "reception-desk/internal/flows/checkin/checkin.go",
+   "snippet": "ae.Touch()",
+   "token": "Touch",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Entity.Touch",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/patient/entity.go",
+      "line": 13,
+      "col": 18
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "AuditedEntity に埋め込んだ Entity の (*Entity).Touch。昇格の深さ 1。ae はアドレス可能なので & が補われる",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 32,
+   "col": 21,
+   "offset": 872
+  },
+  {
+   "id": "EMB-002",
+   "category": "EMB",
+   "file": "reception-desk/internal/flows/checkin/checkin.go",
+   "snippet": "pt.Touch()",
+   "token": "Touch",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Entity.Touch",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/patient/entity.go",
+      "line": 13,
+      "col": 18
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "Patient → AuditedEntity → Entity。昇格の深さ 2",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 32,
+   "col": 33,
+   "offset": 884
+  },
+  {
+   "id": "EMB-003",
+   "category": "EMB",
+   "file": "reception-desk/internal/flows/checkin/checkin.go",
+   "snippet": "ip.Touch()",
+   "token": "Touch",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Entity.Touch",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/patient/entity.go",
+      "line": 13,
+      "col": 18
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "Inpatient → Patient → AuditedEntity → Entity。昇格の深さ 3",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 32,
+   "col": 45,
+   "offset": 896
+  },
+  {
+   "id": "EMB-004",
+   "category": "EMB",
+   "file": "reception-desk/internal/flows/checkin/checkin.go",
+   "snippet": "pt.Describe()",
+   "token": "Describe",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Patient.Describe",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/patient/entity.go",
+      "line": 37,
+      "col": 18
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Entity.Describe",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/patient/entity.go",
+      "line": 9,
+      "col": 17
+     }
+    ]
+   },
+   "why": "Patient 自身の Describe (深さ 0) が深さ 2 の Entity.Describe を隠す",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 33,
+   "col": 21,
+   "offset": 925
+  },
+  {
+   "id": "EMB-005",
+   "category": "EMB",
+   "file": "reception-desk/internal/flows/checkin/checkin.go",
+   "snippet": "ip.Describe()",
+   "token": "Describe",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Patient.Describe",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/patient/entity.go",
+      "line": 37,
+      "col": 18
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Entity.Describe",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/patient/entity.go",
+      "line": 9,
+      "col": 17
+     }
+    ]
+   },
+   "why": "Inpatient では深さ 1 の Patient.Describe が深さ 3 の Entity.Describe に勝つ",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 33,
+   "col": 36,
+   "offset": 940
+  },
+  {
+   "id": "EMB-006",
+   "category": "EMB",
+   "file": "reception-desk/internal/flows/checkin/checkin.go",
+   "snippet": "ip.Patient.AuditedEntity.Entity.Describe()",
+   "token": "Describe",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Entity.Describe",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/patient/entity.go",
+      "line": 9,
+      "col": 17
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Patient.Describe",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/patient/entity.go",
+      "line": 37,
+      "col": 18
+     }
+    ]
+   },
+   "why": "埋め込みフィールドを明示的にたどると Entity 自身のメソッド",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 34,
+   "col": 50,
+   "offset": 1001
+  },
+  {
+   "id": "EMB-007",
+   "category": "EMB",
+   "file": "reception-desk/internal/flows/checkin/checkin.go",
+   "snippet": "ip.Record(\"入院\")",
+   "token": "Record",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "AuditedEntity.Record",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/patient/entity.go",
+      "line": 27,
+      "col": 25
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Record",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/audit/audit.go",
+      "line": 18,
+      "col": 6
+     }
+    ]
+   },
+   "why": "ポインタ受け手のメソッドが深さ 2 で昇格する。同名の関数 audit.Record とは別物",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 35,
+   "col": 21,
+   "offset": 1033
+  },
+  {
+   "id": "EMB-008",
+   "category": "EMB",
+   "file": "domain/visit/visit.go",
+   "snippet": "return v.Describe() + \" / \" + v.Reason",
+   "token": "Describe",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Patient.Describe",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/patient/entity.go",
+      "line": 37,
+      "col": 18
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Entity.Describe",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/patient/entity.go",
+      "line": 9,
+      "col": 17
+     }
+    ]
+   },
+   "why": "ポインタ埋め込み *patient.Patient から昇格した Patient.Describe",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 14,
+   "col": 11,
+   "offset": 195
+  },
+  {
+   "id": "EMB-009",
+   "category": "EMB",
+   "file": "domain/patient/entity.go",
+   "snippet": "return \"患者保存 \" + p.Name + \" / \" + p.Entity.Save()",
+   "token": "Save",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Entity.Save",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/patient/entity.go",
+      "line": 18,
+      "col": 17
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Patient.Save",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/patient/entity.go",
+      "line": 41,
+      "col": 18
+     }
+    ]
+   },
+   "why": "Patient.Save の中から昇格フィールド p.Entity を通して Entity.Save を呼ぶ。自分自身 (Patient.Save) ではない",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 42,
+   "col": 53,
+   "offset": 649
+  },
+  {
+   "id": "EMB-010",
+   "category": "EMB",
+   "file": "reception-desk/internal/flows/accounting/accounting.go",
+   "snippet": "standard.Fee(10000)",
+   "token": "Fee",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "BasePolicy.Fee",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/policy/policy.go",
+      "line": 11,
+      "col": 21
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "UrgentPolicy.Fee",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/policy/policy.go",
+      "line": 27,
+      "col": 23
+     }
+    ]
+   },
+   "why": "StandardPolicy は Fee を持たず、埋め込んだ BasePolicy.Fee が昇格する (C# の既定実装に相当)",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 34,
+   "col": 27,
+   "offset": 769
+  },
+  {
+   "id": "EMB-011",
+   "category": "EMB",
+   "file": "reception-desk/internal/flows/accounting/accounting.go",
+   "snippet": "urgent.Fee(10000)",
+   "token": "Fee",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "UrgentPolicy.Fee",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/policy/policy.go",
+      "line": 27,
+      "col": 23
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "BasePolicy.Fee",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/policy/policy.go",
+      "line": 11,
+      "col": 21
+     }
+    ]
+   },
+   "why": "UrgentPolicy 自身の Fee が昇格した BasePolicy.Fee を隠す",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 34,
+   "col": 46,
+   "offset": 788
+  },
+  {
+   "id": "EMB-012",
+   "category": "EMB",
+   "file": "reception-desk/internal/flows/accounting/accounting.go",
+   "snippet": "urgent.BasePolicy.Fee(10000)",
+   "token": "Fee",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "BasePolicy.Fee",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/policy/policy.go",
+      "line": 11,
+      "col": 21
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "UrgentPolicy.Fee",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/policy/policy.go",
+      "line": 27,
+      "col": 23
+     }
+    ]
+   },
+   "why": "埋め込みフィールドを明示した選択は隠された側を呼ぶ",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 35,
+   "col": 36,
+   "offset": 851
+  },
+  {
+   "id": "EMB-013",
+   "category": "EMB",
+   "file": "reporting/trail.go",
+   "snippet": "return t.Write(t.Name + \": \" + msg)",
+   "token": "Write",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Sink.Write",
+      "module": "example.com/iryo/reporting",
+      "kind": "method",
+      "file": "reporting/trail.go",
+      "line": 4,
+      "col": 2
+     }
+    ],
+    "candidates": [
+     {
+      "qualname": "MemorySink.Write",
+      "module": "example.com/iryo/reporting",
+      "kind": "method",
+      "file": "reporting/trail.go",
+      "line": 11,
+      "col": 22
+     },
+     {
+      "qualname": "Sink.Write",
+      "module": "example.com/iryo/reporting",
+      "kind": "method",
+      "file": "reporting/trail.go",
+      "line": 4,
+      "col": 2
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "MemorySink.Write",
+      "module": "example.com/iryo/reporting",
+      "kind": "method",
+      "file": "reporting/trail.go",
+      "line": 11,
+      "col": 22
+     }
+    ],
+    "open_world": false,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "構造体 AuditTrail に埋め込んだインタフェース Sink 経由の呼び出しはインタフェース呼び出し。候補は Sink の実装: *MemorySink と、埋め込みインタフェースで Sink を満たす AuditTrail (二段目のディスパッチ、候補は Sink.Write 自身)。デモでは *MemorySink が入る",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 22,
+   "col": 11,
+   "offset": 315
+  },
+  {
+   "id": "EMB-014",
+   "category": "EMB",
+   "file": "reporting/trail.go",
+   "snippet": "return j.Write(\"[公開] \" + msg)",
+   "token": "Write",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Journal.Write",
+      "module": "example.com/iryo/reporting",
+      "kind": "method",
+      "file": "reporting/trail.go",
+      "line": 26,
+      "col": 2
+     }
+    ],
+    "candidates": [
+     {
+      "qualname": "MemorySink.Write",
+      "module": "example.com/iryo/reporting",
+      "kind": "method",
+      "file": "reporting/trail.go",
+      "line": 11,
+      "col": 22
+     },
+     {
+      "qualname": "Sink.Write",
+      "module": "example.com/iryo/reporting",
+      "kind": "method",
+      "file": "reporting/trail.go",
+      "line": 4,
+      "col": 2
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "MemorySink.Write",
+      "module": "example.com/iryo/reporting",
+      "kind": "method",
+      "file": "reporting/trail.go",
+      "line": 11,
+      "col": 22
+     }
+    ],
+    "open_world": false,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "Journal を満たす AuditTrail は自分の埋め込みインタフェース Sink で Write を得る (二段目のディスパッチ、候補は Sink.Write)。デモは AuditTrail を渡し、その Sink が *MemorySink なので実行時は MemorySink.Write",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 30,
+   "col": 11,
+   "offset": 449
+  },
+  {
+   "id": "EMB-015",
+   "category": "EMB",
+   "file": "reception-desk/internal/flows/reports/reports.go",
+   "snippet": "list.Put(7, pt)",
+   "token": "Put",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "MemoryStore.Put",
+      "module": "example.com/iryo/data",
+      "kind": "method",
+      "file": "data/store/store.go",
+      "line": 13,
+      "col": 26
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "ChartCache.Put",
+      "module": "example.com/iryo/data",
+      "kind": "method",
+      "file": "data/cache/cache.go",
+      "line": 11,
+      "col": 28
+     }
+    ]
+   },
+   "why": "ジェネリック型の具体化 store.MemoryStore[patient.Patient] を埋め込み、ポインタメソッド Put が昇格する",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 63,
+   "col": 7,
+   "offset": 1695
+  },
+  {
+   "id": "EMB-016",
+   "category": "EMB",
+   "file": "reception-desk/internal/flows/maintenance/maintenance.go",
+   "snippet": "lock.Lock()",
+   "token": "Lock",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "std"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "埋め込んだ標準ライブラリの sync.Mutex から昇格した (*Mutex).Lock",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 60,
+   "col": 7,
+   "offset": 1871
+  },
+  {
+   "id": "EXT-001",
+   "category": "EXT",
+   "file": "reception-desk/internal/flows/maintenance/maintenance.go",
+   "snippet": "audit.Record(log.New(w, \"\", 0), \"保守\", 2)",
+   "token": "New",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "std"
+    },
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "New",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/logging/logging.go",
+      "line": 10,
+      "col": 6
+     },
+     {
+      "qualname": "New",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/logging/logging.go",
+      "line": 10,
+      "col": 6
+     },
+     {
+      "qualname": "New",
+      "module": "example.com/iryo/data",
+      "kind": "method",
+      "file": "data/cache/cache.go",
+      "line": 7,
+      "col": 6
+     }
+    ]
+   },
+   "why": "標準ライブラリの log.New",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 39,
+   "col": 19,
+   "offset": 839
+  },
+  {
+   "id": "EXT-002",
+   "category": "EXT",
+   "file": "reception-desk/internal/flows/maintenance/maintenance.go",
+   "snippet": "done := errors.New(\"保守完了\")",
+   "token": "New",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "std"
+    },
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "New",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/logging/logging.go",
+      "line": 10,
+      "col": 6
+     },
+     {
+      "qualname": "New",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/logging/logging.go",
+      "line": 10,
+      "col": 6
+     },
+     {
+      "qualname": "New",
+      "module": "example.com/iryo/data",
+      "kind": "method",
+      "file": "data/cache/cache.go",
+      "line": 7,
+      "col": 6
+     }
+    ]
+   },
+   "why": "標準ライブラリの errors.New",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 70,
+   "col": 17,
+   "offset": 2159
+  },
+  {
+   "id": "EXT-003",
+   "category": "EXT",
+   "file": "reception-desk/internal/flows/maintenance/maintenance.go",
+   "snippet": "fmt.Fprintln(w, sb.String(), day.Format(\"2006-01-02\"), lock.beds, done)",
+   "token": "Format",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "std"
+    },
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "ReceiptFormatter.Format",
+      "module": "example.com/iryo/billing",
+      "kind": "method",
+      "file": "billing/text/receipt.go",
+      "line": 7,
+      "col": 25
+     },
+     {
+      "qualname": "ReceiptFormatter.Format",
+      "module": "example.com/iryo/legacy-claims",
+      "kind": "method",
+      "file": "legacy-claims/text.go",
+      "line": 7,
+      "col": 25
+     },
+     {
+      "qualname": "ReceiptFormatter.Format",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/text/receipt.go",
+      "line": 7,
+      "col": 25
+     },
+     {
+      "qualname": "Upper.Format",
+      "module": "example.com/thirdparty/textfmt",
+      "kind": "method",
+      "file": "third_party/textfmt/textfmt.go",
+      "line": 15,
+      "col": 14
+     }
+    ]
+   },
+   "why": "time.Time.Format。リポジトリ内の Format が五つある",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 71,
+   "col": 35,
+   "offset": 2213
+  },
+  {
+   "id": "EXT-004",
+   "category": "EXT",
+   "file": "billing/tariff/tariff.go",
+   "snippet": "doc, err := yamlish.Parse(source)",
+   "token": "Parse",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/thirdparty/yamlish"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "第三者モジュール (_proxy の yamlish v1.1.0)",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 16,
+   "col": 22,
+   "offset": 222
+  },
+  {
+   "id": "EXT-005",
+   "category": "EXT",
+   "file": "billing/tariff/tariff.go",
+   "snippet": "v, ok := t.doc.Get(code)",
+   "token": "Get",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/thirdparty/yamlish"
+    },
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "MemoryStore.Get",
+      "module": "example.com/iryo/data",
+      "kind": "method",
+      "file": "data/store/store.go",
+      "line": 17,
+      "col": 26
+     },
+     {
+      "qualname": "ChartCache.Get",
+      "module": "example.com/iryo/data",
+      "kind": "method",
+      "file": "data/cache/cache.go",
+      "line": 15,
+      "col": 28
+     }
+    ]
+   },
+   "why": "第三者モジュールの型 *yamlish.Document のメソッド",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 24,
+   "col": 17,
+   "offset": 365
+  },
+  {
+   "id": "EXT-006",
+   "category": "EXT",
+   "file": "billing/tariff/tariff.go",
+   "snippet": "return t.doc.Keys()",
+   "token": "Keys",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/thirdparty/yamlish"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "v1.1.0 で追加されたメソッド。モジュールの版が解決を決める",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 36,
+   "col": 15,
+   "offset": 519
+  },
+  {
+   "id": "EXT-007",
+   "category": "EXT",
+   "file": "interop/idkit/idkit.go",
+   "snippet": "id := uuidlite.NewFrom(p.seq)",
+   "token": "NewFrom",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/thirdparty/uuidlite"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "第三者モジュール uuidlite",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 14,
+   "col": 17,
+   "offset": 265
+  },
+  {
+   "id": "EXT-008",
+   "category": "EXT",
+   "file": "interop/idkit/idkit.go",
+   "snippet": "return u.String() + \"/\" + u.Short(), nil",
+   "token": "Short",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/thirdparty/uuidlite"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "v1.1.0 で追加された UUID.Short",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 23,
+   "col": 30,
+   "offset": 457
+  },
+  {
+   "id": "EXT-009",
+   "category": "EXT",
+   "file": "patient-portal/internal/server/server.go",
+   "snippet": "name := r.URL.Query().Get(\"name\")",
+   "token": "Get",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "std"
+    },
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "MemoryStore.Get",
+      "module": "example.com/iryo/data",
+      "kind": "method",
+      "file": "data/store/store.go",
+      "line": 17,
+      "col": 26
+     },
+     {
+      "qualname": "ChartCache.Get",
+      "module": "example.com/iryo/data",
+      "kind": "method",
+      "file": "data/cache/cache.go",
+      "line": 15,
+      "col": 28
+     }
+    ]
+   },
+   "why": "url.Values.Get",
+   "occurrence": 1,
+   "entry": "patient-portal",
+   "expect_offline": null,
+   "line": 44,
+   "col": 24,
+   "offset": 1065
+  },
+  {
+   "id": "EXT-010",
+   "category": "EXT",
+   "file": "patient-portal/internal/server/server.go",
+   "snippet": "mux.HandleFunc(\"/fees\", p.handleFees)",
+   "token": "HandleFunc",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "std"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "メソッド値 p.handleFees は参照で呼び出しではない。ハンドラは net/http から呼ばれる",
+   "occurrence": 1,
+   "entry": "patient-portal",
+   "expect_offline": null,
+   "line": 28,
+   "col": 6,
+   "offset": 551
+  },
+  {
+   "id": "EXT-011",
+   "category": "EXT",
+   "file": "patient-portal/internal/server/server.go",
+   "snippet": "mux.ServeHTTP(rec, httptest.NewRequest(http.MethodGet, path, nil))",
+   "token": "ServeHTTP",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "std"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "ポートを開かず httptest でハンドラを動かす",
+   "occurrence": 1,
+   "entry": "patient-portal",
+   "expect_offline": null,
+   "line": 55,
+   "col": 7,
+   "offset": 1450
+  },
+  {
+   "id": "FV-001",
+   "category": "FV",
+   "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+   "snippet": "fmt.Fprintln(w, round(1234))",
+   "token": "round",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Round",
+      "module": "example.com/iryo/billing",
+      "kind": "method",
+      "file": "billing/fee.go",
+      "line": 21,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "func-alias: ローカル変数に関数を一度だけ束縛し、再代入もアドレス取得もクロージャ内の代入もない",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 75,
+   "col": 18,
+   "offset": 1360
+  },
+  {
+   "id": "FV-002",
+   "category": "FV",
+   "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+   "snippet": "logf(\"別名呼び出し\")",
+   "token": "logf",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Logger.Log",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/logging/logging.go",
+      "line": 14,
+      "col": 18
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Logger.Log",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/logging/logging.go",
+      "line": 14,
+      "col": 18
+     }
+    ]
+   },
+   "why": "func-alias: 具体型の受け手を持つメソッド値 log.Log",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 78,
+   "col": 2,
+   "offset": 1392
+  },
+  {
+   "id": "FV-003",
+   "category": "FV",
+   "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+   "snippet": "fmt.Fprintln(w, double(21))",
+   "token": "double",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Run.func1",
+      "module": "example.com/iryo/reception-desk",
+      "kind": "method",
+      "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+      "line": 80,
+      "col": 12
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "func-alias: 関数リテラルの束縛。ターゲットはクロージャ Run.func1",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 83,
+   "col": 18,
+   "offset": 1484
+  },
+  {
+   "id": "FV-004",
+   "category": "FV",
+   "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+   "snippet": "fmt.Fprintln(w, pick(500))",
+   "token": "pick",
+   "site_kind": "call",
+   "expect": {
+    "status": "dynamic",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "AddTax",
+      "module": "example.com/iryo/billing",
+      "kind": "method",
+      "file": "billing/fee.go",
+      "line": 25,
+      "col": 6
+     }
+    ],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "if の中で再代入されるので単一束縛でない。実行時は AddTax",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 89,
+   "col": 18,
+   "offset": 1591
+  },
+  {
+   "id": "FV-005",
+   "category": "FV",
+   "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+   "snippet": "fmt.Fprintln(w, keep(777), *ref != nil)",
+   "token": "keep",
+   "site_kind": "call",
+   "expect": {
+    "status": "dynamic",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "Round",
+      "module": "example.com/iryo/billing",
+      "kind": "method",
+      "file": "billing/fee.go",
+      "line": 21,
+      "col": 6
+     }
+    ],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "&keep でアドレスを取られるので証明できない",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 93,
+   "col": 18,
+   "offset": 1657
+  },
+  {
+   "id": "FV-006",
+   "category": "FV",
+   "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+   "snippet": "fmt.Fprintln(w, late(800))",
+   "token": "late",
+   "site_kind": "call",
+   "expect": {
+    "status": "dynamic",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "AddTax",
+      "module": "example.com/iryo/billing",
+      "kind": "method",
+      "file": "billing/fee.go",
+      "line": 25,
+      "col": 6
+     }
+    ],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "クロージャの中で再代入される。実行時は AddTax",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 99,
+   "col": 18,
+   "offset": 1761
+  },
+  {
+   "id": "FV-007",
+   "category": "FV",
+   "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+   "snippet": "return fn(yen)",
+   "token": "fn",
+   "site_kind": "call",
+   "expect": {
+    "status": "dynamic",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "AddTax",
+      "module": "example.com/iryo/billing",
+      "kind": "method",
+      "file": "billing/fee.go",
+      "line": 25,
+      "col": 6
+     }
+    ],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "引数の関数値。apply は AddTax だけで呼ばれる",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 40,
+   "col": 9,
+   "offset": 652
+  },
+  {
+   "id": "FV-008",
+   "category": "FV",
+   "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+   "snippet": "fmt.Fprintln(w, Hooks[\"tax\"](2000))",
+   "token": "Hooks",
+   "site_kind": "call",
+   "expect": {
+    "status": "dynamic",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "AddTax",
+      "module": "example.com/iryo/billing",
+      "kind": "method",
+      "file": "billing/fee.go",
+      "line": 25,
+      "col": 6
+     }
+    ],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "パッケージ変数の map の要素の呼び出し (index 形、トークンは Hooks)",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 102,
+   "col": 18,
+   "offset": 1836
+  },
+  {
+   "id": "FV-009",
+   "category": "FV",
+   "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+   "snippet": "fmt.Fprintln(w, Fallback(1999))",
+   "token": "Fallback",
+   "site_kind": "call",
+   "expect": {
+    "status": "dynamic",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "Round",
+      "module": "example.com/iryo/billing",
+      "kind": "method",
+      "file": "billing/fee.go",
+      "line": 21,
+      "col": 6
+     }
+    ],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "パッケージレベルの関数変数はテストが書き換えられるので単一束縛とみなさない (spec §5.5)",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 103,
+   "col": 18,
+   "offset": 1873
+  },
+  {
+   "id": "FV-010",
+   "category": "FV",
+   "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+   "snippet": "fmt.Fprintln(w, route.Handle(\"route\"))",
+   "token": "Handle",
+   "site_kind": "call",
+   "expect": {
+    "status": "dynamic",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "関数型フィールド。実行時は strings.ToUpper (標準ライブラリ) なのでリポジトリ内の関数は走らない",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 111,
+   "col": 24,
+   "offset": 2076
+  },
+  {
+   "id": "FV-011",
+   "category": "FV",
+   "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+   "snippet": "fmt.Fprintln(w, add(3))",
+   "token": "add",
+   "site_kind": "call",
+   "expect": {
+    "status": "dynamic",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "makeAdder.func1",
+      "module": "example.com/iryo/reception-desk",
+      "kind": "method",
+      "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+      "line": 44,
+      "col": 9
+     }
+    ],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "呼び出し結果 (クロージャ) を束縛した変数。func-alias の条件 (関数、メソッド値、関数リテラル) に当たらない",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 116,
+   "col": 18,
+   "offset": 2224
+  },
+  {
+   "id": "FV-012",
+   "category": "FV",
+   "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+   "snippet": "go func() {",
+   "token": "func",
+   "site_kind": "go",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Run.func3",
+      "module": "example.com/iryo/reception-desk",
+      "kind": "method",
+      "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+      "line": 132,
+      "col": 5
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "go 文の関数リテラル (funclit)。ターゲットはクロージャ Run.func3",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 132,
+   "col": 5,
+   "offset": 2821
+  },
+  {
+   "id": "FV-013",
+   "category": "FV",
+   "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+   "snippet": "go worker(&wg, results, 1)",
+   "token": "worker",
+   "site_kind": "go",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "worker",
+      "module": "example.com/iryo/reception-desk",
+      "kind": "method",
+      "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+      "line": 49,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "名前付き関数の go 文",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 136,
+   "col": 5,
+   "offset": 2919
+  },
+  {
+   "id": "FV-014",
+   "category": "FV",
+   "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+   "snippet": "fmt.Fprintln(w, func() string {",
+   "token": "func",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Run.func4",
+      "module": "example.com/iryo/reception-desk",
+      "kind": "method",
+      "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+      "line": 140,
+      "col": 18
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "その場で呼ぶ関数リテラル (IIFE)。トークンは func キーワード",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 140,
+   "col": 18,
+   "offset": 3017
+  },
+  {
+   "id": "FV-015",
+   "category": "FV",
+   "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+   "snippet": "defer func() { fmt.Fprintln(w, \"集計\", n) }()",
+   "token": "func",
+   "site_kind": "defer",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "tally.func1",
+      "module": "example.com/iryo/reception-desk",
+      "kind": "method",
+      "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+      "line": 65,
+      "col": 8
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "defer 文の関数リテラル。tally の defer はこれ一つ",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 65,
+   "col": 8,
+   "offset": 1135
+  },
+  {
+   "id": "FV-016",
+   "category": "FV",
+   "file": "reception-desk/internal/flows/accounting/accounting.go",
+   "snippet": "defer report(w, sess)",
+   "token": "report",
+   "site_kind": "defer",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "report",
+      "module": "example.com/iryo/reception-desk",
+      "kind": "method",
+      "file": "reception-desk/internal/flows/accounting/accounting.go",
+      "line": 26,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "名前付き関数の defer 文。settle の defer はこれ一つ",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 21,
+   "col": 8,
+   "offset": 404
+  },
+  {
+   "id": "FV-017",
+   "category": "FV",
+   "file": "reception-desk/internal/flows/checkin/checkin.go",
+   "snippet": "fmt.Fprintln(w, send(\"呼出\"))",
+   "token": "send",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Notifier.Send",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/notify/notify.go",
+      "line": 4,
+      "col": 2
+     }
+    ],
+    "candidates": [
+     {
+      "qualname": "MailNotifier.Send",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/notify/notify.go",
+      "line": 16,
+      "col": 23
+     },
+     {
+      "qualname": "SmsNotifier.Send",
+      "module": "example.com/iryo/scheduling",
+      "kind": "method",
+      "file": "scheduling/sms.go",
+      "line": 8,
+      "col": 23
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "MailNotifier.Send",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/notify/notify.go",
+      "line": 16,
+      "col": 23
+     }
+    ],
+    "open_world": false,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "インタフェースを受け手とするメソッド値の単一束縛は、インタフェース呼び出しと同じに扱う (spec §5.5)。notifiers[0] は MailNotifier",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 55,
+   "col": 18,
+   "offset": 1799
+  },
+  {
+   "id": "FV-018",
+   "category": "FV",
+   "file": "reception-desk/internal/flows/accounting/accounting.go",
+   "snippet": "fmt.Fprintln(w, (*billing.FeeCalculator).Calculate(calc, 2, 3))",
+   "token": "Calculate",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "FeeCalculator.Calculate",
+      "module": "example.com/iryo/billing",
+      "kind": "method",
+      "file": "billing/fee.go",
+      "line": 13,
+      "col": 25
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "DoseCalculator.Calculate",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/dose.go",
+      "line": 7,
+      "col": 23
+     },
+     {
+      "qualname": "PointTable.Calculate",
+      "module": "example.com/iryo/legacy-claims",
+      "kind": "method",
+      "file": "legacy-claims/pointtable.go",
+      "line": 5,
+      "col": 19
+     }
+    ]
+   },
+   "why": "メソッド式 (*T).M の呼び出し",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 49,
+   "col": 43,
+   "offset": 1440
+  },
+  {
+   "id": "FV-019",
+   "category": "FV",
+   "file": "reception-desk/internal/flows/reports/reports.go",
+   "snippet": "for slot := range book.Each {",
+   "token": "Each",
+   "site_kind": "range",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "AppointmentBook.Each",
+      "module": "example.com/iryo/scheduling",
+      "kind": "method",
+      "file": "scheduling/book.go",
+      "line": 50,
+      "col": 27
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "range-over-func: メソッド値を反復子として range する暗黙の呼び出し (convention:range)",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 70,
+   "col": 25,
+   "offset": 2047
+  },
+  {
+   "id": "FV-020",
+   "category": "FV",
+   "file": "reception-desk/internal/flows/reports/reports.go",
+   "snippet": "for n := range scheduling.Countdown {",
+   "token": "Countdown",
+   "site_kind": "range",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Countdown",
+      "module": "example.com/iryo/scheduling",
+      "kind": "method",
+      "file": "scheduling/book.go",
+      "line": 58,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "パッケージ関数を反復子として range する",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 76,
+   "col": 28,
+   "offset": 2208
+  },
+  {
+   "id": "FV-021",
+   "category": "FV",
+   "file": "kernel/registry/registry.go",
+   "snippet": "return normalizer(s)",
+   "token": "normalizer",
+   "site_kind": "call",
+   "expect": {
+    "status": "dynamic",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "<init>.func1",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/registry/registry.go",
+      "line": 14,
+      "col": 18
+     }
+    ],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "パッケージ変数に入れた関数リテラル。ターゲットのクロージャは <init>.func1",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 51,
+   "col": 9,
+   "offset": 721
+  },
+  {
+   "id": "FV-022",
+   "category": "FV",
+   "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+   "snippet": "fmt.Fprintln(w, write(\"別名経由の記録\"))",
+   "token": "write",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Sink.Write",
+      "module": "example.com/iryo/reporting",
+      "kind": "method",
+      "file": "reporting/trail.go",
+      "line": 4,
+      "col": 2
+     }
+    ],
+    "candidates": [
+     {
+      "qualname": "MemorySink.Write",
+      "module": "example.com/iryo/reporting",
+      "kind": "method",
+      "file": "reporting/trail.go",
+      "line": 11,
+      "col": 22
+     },
+     {
+      "qualname": "Sink.Write",
+      "module": "example.com/iryo/reporting",
+      "kind": "method",
+      "file": "reporting/trail.go",
+      "line": 4,
+      "col": 2
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "MemorySink.Write",
+      "module": "example.com/iryo/reporting",
+      "kind": "method",
+      "file": "reporting/trail.go",
+      "line": 11,
+      "col": 22
+     }
+    ],
+    "open_world": false,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "受け手 trail は具体型 AuditTrail だが、選ばれるメソッドは埋め込みインタフェース Sink の Write。メソッド値の別名はインタフェース呼び出しと同じに扱い、具体メソッドへの func-alias にはしない (spec 付録 B R36)",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 120,
+   "col": 18,
+   "offset": 2356
+  },
+  {
+   "id": "FV-023",
+   "category": "FV",
+   "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+   "snippet": "fmt.Fprintln(w, stamp(pharmacy.RubberStamp{Name: \"受付\"}, \"控え\"))",
+   "token": "stamp",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "RubberStamp.Stamp",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/dose.go",
+      "line": 19,
+      "col": 22
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Stamper.Stamp",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/dose.go",
+      "line": 12,
+      "col": 2
+     }
+    ]
+   },
+   "why": "具体型のメソッド式 RubberStamp.Stamp を一度だけ束縛した func-alias (spec 付録 B R36)",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 122,
+   "col": 18,
+   "offset": 2442
+  },
+  {
+   "id": "FV-024",
+   "category": "FV",
+   "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+   "snippet": "fmt.Fprintln(w, kind(records.Refund{No: \"R-2\"}))",
+   "token": "kind",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Record.Kind",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/records/records.go",
+      "line": 4,
+      "col": 2
+     }
+    ],
+    "candidates": [
+     {
+      "qualname": "Claim.Kind",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/records/records.go",
+      "line": 12,
+      "col": 14
+     },
+     {
+      "qualname": "Refund.Kind",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/records/records.go",
+      "line": 22,
+      "col": 15
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "Refund.Kind",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/records/records.go",
+      "line": 22,
+      "col": 15
+     }
+    ],
+    "open_world": false,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "インタフェースのメソッド式 records.Record.Kind の別名はインタフェース呼び出し (spec 付録 B R36)",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 124,
+   "col": 18,
+   "offset": 2543
+  },
+  {
+   "id": "GEN-001",
+   "category": "GEN",
+   "file": "reception-desk/internal/flows/reports/reports.go",
+   "snippet": "s := store.NewMemoryStore[patient.Patient]()",
+   "token": "NewMemoryStore",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "NewMemoryStore",
+      "module": "example.com/iryo/data",
+      "kind": "method",
+      "file": "data/store/store.go",
+      "line": 9,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "明示的な具体化 (index 形)。トークンは基底の識別子。ターゲットは原型の宣言",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 46,
+   "col": 13,
+   "offset": 885
+  },
+  {
+   "id": "GEN-002",
+   "category": "GEN",
+   "file": "reception-desk/internal/flows/reports/reports.go",
+   "snippet": "s.Put(1, pt)",
+   "token": "Put",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "MemoryStore.Put",
+      "module": "example.com/iryo/data",
+      "kind": "method",
+      "file": "data/store/store.go",
+      "line": 13,
+      "col": 26
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "ChartCache.Put",
+      "module": "example.com/iryo/data",
+      "kind": "method",
+      "file": "data/cache/cache.go",
+      "line": 11,
+      "col": 28
+     }
+    ]
+   },
+   "why": "ジェネリック型 MemoryStore[T] のメソッド",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 47,
+   "col": 4,
+   "offset": 922
+  },
+  {
+   "id": "GEN-003",
+   "category": "GEN",
+   "file": "reception-desk/internal/flows/reports/reports.go",
+   "snippet": "return s.Count()",
+   "token": "Count",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "MemoryStore.Count",
+      "module": "example.com/iryo/data",
+      "kind": "method",
+      "file": "data/store/store.go",
+      "line": 22,
+      "col": 26
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "引数の型はジェネリックな型エイリアス store.Store[string] (= MemoryStore[string])",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 25,
+   "col": 11,
+   "offset": 492
+  },
+  {
+   "id": "GEN-004",
+   "category": "GEN",
+   "file": "reception-desk/internal/flows/reports/reports.go",
+   "snippet": "store.FirstOf([]string{\"初診\", \"再診\"})",
+   "token": "FirstOf",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "FirstOf",
+      "module": "example.com/iryo/data",
+      "kind": "method",
+      "file": "data/store/store.go",
+      "line": 41,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "型引数の推論",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 53,
+   "col": 41,
+   "offset": 1123
+  },
+  {
+   "id": "GEN-005",
+   "category": "GEN",
+   "file": "reception-desk/internal/flows/reports/reports.go",
+   "snippet": "charts := cache.New[string, int]()",
+   "token": "New",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "New",
+      "module": "example.com/iryo/data",
+      "kind": "method",
+      "file": "data/cache/cache.go",
+      "line": 7,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "New",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/logging/logging.go",
+      "line": 10,
+      "col": 6
+     },
+     {
+      "qualname": "New",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/logging/logging.go",
+      "line": 10,
+      "col": 6
+     }
+    ]
+   },
+   "why": "型引数二つの明示的な具体化 (IndexListExpr)。リポジトリ内の New は他に二つ (共通基盤と薬局の logging) ある",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 56,
+   "col": 18,
+   "offset": 1341
+  },
+  {
+   "id": "GEN-006",
+   "category": "GEN",
+   "file": "domain/patient/describe.go",
+   "snippet": "out = append(out, it.Describe())",
+   "token": "Describe",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Describer.Describe",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/patient/describe.go",
+      "line": 4,
+      "col": 2
+     }
+    ],
+    "candidates": [
+     {
+      "qualname": "Entity.Describe",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/patient/entity.go",
+      "line": 9,
+      "col": 17
+     },
+     {
+      "qualname": "Patient.Describe",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/patient/entity.go",
+      "line": 37,
+      "col": 18
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "Patient.Describe",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/patient/entity.go",
+      "line": 37,
+      "col": 18
+     }
+    ],
+    "open_world": false,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "型パラメータの制約 Describer のメソッド (typeparam)。候補は Describer を満たす型のメソッドで、AuditedEntity と Inpatient と visit.Visit は昇格で満たす。帳票フローは Inpatient で具体化する",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 10,
+   "col": 24,
+   "offset": 207
+  },
+  {
+   "id": "GEN-007",
+   "category": "GEN",
+   "file": "reception-desk/internal/flows/reports/reports.go",
+   "snippet": "patient.DescribeAll(inpatients)",
+   "token": "DescribeAll",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "DescribeAll",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/patient/describe.go",
+      "line": 7,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "制約付き型パラメータの推論",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 61,
+   "col": 26,
+   "offset": 1571
+  },
+  {
+   "id": "GEN-008",
+   "category": "GEN",
+   "file": "data/store/store.go",
+   "snippet": "out = append(out, f(x))",
+   "token": "f",
+   "site_kind": "call",
+   "expect": {
+    "status": "dynamic",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "label",
+      "module": "example.com/iryo/reception-desk",
+      "kind": "method",
+      "file": "reception-desk/internal/flows/reports/reports.go",
+      "line": 28,
+      "col": 6
+     }
+    ],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "ジェネリック関数の関数型引数の呼び出しは dynamic。帳票フローは strings.ToUpper (標準ライブラリ) と label を渡す",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 60,
+   "col": 21,
+   "offset": 960
+  },
+  {
+   "id": "GEN-009",
+   "category": "GEN",
+   "file": "reception-desk/internal/flows/reports/reports.go",
+   "snippet": "store.Sum([]int{288, 73, 225})",
+   "token": "Sum",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Sum",
+      "module": "example.com/iryo/data",
+      "kind": "method",
+      "file": "data/store/store.go",
+      "line": 49,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "型集合の制約 (~int | ~int64 | ~float64)",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 54,
+   "col": 24,
+   "offset": 1185
+  },
+  {
+   "id": "GEN-010",
+   "category": "GEN",
+   "file": "reception-desk/internal/flows/reports/reports.go",
+   "snippet": "bp, _ := charts.Get(\"血圧\")",
+   "token": "Get",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "ChartCache.Get",
+      "module": "example.com/iryo/data",
+      "kind": "method",
+      "file": "data/cache/cache.go",
+      "line": 15,
+      "col": 28
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "MemoryStore.Get",
+      "module": "example.com/iryo/data",
+      "kind": "method",
+      "file": "data/store/store.go",
+      "line": 17,
+      "col": 26
+     }
+    ]
+   },
+   "why": "ChartCache.Get",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 58,
+   "col": 18,
+   "offset": 1404
+  },
+  {
+   "id": "GEN-011",
+   "category": "GEN",
+   "file": "reporting/labels.go",
+   "snippet": "out = append(out, it.Label())",
+   "token": "Label",
+   "site_kind": "call",
+   "expect": {
+    "status": "ambiguous",
+    "targets": [],
+    "candidates": [
+     {
+      "qualname": "BasePolicy.Label",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/policy/policy.go",
+      "line": 15,
+      "col": 21
+     },
+     {
+      "qualname": "Slot.Label",
+      "module": "example.com/iryo/scheduling",
+      "kind": "method",
+      "file": "scheduling/book.go",
+      "line": 16,
+      "col": 15
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "Slot.Label",
+      "module": "example.com/iryo/scheduling",
+      "kind": "method",
+      "file": "scheduling/book.go",
+      "line": 16,
+      "col": 15
+     }
+    ],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "LabelAll",
+      "module": "example.com/iryo/reporting",
+      "kind": "method",
+      "file": "reporting/labels.go",
+      "line": 3,
+      "col": 6
+     },
+     {
+      "qualname": "Label",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/clock/clock.go",
+      "line": 28,
+      "col": 6
+     }
+    ]
+   },
+   "why": "インラインの制約 interface{ Label() string } のメソッドはノードを持たないので、リポジトリ内の実装を候補にした ambiguous (spec 付録 B R2)。囲む関数 LabelAll を名指ししてはいけない。帳票フローは Slot で具体化する",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 6,
+   "col": 24,
+   "offset": 175
+  },
+  {
+   "id": "GNC-001",
+   "category": "GNC",
+   "file": "legacy-claims/codes_gen.go",
+   "snippet": "return normalizeCode(codeTable[strings.ToUpper(code)])",
+   "token": "normalizeCode",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "normalizeCode",
+      "module": "example.com/iryo/legacy-claims",
+      "kind": "method",
+      "file": "legacy-claims/codes.go",
+      "line": 3,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "生成ファイル (// Code generated ... DO NOT EDIT.) から手書きのファイルへ",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 14,
+   "col": 9,
+   "offset": 248
+  },
+  {
+   "id": "GNC-002",
+   "category": "GNC",
+   "file": "legacy-claims/codes_gen.go",
+   "snippet": "return normalizeCode(codeTable[strings.ToUpper(code)])",
+   "token": "ToUpper",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "std"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "生成ファイルの中の標準ライブラリ呼び出し",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 14,
+   "col": 41,
+   "offset": 280
+  },
+  {
+   "id": "GNC-003",
+   "category": "GNC",
+   "file": "legacy-claims/codes.go",
+   "snippet": "return code + \":\" + LookupCode(code)",
+   "token": "LookupCode",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "LookupCode",
+      "module": "example.com/iryo/legacy-claims",
+      "kind": "method",
+      "file": "legacy-claims/codes_gen.go",
+      "line": 13,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "手書きのファイルから生成ファイルの関数へ",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 11,
+   "col": 22,
+   "offset": 169
+  },
+  {
+   "id": "GNC-004",
+   "category": "GNC",
+   "file": "reception-desk/internal/flows/maintenance/maintenance.go",
+   "snippet": "rezept.KnownCodes()",
+   "token": "KnownCodes",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "KnownCodes",
+      "module": "example.com/iryo/legacy-claims",
+      "kind": "method",
+      "file": "legacy-claims/codes_gen.go",
+      "line": 17,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "他のモジュールから生成ファイルの関数へ",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 40,
+   "col": 51,
+   "offset": 917
+  },
+  {
+   "id": "IFC-001",
+   "category": "IFC",
+   "file": "kernel/notify/notify.go",
+   "snippet": "out = append(out, n.Send(msg))",
+   "token": "Send",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Notifier.Send",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/notify/notify.go",
+      "line": 4,
+      "col": 2
+     }
+    ],
+    "candidates": [
+     {
+      "qualname": "MailNotifier.Send",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/notify/notify.go",
+      "line": 16,
+      "col": 23
+     },
+     {
+      "qualname": "SmsNotifier.Send",
+      "module": "example.com/iryo/scheduling",
+      "kind": "method",
+      "file": "scheduling/sms.go",
+      "line": 8,
+      "col": 23
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "MailNotifier.Send",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/notify/notify.go",
+      "line": 16,
+      "col": 23
+     },
+     {
+      "qualname": "SmsNotifier.Send",
+      "module": "example.com/iryo/scheduling",
+      "kind": "method",
+      "file": "scheduling/sms.go",
+      "line": 8,
+      "col": 23
+     }
+    ],
+    "open_world": false,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "実装が二つ (共通基盤の MailNotifier と予約モジュールの *SmsNotifier)。受付デモは両方を渡す",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 23,
+   "col": 23,
+   "offset": 379
+  },
+  {
+   "id": "IFC-002",
+   "category": "IFC",
+   "file": "kernel/notify/notify.go",
+   "snippet": "line := tn.Send(msg)",
+   "token": "Send",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Notifier.Send",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/notify/notify.go",
+      "line": 4,
+      "col": 2
+     }
+    ],
+    "candidates": [
+     {
+      "qualname": "SmsNotifier.Send",
+      "module": "example.com/iryo/scheduling",
+      "kind": "method",
+      "file": "scheduling/sms.go",
+      "line": 8,
+      "col": 23
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "SmsNotifier.Send",
+      "module": "example.com/iryo/scheduling",
+      "kind": "method",
+      "file": "scheduling/sms.go",
+      "line": 8,
+      "col": 23
+     }
+    ],
+    "open_world": false,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "MailNotifier.Send",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/notify/notify.go",
+      "line": 16,
+      "col": 23
+     }
+    ]
+   },
+   "why": "TrackedNotifier は Notifier を埋め込む。Send を宣言するのは埋め込まれた Notifier。候補は受け手の静的型 TrackedNotifier の実装 (*SmsNotifier だけ。MailNotifier は Sent を持たない)",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 29,
+   "col": 13,
+   "offset": 472
+  },
+  {
+   "id": "IFC-003",
+   "category": "IFC",
+   "file": "kernel/notify/notify.go",
+   "snippet": "itoa(tn.Sent())",
+   "token": "Sent",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "TrackedNotifier.Sent",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/notify/notify.go",
+      "line": 9,
+      "col": 2
+     }
+    ],
+    "candidates": [
+     {
+      "qualname": "SmsNotifier.Sent",
+      "module": "example.com/iryo/scheduling",
+      "kind": "method",
+      "file": "scheduling/sms.go",
+      "line": 13,
+      "col": 23
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "SmsNotifier.Sent",
+      "module": "example.com/iryo/scheduling",
+      "kind": "method",
+      "file": "scheduling/sms.go",
+      "line": 13,
+      "col": 23
+     }
+    ],
+    "open_world": false,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "TrackedNotifier 自身が宣言する Sent。実装は一つでも格上げしない",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 30,
+   "col": 44,
+   "offset": 525
+  },
+  {
+   "id": "IFC-004",
+   "category": "IFC",
+   "file": "kernel/audit/audit.go",
+   "snippet": "l.Printf(\"監査 %s 件数=%d\", event, count)",
+   "token": "Printf",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Logger.Printf",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/audit/audit.go",
+      "line": 6,
+      "col": 2
+     }
+    ],
+    "candidates": [
+     {
+      "qualname": "ConsoleLogger.Printf",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/audit/audit.go",
+      "line": 14,
+      "col": 25
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": true,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "リポジトリ内の実装は *ConsoleLogger だけだが、標準ライブラリの *log.Logger も満たす (open world)。受付デモが渡すのは log.New の *log.Logger なので、実行時にリポジトリ内の関数は走らない",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 19,
+   "col": 4,
+   "offset": 328
+  },
+  {
+   "id": "IFC-005",
+   "category": "IFC",
+   "file": "kernel/clock/clock.go",
+   "snippet": "return c.Now().Format(\"2006-01-02\")",
+   "token": "Now",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Clock.Now",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/clock/clock.go",
+      "line": 9,
+      "col": 2
+     }
+    ],
+    "candidates": [
+     {
+      "qualname": "OfficeClock.Now",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/clock/clock.go",
+      "line": 16,
+      "col": 22
+     },
+     {
+      "qualname": "fakeClock.Now",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/clock/clock_test.go",
+      "line": 10,
+      "col": 18
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "fakeClock.Now",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/clock/clock_test.go",
+      "line": 10,
+      "col": 18
+     },
+     {
+      "qualname": "OfficeClock.Now",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/clock/clock.go",
+      "line": 16,
+      "col": 22
+     }
+    ],
+    "open_world": false,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "テストだけの偽実装 fakeClock (clock_test.go) も候補 (test_only)。kernel のテストは TestStamp で fakeClock、TestLabel で OfficeClock を渡す。受付デモも受付フローの v.Dated から OfficeClock で到達する",
+   "occurrence": 1,
+   "entry": "kernel-tests",
+   "expect_offline": null,
+   "line": 21,
+   "col": 11,
+   "offset": 228
+  },
+  {
+   "id": "IFC-006",
+   "category": "IFC",
+   "file": "interop/exporters/exporters.go",
+   "snippet": "out = append(out, e.Export(rows))",
+   "token": "Export",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Exporter.Export",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/exporters/exporters.go",
+      "line": 6,
+      "col": 2
+     }
+    ],
+    "candidates": [
+     {
+      "qualname": "CsvExporter.Export",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/exporters/exporters.go",
+      "line": 11,
+      "col": 20
+     },
+     {
+      "qualname": "XmlExporter.Export",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/exporters/exporters.go",
+      "line": 19,
+      "col": 22
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "CsvExporter.Export",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/exporters/exporters.go",
+      "line": 11,
+      "col": 20
+     },
+     {
+      "qualname": "XmlExporter.Export",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/exporters/exporters.go",
+      "line": 19,
+      "col": 22
+     }
+    ],
+    "open_world": false,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "実装二つ。保守フローは両方を渡す",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 32,
+   "col": 23,
+   "offset": 612
+  },
+  {
+   "id": "IFC-007",
+   "category": "IFC",
+   "file": "interop/exporters/exporters.go",
+   "snippet": "return a.ArchiveAll(year)",
+   "token": "ArchiveAll",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Archiver.ArchiveAll",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/exporters/exporters.go",
+      "line": 38,
+      "col": 2
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": false,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "実装が一つもないインタフェース。デモは nil を渡すので、この呼び出しには到達しない",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 45,
+   "col": 11,
+   "offset": 790
+  },
+  {
+   "id": "IFC-008",
+   "category": "IFC",
+   "file": "interop/records/records.go",
+   "snippet": "return r.Kind()",
+   "token": "Kind",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Record.Kind",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/records/records.go",
+      "line": 4,
+      "col": 2
+     }
+    ],
+    "candidates": [
+     {
+      "qualname": "Claim.Kind",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/records/records.go",
+      "line": 12,
+      "col": 14
+     },
+     {
+      "qualname": "Refund.Kind",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/records/records.go",
+      "line": 22,
+      "col": 15
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "Claim.Kind",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/records/records.go",
+      "line": 12,
+      "col": 14
+     },
+     {
+      "qualname": "Refund.Kind",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/records/records.go",
+      "line": 22,
+      "col": 15
+     }
+    ],
+    "open_world": false,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "未公開メソッド sealed() を持つ封印インタフェース。他のパッケージの型は records の型を埋め込まない限り実装できず、そういう型はない",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 29,
+   "col": 11,
+   "offset": 331
+  },
+  {
+   "id": "IFC-009",
+   "category": "IFC",
+   "file": "pharmacy/dose.go",
+   "snippet": "out = append(out, s.Stamp(l))",
+   "token": "Stamp",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Stamper.Stamp",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/dose.go",
+      "line": 12,
+      "col": 2
+     }
+    ],
+    "candidates": [
+     {
+      "qualname": "RubberStamp.Stamp",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/dose.go",
+      "line": 19,
+      "col": 22
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "RubberStamp.Stamp",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/dose.go",
+      "line": 19,
+      "col": 22
+     }
+    ],
+    "open_world": false,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "リポジトリ内の実装が一つでも RubberStamp.Stamp の MethodCalls には格上げしない (Go は暗黙の実装、spec §5.4)",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 26,
+   "col": 23,
+   "offset": 522
+  },
+  {
+   "id": "IFC-010",
+   "category": "IFC",
+   "file": "reception-desk/internal/flows/accounting/accounting.go",
+   "snippet": "return p.Fee(amount)",
+   "token": "Fee",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "PaymentPolicy.Fee",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/policy/policy.go",
+      "line": 4,
+      "col": 2
+     }
+    ],
+    "candidates": [
+     {
+      "qualname": "BasePolicy.Fee",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/policy/policy.go",
+      "line": 11,
+      "col": 21
+     },
+     {
+      "qualname": "UrgentPolicy.Fee",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/policy/policy.go",
+      "line": 27,
+      "col": 23
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "BasePolicy.Fee",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/policy/policy.go",
+      "line": 11,
+      "col": 21
+     },
+     {
+      "qualname": "UrgentPolicy.Fee",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/policy/policy.go",
+      "line": 27,
+      "col": 23
+     }
+    ],
+    "open_world": false,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "StandardPolicy は昇格した BasePolicy.Fee で満たす。charge は StandardPolicy と UrgentPolicy で呼ばれる",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 16,
+   "col": 11,
+   "offset": 317
+  },
+  {
+   "id": "IFC-011",
+   "category": "IFC",
+   "file": "reception-desk/internal/flows/checkin/checkin.go",
+   "snippet": "return repo.Find(id)",
+   "token": "Find",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Repository.Find",
+      "module": "example.com/iryo/data",
+      "kind": "method",
+      "file": "data/repository/repository.go",
+      "line": 12,
+      "col": 2
+     }
+    ],
+    "candidates": [
+     {
+      "qualname": "SqlPatientRepository.Find",
+      "module": "example.com/iryo/data",
+      "kind": "method",
+      "file": "data/repository/repository.go",
+      "line": 25,
+      "col": 32
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "SqlPatientRepository.Find",
+      "module": "example.com/iryo/data",
+      "kind": "method",
+      "file": "data/repository/repository.go",
+      "line": 25,
+      "col": 32
+     }
+    ],
+    "open_world": false,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "ジェネリックなインタフェース Repository[patient.Patient]。ターゲットは原型のメソッド",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 18,
+   "col": 14,
+   "offset": 391
+  },
+  {
+   "id": "IFC-012",
+   "category": "IFC",
+   "file": "reception-desk/internal/flows/checkin/checkin.go",
+   "snippet": "notify.Notifier.Send(notify.MailNotifier{To: \"ward@iryo.example\"}, \"病棟連絡\")",
+   "token": "Send",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Notifier.Send",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/notify/notify.go",
+      "line": 4,
+      "col": 2
+     }
+    ],
+    "candidates": [
+     {
+      "qualname": "MailNotifier.Send",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/notify/notify.go",
+      "line": 16,
+      "col": 23
+     },
+     {
+      "qualname": "SmsNotifier.Send",
+      "module": "example.com/iryo/scheduling",
+      "kind": "method",
+      "file": "scheduling/sms.go",
+      "line": 8,
+      "col": 23
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "MailNotifier.Send",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/notify/notify.go",
+      "line": 16,
+      "col": 23
+     }
+    ],
+    "open_world": false,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "インタフェースのメソッド式。インタフェース呼び出しと同じ扱い",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 56,
+   "col": 34,
+   "offset": 1848
+  },
+  {
+   "id": "IFC-013",
+   "category": "IFC",
+   "file": "scheduling/book.go",
+   "snippet": "return b.notifier.Send(s.Name + \" 様の予約\")",
+   "token": "Send",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Notifier.Send",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/notify/notify.go",
+      "line": 4,
+      "col": 2
+     }
+    ],
+    "candidates": [
+     {
+      "qualname": "MailNotifier.Send",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/notify/notify.go",
+      "line": 16,
+      "col": 23
+     },
+     {
+      "qualname": "SmsNotifier.Send",
+      "module": "example.com/iryo/scheduling",
+      "kind": "method",
+      "file": "scheduling/sms.go",
+      "line": 8,
+      "col": 23
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "SmsNotifier.Send",
+      "module": "example.com/iryo/scheduling",
+      "kind": "method",
+      "file": "scheduling/sms.go",
+      "line": 8,
+      "col": 23
+     }
+    ],
+    "open_world": false,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "インタフェース型のフィールド経由。受付デモの予約簿は *SmsNotifier を持つ",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 37,
+   "col": 20,
+   "offset": 692
+  },
+  {
+   "id": "IFC-014",
+   "category": "IFC",
+   "file": "reception-desk/internal/flows/maintenance/maintenance.go",
+   "snippet": "fmt.Fprintln(w, csv.Export([]string{\"直接\"}))",
+   "token": "Export",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "CsvExporter.Export",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/exporters/exporters.go",
+      "line": 11,
+      "col": 20
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Exporter.Export",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/exporters/exporters.go",
+      "line": 6,
+      "col": 2
+     },
+     {
+      "qualname": "XmlExporter.Export",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/exporters/exporters.go",
+      "line": 19,
+      "col": 22
+     }
+    ]
+   },
+   "why": "具体型への型アサーションの結果なので静的な呼び出し",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 52,
+   "col": 23,
+   "offset": 1464
+  },
+  {
+   "id": "IFC-015",
+   "category": "IFC",
+   "file": "third_party/textfmt/textfmt.go",
+   "snippet": "s = f.Format(s)",
+   "token": "Format",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Formatter.Format",
+      "module": "example.com/thirdparty/textfmt",
+      "kind": "method",
+      "file": "third_party/textfmt/textfmt.go",
+      "line": 10,
+      "col": 2
+     }
+    ],
+    "candidates": [
+     {
+      "qualname": "Bracket.Format",
+      "module": "example.com/thirdparty/textfmt",
+      "kind": "method",
+      "file": "third_party/textfmt/textfmt.go",
+      "line": 23,
+      "col": 18
+     },
+     {
+      "qualname": "Upper.Format",
+      "module": "example.com/thirdparty/textfmt",
+      "kind": "method",
+      "file": "third_party/textfmt/textfmt.go",
+      "line": 15,
+      "col": 14
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "Upper.Format",
+      "module": "example.com/thirdparty/textfmt",
+      "kind": "method",
+      "file": "third_party/textfmt/textfmt.go",
+      "line": 15,
+      "col": 14
+     },
+     {
+      "qualname": "Bracket.Format",
+      "module": "example.com/thirdparty/textfmt",
+      "kind": "method",
+      "file": "third_party/textfmt/textfmt.go",
+      "line": 23,
+      "col": 18
+     }
+    ],
+    "open_world": true,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "ReceiptFormatter.Format",
+      "module": "example.com/iryo/billing",
+      "kind": "method",
+      "file": "billing/text/receipt.go",
+      "line": 7,
+      "col": 25
+     },
+     {
+      "qualname": "ReceiptFormatter.Format",
+      "module": "example.com/iryo/legacy-claims",
+      "kind": "method",
+      "file": "legacy-claims/text.go",
+      "line": 7,
+      "col": 25
+     },
+     {
+      "qualname": "ReceiptFormatter.Format",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/text/receipt.go",
+      "line": 7,
+      "col": 25
+     }
+    ]
+   },
+   "why": "リポジトリ内フォーク textfmt の Formatter は標準ライブラリの time.Time (Format(layout string) string) にも偶然満たされる (open world)。受付デモの Heading は Upper と Bracket を渡す",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 29,
+   "col": 9,
+   "offset": 411
+  },
+  {
+   "id": "IFC-016",
+   "category": "IFC",
+   "file": "reception-desk/internal/flows/reports/reports.go",
+   "snippet": "out = append(out, l.Label())",
+   "token": "Label",
+   "site_kind": "call",
+   "expect": {
+    "status": "ambiguous",
+    "targets": [],
+    "candidates": [
+     {
+      "qualname": "BasePolicy.Label",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/policy/policy.go",
+      "line": 15,
+      "col": 21
+     },
+     {
+      "qualname": "Slot.Label",
+      "module": "example.com/iryo/scheduling",
+      "kind": "method",
+      "file": "scheduling/book.go",
+      "line": 16,
+      "col": 15
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "BasePolicy.Label",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/policy/policy.go",
+      "line": 15,
+      "col": 21
+     },
+     {
+      "qualname": "Slot.Label",
+      "module": "example.com/iryo/scheduling",
+      "kind": "method",
+      "file": "scheduling/book.go",
+      "line": 16,
+      "col": 15
+     }
+    ],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "labelsOf",
+      "module": "example.com/iryo/reception-desk",
+      "kind": "method",
+      "file": "reception-desk/internal/flows/reports/reports.go",
+      "line": 32,
+      "col": 6
+     },
+     {
+      "qualname": "Label",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/clock/clock.go",
+      "line": 28,
+      "col": 6
+     }
+    ]
+   },
+   "why": "関数の中で宣言した名前付きインタフェース labeler はノードを持たないので、無名インタフェースと同じく リポジトリ内の実装を候補にした ambiguous (spec 付録 B R2)。囲む関数 labelsOf を名指ししてはいけない。帳票フローは UrgentPolicy (昇格した BasePolicy.Label) と Slot を渡す",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 37,
+   "col": 24,
+   "offset": 744
+  },
+  {
+   "id": "IFC-017",
+   "category": "IFC",
+   "file": "admin-console/internal/console/console.go",
+   "snippet": "fmt.Fprintln(w, n.Send(\"月次締め完了\"))",
+   "token": "Send",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Notifier.Send",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/notify/notify.go",
+      "line": 4,
+      "col": 2
+     }
+    ],
+    "candidates": [
+     {
+      "qualname": "MailNotifier.Send",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/notify/notify.go",
+      "line": 16,
+      "col": 23
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "MailNotifier.Send",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/notify/notify.go",
+      "line": 16,
+      "col": 23
+     }
+    ],
+    "open_world": false,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "SmsNotifier.Send",
+      "module": "example.com/iryo/scheduling",
+      "kind": "method",
+      "file": "scheduling/sms.go",
+      "line": 8,
+      "col": 23
+     }
+    ]
+   },
+   "why": "管理コンソールのプログラムは予約モジュールを読み込まないので、候補は MailNotifier.Send だけ (候補はそのグループの読み込みにある型、master plan C2)。受付側の同じインタフェースの呼び出しとは候補が違う",
+   "occurrence": 1,
+   "entry": "admin-console",
+   "expect_offline": null,
+   "line": 29,
+   "col": 20,
+   "offset": 858
+  },
+  {
+   "id": "IFC-018",
+   "category": "IFC",
+   "file": "interop/lookup/lookup.go",
+   "snippet": "code, err := s.Get()",
+   "token": "Get",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Source.Get",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/lookup/lookup.go",
+      "line": 6,
+      "col": 2
+     }
+    ],
+    "candidates": [
+     {
+      "qualname": "Fixed.Get",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/lookup/lookup.go",
+      "line": 13,
+      "col": 16
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "Fixed.Get",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/lookup/lookup.go",
+      "line": 13,
+      "col": 16
+     }
+    ],
+    "open_world": false,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Tracker.Get",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/idkit/tracker.go",
+      "line": 14,
+      "col": 19
+     }
+    ]
+   },
+   "why": "R52: Tracker は uuidlite.Sequence を埋め込み、ポインタのメソッド Get() float64 を持つ。オフラインでは 埋め込みの型が不正になり、go/types は Tracker をどのインタフェースも満たすと答えるが、自分の Get が勝ち、シグネチャも違うので、どちらのモードでも Source を満たさない。候補は Fixed だけで、Tracker との実装の組も作らない。候補の集合は閉じていて、記録に candidates_partial は付かない。オフラインの open_world は決めない",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Source.Get",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/lookup/lookup.go",
+      "line": 6,
+      "col": 2
+     }
+    ],
+    "candidates": [
+     {
+      "qualname": "Fixed.Get",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/lookup/lookup.go",
+      "line": 13,
+      "col": 16
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "Fixed.Get",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/lookup/lookup.go",
+      "line": 13,
+      "col": 16
+     }
+    ],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Tracker.Get",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/idkit/tracker.go",
+      "line": 14,
+      "col": 19
+     }
+    ]
+   },
+   "line": 18,
+   "col": 17,
+   "offset": 226
+  },
+  {
+   "id": "INI-001",
+   "category": "INI",
+   "file": "kernel/registry/registry.go",
+   "snippet": "var defaultName = strings.ToUpper(\"iryo\")",
+   "token": "ToUpper",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "std"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "パッケージ変数の初期化式。呼び出し元はこのファイルの <init>。goracle は初期化式に計数器を置けず、呼び先も標準ライブラリなので、実行されてもオラクルには見えない (入口なし)",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 10,
+   "col": 27,
+   "offset": 124
+  },
+  {
+   "id": "INI-002",
+   "category": "INI",
+   "file": "kernel/registry/registry.go",
+   "snippet": "var banner = makeBanner(defaultName)",
+   "token": "makeBanner",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "makeBanner",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/registry/registry.go",
+      "line": 18,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "呼び出し元は <init>",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 12,
+   "col": 14,
+   "offset": 154
+  },
+  {
+   "id": "INI-003",
+   "category": "INI",
+   "file": "kernel/registry/registry.go",
+   "snippet": "return strings.TrimSpace(s)",
+   "token": "TrimSpace",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "std"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "パッケージ変数に入れた関数リテラルの中。呼び出し元は <init>.func1",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 15,
+   "col": 17,
+   "offset": 236
+  },
+  {
+   "id": "INI-004",
+   "category": "INI",
+   "file": "kernel/registry/registry.go",
+   "snippet": "Register(\"echo\", echo)",
+   "token": "Register",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Register",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/registry/registry.go",
+      "line": 22,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "一つ目の init 関数の中。呼び出し元は init#1",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 27,
+   "col": 2,
+   "offset": 412
+  },
+  {
+   "id": "INI-005",
+   "category": "INI",
+   "file": "kernel/registry/registry.go",
+   "snippet": "Register(\"upper\", strings.ToUpper)",
+   "token": "Register",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Register",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/registry/registry.go",
+      "line": 22,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "同じファイルの二つ目の init 関数。呼び出し元は init#2",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 31,
+   "col": 2,
+   "offset": 453
+  },
+  {
+   "id": "INI-006",
+   "category": "INI",
+   "file": "kernel/registry/defaults.go",
+   "snippet": "Register(\"trim\", strings.TrimSpace)",
+   "token": "Register",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Register",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/registry/registry.go",
+      "line": 22,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "init の番号はファイルごと。defaults.go の init は init#1",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 6,
+   "col": 2,
+   "offset": 51
+  },
+  {
+   "id": "LNK-001",
+   "category": "LNK",
+   "file": "kernel/metrics/metrics.go",
+   "snippet": "return bump(counter, n)",
+   "token": "bump",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "bump",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/internal/tally/tally.go",
+      "line": 5,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "bump",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/metrics/metrics.go",
+      "line": 10,
+      "col": 6
+     }
+    ]
+   },
+   "why": "本体のない宣言 bump は //go:linkname で internal/tally.bump を引き込む。ターゲットはリンク先",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 16,
+   "col": 9,
+   "offset": 298
+  },
+  {
+   "id": "LNK-002",
+   "category": "LNK",
+   "file": "kernel/metrics/metrics.go",
+   "snippet": "return nanotime() >= start",
+   "token": "nanotime",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "std"
+    },
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "nanotime",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/metrics/metrics.go",
+      "line": 13,
+      "col": 6
+     }
+    ]
+   },
+   "why": "//go:linkname で runtime.nanotime を引き込む。リンク先は標準ライブラリ",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 24,
+   "col": 9,
+   "offset": 404
+  },
+  {
+   "id": "LNK-003",
+   "category": "LNK",
+   "file": "kernel/fastmath/sum.go",
+   "snippet": "total = AddPoints(total, p)",
+   "token": "AddPoints",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "AddPoints",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/fastmath/add_amd64.go",
+      "line": 3,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "AddPoints",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/fastmath/add_generic.go",
+      "line": 5,
+      "col": 6
+     }
+    ]
+   },
+   "why": "本体のない宣言でアセンブリ (add_amd64.s) が実装する。!amd64 のツインは add_generic.go",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 6,
+   "col": 11,
+   "offset": 108
+  },
+  {
+   "id": "MOD-001",
+   "category": "MOD",
+   "file": "reception-desk/internal/textreport/textreport.go",
+   "snippet": "t := textfmt.NewTable()",
+   "token": "NewTable",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "NewTable",
+      "module": "example.com/thirdparty/textfmt",
+      "kind": "method",
+      "file": "third_party/textfmt/textfmt.go",
+      "line": 67,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "受付は go.work のモジュール。go.work が use するリポジトリ内フォーク third_party/textfmt (モジュールパス example.com/thirdparty/textfmt) が go.mod の require v1.1.0 に勝つ",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 14,
+   "col": 15,
+   "offset": 274
+  },
+  {
+   "id": "MOD-002",
+   "category": "MOD",
+   "file": "reception-desk/internal/textreport/textreport.go",
+   "snippet": "return textfmt.PadRight(label, 12) + strconv.Itoa(yen) + \"円\"",
+   "token": "PadRight",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "PadRight",
+      "module": "example.com/thirdparty/textfmt",
+      "kind": "method",
+      "file": "third_party/textfmt/textfmt.go",
+      "line": 46,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "フォークの PadRight (全角を幅 2 と数える)",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 22,
+   "col": 17,
+   "offset": 447
+  },
+  {
+   "id": "MOD-003",
+   "category": "MOD",
+   "file": "admin-console/internal/console/console.go",
+   "snippet": "if err := guard.Require(w, \"writer\"); err != nil {",
+   "token": "Require",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Require",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/guard/guard.go",
+      "line": 13,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "管理コンソールの go.mod の replace example.com/iryo/kernel => ../kernel でリポジトリ内のソース",
+   "occurrence": 1,
+   "entry": "admin-console",
+   "expect_offline": null,
+   "line": 21,
+   "col": 18,
+   "offset": 485
+  },
+  {
+   "id": "MOD-004",
+   "category": "MOD",
+   "file": "admin-console/internal/console/console.go",
+   "snippet": "fmt.Fprintln(w, calc.Calculate(288, 1))",
+   "token": "Calculate",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "FeeCalculator.Calculate",
+      "module": "example.com/iryo/billing",
+      "kind": "method",
+      "file": "billing/fee.go",
+      "line": 13,
+      "col": 25
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "DoseCalculator.Calculate",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/dose.go",
+      "line": 7,
+      "col": 23
+     },
+     {
+      "qualname": "PointTable.Calculate",
+      "module": "example.com/iryo/legacy-claims",
+      "kind": "method",
+      "file": "legacy-claims/pointtable.go",
+      "line": 5,
+      "col": 19
+     }
+    ]
+   },
+   "why": "replace 経由の会計モジュール",
+   "occurrence": 1,
+   "entry": "admin-console",
+   "expect_offline": null,
+   "line": 25,
+   "col": 23,
+   "offset": 606
+  },
+  {
+   "id": "MOD-005",
+   "category": "MOD",
+   "file": "admin-console/internal/console/console.go",
+   "snippet": "fmt.Fprintln(w, monthly.Render([]patient.Patient{{Name: \"伊藤\"}}))",
+   "token": "Render",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "MonthlyReport.Render",
+      "module": "example.com/iryo/reporting",
+      "kind": "method",
+      "file": "reporting/monthly.go",
+      "line": 19,
+      "col": 25
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Table.Render",
+      "module": "example.com/thirdparty/textfmt",
+      "kind": "method",
+      "file": "third_party/textfmt/textfmt.go",
+      "line": 75,
+      "col": 17
+     }
+    ]
+   },
+   "why": "replace 経由の帳票モジュール",
+   "occurrence": 1,
+   "entry": "admin-console",
+   "expect_offline": null,
+   "line": 27,
+   "col": 26,
+   "offset": 723
+  },
+  {
+   "id": "MOD-006",
+   "category": "MOD",
+   "file": "patient-portal/internal/server/server.go",
+   "snippet": "fmt.Fprintf(w, \"診察料 %d円\", p.fees.Calculate(points, 1))",
+   "token": "Calculate",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "FeeCalculator.Calculate",
+      "module": "example.com/iryo/billing",
+      "kind": "method",
+      "file": "billing/fee.go",
+      "line": 13,
+      "col": 25
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "DoseCalculator.Calculate",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/dose.go",
+      "line": 7,
+      "col": 23
+     },
+     {
+      "qualname": "PointTable.Calculate",
+      "module": "example.com/iryo/legacy-claims",
+      "kind": "method",
+      "file": "legacy-claims/pointtable.go",
+      "line": 5,
+      "col": 19
+     }
+    ]
+   },
+   "why": "go.work の中の別モジュール (患者ポータル → 会計)。net/http から呼ばれるハンドラの中",
+   "occurrence": 1,
+   "entry": "patient-portal",
+   "expect_offline": null,
+   "line": 36,
+   "col": 43,
+   "offset": 839
+  },
+  {
+   "id": "MOD-007",
+   "category": "MOD",
+   "file": "reception-desk/internal/flows/maintenance/maintenance.go",
+   "snippet": "fmt.Fprintln(w, rezept.CodeLabel(\"a001\"), rezept.KnownCodes())",
+   "token": "CodeLabel",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "CodeLabel",
+      "module": "example.com/iryo/legacy-claims",
+      "kind": "method",
+      "file": "legacy-claims/codes.go",
+      "line": 10,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "インポートパスの最後の要素 legacy-claims とパッケージ句 rezept が違う。別名なしで rezept として参照する",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 40,
+   "col": 25,
+   "offset": 891
+  },
+  {
+   "id": "MOD-008",
+   "category": "MOD",
+   "file": "billing/fee.go",
+   "snippet": "return guard.EnsurePositive(points*count) * c.Rate / 10",
+   "token": "EnsurePositive",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "EnsurePositive",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/guard/guard.go",
+      "line": 20,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "go.mod に require がなくても go.work の use で別モジュールのパッケージに届く",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 14,
+   "col": 15,
+   "offset": 258
+  },
+  {
+   "id": "MOD-101",
+   "category": "MOD",
+   "file": "admin-console/internal/textreport/textreport.go",
+   "snippet": "t := textfmt.NewTable()",
+   "token": "NewTable",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/thirdparty/textfmt"
+    },
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "NewTable",
+      "module": "example.com/thirdparty/textfmt",
+      "kind": "method",
+      "file": "third_party/textfmt/textfmt.go",
+      "line": 67,
+      "col": 6
+     }
+    ]
+   },
+   "why": "管理コンソールは go.work の外 (GOWORK=off の単一モジュール)。置き換えのない example.com/thirdparty/textfmt は公開版 v1.1.0。リポジトリ内に同じパスのフォークがあっても external",
+   "occurrence": 1,
+   "entry": "admin-console",
+   "expect_offline": null,
+   "line": 14,
+   "col": 15,
+   "offset": 274
+  },
+  {
+   "id": "MOD-102",
+   "category": "MOD",
+   "file": "admin-console/internal/textreport/textreport.go",
+   "snippet": "return textfmt.PadRight(label, 12) + strconv.Itoa(yen) + \"円\"",
+   "token": "PadRight",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/thirdparty/textfmt"
+    },
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "PadRight",
+      "module": "example.com/thirdparty/textfmt",
+      "kind": "method",
+      "file": "third_party/textfmt/textfmt.go",
+      "line": 46,
+      "col": 6
+     }
+    ]
+   },
+   "why": "公開版の PadRight (rune 数で数える)。出力の桁が受付と違う",
+   "occurrence": 1,
+   "entry": "admin-console",
+   "expect_offline": null,
+   "line": 22,
+   "col": 17,
+   "offset": 447
+  },
+  {
+   "id": "TST-001",
+   "category": "TST",
+   "file": "kernel/clock/clock_test.go",
+   "snippet": "if got := normalize(\"  受付 \"); got != \"受付\" {",
+   "token": "normalize",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "normalize",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/clock/clock.go",
+      "line": 24,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "同じパッケージのテストから未公開関数",
+   "occurrence": 1,
+   "entry": "kernel-tests",
+   "expect_offline": null,
+   "line": 21,
+   "col": 12,
+   "offset": 327
+  },
+  {
+   "id": "TST-002",
+   "category": "TST",
+   "file": "kernel/clock/clock_ext_test.go",
+   "snippet": "if got := clock.Normalize(\" 会計 \"); got != \"会計\" {",
+   "token": "Normalize",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Normalize",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/clock/export_test.go",
+      "line": 3,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Normalize",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/registry/registry.go",
+      "line": 50,
+      "col": 6
+     }
+    ]
+   },
+   "why": "外部テストパッケージ clock_test から export_test.go の関数",
+   "occurrence": 1,
+   "entry": "kernel-tests",
+   "expect_offline": null,
+   "line": 11,
+   "col": 18,
+   "offset": 136
+  },
+  {
+   "id": "TST-003",
+   "category": "TST",
+   "file": "kernel/clock/clock_ext_test.go",
+   "snippet": "if got := clock.NormalizeHook(\" 薬局 \"); got != \"薬局\" {",
+   "token": "NormalizeHook",
+   "site_kind": "call",
+   "expect": {
+    "status": "dynamic",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "normalize",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/clock/clock.go",
+      "line": 24,
+      "col": 6
+     }
+    ],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "export_test.go のパッケージ変数に入れた関数値",
+   "occurrence": 1,
+   "entry": "kernel-tests",
+   "expect_offline": null,
+   "line": 14,
+   "col": 18,
+   "offset": 231
+  },
+  {
+   "id": "TST-004",
+   "category": "TST",
+   "file": "kernel/clock/export_test.go",
+   "snippet": "return normalize(label)",
+   "token": "normalize",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "normalize",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/clock/clock.go",
+      "line": 24,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "export_test.go の中の呼び出し",
+   "occurrence": 1,
+   "entry": "kernel-tests",
+   "expect_offline": null,
+   "line": 4,
+   "col": 9,
+   "offset": 61
+  },
+  {
+   "id": "TST-005",
+   "category": "TST",
+   "file": "kernel/clock/clock_test.go",
+   "snippet": "if got := Stamp(fakeClock{}); got != \"2000-01-02\" {",
+   "token": "Stamp",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Stamp",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/clock/clock.go",
+      "line": 20,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "テストから製品コードの関数",
+   "occurrence": 1,
+   "entry": "kernel-tests",
+   "expect_offline": null,
+   "line": 15,
+   "col": 12,
+   "offset": 203
+  },
+  {
+   "id": "TST-006",
+   "category": "TST",
+   "file": "kernel/clock/clock_ext_test.go",
+   "snippet": "day := time.Date(2026, 10, 13, 0, 0, 0, 0, time.UTC)",
+   "token": "Date",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "std"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "外部テストから標準ライブラリ",
+   "occurrence": 1,
+   "entry": "kernel-tests",
+   "expect_offline": null,
+   "line": 20,
+   "col": 14,
+   "offset": 364
+  },
+  {
+   "id": "TST-007",
+   "category": "TST",
+   "file": "kernel/escalation/escalation.go",
+   "snippet": "return p.Ward + \":\" + p.Level()",
+   "token": "Level",
+   "site_kind": "call",
+   "expect": {
+    "status": "ambiguous",
+    "targets": [],
+    "candidates": [
+     {
+      "qualname": "rule.Level",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/escalation/escalation.go",
+      "line": 5,
+      "col": 13
+     },
+     {
+      "qualname": "Policy.Level",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/escalation/escalation_test.go",
+      "line": 5,
+      "col": 15
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "rule.Level",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/escalation/escalation.go",
+      "line": 5,
+      "col": 13
+     },
+     {
+      "qualname": "Policy.Level",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/escalation/escalation_test.go",
+      "line": 5,
+      "col": 15
+     }
+    ],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "製品のパッケージでは昇格した rule.Level、テスト変種では escalation_test.go が宣言する Policy.Level (深さ 0) が勝つ。変種が食い違うので ambiguous (variant)。kernel のテストでは Policy.Level、受付デモの保守フロー (製品のパッケージ) では rule.Level が走る",
+   "occurrence": 1,
+   "entry": "kernel-tests",
+   "expect_offline": null,
+   "line": 15,
+   "col": 26,
+   "offset": 190
+  },
+  {
+   "id": "TST-008",
+   "category": "TST",
+   "file": "billing/fee_test.go",
+   "snippet": "if got := c.Calculate(10, 3); got != 30 {",
+   "token": "Calculate",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "FeeCalculator.Calculate",
+      "module": "example.com/iryo/billing",
+      "kind": "method",
+      "file": "billing/fee.go",
+      "line": 13,
+      "col": 25
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "DoseCalculator.Calculate",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/dose.go",
+      "line": 7,
+      "col": 23
+     },
+     {
+      "qualname": "PointTable.Calculate",
+      "module": "example.com/iryo/legacy-claims",
+      "kind": "method",
+      "file": "legacy-claims/pointtable.go",
+      "line": 5,
+      "col": 19
+     }
+    ]
+   },
+   "why": "会計のパッケージ内テスト",
+   "occurrence": 1,
+   "entry": "billing-tests",
+   "expect_offline": null,
+   "line": 7,
+   "col": 14,
+   "offset": 110
+  },
+  {
+   "id": "TWIN-001",
+   "category": "TWIN",
+   "file": "reception-desk/internal/flows/pharmacyflow/pharmacyflow.go",
+   "snippet": "houseLog.Log(\"処方箋受領\")",
+   "token": "Log",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Logger.Log",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/logging/logging.go",
+      "line": 14,
+      "col": 18
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Logger.Log",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/logging/logging.go",
+      "line": 14,
+      "col": 18
+     }
+    ]
+   },
+   "why": "TWIN-002 と引数まで同じ。klog 別名で import した共通基盤 Logger",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 21,
+   "col": 11,
+   "offset": 486
+  },
+  {
+   "id": "TWIN-002",
+   "category": "TWIN",
+   "file": "reception-desk/internal/flows/pharmacyflow/pharmacyflow.go",
+   "snippet": "dispenseLog.Log(\"処方箋受領\")",
+   "token": "Log",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Logger.Log",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/logging/logging.go",
+      "line": 14,
+      "col": 18
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Logger.Log",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/logging/logging.go",
+      "line": 14,
+      "col": 18
+     }
+    ]
+   },
+   "why": "plog 別名で import した薬局の同名型 Logger。別モジュールの別宣言",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 22,
+   "col": 14,
+   "offset": 522
+  },
+  {
+   "id": "TWIN-003",
+   "category": "TWIN",
+   "file": "reception-desk/internal/flows/pharmacyflow/pharmacyflow.go",
+   "snippet": "rx.Validate(\"Rp アモキシシリン 250mg\")",
+   "token": "Validate",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Validator.Validate",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/validation/validator.go",
+      "line": 7,
+      "col": 18
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Validator.Validate",
+      "module": "example.com/iryo/billing",
+      "kind": "method",
+      "file": "billing/validation/validator.go",
+      "line": 7,
+      "col": 18
+     }
+    ]
+   },
+   "why": "処方箋の Validator (薬局)",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 25,
+   "col": 21,
+   "offset": 627
+  },
+  {
+   "id": "TWIN-004",
+   "category": "TWIN",
+   "file": "reception-desk/internal/flows/pharmacyflow/pharmacyflow.go",
+   "snippet": "insurance.Validate(\"H12345678\")",
+   "token": "Validate",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Validator.Validate",
+      "module": "example.com/iryo/billing",
+      "kind": "method",
+      "file": "billing/validation/validator.go",
+      "line": 7,
+      "col": 18
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Validator.Validate",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/validation/validator.go",
+      "line": 7,
+      "col": 18
+     }
+    ]
+   },
+   "why": "保険証の Validator (会計)",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 25,
+   "col": 75,
+   "offset": 681
+  },
+  {
+   "id": "TWIN-005",
+   "category": "TWIN",
+   "file": "reception-desk/internal/flows/pharmacyflow/pharmacyflow.go",
+   "snippet": "dose.Calculate(30, 10)",
+   "token": "Calculate",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "DoseCalculator.Calculate",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/dose.go",
+      "line": 7,
+      "col": 23
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "FeeCalculator.Calculate",
+      "module": "example.com/iryo/billing",
+      "kind": "method",
+      "file": "billing/fee.go",
+      "line": 13,
+      "col": 25
+     },
+     {
+      "qualname": "PointTable.Calculate",
+      "module": "example.com/iryo/legacy-claims",
+      "kind": "method",
+      "file": "legacy-claims/pointtable.go",
+      "line": 5,
+      "col": 19
+     }
+    ]
+   },
+   "why": "Calculate 三兄弟の一つ。薬局の用量計算 (乗算)",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 29,
+   "col": 23,
+   "offset": 828
+  },
+  {
+   "id": "TWIN-006",
+   "category": "TWIN",
+   "file": "reception-desk/internal/flows/pharmacyflow/pharmacyflow.go",
+   "snippet": "fee.Calculate(30, 10)",
+   "token": "Calculate",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "FeeCalculator.Calculate",
+      "module": "example.com/iryo/billing",
+      "kind": "method",
+      "file": "billing/fee.go",
+      "line": 13,
+      "col": 25
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "DoseCalculator.Calculate",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/dose.go",
+      "line": 7,
+      "col": 23
+     },
+     {
+      "qualname": "PointTable.Calculate",
+      "module": "example.com/iryo/legacy-claims",
+      "kind": "method",
+      "file": "legacy-claims/pointtable.go",
+      "line": 5,
+      "col": 19
+     }
+    ]
+   },
+   "why": "会計の FeeCalculator.Calculate (ポインタ受け手)",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 29,
+   "col": 46,
+   "offset": 851
+  },
+  {
+   "id": "TWIN-007",
+   "category": "TWIN",
+   "file": "reception-desk/internal/flows/pharmacyflow/pharmacyflow.go",
+   "snippet": "table.Calculate(30, 10)",
+   "token": "Calculate",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "PointTable.Calculate",
+      "module": "example.com/iryo/legacy-claims",
+      "kind": "method",
+      "file": "legacy-claims/pointtable.go",
+      "line": 5,
+      "col": 19
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "FeeCalculator.Calculate",
+      "module": "example.com/iryo/billing",
+      "kind": "method",
+      "file": "billing/fee.go",
+      "line": 13,
+      "col": 25
+     },
+     {
+      "qualname": "DoseCalculator.Calculate",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/dose.go",
+      "line": 7,
+      "col": 23
+     }
+    ]
+   },
+   "why": "旧レセコンの PointTable.Calculate (経過措置で +1000)",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 29,
+   "col": 71,
+   "offset": 876
+  },
+  {
+   "id": "TWIN-008",
+   "category": "TWIN",
+   "file": "reception-desk/internal/flows/accounting/accounting.go",
+   "snippet": "current.Format(int(total))",
+   "token": "Format",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "ReceiptFormatter.Format",
+      "module": "example.com/iryo/billing",
+      "kind": "method",
+      "file": "billing/text/receipt.go",
+      "line": 7,
+      "col": 25
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "ReceiptFormatter.Format",
+      "module": "example.com/iryo/legacy-claims",
+      "kind": "method",
+      "file": "legacy-claims/text.go",
+      "line": 7,
+      "col": 25
+     },
+     {
+      "qualname": "ReceiptFormatter.Format",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/text/receipt.go",
+      "line": 7,
+      "col": 25
+     }
+    ]
+   },
+   "why": "ReceiptFormatter 三兄弟の一つ目 (会計)",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 43,
+   "col": 26,
+   "offset": 1174
+  },
+  {
+   "id": "TWIN-009",
+   "category": "TWIN",
+   "file": "reception-desk/internal/flows/accounting/accounting.go",
+   "snippet": "legacy.Format(int(total))",
+   "token": "Format",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "ReceiptFormatter.Format",
+      "module": "example.com/iryo/legacy-claims",
+      "kind": "method",
+      "file": "legacy-claims/text.go",
+      "line": 7,
+      "col": 25
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "ReceiptFormatter.Format",
+      "module": "example.com/iryo/billing",
+      "kind": "method",
+      "file": "billing/text/receipt.go",
+      "line": 7,
+      "col": 25
+     },
+     {
+      "qualname": "ReceiptFormatter.Format",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/text/receipt.go",
+      "line": 7,
+      "col": 25
+     }
+    ]
+   },
+   "why": "三兄弟の二つ目。モジュール example.com/iryo/legacy-claims のパッケージ句は rezept",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 44,
+   "col": 25,
+   "offset": 1218
+  },
+  {
+   "id": "TWIN-010",
+   "category": "TWIN",
+   "file": "reception-desk/internal/flows/accounting/accounting.go",
+   "snippet": "bridge.Format(int(total))",
+   "token": "Format",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "ReceiptFormatter.Format",
+      "module": "example.com/iryo/interop",
+      "kind": "method",
+      "file": "interop/text/receipt.go",
+      "line": 7,
+      "col": 25
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "ReceiptFormatter.Format",
+      "module": "example.com/iryo/billing",
+      "kind": "method",
+      "file": "billing/text/receipt.go",
+      "line": 7,
+      "col": 25
+     },
+     {
+      "qualname": "ReceiptFormatter.Format",
+      "module": "example.com/iryo/legacy-claims",
+      "kind": "method",
+      "file": "legacy-claims/text.go",
+      "line": 7,
+      "col": 25
+     }
+    ]
+   },
+   "why": "三兄弟の三つ目 (外部連携、itext 別名)",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 45,
+   "col": 25,
+   "offset": 1262
+  },
+  {
+   "id": "TWIN-011",
+   "category": "TWIN",
+   "file": "reception-desk/internal/flows/reports/reports.go",
+   "snippet": "nw.Beds()",
+   "token": "Beds",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Ward.Beds",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/wards/north/ward.go",
+      "line": 7,
+      "col": 15
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Ward.Beds",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/wards/south/ward.go",
+      "line": 7,
+      "col": 15
+     }
+    ]
+   },
+   "why": "北病棟と南病棟は同じ型名 Ward を別パッケージに持つ",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 81,
+   "col": 30,
+   "offset": 2357
+  },
+  {
+   "id": "TWIN-012",
+   "category": "TWIN",
+   "file": "reception-desk/internal/flows/reports/reports.go",
+   "snippet": "sw.Beds()",
+   "token": "Beds",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Ward.Beds",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/wards/south/ward.go",
+      "line": 7,
+      "col": 15
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Ward.Beds",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/wards/north/ward.go",
+      "line": 7,
+      "col": 15
+     }
+    ]
+   },
+   "why": "南病棟の Ward.Beds",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 81,
+   "col": 50,
+   "offset": 2377
+  },
+  {
+   "id": "TWIN-013",
+   "category": "TWIN",
+   "file": "reception-desk/internal/flows/pharmacyflow/pharmacyflow.go",
+   "snippet": "houseLog := klog.New(\"薬局窓口\")",
+   "token": "New",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "New",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/logging/logging.go",
+      "line": 10,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "New",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/logging/logging.go",
+      "line": 10,
+      "col": 6
+     },
+     {
+      "qualname": "New",
+      "module": "example.com/iryo/data",
+      "kind": "method",
+      "file": "data/cache/cache.go",
+      "line": 7,
+      "col": 6
+     }
+    ]
+   },
+   "why": "New という名前の関数はリポジトリ内に三つ (共通基盤と薬局の logging、data/cache) あり、標準ライブラリにも errors.New と log.New がある",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 19,
+   "col": 19,
+   "offset": 418
+  },
+  {
+   "id": "TWIN-014",
+   "category": "TWIN",
+   "file": "data/repository/repository.go",
+   "snippet": "r.log.Log(\"検索 \" + strconv.Itoa(id))",
+   "token": "Log",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Logger.Log",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/logging/logging.go",
+      "line": 14,
+      "col": 18
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Logger.Log",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/logging/logging.go",
+      "line": 14,
+      "col": 18
+     }
+    ]
+   },
+   "why": "フィールド log の型 *logging.Logger (共通基盤) から決まる",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 26,
+   "col": 8,
+   "offset": 522
+  },
+  {
+   "id": "UNR-001",
+   "category": "UNR",
+   "file": "reception-desk/internal/flows/checkin/checkin.go",
+   "snippet": "return v.(interface{ Describe() string }).Describe()",
+   "token": "Describe",
+   "site_kind": "call",
+   "expect": {
+    "status": "ambiguous",
+    "targets": [],
+    "candidates": [
+     {
+      "qualname": "Entity.Describe",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/patient/entity.go",
+      "line": 9,
+      "col": 17
+     },
+     {
+      "qualname": "Patient.Describe",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/patient/entity.go",
+      "line": 37,
+      "col": 18
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "Patient.Describe",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/patient/entity.go",
+      "line": 37,
+      "col": 18
+     }
+    ],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "describeAny",
+      "module": "example.com/iryo/reception-desk",
+      "kind": "method",
+      "file": "reception-desk/internal/flows/checkin/checkin.go",
+      "line": 21,
+      "col": 6
+     },
+     {
+      "qualname": "Describe",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/platform/platform.go",
+      "line": 3,
+      "col": 6
+     }
+    ]
+   },
+   "why": "無名インタフェースのメソッドはノードを持たないので MethodCalls にしない。リポジトリ内の実装を候補にした ambiguous (master plan C5)。候補は Describe() string を持つ型 (Entity と Patient、昇格で満たす AuditedEntity、Inpatient、visit.Visit) のメソッド。同名のパッケージ関数 platform.Describe はメソッドではない",
+   "occurrence": 2,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 22,
+   "col": 44,
+   "offset": 479
+  },
+  {
+   "id": "UNR-002",
+   "category": "UNR",
+   "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+   "snippet": "fmt.Fprintln(w, checker.Validate(\"H12345678\"))",
+   "token": "Validate",
+   "site_kind": "call",
+   "expect": {
+    "status": "dynamic",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "looksInsured",
+      "module": "example.com/iryo/reception-desk",
+      "kind": "method",
+      "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+      "line": 35,
+      "col": 6
+     }
+    ],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Validator.Validate",
+      "module": "example.com/iryo/billing",
+      "kind": "method",
+      "file": "billing/validation/validator.go",
+      "line": 7,
+      "col": 18
+     },
+     {
+      "qualname": "Validator.Validate",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/validation/validator.go",
+      "line": 7,
+      "col": 18
+     }
+    ]
+   },
+   "why": "Validate はメソッドではなく関数型のフィールド。同名メソッドが二つあるが辺にしない",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 113,
+   "col": 26,
+   "offset": 2162
+  },
+  {
+   "id": "UNR-003",
+   "category": "UNR",
+   "file": "reception-desk/internal/flows/maintenance/maintenance.go",
+   "snippet": "fmt.Fprintln(w, method.Call(nil)[0].String())",
+   "token": "Call",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "std"
+    },
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Patient.Describe",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/patient/entity.go",
+      "line": 37,
+      "col": 18
+     }
+    ]
+   },
+   "why": "reflect.Value.Call。実際に走る Patient.Describe は reflect の中から呼ばれ、この site には現れない",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 81,
+   "col": 25,
+   "offset": 2603
+  },
+  {
+   "id": "UNR-004",
+   "category": "UNR",
+   "file": "reception-desk/internal/flows/maintenance/maintenance.go",
+   "snippet": "method := reflect.ValueOf(pt).MethodByName(\"Describe\")",
+   "token": "MethodByName",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "std"
+    },
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Patient.Describe",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/patient/entity.go",
+      "line": 37,
+      "col": 18
+     },
+     {
+      "qualname": "Entity.Describe",
+      "module": "example.com/iryo/domain",
+      "kind": "method",
+      "file": "domain/patient/entity.go",
+      "line": 9,
+      "col": 17
+     }
+    ]
+   },
+   "why": "文字列で名前を引く。名前の推測で Describe に結ばない",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 80,
+   "col": 32,
+   "offset": 2554
+  },
+  {
+   "id": "XPR-001",
+   "category": "XPR",
+   "file": "reception-desk/internal/flows/closing/daily_close.go",
+   "snippet": "ledger := logging.New(\"日次点検\")",
+   "token": "New",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "New",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/logging/logging.go",
+      "line": 10,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "New",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/logging/logging.go",
+      "line": 10,
+      "col": 6
+     }
+    ]
+   },
+   "why": "XPR-101 とバイト単位で同じ行。このファイルは example.com/iryo/kernel/logging を import する",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 14,
+   "col": 20,
+   "offset": 248
+  },
+  {
+   "id": "XPR-002",
+   "category": "XPR",
+   "file": "reception-desk/internal/flows/closing/daily_close.go",
+   "snippet": "ledger.Log(\"日次点検\")",
+   "token": "Log",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Logger.Log",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/logging/logging.go",
+      "line": 14,
+      "col": 18
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Logger.Log",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/logging/logging.go",
+      "line": 14,
+      "col": 18
+     }
+    ]
+   },
+   "why": "受け手 ledger は共通基盤の *logging.Logger。XPR-102 と同じ行",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 15,
+   "col": 9,
+   "offset": 276
+  },
+  {
+   "id": "XPR-003",
+   "category": "XPR",
+   "file": "reception-desk/internal/flows/closing/daily_close.go",
+   "snippet": "ok := check.Validate(\"H12345678\")",
+   "token": "Validate",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Validator.Validate",
+      "module": "example.com/iryo/billing",
+      "kind": "method",
+      "file": "billing/validation/validator.go",
+      "line": 7,
+      "col": 18
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Validator.Validate",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/validation/validator.go",
+      "line": 7,
+      "col": 18
+     }
+    ]
+   },
+   "why": "会計の validation.Validator。実行結果も分かれる (こちらは true、XPR-103 は false)",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 17,
+   "col": 14,
+   "offset": 342
+  },
+  {
+   "id": "XPR-004",
+   "category": "XPR",
+   "file": "reception-desk/internal/flows/closing/daily_close.go",
+   "snippet": "yen := pointmath.ToYen(15)",
+   "token": "ToYen",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "ToYen",
+      "module": "example.com/iryo/billing",
+      "kind": "method",
+      "file": "billing/pointmath/pointmath.go",
+      "line": 3,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "ToYen",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/pointmath/pointmath.go",
+      "line": 3,
+      "col": 6
+     }
+    ]
+   },
+   "why": "会計の pointmath.ToYen は 150 円。XPR-104 の同じ行は薬局の 162 円",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 18,
+   "col": 19,
+   "offset": 382
+  },
+  {
+   "id": "XPR-005",
+   "category": "XPR",
+   "file": "reception-desk/internal/flows/closing/daily_close.go",
+   "snippet": "for _, line := range ledger.Lines() {",
+   "token": "Lines",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Logger.Lines",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/logging/logging.go",
+      "line": 18,
+      "col": 18
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Logger.Lines",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/logging/logging.go",
+      "line": 18,
+      "col": 18
+     }
+    ]
+   },
+   "why": "range の右辺の呼び出しは通常の call site。XPR-105 と同じ行",
+   "occurrence": 1,
+   "entry": "reception-desk",
+   "expect_offline": null,
+   "line": 19,
+   "col": 30,
+   "offset": 421
+  },
+  {
+   "id": "XPR-101",
+   "category": "XPR",
+   "file": "admin-console/internal/batch/daily_batch.go",
+   "snippet": "ledger := logging.New(\"日次点検\")",
+   "token": "New",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "New",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/logging/logging.go",
+      "line": 10,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "New",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/logging/logging.go",
+      "line": 10,
+      "col": 6
+     }
+    ]
+   },
+   "why": "XPR-001 と同じ行。import が example.com/iryo/pharmacy/logging なので薬局の New",
+   "occurrence": 1,
+   "entry": "admin-console",
+   "expect_offline": null,
+   "line": 14,
+   "col": 20,
+   "offset": 253
+  },
+  {
+   "id": "XPR-102",
+   "category": "XPR",
+   "file": "admin-console/internal/batch/daily_batch.go",
+   "snippet": "ledger.Log(\"日次点検\")",
+   "token": "Log",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Logger.Log",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/logging/logging.go",
+      "line": 14,
+      "col": 18
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Logger.Log",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/logging/logging.go",
+      "line": 14,
+      "col": 18
+     }
+    ]
+   },
+   "why": "受け手は薬局の *logging.Logger",
+   "occurrence": 1,
+   "entry": "admin-console",
+   "expect_offline": null,
+   "line": 15,
+   "col": 9,
+   "offset": 281
+  },
+  {
+   "id": "XPR-103",
+   "category": "XPR",
+   "file": "admin-console/internal/batch/daily_batch.go",
+   "snippet": "ok := check.Validate(\"H12345678\")",
+   "token": "Validate",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Validator.Validate",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/validation/validator.go",
+      "line": 7,
+      "col": 18
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Validator.Validate",
+      "module": "example.com/iryo/billing",
+      "kind": "method",
+      "file": "billing/validation/validator.go",
+      "line": 7,
+      "col": 18
+     }
+    ]
+   },
+   "why": "薬局の validation.Validator (処方箋の様式判定) なので false",
+   "occurrence": 1,
+   "entry": "admin-console",
+   "expect_offline": null,
+   "line": 17,
+   "col": 14,
+   "offset": 347
+  },
+  {
+   "id": "XPR-104",
+   "category": "XPR",
+   "file": "admin-console/internal/batch/daily_batch.go",
+   "snippet": "yen := pointmath.ToYen(15)",
+   "token": "ToYen",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "ToYen",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/pointmath/pointmath.go",
+      "line": 3,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "ToYen",
+      "module": "example.com/iryo/billing",
+      "kind": "method",
+      "file": "billing/pointmath/pointmath.go",
+      "line": 3,
+      "col": 6
+     }
+    ]
+   },
+   "why": "薬局の pointmath.ToYen (院内レート)",
+   "occurrence": 1,
+   "entry": "admin-console",
+   "expect_offline": null,
+   "line": 18,
+   "col": 19,
+   "offset": 387
+  },
+  {
+   "id": "XPR-105",
+   "category": "XPR",
+   "file": "admin-console/internal/batch/daily_batch.go",
+   "snippet": "for _, line := range ledger.Lines() {",
+   "token": "Lines",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Logger.Lines",
+      "module": "example.com/iryo/pharmacy",
+      "kind": "method",
+      "file": "pharmacy/logging/logging.go",
+      "line": 18,
+      "col": 18
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Logger.Lines",
+      "module": "example.com/iryo/kernel",
+      "kind": "method",
+      "file": "kernel/logging/logging.go",
+      "line": 18,
+      "col": 18
+     }
+    ]
+   },
+   "why": "薬局の Logger.Lines",
+   "occurrence": 1,
+   "entry": "admin-console",
+   "expect_offline": null,
+   "line": 19,
+   "col": 30,
+   "offset": 426
+  }
+ ],
+ "decl_pins": [
+  {
+   "qualname": "Tracker",
+   "module": "example.com/iryo/interop",
+   "kind": "class",
+   "file": "interop/idkit/tracker.go",
+   "line": 5,
+   "col": 6
+  },
+  {
+   "qualname": "Source.Get",
+   "module": "example.com/iryo/interop",
+   "kind": "method",
+   "file": "interop/lookup/lookup.go",
+   "line": 6,
+   "col": 2
+  },
+  {
+   "qualname": "<package>",
+   "module": "example.com/iryo/kernel",
+   "kind": "class",
+   "file": "kernel/logging/logging.go",
+   "line": 1,
+   "col": 9
+  },
+  {
+   "qualname": "Logger",
+   "module": "example.com/iryo/kernel",
+   "kind": "class",
+   "file": "kernel/logging/logging.go",
+   "line": 5,
+   "col": 6
+  },
+  {
+   "qualname": "New",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/logging/logging.go",
+   "line": 10,
+   "col": 6
+  },
+  {
+   "qualname": "Logger.Log",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/logging/logging.go",
+   "line": 14,
+   "col": 18
+  },
+  {
+   "qualname": "Logger.Lines",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/logging/logging.go",
+   "line": 18,
+   "col": 18
+  },
+  {
+   "qualname": "Logger",
+   "module": "example.com/iryo/kernel",
+   "kind": "class",
+   "file": "kernel/audit/audit.go",
+   "line": 5,
+   "col": 6
+  },
+  {
+   "qualname": "Logger.Printf",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/audit/audit.go",
+   "line": 6,
+   "col": 2
+  },
+  {
+   "qualname": "ConsoleLogger.Printf",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/audit/audit.go",
+   "line": 14,
+   "col": 25
+  },
+  {
+   "qualname": "Require",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/guard/guard.go",
+   "line": 13,
+   "col": 6
+  },
+  {
+   "qualname": "EnsurePositive",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/guard/guard.go",
+   "line": 20,
+   "col": 6
+  },
+  {
+   "qualname": "RequiredError.Error",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/guard/guard.go",
+   "line": 9,
+   "col": 24
+  },
+  {
+   "qualname": "Notifier",
+   "module": "example.com/iryo/kernel",
+   "kind": "class",
+   "file": "kernel/notify/notify.go",
+   "line": 3,
+   "col": 6
+  },
+  {
+   "qualname": "Notifier.Send",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/notify/notify.go",
+   "line": 4,
+   "col": 2
+  },
+  {
+   "qualname": "TrackedNotifier",
+   "module": "example.com/iryo/kernel",
+   "kind": "class",
+   "file": "kernel/notify/notify.go",
+   "line": 7,
+   "col": 6
+  },
+  {
+   "qualname": "TrackedNotifier.Sent",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/notify/notify.go",
+   "line": 9,
+   "col": 2
+  },
+  {
+   "qualname": "MailNotifier.Send",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/notify/notify.go",
+   "line": 16,
+   "col": 23
+  },
+  {
+   "qualname": "Broadcast",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/notify/notify.go",
+   "line": 20,
+   "col": 6
+  },
+  {
+   "qualname": "PaymentPolicy",
+   "module": "example.com/iryo/kernel",
+   "kind": "class",
+   "file": "kernel/policy/policy.go",
+   "line": 3,
+   "col": 6
+  },
+  {
+   "qualname": "BasePolicy.Fee",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/policy/policy.go",
+   "line": 11,
+   "col": 21
+  },
+  {
+   "qualname": "UrgentPolicy.Fee",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/policy/policy.go",
+   "line": 27,
+   "col": 23
+  },
+  {
+   "qualname": "Clock.Now",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/clock/clock.go",
+   "line": 9,
+   "col": 2
+  },
+  {
+   "qualname": "OfficeClock.Now",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/clock/clock.go",
+   "line": 16,
+   "col": 22
+  },
+  {
+   "qualname": "fakeClock",
+   "module": "example.com/iryo/kernel",
+   "kind": "class",
+   "file": "kernel/clock/clock_test.go",
+   "line": 8,
+   "col": 6
+  },
+  {
+   "qualname": "fakeClock.Now",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/clock/clock_test.go",
+   "line": 10,
+   "col": 18
+  },
+  {
+   "qualname": "TestStamp",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/clock/clock_test.go",
+   "line": 14,
+   "col": 6
+  },
+  {
+   "qualname": "Normalize",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/clock/export_test.go",
+   "line": 3,
+   "col": 6
+  },
+  {
+   "qualname": "Name",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/platform/platform_linux.go",
+   "line": 3,
+   "col": 6
+  },
+  {
+   "qualname": "Name",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/platform/platform_windows.go",
+   "line": 3,
+   "col": 6
+  },
+  {
+   "qualname": "windowsName",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/platform/platform_windows.go",
+   "line": 11,
+   "col": 6
+  },
+  {
+   "qualname": "Name",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/platform/platform_other.go",
+   "line": 5,
+   "col": 6
+  },
+  {
+   "qualname": "Debug",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/platform/platform_debug.go",
+   "line": 7,
+   "col": 6
+  },
+  {
+   "qualname": "Accel",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/platform/accel_cgo.go",
+   "line": 5,
+   "col": 6
+  },
+  {
+   "qualname": "Accel",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/platform/accel_nocgo.go",
+   "line": 5,
+   "col": 6
+  },
+  {
+   "qualname": "AddPoints",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/fastmath/add_amd64.go",
+   "line": 3,
+   "col": 6
+  },
+  {
+   "qualname": "AddPoints",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/fastmath/add_generic.go",
+   "line": 5,
+   "col": 6
+  },
+  {
+   "qualname": "bump",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/metrics/metrics.go",
+   "line": 10,
+   "col": 6
+  },
+  {
+   "qualname": "nanotime",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/metrics/metrics.go",
+   "line": 13,
+   "col": 6
+  },
+  {
+   "qualname": "bump",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/internal/tally/tally.go",
+   "line": 5,
+   "col": 6
+  },
+  {
+   "qualname": "<init>",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/registry/registry.go",
+   "line": 10,
+   "col": 0
+  },
+  {
+   "qualname": "<init>.func1",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/registry/registry.go",
+   "line": 14,
+   "col": 18
+  },
+  {
+   "qualname": "init#1",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/registry/registry.go",
+   "line": 26,
+   "col": 6
+  },
+  {
+   "qualname": "init#2",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/registry/registry.go",
+   "line": 30,
+   "col": 6
+  },
+  {
+   "qualname": "init#1",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/registry/defaults.go",
+   "line": 5,
+   "col": 6
+  },
+  {
+   "qualname": "rule.Level",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/escalation/escalation.go",
+   "line": 5,
+   "col": 13
+  },
+  {
+   "qualname": "Policy.Level",
+   "module": "example.com/iryo/kernel",
+   "kind": "method",
+   "file": "kernel/escalation/escalation_test.go",
+   "line": 5,
+   "col": 15
+  },
+  {
+   "qualname": "Entity",
+   "module": "example.com/iryo/domain",
+   "kind": "class",
+   "file": "domain/patient/entity.go",
+   "line": 5,
+   "col": 6
+  },
+  {
+   "qualname": "Inpatient",
+   "module": "example.com/iryo/domain",
+   "kind": "class",
+   "file": "domain/patient/entity.go",
+   "line": 45,
+   "col": 6
+  },
+  {
+   "qualname": "Entity.Describe",
+   "module": "example.com/iryo/domain",
+   "kind": "method",
+   "file": "domain/patient/entity.go",
+   "line": 9,
+   "col": 17
+  },
+  {
+   "qualname": "Patient.Describe",
+   "module": "example.com/iryo/domain",
+   "kind": "method",
+   "file": "domain/patient/entity.go",
+   "line": 37,
+   "col": 18
+  },
+  {
+   "qualname": "Entity.Touch",
+   "module": "example.com/iryo/domain",
+   "kind": "method",
+   "file": "domain/patient/entity.go",
+   "line": 13,
+   "col": 18
+  },
+  {
+   "qualname": "AuditedEntity.Record",
+   "module": "example.com/iryo/domain",
+   "kind": "method",
+   "file": "domain/patient/entity.go",
+   "line": 27,
+   "col": 25
+  },
+  {
+   "qualname": "Describer",
+   "module": "example.com/iryo/domain",
+   "kind": "class",
+   "file": "domain/patient/describe.go",
+   "line": 3,
+   "col": 6
+  },
+  {
+   "qualname": "DescribeAll",
+   "module": "example.com/iryo/domain",
+   "kind": "method",
+   "file": "domain/patient/describe.go",
+   "line": 7,
+   "col": 6
+  },
+  {
+   "qualname": "Visit",
+   "module": "example.com/iryo/domain",
+   "kind": "class",
+   "file": "domain/visit/visit.go",
+   "line": 8,
+   "col": 6
+  },
+  {
+   "qualname": "Yen",
+   "module": "example.com/iryo/domain",
+   "kind": "class",
+   "file": "domain/money/money.go",
+   "line": 5,
+   "col": 6
+  },
+  {
+   "qualname": "Ward",
+   "module": "example.com/iryo/domain",
+   "kind": "class",
+   "file": "domain/wards/north/ward.go",
+   "line": 3,
+   "col": 6
+  },
+  {
+   "qualname": "Ward",
+   "module": "example.com/iryo/domain",
+   "kind": "class",
+   "file": "domain/wards/south/ward.go",
+   "line": 3,
+   "col": 6
+  },
+  {
+   "qualname": "Repository",
+   "module": "example.com/iryo/data",
+   "kind": "class",
+   "file": "data/repository/repository.go",
+   "line": 11,
+   "col": 6
+  },
+  {
+   "qualname": "Repository.Find",
+   "module": "example.com/iryo/data",
+   "kind": "method",
+   "file": "data/repository/repository.go",
+   "line": 12,
+   "col": 2
+  },
+  {
+   "qualname": "SqlPatientRepository.Find",
+   "module": "example.com/iryo/data",
+   "kind": "method",
+   "file": "data/repository/repository.go",
+   "line": 25,
+   "col": 32
+  },
+  {
+   "qualname": "MemoryStore",
+   "module": "example.com/iryo/data",
+   "kind": "class",
+   "file": "data/store/store.go",
+   "line": 5,
+   "col": 6
+  },
+  {
+   "qualname": "Store",
+   "module": "example.com/iryo/data",
+   "kind": "class",
+   "file": "data/store/store.go",
+   "line": 35,
+   "col": 6
+  },
+  {
+   "qualname": "FeeCalculator",
+   "module": "example.com/iryo/billing",
+   "kind": "class",
+   "file": "billing/fee.go",
+   "line": 5,
+   "col": 6
+  },
+  {
+   "qualname": "FeeCalculator.Calculate",
+   "module": "example.com/iryo/billing",
+   "kind": "method",
+   "file": "billing/fee.go",
+   "line": 13,
+   "col": 25
+  },
+  {
+   "qualname": "FeeCalculator.Scaled",
+   "module": "example.com/iryo/billing",
+   "kind": "method",
+   "file": "billing/fee.go",
+   "line": 17,
+   "col": 25
+  },
+  {
+   "qualname": "TestCalculate",
+   "module": "example.com/iryo/billing",
+   "kind": "method",
+   "file": "billing/fee_test.go",
+   "line": 5,
+   "col": 6
+  },
+  {
+   "qualname": "DoseCalculator.Calculate",
+   "module": "example.com/iryo/pharmacy",
+   "kind": "method",
+   "file": "pharmacy/dose.go",
+   "line": 7,
+   "col": 23
+  },
+  {
+   "qualname": "Logger.Log",
+   "module": "example.com/iryo/pharmacy",
+   "kind": "method",
+   "file": "pharmacy/logging/logging.go",
+   "line": 14,
+   "col": 18
+  },
+  {
+   "qualname": "Stamper.Stamp",
+   "module": "example.com/iryo/pharmacy",
+   "kind": "method",
+   "file": "pharmacy/dose.go",
+   "line": 12,
+   "col": 2
+  },
+  {
+   "qualname": "SmsNotifier.Send",
+   "module": "example.com/iryo/scheduling",
+   "kind": "method",
+   "file": "scheduling/sms.go",
+   "line": 8,
+   "col": 23
+  },
+  {
+   "qualname": "Slot.Label",
+   "module": "example.com/iryo/scheduling",
+   "kind": "method",
+   "file": "scheduling/book.go",
+   "line": 16,
+   "col": 15
+  },
+  {
+   "qualname": "LabelAll",
+   "module": "example.com/iryo/reporting",
+   "kind": "method",
+   "file": "reporting/labels.go",
+   "line": 3,
+   "col": 6
+  },
+  {
+   "qualname": "AppointmentBook.Each",
+   "module": "example.com/iryo/scheduling",
+   "kind": "method",
+   "file": "scheduling/book.go",
+   "line": 50,
+   "col": 27
+  },
+  {
+   "qualname": "AppointmentBook.All.func1",
+   "module": "example.com/iryo/scheduling",
+   "kind": "method",
+   "file": "scheduling/book.go",
+   "line": 41,
+   "col": 9
+  },
+  {
+   "qualname": "AuditTrail",
+   "module": "example.com/iryo/reporting",
+   "kind": "class",
+   "file": "reporting/trail.go",
+   "line": 16,
+   "col": 6
+  },
+  {
+   "qualname": "Sink.Write",
+   "module": "example.com/iryo/reporting",
+   "kind": "method",
+   "file": "reporting/trail.go",
+   "line": 4,
+   "col": 2
+  },
+  {
+   "qualname": "MemorySink.Write",
+   "module": "example.com/iryo/reporting",
+   "kind": "method",
+   "file": "reporting/trail.go",
+   "line": 11,
+   "col": 22
+  },
+  {
+   "qualname": "PointTable.Calculate",
+   "module": "example.com/iryo/legacy-claims",
+   "kind": "method",
+   "file": "legacy-claims/pointtable.go",
+   "line": 5,
+   "col": 19
+  },
+  {
+   "qualname": "LookupCode",
+   "module": "example.com/iryo/legacy-claims",
+   "kind": "method",
+   "file": "legacy-claims/codes_gen.go",
+   "line": 13,
+   "col": 6
+  },
+  {
+   "qualname": "<package>",
+   "module": "example.com/iryo/legacy-claims",
+   "kind": "class",
+   "file": "legacy-claims/codes_gen.go",
+   "line": 3,
+   "col": 9
+  },
+  {
+   "qualname": "Record.Kind",
+   "module": "example.com/iryo/interop",
+   "kind": "method",
+   "file": "interop/records/records.go",
+   "line": 4,
+   "col": 2
+  },
+  {
+   "qualname": "Archiver.ArchiveAll",
+   "module": "example.com/iryo/interop",
+   "kind": "method",
+   "file": "interop/exporters/exporters.go",
+   "line": 38,
+   "col": 2
+  },
+  {
+   "qualname": "PadRight",
+   "module": "example.com/thirdparty/textfmt",
+   "kind": "method",
+   "file": "third_party/textfmt/textfmt.go",
+   "line": 46,
+   "col": 6
+  },
+  {
+   "qualname": "main",
+   "module": "example.com/iryo/reception-desk",
+   "kind": "method",
+   "file": "reception-desk/cmd/reception-desk/main.go",
+   "line": 9,
+   "col": 6
+  },
+  {
+   "qualname": "Run",
+   "module": "example.com/iryo/reception-desk",
+   "kind": "method",
+   "file": "reception-desk/internal/desk/desk.go",
+   "line": 17,
+   "col": 6
+  },
+  {
+   "qualname": "Run",
+   "module": "example.com/iryo/reception-desk",
+   "kind": "method",
+   "file": "reception-desk/internal/flows/closing/daily_close.go",
+   "line": 12,
+   "col": 6
+  },
+  {
+   "qualname": "Run.func3",
+   "module": "example.com/iryo/reception-desk",
+   "kind": "method",
+   "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+   "line": 132,
+   "col": 5
+  },
+  {
+   "qualname": "makeAdder.func1",
+   "module": "example.com/iryo/reception-desk",
+   "kind": "method",
+   "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+   "line": 44,
+   "col": 9
+  },
+  {
+   "qualname": "recovered.func1",
+   "module": "example.com/iryo/reception-desk",
+   "kind": "method",
+   "file": "reception-desk/internal/flows/dispatch/dispatch.go",
+   "line": 55,
+   "col": 8
+  },
+  {
+   "qualname": "main",
+   "module": "example.com/iryo/admin-console",
+   "kind": "method",
+   "file": "admin-console/cmd/admin-console/main.go",
+   "line": 9,
+   "col": 6
+  },
+  {
+   "qualname": "Run",
+   "module": "example.com/iryo/admin-console",
+   "kind": "method",
+   "file": "admin-console/internal/batch/daily_batch.go",
+   "line": 12,
+   "col": 6
+  },
+  {
+   "qualname": "main",
+   "module": "example.com/iryo/patient-portal",
+   "kind": "method",
+   "file": "patient-portal/cmd/patient-portal/main.go",
+   "line": 9,
+   "col": 6
+  },
+  {
+   "qualname": "Portal.handleFees",
+   "module": "example.com/iryo/patient-portal",
+   "kind": "method",
+   "file": "patient-portal/internal/server/server.go",
+   "line": 34,
+   "col": 18
+  }
+ ],
+ "cross_repo_edges": [],
+ "xpr_pairs": [
+  {
+   "kind": "line",
+   "cases": [
+    "XPR-001",
+    "XPR-101"
+   ]
+  },
+  {
+   "kind": "line",
+   "cases": [
+    "XPR-002",
+    "XPR-102"
+   ]
+  },
+  {
+   "kind": "line",
+   "cases": [
+    "XPR-003",
+    "XPR-103"
+   ]
+  },
+  {
+   "kind": "line",
+   "cases": [
+    "XPR-004",
+    "XPR-104"
+   ]
+  },
+  {
+   "kind": "line",
+   "cases": [
+    "XPR-005",
+    "XPR-105"
+   ]
+  },
+  {
+   "kind": "line",
+   "cases": [
+    "MOD-001",
+    "MOD-101"
+   ]
+  },
+  {
+   "kind": "line",
+   "cases": [
+    "MOD-002",
+    "MOD-102"
+   ]
+  },
+  {
+   "kind": "file",
+   "files": [
+    "reception-desk/internal/textreport/textreport.go",
+    "admin-console/internal/textreport/textreport.go"
+   ]
+  }
+ ],
+ "class_edges": [
+  {
+   "table": "ClassEmbeds",
+   "source": "iryo-kanri-system:domain/patient/entity.go:AuditedEntity",
+   "target": "iryo-kanri-system:domain/patient/entity.go:Entity",
+   "pointer": false
+  },
+  {
+   "table": "ClassEmbeds",
+   "source": "iryo-kanri-system:domain/patient/entity.go:Patient",
+   "target": "iryo-kanri-system:domain/patient/entity.go:AuditedEntity",
+   "pointer": false
+  },
+  {
+   "table": "ClassEmbeds",
+   "source": "iryo-kanri-system:domain/patient/entity.go:Inpatient",
+   "target": "iryo-kanri-system:domain/patient/entity.go:Patient",
+   "pointer": false
+  },
+  {
+   "table": "ClassEmbeds",
+   "source": "iryo-kanri-system:domain/visit/visit.go:Visit",
+   "target": "iryo-kanri-system:domain/patient/entity.go:Patient",
+   "pointer": true
+  },
+  {
+   "table": "ClassEmbeds",
+   "source": "iryo-kanri-system:kernel/escalation/escalation.go:Policy",
+   "target": "iryo-kanri-system:kernel/escalation/escalation.go:rule",
+   "pointer": false
+  },
+  {
+   "table": "ClassEmbeds",
+   "source": "iryo-kanri-system:kernel/notify/notify.go:TrackedNotifier",
+   "target": "iryo-kanri-system:kernel/notify/notify.go:Notifier",
+   "pointer": false
+  },
+  {
+   "table": "ClassEmbeds",
+   "source": "iryo-kanri-system:kernel/policy/policy.go:StandardPolicy",
+   "target": "iryo-kanri-system:kernel/policy/policy.go:BasePolicy",
+   "pointer": false
+  },
+  {
+   "table": "ClassEmbeds",
+   "source": "iryo-kanri-system:kernel/policy/policy.go:UrgentPolicy",
+   "target": "iryo-kanri-system:kernel/policy/policy.go:BasePolicy",
+   "pointer": false
+  },
+  {
+   "table": "ClassEmbeds",
+   "source": "iryo-kanri-system:reception-desk/internal/flows/reports/reports.go:PatientList",
+   "target": "iryo-kanri-system:data/store/store.go:MemoryStore",
+   "pointer": false
+  },
+  {
+   "table": "ClassEmbeds",
+   "source": "iryo-kanri-system:reporting/trail.go:AuditTrail",
+   "target": "iryo-kanri-system:reporting/trail.go:Sink",
+   "pointer": false
+  },
+  {
+   "table": "ClassImplements",
+   "source": "iryo-kanri-system:domain/patient/entity.go:Entity",
+   "target": "iryo-kanri-system:domain/patient/describe.go:Describer",
+   "pointer_receiver": false
+  },
+  {
+   "table": "ClassImplements",
+   "source": "iryo-kanri-system:domain/patient/entity.go:AuditedEntity",
+   "target": "iryo-kanri-system:domain/patient/describe.go:Describer",
+   "pointer_receiver": false
+  },
+  {
+   "table": "ClassImplements",
+   "source": "iryo-kanri-system:domain/patient/entity.go:Patient",
+   "target": "iryo-kanri-system:domain/patient/describe.go:Describer",
+   "pointer_receiver": false
+  },
+  {
+   "table": "ClassImplements",
+   "source": "iryo-kanri-system:domain/patient/entity.go:Inpatient",
+   "target": "iryo-kanri-system:domain/patient/describe.go:Describer",
+   "pointer_receiver": false
+  },
+  {
+   "table": "ClassImplements",
+   "source": "iryo-kanri-system:domain/visit/visit.go:Visit",
+   "target": "iryo-kanri-system:domain/patient/describe.go:Describer",
+   "pointer_receiver": false
+  },
+  {
+   "table": "ClassImplements",
+   "source": "iryo-kanri-system:interop/exporters/exporters.go:CsvExporter",
+   "target": "iryo-kanri-system:interop/exporters/exporters.go:Exporter",
+   "pointer_receiver": false
+  },
+  {
+   "table": "ClassImplements",
+   "source": "iryo-kanri-system:interop/exporters/exporters.go:XmlExporter",
+   "target": "iryo-kanri-system:interop/exporters/exporters.go:Exporter",
+   "pointer_receiver": false
+  },
+  {
+   "table": "ClassImplements",
+   "source": "iryo-kanri-system:interop/records/records.go:Claim",
+   "target": "iryo-kanri-system:interop/records/records.go:Record",
+   "pointer_receiver": false
+  },
+  {
+   "table": "ClassImplements",
+   "source": "iryo-kanri-system:interop/lookup/lookup.go:Fixed",
+   "target": "iryo-kanri-system:interop/lookup/lookup.go:Source",
+   "pointer_receiver": false
+  },
+  {
+   "table": "ClassImplements",
+   "source": "iryo-kanri-system:interop/records/records.go:Refund",
+   "target": "iryo-kanri-system:interop/records/records.go:Record",
+   "pointer_receiver": false
+  },
+  {
+   "table": "ClassImplements",
+   "source": "iryo-kanri-system:kernel/audit/audit.go:ConsoleLogger",
+   "target": "iryo-kanri-system:kernel/audit/audit.go:Logger",
+   "pointer_receiver": true
+  },
+  {
+   "table": "ClassImplements",
+   "source": "iryo-kanri-system:kernel/clock/clock.go:OfficeClock",
+   "target": "iryo-kanri-system:kernel/clock/clock.go:Clock",
+   "pointer_receiver": false
+  },
+  {
+   "table": "ClassImplements",
+   "source": "iryo-kanri-system:kernel/clock/clock_test.go:fakeClock",
+   "target": "iryo-kanri-system:kernel/clock/clock.go:Clock",
+   "pointer_receiver": false
+  },
+  {
+   "table": "ClassImplements",
+   "source": "iryo-kanri-system:kernel/notify/notify.go:MailNotifier",
+   "target": "iryo-kanri-system:kernel/notify/notify.go:Notifier",
+   "pointer_receiver": false
+  },
+  {
+   "table": "ClassImplements",
+   "source": "iryo-kanri-system:scheduling/sms.go:SmsNotifier",
+   "target": "iryo-kanri-system:kernel/notify/notify.go:Notifier",
+   "pointer_receiver": true
+  },
+  {
+   "table": "ClassImplements",
+   "source": "iryo-kanri-system:scheduling/sms.go:SmsNotifier",
+   "target": "iryo-kanri-system:kernel/notify/notify.go:TrackedNotifier",
+   "pointer_receiver": true
+  },
+  {
+   "table": "ClassImplements",
+   "source": "iryo-kanri-system:kernel/policy/policy.go:BasePolicy",
+   "target": "iryo-kanri-system:kernel/policy/policy.go:PaymentPolicy",
+   "pointer_receiver": false
+  },
+  {
+   "table": "ClassImplements",
+   "source": "iryo-kanri-system:kernel/policy/policy.go:StandardPolicy",
+   "target": "iryo-kanri-system:kernel/policy/policy.go:PaymentPolicy",
+   "pointer_receiver": false
+  },
+  {
+   "table": "ClassImplements",
+   "source": "iryo-kanri-system:kernel/policy/policy.go:UrgentPolicy",
+   "target": "iryo-kanri-system:kernel/policy/policy.go:PaymentPolicy",
+   "pointer_receiver": false
+  },
+  {
+   "table": "ClassImplements",
+   "source": "iryo-kanri-system:pharmacy/dose.go:RubberStamp",
+   "target": "iryo-kanri-system:pharmacy/dose.go:Stamper",
+   "pointer_receiver": false
+  },
+  {
+   "table": "ClassImplements",
+   "source": "iryo-kanri-system:reporting/trail.go:MemorySink",
+   "target": "iryo-kanri-system:reporting/trail.go:Sink",
+   "pointer_receiver": true
+  },
+  {
+   "table": "ClassImplements",
+   "source": "iryo-kanri-system:reporting/trail.go:MemorySink",
+   "target": "iryo-kanri-system:reporting/trail.go:Journal",
+   "pointer_receiver": true
+  },
+  {
+   "table": "ClassImplements",
+   "source": "iryo-kanri-system:reporting/trail.go:AuditTrail",
+   "target": "iryo-kanri-system:reporting/trail.go:Sink",
+   "pointer_receiver": false
+  },
+  {
+   "table": "ClassImplements",
+   "source": "iryo-kanri-system:reporting/trail.go:AuditTrail",
+   "target": "iryo-kanri-system:reporting/trail.go:Journal",
+   "pointer_receiver": false
+  },
+  {
+   "table": "ClassImplements",
+   "source": "iryo-kanri-system:third_party/textfmt/textfmt.go:Upper",
+   "target": "iryo-kanri-system:third_party/textfmt/textfmt.go:Formatter",
+   "pointer_receiver": false
+  },
+  {
+   "table": "ClassImplements",
+   "source": "iryo-kanri-system:third_party/textfmt/textfmt.go:Bracket",
+   "target": "iryo-kanri-system:third_party/textfmt/textfmt.go:Formatter",
+   "pointer_receiver": false
+  }
+ ]
+}

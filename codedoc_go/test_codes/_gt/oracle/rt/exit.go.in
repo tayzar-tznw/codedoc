@@ -1,0 +1,21 @@
+package rt
+
+import _ "unsafe" // go:linkname
+
+// exitHook mirrors internal/runtime/exithook.Hook (Go 1.27).
+type exitHook struct {
+	F            func()
+	RunOnFailure bool
+}
+
+//go:linkname exithookAdd internal/runtime/exithook.Add
+func exithookAdd(h exitHook)
+
+// A package-level initializer runs before the init functions of the
+// package, whatever the file order.
+var _ = setRegisterExit()
+
+func setRegisterExit() bool {
+	registerExit = func(f func()) { exithookAdd(exitHook{F: f, RunOnFailure: true}) }
+	return true
+}

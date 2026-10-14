@@ -1,0 +1,107 @@
+{
+	"Module": {
+		"Path": "example.com/all",
+		"Deprecated": "use example.com/all/v2 instead.\ntrailing comment"
+	},
+	"Go": "1.25.0",
+	"Toolchain": "go1.25.3",
+	"GoDebug": [
+		{
+			"Key": "default",
+			"Value": "go1.21"
+		},
+		{
+			"Key": "panicnil",
+			"Value": "1"
+		},
+		{
+			"Key": "asynctimerchan",
+			"Value": "0"
+		}
+	],
+	"Require": [
+		{
+			"Path": "golang.org/x/text",
+			"Version": "v0.38.0",
+			"Indirect": true
+		},
+		{
+			"Path": "example.com/quoted",
+			"Version": "v1.0.0"
+		},
+		{
+			"Path": "gopkg.in/yaml.v3",
+			"Version": "v3.0.1"
+		},
+		{
+			"Path": "example.com/dep/v2",
+			"Version": "v2.3.4"
+		}
+	],
+	"Exclude": [
+		{
+			"Path": "example.com/dep/v2",
+			"Version": "v2.0.0"
+		}
+	],
+	"Replace": [
+		{
+			"Old": {
+				"Path": "example.com/dep/v2",
+				"Version": "v2.3.4"
+			},
+			"New": {
+				"Path": "example.com/fork/dep/v2",
+				"Version": "v2.3.5"
+			}
+		},
+		{
+			"Old": {
+				"Path": "example.com/local"
+			},
+			"New": {
+				"Path": "./local"
+			}
+		},
+		{
+			"Old": {
+				"Path": "example.com/abs"
+			},
+			"New": {
+				"Path": "/abs/path/outside"
+			}
+		},
+		{
+			"Old": {
+				"Path": "example.com/up"
+			},
+			"New": {
+				"Path": "../outside"
+			}
+		}
+	],
+	"Retract": [
+		{
+			"Low": "v1.0.1",
+			"High": "v1.0.1"
+		},
+		{
+			"Low": "v1.1.0",
+			"High": "v1.2.0",
+			"Rationale": "range"
+		}
+	],
+	"Tool": [
+		{
+			"Path": "golang.org/x/tools/cmd/stringer"
+		}
+	],
+	"Ignore": [
+		{
+			"Path": "./node_modules"
+		},
+		{
+			"Path": "static"
+		}
+	]
+}

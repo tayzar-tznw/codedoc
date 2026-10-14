@@ -1,0 +1,14 @@
+# example.com/Upper v1.0.0
+## explicit; go 1.21
+example.com/Upper
+# example.com/dep v1.1.0
+## explicit; go 1.21
+example.com/dep
+example.com/dep/sub
+# example.com/dep/v2 v2.0.0
+## explicit; go 1.21
+example.com/dep/v2
+# example.com/loc v0.0.0 => ./local
+## explicit; go 1.22
+example.com/loc
+# example.com/loc => ./local

@@ -1,0 +1,9 @@
+go list -json -> git calls=7 [git status --porcelain] .git/index rewritten=yes
+go list -json -buildvcs=false -> git calls=0 [] .git/index rewritten=no
+go list -e -f {{.ImportPath}} -> git calls=2 [git status --porcelain] .git/index rewritten=yes
+go list -e -json=ImportPath,Stale -> git calls=2 [git status --porcelain] .git/index rewritten=yes
+go list -e -json=Dir,ImportPath,GoFiles,CgoFiles,TestGoFiles,XTestGoFiles,IgnoredGoFiles,InvalidGoFiles -> git calls=0 [] .git/index rewritten=no
+GIT_OPTIONAL_LOCKS=0 /usr/bin/git status --porcelain -> .git/index rewritten=no
+/usr/bin/git --no-optional-locks status --porcelain -> .git/index rewritten=no
+/usr/bin/git status --porcelain -> .git/index rewritten=yes
+git version 2.47.3

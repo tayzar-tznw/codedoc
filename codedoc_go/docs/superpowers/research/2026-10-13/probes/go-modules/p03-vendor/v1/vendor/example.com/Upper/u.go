@@ -1,0 +1,3 @@
+package upper
+
+func U() {}

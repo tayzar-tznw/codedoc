@@ -1,0 +1,3 @@
+go 1.22
+
+use /home/admin/scratch/codedoc-go-research/go-modules/p02-gowork/t/ws/a

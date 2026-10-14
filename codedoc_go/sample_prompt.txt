@@ -1,0 +1,9 @@
+fee.go と pointmath.go では、どちらを変更したときの影響が大きい？
+Notifier インターフェースを実装している型は？
+billing/fee.go は何をするファイルですか？
+FeeCalculator のメソッド一覧
+FeeCalculator.Calculate を呼んでいるのはどこ？
+ExportAll から呼ばれる可能性のある実装は？
+example.com/iryo/kernel/clock パッケージを import しているパッケージは？
+example.com/iryo/billing モジュールの関数を、別のモジュールから呼んでいるのはどこ？
+shared リポジトリの関数を呼んでいる、ほかのリポジトリのメソッドは？

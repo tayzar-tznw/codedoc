@@ -1,0 +1,7 @@
+{
+  "reception-desk": {"dir": "reception-desk", "cmd": ["go", "run", "./cmd/reception-desk"]},
+  "admin-console": {"dir": "admin-console", "cmd": ["go", "run", "./cmd/admin-console"], "env": {"GOWORK": "off"}},
+  "patient-portal": {"dir": "patient-portal", "cmd": ["go", "run", "./cmd/patient-portal"]},
+  "kernel-tests": {"dir": "kernel", "test": ["./..."]},
+  "billing-tests": {"dir": "billing", "test": ["./..."]}
+}

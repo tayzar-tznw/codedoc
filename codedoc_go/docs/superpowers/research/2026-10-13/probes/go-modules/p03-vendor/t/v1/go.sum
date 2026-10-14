@@ -1,0 +1,6 @@
+example.com/Upper v1.0.0 h1:WhTfiYh0ahmKPzD9DXq3SgHbzSSmVkTkEQQaxKX1NQE=
+example.com/Upper v1.0.0/go.mod h1:oL35X80YiwH41C8u8IBiE17ZjUcKQxOeeMI8aVN2q/8=
+example.com/dep v1.1.0 h1:H7yxkSyZc62X3ahNHqYbQbCkQXMv8vDFQzDBizsTDVc=
+example.com/dep v1.1.0/go.mod h1:+QWJ4TaKK0+5my1i1gpAnAdlLGkNg3weRsq3J1AghTg=
+example.com/dep/v2 v2.0.0 h1:SSxfxp/4FMhpYzGY3lNe5iPeEyGcmgUq5lbptuTDHPU=
+example.com/dep/v2 v2.0.0/go.mod h1:JgGshW5ciNq5+YjhHYKrVe/TPLFoctQEBIPAeE6W7M0=

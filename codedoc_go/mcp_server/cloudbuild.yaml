@@ -1,0 +1,30 @@
+# Cloud Build config for the CodeDoc MCP server image.
+# Invoked by mcp_server/deploy.sh from the project root so that the build
+# context includes graph_query_agent/ alongside mcp_server/.
+#
+# Required substitutions (deploy.sh passes both; there are no defaults):
+#   _IMAGE     Artifact Registry image path without tag,
+#              e.g. asia-northeast1-docker.pkg.dev/PROJECT/codedoc/codedoc-go-mcp
+#   SHORT_SHA  git short SHA (not auto-populated for `gcloud builds submit`)
+#
+# Manual invocation:
+#   gcloud builds submit . --config mcp_server/cloudbuild.yaml \
+#     --ignore-file mcp_server/.gcloudignore \
+#     --substitutions _IMAGE=REGION-docker.pkg.dev/PROJECT/REPO/codedoc-go-mcp,SHORT_SHA=manual
+
+steps:
+  - id: build
+    name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - --tag=${_IMAGE}:latest
+      - --tag=${_IMAGE}:${SHORT_SHA}
+      - --file=mcp_server/Dockerfile
+      - .
+
+images:
+  - ${_IMAGE}:latest
+  - ${_IMAGE}:${SHORT_SHA}
+
+options:
+  logging: CLOUD_LOGGING_ONLY

@@ -1,0 +1,29 @@
+##### cgo: what go list runs (fresh GOCACHE each)
+S1 -compiled=false CGO_ENABLED=1: CC=0 pkg-config=0
+S2 -compiled=true  CGO_ENABLED=1: CC=52 pkg-config=1 [pkg-config --cflags -- nosuchlib]
+S2b warm GOCACHE: CC=1 pkg-config=1
+S3 -compiled=true  CGO_ENABLED=0: CC=0 pkg-config=0; ./c under CGO_ENABLED=0: package example.com/m/c: build constraints exclude all Go files in m/c ignored=[c.go]
+context: CgoEnabled=true ToolTags=[goexperiment.regabiwrappers goexperiment.regabiargs goexperiment.dwarf5 goexperiment.jsonv2 goexperiment.greenteagc goexperiment.randomizedheapbase64 goexperiment.sizespecializedmalloc amd64.v1] | no gcc on PATH: CgoEnabled=false | CC=/nonexistent: CgoEnabled=true | GOOS=windows: CgoEnabled=false
+##### other programs the go command executes
+GOFLAGS=-toolexec, CGO_ENABLED=1: toolexec calls=8
+GOFLAGS=-toolexec, CGO_ENABLED=0: toolexec calls=2
+GOCACHEPROG set, plain go list -deps: calls=1
+go list -json in a git repo with a main package: git calls=7
+go list -json -buildvcs=false in a git repo with a main package: git calls=0
+##### GOPRIVATE/GONOPROXY vs GOPROXY=off (spy git on PATH)
+GOPROXY=off(default here) GOPRIVATE=github.com/codedoc-nonexistent-org: git calls=2 | github.com/codedoc-nonexistent-org/private vm.go:3:8: unable to resolve git version: failed to execute git version: exit status 128
+GOPROXY=off(default here) GOPRIVATE=github.com/codedoc-nonexistent-org GOVCS=*:off: git calls=0 | github.com/codedoc-nonexistent-org/private vm.go:3:8: GOVCS disallows using git for private github.com/codedoc-nonexistent-org/private; see 
+GOPROXY=off(default here) GOPRIVATE=: git calls=0 | github.com/codedoc-nonexistent-org/private vm.go:3:8: module lookup disabled by GOPROXY=off
+GOPROXY=off(default here) GOPROXY=direct: git calls=2 | github.com/codedoc-nonexistent-org/private vm.go:3:8: unable to resolve git version: failed to execute git version: exit status 128
+##### go.sum / go.work.sum writes
+single-module readonly, empty go.sum, module cached: example.com/dep s.go:3:8: missing go.sum entry for module providing package example.com/dep (imported by example.com/summ); to add: ; go.sum bytes=0
+GOFLAGS=-mod=mod inherited: example.com/summ; go.sum bytes after=149
+generated go.work outside the module, GOSUMDB=off: example.com/dep err=<nil>; module go.sum bytes=0; out/go.work.sum lines=2
+##### replace pointing outside the repo
+O1 GOWORK=off honours absolute out-of-repo replace: example.com/dep@v1.1.0 replace=out1/elsewhere/dep  dir=out1/elsewhere/dep
+O2 generated go.work 'replace X => X v1.1.0' overrides it: example.com/dep@v1.1.0 replace=example.com/dep v1.1.0 dir=modcache-probe/example.com/dep@v1.1.0
+O3 generated go.work replace to an empty stub (fail closed): example.com/dep err=../repo/a/a.go:3:8: no required module provides package example.com/dep; to add it:
+##### telemetry
+GOTELEMETRY env ignored: GOTELEMETRY=off go env GOTELEMETRY -> local
+isolated XDG_CONFIG_HOME, mode unset: files written=3 (go/telemetry/local/go@go1.27.2-go1.27.2-linux-amd64-2026-10-13.v1.count)
+after 'go telemetry off' inside isolated XDG_CONFIG_HOME: files=go/telemetry/mode  content='off 2026-10-13'

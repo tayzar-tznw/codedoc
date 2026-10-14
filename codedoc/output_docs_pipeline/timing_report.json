@@ -1,0 +1,29 @@
+{
+  "target_dir": "/home/admin/dev/codedoc/test_codes/ruby-sample",
+  "model": "gemini-3.5-flash",
+  "concurrency": 100,
+  "total_seconds": 1782275942.531818,
+  "timings": {
+    "phase1_scan": 0.00041556358337402344,
+    "phase1b_treesitter": 0.009722232818603516,
+    "phase2_file_summaries": 10.019503355026245,
+    "phase3_dir_summaries": 27.70527410507202,
+    "phase4_topics": 13.568252325057983,
+    "phase5_topic_summaries": 29.523210048675537,
+    "phase6_index": 0.006928205490112305,
+    "phase8_write_nodes": 0.9259152412414551,
+    "phase9_write_edges": 0.8549304008483887,
+    "phase10_embeddings": 5.564171314239502
+  },
+  "statistics": {
+    "files_summarized": 30,
+    "dirs_summarized": 10,
+    "topics_extracted": 16,
+    "entities_extracted": 30,
+    "graph_files": 30,
+    "graph_classes": 27,
+    "graph_methods": 70,
+    "graph_modules": 16,
+    "graph_dirs": 11
+  }
+}

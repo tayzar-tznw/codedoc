@@ -1,0 +1,3 @@
+package vv
+
+func V() {}

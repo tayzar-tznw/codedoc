@@ -1,0 +1,38 @@
+{
+  "defer_stmts": {},
+  "error_samples": [
+    "github.com/stretchr/testify/suite: p/p.go:3:8: module lookup disabled by GOPROXY=off",
+    "example.com/m/p: /home/admin/scratch/codedoc-go-research/real-repos/probes/shadow/m/p/p.go:3:8: could not import github.com/stretchr/testify/suite (invalid package name: \"\")"
+  ],
+  "errors_total": 3,
+  "func_values_not_called": 0,
+  "go_stmts": {},
+  "go_version": "go1.27.2",
+  "inrepo_files_loaded": 1,
+  "inrepo_modules": 1,
+  "inrepo_package_paths": 1,
+  "inrepo_packages_variants": 1,
+  "inrepo_test_files_loaded": 0,
+  "load_seconds": 0.016172599,
+  "method_values_not_called": 0,
+  "packages_total": 2,
+  "packages_with_errors": 2,
+  "patterns": "./...",
+  "rejected_bogus_file_attachments": 0,
+  "rejected_bogus_packages": 0,
+  "rejected_bogus_samples": [],
+  "roots": 1,
+  "sites_by_class": {
+    "TOTAL": 1,
+    "method-promoted-depth:2": 1,
+    "method-recv:value": 1,
+    "method/same-module": 1
+  },
+  "sites_by_class_testfiles": {},
+  "tests": true,
+  "total_seconds": 0.016336159,
+  "variant_conflict_samples": [],
+  "variant_conflicts": 0,
+  "vmhwm_after_load_mb": 11,
+  "vmhwm_end_mb": 11
+}

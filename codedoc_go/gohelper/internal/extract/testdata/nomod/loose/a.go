@@ -1,0 +1,3 @@
+package loose
+
+func Loose() {}

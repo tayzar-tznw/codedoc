@@ -1,0 +1,15 @@
+{"file":"lib/lib.go","line":85,"col":8,"name":"Add","target":{"qname":"example.com/probe3/lib.Add"},"note":"static call in range-over-func body"}
+{"file":"lib/lib.go","line":47,"col":10,"name":"Area","target":{"qname":"example.com/probe3/lib.Circle.Area"},"note":"simulated wrong single-implementer guess"}
+{"file":"lib/lib.go","line":181,"col":14,"name":"Fn","target":{"qname":"example.com/probe3/lib.One"},"note":"simulated wrong func-field target"}
+{"file":"lib/lib.go","line":102,"col":41,"name":"Write","target":{"qname":"example.com/probe3/lib.(*myWriter).Write"},"note":"BLIND SPOT: bytes.Buffer.Write also runs here"}
+{"file":"lib/lib.go","line":118,"col":8,"name":"unlock","target":{"qname":"example.com/probe3/lib.unlock"},"note":"single defer"}
+{"file":"lib/lib.go","line":127,"col":8,"name":"unlock","target":{"qname":"example.com/probe3/lib.unlock"},"note":"one of two defers"}
+{"file":"lib/lib.go","line":176,"col":11,"name":"mv","target":{"qname":"example.com/probe3/lib.(*V).Ptr"},"note":"method value"}
+{"file":"lib/lib.go","line":169,"col":5,"name":"Push","target":{"qname":"example.com/probe3/lib.(*Stack).Push"},"note":"generic method"}
+{"file":"lib/lib.go","line":151,"col":5,"name":"fill","target":{"qname":"example.com/probe3/lib.fill"},"note":"go statement"}
+{"file":"lib/lib.go","line":163,"col":33,"name":"Val","target":{"file":"lib/lib.go","line":28},"note":"3rd of 4 calls on the line, target by position"}
+{"file":"lib/lib.go","line":163,"col":33,"name":"Val","target":{"qname":"example.com/probe3/lib.(*V).Ptr"},"note":"same site, wrong target"}
+{"file":"lib/ext_test.go","line":12,"col":13,"name":"helper","target":{"qname":"example.com/probe3/lib_test.helper"},"note":"external test package"}
+{"file":"lib/lib.go","line":187,"col":7,"name":"Slice","target":{"qname":"example.com/probe3/lib.One"},"note":"BLIND SPOT: site runs but only enters stdlib"}
+{"file":"lib/lib.go","line":47,"col":10,"name":"Area","target":{"qname":"example.com/probe3/lib.Shape.Area","kind":"iface-method"},"note":"edge to the interface method (gopls answer)"}
+{"file":"lib/lib.go","line":102,"col":41,"name":"Write","target":{"qname":"io.Writer.Write","kind":"iface-method"},"note":"interface method outside the repo"}

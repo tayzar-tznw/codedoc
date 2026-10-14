@@ -1,0 +1,12 @@
+{
+ "builds": [
+  "linux-amd64",
+  "windows-amd64"
+ ],
+ "groups": {
+  "m0": "toolchain",
+  "ws0": "ok"
+ },
+ "helper_revision": "0317548836b62c017ef45892609fd942a3e4835f054fd5c5f4858a6835362416",
+ "toolchain": "go1.27.2"
+}

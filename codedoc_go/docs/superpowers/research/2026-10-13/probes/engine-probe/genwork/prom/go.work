@@ -1,0 +1,9 @@
+go 1.26.0
+
+use (
+	/home/admin/scratch/codedoc-go-research/repos/prometheus
+	/home/admin/scratch/codedoc-go-research/repos/prometheus/compliance
+	/home/admin/scratch/codedoc-go-research/repos/prometheus/documentation/examples/remote_storage
+	/home/admin/scratch/codedoc-go-research/repos/prometheus/internal/tools
+	/home/admin/scratch/codedoc-go-research/repos/prometheus/web/ui/mantine-ui/src/promql/tools
+)

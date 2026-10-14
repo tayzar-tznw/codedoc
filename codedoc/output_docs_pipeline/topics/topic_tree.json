@@ -1,0 +1,305 @@
+[
+  {
+    "name": "書籍カタログ・検索機能",
+    "linked_files": [
+      "books_controller.rb",
+      "book.rb",
+      "book_category.rb",
+      "category.rb",
+      "ebook.rb",
+      "reference_book.rb",
+      "searchable.rb",
+      "book_search.rb"
+    ],
+    "subtopics": [
+      {
+        "name": "書籍・カテゴリデータモデル",
+        "linked_files": [
+          "book.rb",
+          "book_category.rb",
+          "category.rb",
+          "ebook.rb",
+          "reference_book.rb"
+        ]
+      },
+      {
+        "name": "書籍検索・フィルタリング",
+        "linked_files": [
+          "searchable.rb",
+          "book_search.rb"
+        ]
+      },
+      {
+        "name": "書籍APIコントローラー",
+        "linked_files": [
+          "books_controller.rb"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "著者情報管理",
+    "linked_files": [
+      "authors_controller.rb",
+      "author.rb"
+    ],
+    "subtopics": [
+      {
+        "name": "著者データモデル",
+        "linked_files": [
+          "author.rb"
+        ]
+      },
+      {
+        "name": "著者APIコントローラー",
+        "linked_files": [
+          "authors_controller.rb"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "図書貸出・返却・料金管理",
+    "linked_files": [
+      "loans_controller.rb",
+      "loan.rb",
+      "member.rb",
+      "fee_calculator.rb",
+      "money.rb"
+    ],
+    "subtopics": [
+      {
+        "name": "貸出・返却トランザクション",
+        "linked_files": [
+          "loans_controller.rb",
+          "loan.rb"
+        ]
+      },
+      {
+        "name": "利用者（メンバー）管理",
+        "linked_files": [
+          "member.rb"
+        ]
+      },
+      {
+        "name": "延滞料金計算・通貨処理",
+        "linked_files": [
+          "fee_calculator.rb",
+          "money.rb"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "アプリケーション共通基盤",
+    "linked_files": [
+      "application_controller.rb",
+      "application_record.rb"
+    ],
+    "subtopics": [
+      {
+        "name": "共通コントローラー処理",
+        "linked_files": [
+          "application_controller.rb"
+        ]
+      },
+      {
+        "name": "共通データベースモデル",
+        "linked_files": [
+          "application_record.rb"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "アプリケーション起動・初期化基盤",
+    "linked_files": [
+      "boot.rb",
+      "environment.rb"
+    ],
+    "subtopics": [
+      {
+        "name": "ブートストラップ処理",
+        "linked_files": [
+          "boot.rb"
+        ]
+      },
+      {
+        "name": "環境初期化エントリーポイント",
+        "linked_files": [
+          "environment.rb"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "アプリケーション設定管理",
+    "linked_files": [
+      "application.rb"
+    ],
+    "subtopics": [
+      {
+        "name": "全体設定と依存関係ロード",
+        "linked_files": [
+          "application.rb"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "リクエストルーティング制御",
+    "linked_files": [
+      "routes.rb"
+    ],
+    "subtopics": [
+      {
+        "name": "URLルーティング定義",
+        "linked_files": [
+          "routes.rb"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "書籍・カテゴリ管理",
+    "linked_files": [
+      "20260101000002_create_books.rb",
+      "20260101000005_create_categories.rb",
+      "20260101000006_create_book_categories.rb"
+    ],
+    "subtopics": [
+      {
+        "name": "書籍情報定義",
+        "linked_files": [
+          "20260101000002_create_books.rb"
+        ]
+      },
+      {
+        "name": "カテゴリ関連付け",
+        "linked_files": [
+          "20260101000005_create_categories.rb",
+          "20260101000006_create_book_categories.rb"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "著者管理",
+    "linked_files": [
+      "20260101000001_create_authors.rb"
+    ],
+    "subtopics": [
+      {
+        "name": "著者情報定義",
+        "linked_files": [
+          "20260101000001_create_authors.rb"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "会員管理",
+    "linked_files": [
+      "20260101000003_create_members.rb"
+    ],
+    "subtopics": [
+      {
+        "name": "会員情報定義",
+        "linked_files": [
+          "20260101000003_create_members.rb"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "貸出管理",
+    "linked_files": [
+      "20260101000004_create_loans.rb"
+    ],
+    "subtopics": [
+      {
+        "name": "貸出履歴定義",
+        "linked_files": [
+          "20260101000004_create_loans.rb"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "データベース初期化・シードデータ管理",
+    "linked_files": [
+      "schema.rb",
+      "seeds.rb"
+    ],
+    "subtopics": [
+      {
+        "name": "データベーススキーマ定義",
+        "linked_files": [
+          "schema.rb"
+        ]
+      },
+      {
+        "name": "初期データ・テストデータ投入",
+        "linked_files": [
+          "seeds.rb"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "書籍検索機能",
+    "linked_files": [
+      "catalog.rb"
+    ],
+    "subtopics": [
+      {
+        "name": "属性ベースの書籍検索",
+        "linked_files": [
+          "catalog.rb"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "集計・レポート作成機能",
+    "linked_files": [
+      "catalog.rb"
+    ],
+    "subtopics": [
+      {
+        "name": "書籍データの集計レポート生成",
+        "linked_files": [
+          "catalog.rb"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "動的クエリインターフェース",
+    "linked_files": [
+      "catalog.rb"
+    ],
+    "subtopics": [
+      {
+        "name": "メタプログラミングによる動的メソッド解決",
+        "linked_files": [
+          "catalog.rb"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "データベーススキーマ",
+    "kind": "db_schema",
+    "linked_files": [
+      "20260101000001_create_authors.rb",
+      "20260101000002_create_books.rb",
+      "20260101000003_create_members.rb",
+      "20260101000004_create_loans.rb",
+      "20260101000005_create_categories.rb",
+      "20260101000006_create_book_categories.rb",
+      "schema.rb"
+    ],
+    "subtopics": []
+  }
+]

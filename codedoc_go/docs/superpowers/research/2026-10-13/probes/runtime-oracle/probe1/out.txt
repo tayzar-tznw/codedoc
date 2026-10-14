@@ -1,0 +1,25 @@
+Add            callee=main.(*B).Add@main.go:7 | caller=main.multiline@main.go:16 <- main.main@main.go:78
+Add            callee=main.(*B).Add@main.go:7 | caller=main.multiline@main.go:17 <- main.main@main.go:78
+g              callee=main.g@main.go:9 | caller=main.multiline@main.go:20 <- main.main@main.go:78
+g              callee=main.g@main.go:9 | caller=main.multiline@main.go:21 <- main.main@main.go:78
+g              callee=main.g@main.go:9 | caller=main.retCall@main.go:27 <- main.main@main.go:79
+g              callee=main.g@main.go:9 | caller=main.retCall@main.go:30 <- main.main@main.go:79
+w              callee=main.w@main.go:11 | caller=main.retCall@main.go:30 <- main.main@main.go:79
+u              callee=main.u@main.go:10 | caller=main.retCall@main.go:30 <- main.main@main.go:79
+u              callee=main.u@main.go:10 | caller=main.bareRet@main.go:37 <- main.main@main.go:80
+g              callee=main.g@main.go:9 | caller=main.loopDefer@main.go:47 <- main.main@main.go:81
+w              callee=main.w@main.go:11 | caller=main.loopDefer@main.go:48 <- main.main@main.go:81
+w              callee=main.w@main.go:11 | caller=main.loopDefer@main.go:48 <- main.main@main.go:81
+b              callee=main.b@main.go:63 | caller=main.tagged@main.go#4:51 <- main.main@main.go:82
+c              callee=main.c@main.go:64 | caller=main.tagged@main.go#6:51 <- main.main@main.go:82
+a              callee=main.a@main.go:62 | caller=main.tagged@main.go:51 <- main.main@main.go:82
+b              callee=main.b@main.go:63 | caller=main.taggedLparenOnly@main.go#L1:55 <- main.main@main.go:83
+c              callee=main.c@main.go:64 | caller=main.taggedLparenOnly@main.go#L2:55 <- main.main@main.go:83
+a              callee=main.a@main.go:62 | caller=main.taggedLparenOnly@main.go:55 <- main.main@main.go:83
+b              callee=main.b@main.go:63 | caller=main.taggedAbs@main.go#L1:59 <- main.main@main.go:84
+c              callee=main.c@main.go:64 | caller=main.taggedAbs@main.go:59 <- main.main@main.go:84
+a              callee=main.a@main.go:62 | caller=main.taggedAbs@main.go:59 <- main.main@main.go:84
+g              callee=main.g@main.go:9 | caller=main.goTagged@main.go:68 <- main.main@main.go:87
+golit          callee=main.goTagged.func1@main.go:69 | caller=runtime.goexit@asm_amd64.s:1264 CREATED=created by main.goTagged in goroutine 1 @ /home/admin/scratch/codedoc-go-research/runtime-oracle/probe1/main.go:69 +0x96
+g              callee=main.g@main.go:9 | caller=main.deferTagged@main.go#R:74 <- main.main@main.go:89
+w              callee=main.w@main.go:11 | caller=main.deferTagged@main.go:74 <- main.main@main.go:89

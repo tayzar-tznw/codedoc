@@ -1,0 +1,4 @@
+# example.com/iryo/shared v1.0.0
+## explicit; go 1.26
+example.com/iryo/shared/log
+example.com/iryo/shared/money

@@ -1,0 +1,3 @@
+go 1.27
+
+use /home/admin/scratch/codedoc-go-research/engine-probe/probe-vendor

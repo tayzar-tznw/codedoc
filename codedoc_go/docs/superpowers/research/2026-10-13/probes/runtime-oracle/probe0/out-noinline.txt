@@ -1,0 +1,53 @@
+initVal        callee=main.initVal@main.go:12 | caller=main.init@main.go:10 <- runtime.doInit1@proc.go:8154 <- runtime.doInit@proc.go:8121
+init           callee=main.init.0@main.go:14 | caller=runtime.doInit1@proc.go:8154 <- runtime.doInit@proc.go:8121 <- runtime.main@proc.go:269
+plain          callee=main.plain@main.go:16 | caller=main.init.0@main.go:14 <- runtime.doInit1@proc.go:8154 <- runtime.doInit@proc.go:8121
+main           callee=main.main@main.go:107 | caller=runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+plain          callee=main.plain@main.go:16 | caller=main.main@main.go:108 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+b              callee=main.b@main.go:20 | caller=main.main@main.go:109 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+c              callee=main.c@main.go:21 | caller=main.main@main.go:109 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+a              callee=main.a@main.go:22 | caller=main.main@main.go:109 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+V.ValM         callee=main.V.ValM@main.go:26 | caller=main.main@main.go:112 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+(*V).PtrM      callee=main.(*V).PtrM@main.go:27 | caller=main.main@main.go:113 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+V.ValM         callee=main.V.ValM@main.go:26 | caller=main.main@main.go:114 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+(*V).PtrM      callee=main.(*V).PtrM@main.go:27 | caller=main.main@main.go:115 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+Inner.InnerM   callee=main.Inner.InnerM@main.go:31 | caller=main.main@main.go:117 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+(*PInner).PInnerM callee=main.(*PInner).PInnerM@main.go:35 | caller=main.main@main.go:118 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+Inner.InnerM   callee=main.Inner.InnerM@main.go:31 | caller=main.main@main.go:120 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+Circle.Area    callee=main.Circle.Area@main.go:46 | caller=main.main@main.go:122 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+(*Square).Area callee=main.(*Square).Area@main.go:47 | caller=main.main@main.go:122 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+Map[T,U]       callee=main.Map[...]@main.go:52 | caller=main.main@main.go:124 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+Map.lit        callee=main.main.func1@main.go:124 | caller=main.Map[...]@main.go:55 <- main.main@main.go:124 <- runtime.main@proc.go:302
+(*Stack[T]).Push callee=main.(*Stack[...]).Push@main.go:62 | caller=main.main@main.go:126 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+Str[T]         callee=main.Str[...]@main.go:68 | caller=main.main@main.go:127 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+Name.String    callee=main.Name.String@main.go:66 | caller=main.Str[...]@main.go:68 <- main.main@main.go:127 <- runtime.main@proc.go:302
+named.lit      callee=main.main.func2@main.go:128 | caller=main.main@main.go:129 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+iife.lit       callee=main.main.func3@main.go:130 | caller=main.main@main.go:130 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+(*V).PtrM      callee=main.(*V).PtrM@main.go:27 | caller=main.main@main.go:132 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+V.ValM         callee=main.V.ValM@main.go:26 | caller=main.main@main.go:134 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+(*V).PtrM      callee=main.(*V).PtrM@main.go:27 | caller=main.main@main.go:135 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+V.ValM         callee=main.V.ValM@main.go:26 | caller=main.main@main.go:136 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+V.ValM         callee=main.V.ValM@main.go:26 | caller=main.main@main.go:137 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+plain          callee=main.plain@main.go:16 | caller=main.main@main.go:139 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+plain          callee=main.plain@main.go:16 | caller=main.main@main.go:141 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+Circle.Area    callee=main.Circle.Area@main.go:46 | caller=main.main@main.go:144 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+deferrer       callee=main.deferrer@main.go:82 | caller=main.main@main.go:145 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+b              callee=main.b@main.go:20 | caller=main.deferrer@main.go:88 <- main.main@main.go:145 <- runtime.main@proc.go:302
+deferrer.lit   callee=main.deferrer.func1@main.go:87 | caller=main.deferrer@main.go:89 <- main.main@main.go:145 <- runtime.main@proc.go:302
+(*V).PtrM      callee=main.(*V).PtrM@main.go:27 | caller=main.deferrer@main.go:89 <- main.main@main.go:145 <- runtime.main@proc.go:302
+withArg        callee=main.withArg@main.go:18 | caller=main.deferrer@main.go:89 <- main.main@main.go:145 <- runtime.main@proc.go:302
+plain          callee=main.plain@main.go:16 | caller=main.deferrer@main.go:89 <- main.main@main.go:145 <- runtime.main@proc.go:302
+panicker       callee=main.panicker@main.go:92 | caller=main.main@main.go:146 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+(*V).boom      callee=main.(*V).boom@main.go:104 | caller=main.panicker@main.go:101 <- main.main@main.go:146 <- runtime.main@proc.go:302
+withArg        callee=main.withArg@main.go:18 | caller=runtime.gopanic@panic.go:859 <- runtime.panicmem@panic.go:336 <- runtime.sigpanic@signal_unix.go:931
+panicker.recover callee=main.panicker.func1@main.go:94 | caller=runtime.gopanic@panic.go:859 <- runtime.panicmem@panic.go:336 <- runtime.sigpanic@signal_unix.go:931
+plainDone      callee=main.plainDone@main.go:167 | caller=runtime.goexit@asm_amd64.s:1264 CREATED=created by main.main in goroutine 1 @ /home/admin/scratch/codedoc-go-research/runtime-oracle/probe0/main.go:151 +0x49d
+go.lit         callee=main.main.func4@main.go:149 | caller=runtime.goexit@asm_amd64.s:1264 CREATED=created by main.main in goroutine 1 @ /home/admin/scratch/codedoc-go-research/runtime-oracle/probe0/main.go:149 +0x405
+withArgDone    callee=main.withArgDone@main.go:163 | caller=runtime.goexit@asm_amd64.s:1264 CREATED=created by main.main in goroutine 1 @ /home/admin/scratch/codedoc-go-research/runtime-oracle/probe0/main.go:150 +0x451
+plain          callee=main.plain@main.go:16 | caller=reflect.Value.call@value.go:586 <- reflect.Value.Call@value.go:369 <- main.main@main.go:153
+(*V).PtrM      callee=main.(*V).PtrM@main.go:27 | caller=reflect.Value.call@value.go:586 <- reflect.Value.Call@value.go:369 <- main.main@main.go:154
+sort.less      callee=main.main.func5@main.go:156 | caller=sort.insertionSort_func@zsortfunc.go:12 <- sort.pdqsort_func@zsortfunc.go:73 <- sort.Slice@slice.go:29
+sort.less      callee=main.main.func5@main.go:156 | caller=sort.insertionSort_func@zsortfunc.go:12 <- sort.pdqsort_func@zsortfunc.go:73 <- sort.Slice@slice.go:29
+sort.less      callee=main.main.func5@main.go:156 | caller=sort.insertionSort_func@zsortfunc.go:12 <- sort.pdqsort_func@zsortfunc.go:73 <- sort.Slice@slice.go:29
+seq            callee=main.seq@main.go:73 | caller=main.main@main.go:157 <- runtime.main@proc.go:302 <- runtime.goexit@asm_amd64.s:1264
+range.body     callee=main.main-range1@main.go:158 | caller=main.seq@main.go:75 <- main.main@main.go:157 <- runtime.main@proc.go:302
+range.body     callee=main.main-range1@main.go:158 | caller=main.seq@main.go:75 <- main.main@main.go:157 <- runtime.main@proc.go:302

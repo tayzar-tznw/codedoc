@@ -1,0 +1,74 @@
+##### p03 vendor
+--- vendor/modules.txt
+# example.com/Upper v1.0.0
+## explicit; go 1.21
+example.com/Upper
+# example.com/dep v1.1.0
+## explicit; go 1.21
+example.com/dep
+example.com/dep/sub
+# example.com/dep/v2 v2.0.0
+## explicit; go 1.21
+example.com/dep/v2
+# example.com/loc v0.0.0 => ./local
+## explicit; go 1.22
+example.com/loc
+# example.com/loc => ./local
+--- V1 default (vendor dir + go 1.22) with GOPROXY=off and an empty GOMODCACHE:
+example.com/dep mod=example.com/dep@v1.1.0 dir=v1/vendor/example.com/dep
+example.com/loc mod=example.com/loc@v0.0.0 dir=v1/vendor/example.com/loc
+--- V1 go list -m all in vendor mode:
+go: can't compute 'all' using the vendor directory
+	(Use -mod=mod or -mod=readonly to bypass.)
+--- V2 go.mod changed without re-vendoring:
+go: inconsistent vendoring in v1:
+	example.com/dep@v1.2.0: is explicitly required in go.mod, but not marked as explicit in vendor/modules.txt
+	example.com/dep@v1.1.0: is marked as explicit in vendor/modules.txt, but not explicitly required in go.mod
+
+	To ignore the vendor directory, use -mod=readonly or -mod=mod.
+	To sync the vendor directory, run:
+		go mod vendor
+--- V3 go 1.13 + vendor dir (vendor not used):
+go: example.com/Upper@v1.0.0: module lookup disabled by GOPROXY=off
+--- V4 vendor dir without modules.txt:
+go: inconsistent vendoring in v1:
+	example.com/Upper@v1.0.0: is explicitly required in go.mod, but not marked as explicit in vendor/modules.txt
+	example.com/dep@v1.1.0: is explicitly required in go.mod, but not marked as explicit in vendor/modules.txt
+--- V5 same module inside a workspace (module vendor dir ignored):
+ example.com/Upper@v1.0.0: module lookup disabled by GOPROXY=off
+--- V5b explicit -mod=vendor in workspace mode:
+go: inconsistent vendoring in wsv:
+	example.com/Upper@v1.0.0: is explicitly required in go.mod, but not marked as explicit in vendor/modules.txt
+--- V6 -mod=mod in workspace mode:
+go: -mod may only be set to readonly or vendor when in workspace mode, but it is set to "mod"
+
+##### p04 packages (see also p04-packages/m)
+example.com/pk/a go=[a.go] test=[a_test.go export_test.go] xtest=[ext_test.go] ignored=[gen.go tool.go] err=
+example.com/pk/badname go=[file_linux_amd64.go] test=[] xtest=[] ignored=[file_windows.go] err=
+example.com/pk/cmain go=[main.go] test=[] xtest=[] ignored=[] err=
+example.com/pk/internal/x go=[x.go] test=[] xtest=[] ignored=[] err=
+example.com/pk/mixed go=[m1.go m2.go] test=[] xtest=[] ignored=[] err=found packages one (m1.go) and two (m2.go) in p04-packages/m/mixed
+example.com/pk/testonly go=[] test=[x_test.go] xtest=[] ignored=[] err=
+--- tree:
+./a/.dot/d.go ./a/.dotfile.go ./a/_hidden/h.go ./a/_under.go ./a/a.go ./a/a_test.go ./a/export_test.go ./a/ext_test.go ./a/gen.go ./a/testdata/td.go ./a/tool.go ./a/vendor/v/v.go ./badname/file_linux_amd64.go ./badname/file_windows.go ./cmain/main.go ./deep/generated/g.go ./generated/top.go ./internal/x/x.go ./mixed/m1.go ./mixed/m2.go ./nested/n.go ./nested/sub/s.go ./node_modules/n/n.go ./testonly/x_test.go ./vendorish/vendor/x/x.go 
+--- go.mod:
+module example.com/pk
+
+go 1.25
+
+ignore (
+	./node_modules
+	generated
+)
+--- vendor-named package: example.com/vend/x example.com/vend/x/vendor  (tree: ./x/vendor/v.go ./x/vendor/inner/i.go ./x/x.go )
+
+##### p06 toolchain
+go mod edit -json (local): {"Module": {"Path": "example.com/tc"},"Go": "1.28","Toolchain": "go1.28.1"}
+go list (local): go: go.mod requires go >= 1.28 (running go 1.27.2; GOTOOLCHAIN=local)
+go list (auto, GOPROXY=off): go: downloading go1.28.1 (linux/amd64) go: download go1.28.1 for linux/amd64: toolchain not available 
+go env GOMOD (local): m/go.mod
+go 1.27.9 (newer patch): go: go.mod requires go >= 1.27.9 (running go 1.27.2; GOTOOLCHAIN=local)
+toolchain line newer, go line older: example.com/tc
+gopls definition (GOTOOLCHAIN=local, go 1.28): go: go.mod requires go >= 1.28 (running go 1.27.2; GOTOOLCHAIN=local)
+gopls definition (GOTOOLCHAIN=auto, go 1.28): go: downloading go1.28.0 (linux/amd64)
+dependency with go 1.28: go: example.com/newgo@v1.0.0 requires go >= 1.28 (running go 1.27.2; GOTOOLCHAIN=local)

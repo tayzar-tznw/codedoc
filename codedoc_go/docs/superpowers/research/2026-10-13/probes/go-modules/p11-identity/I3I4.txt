@@ -1,0 +1,7 @@
+I3 (GOWORK=off, root module): go: downloading google.golang.org/genproto/googleapis/api v0.0.0-20260526163538-3dc84a4a5aaa
+go: downloading github.com/grpc-ecosystem/grpc-gateway/v2 v2.29.0
+go: downloading github.com/golang/protobuf v1.5.4
+go: downloading google.golang.org/grpc v1.83.2
+go: downloading google.golang.org/protobuf v1.36.11
+go.etcd.io/etcd/api/v3/etcdserverpb | mod=go.etcd.io/etcd/api/v3@v3.7.2 main=false | replace=./api | dir=<repo>/api/etcdserverpb
+I4 (workspace mode, repo go.work on a copy): go.etcd.io/etcd/api/v3/etcdserverpb | mod=go.etcd.io/etcd/api/v3@ main=true | replace= | dir=<repo>/api/etcdserverpb

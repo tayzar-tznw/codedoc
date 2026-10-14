@@ -1,0 +1,13 @@
+{
+  "generation_info": {
+    "timestamp": "2026-06-24T13:38:55.178879",
+    "model": "gemini-3.5-flash",
+    "generator": "pipeline_v2 (google-genai)",
+    "repo_path": "/home/admin/dev/codedoc/test_codes/ruby-sample"
+  },
+  "statistics": {
+    "total_files": 30,
+    "total_directories": 10,
+    "total_topics": 16
+  }
+}

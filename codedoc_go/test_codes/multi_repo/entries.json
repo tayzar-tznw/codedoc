@@ -1,0 +1,7 @@
+{
+ "web-demo": {"dir": "web", "cmd": ["go", "run", "./cmd/web"], "env": {"GOWORK": "ground_truth/oracle/web.work"}},
+ "api-demo": {"dir": "api/service", "cmd": ["go", "run", "./cmd/api"], "env": {"GOWORK": "ground_truth/oracle/api.work"}},
+ "legacy-demo": {"dir": "api/legacy", "cmd": ["go", "run", "."], "env": {"GOWORK": "off"}},
+ "shared-test": {"dir": "shared", "test": ["./..."]},
+ "textkit-test": {"dir": "shared/textkit", "test": ["./..."]}
+}

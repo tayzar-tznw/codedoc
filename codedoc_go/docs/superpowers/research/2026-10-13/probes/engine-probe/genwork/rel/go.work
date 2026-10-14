@@ -1,0 +1,7 @@
+go 1.27
+
+use (
+	../../probe-replace/rmain
+	../../probe-replace/rlib
+	../../probe-replace/rother
+)

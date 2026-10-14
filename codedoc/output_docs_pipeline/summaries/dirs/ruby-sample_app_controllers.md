@@ -1,0 +1,5 @@
+`ruby-sample/app/controllers` ディレクトリは、図書管理システムのAPIエンドポイントを提供するコントローラ層であり、クライアントからのHTTPリクエストを処理し、適切なJSONレスポンスを返却する責務を担っています。本モジュールは、RailsのAPI専用モード（`ActionController::API`）をベースにしており、共通の基盤となる`ApplicationController`を頂点とした継承構造（Template Methodパターン）を採用しています。これにより、一貫したエラーハンドリング（例：`ActiveRecord::RecordNotFound`に対する404エラー）や、パラメータの型変換といった共通処理がシステム全体で標準化されています。
+
+このディレクトリ内の各コントローラは、システムの主要なドメインである「著者（Authors）」「書籍（Books）」「貸出（Loans）」に対応し、相互に連携しながらビジネスロジックを制御しています。`AuthorsController`は読み取り専用の著者情報を提供し、`BooksController`は書籍のCRUD操作と複雑な検索機能を提供します。さらに、`LoansController`は書籍、メンバー、貸出履歴のモデル群と密接に連携し、貸出・返却といったトランザクションを伴う業務プロセスを制御します。各コントローラは、Strong Parametersによるセキュリティ確保や、コールバック（`before_action`）を用いたリソースの事前特定など、Railsの標準的なプラクティスに則って実装されています。
+
+アーキテクチャ設計においては、コントローラを薄く保つ「Skinny Controller」の原則が徹底されています。例えば、`BooksController`では複雑な検索ロジックを`BookSearch`というQuery Object（またはService Object）に委譲し、`LoansController`ではビジネスロジックをActiveRecordモデルに委譲しつつ、ガード句（Early Return）を用いて処理の流れを簡潔に制御しています。また、`ApplicationController`で定義された`coerce_id`ヘルパーにより、IDやISBNなどの多様な識別子による柔軟なリソース検索が各コントローラで容易に実現されており、保守性と再利用性の高いAPI設計がなされています。

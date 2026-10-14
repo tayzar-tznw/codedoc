@@ -1,0 +1,23 @@
+T1 MVS  a GOWORK=off: example.com/dep@v1.0.0 replace= dir=modcache-probe/example.com/dep@v1.0.0
+T1 MVS  a workspace : example.com/dep@v1.2.0 replace= dir=modcache-probe/example.com/dep@v1.2.0
+T2 a:wildcard=>forkA b:none            from b: example.com/dep@v1.2.0 replace=./forkA dir=ws/forkA
+T3 a:=>forkA b:=>forkB (conflict)      from b: go: conflicting replacements for example.com/dep: 	ws/forkA 	ws/forkB use "go work edit -replace example.com/dep=[override]" to resolve 
+T4 + go.work wildcard=>forkW           from b: example.com/dep@v1.2.0 replace=./forkW dir=ws/forkW
+T6 a:../forkA b:./../forkA (same dir)  from b: example.com/dep@v1.2.0 replace=./forkA dir=ws/forkA
+T5 a:v1.0.0=>forkA, MVS picks v1.2.0   ws: example.com/dep@v1.2.0 replace= dir=modcache-probe/example.com/dep@v1.2.0 | GOWORK=off: example.com/dep@v1.0.0 replace=../forkA dir=ws/forkA
+T8 use(a,b) a:v1.2.0=>forkA b:wildcard=>forkB: example.com/dep@v1.2.0 replace=./forkB dir=ws/forkB
+T8r use(b,a) same replaces:                 conflicting replacements found for example.com/dep@v1.2.0 in workspace modules defined by ws/b/go.mod and ws/a/go.mod
+T10 single go.mod with specific+wildcard (GOWORK=off): example.com/dep@v1.2.0 replace=../forkA dir=ws/forkA
+T11 two use dirs, same module path: go: module example.com/a appears multiple times in workspace
+T12 use dir without go.mod: go: cannot load module ../nomod listed in go.work file: open ../nomod/go.mod: no such file or directory
+T14 go.work go 1.21 < module go 1.22: go: module . listed in go.work file requires go >= 1.22, but go.work lists go 1.21; to download and use go 1.22:
+T15 go.work go 1.28 > toolchain: go: ../go.work requires go >= 1.28 (running go 1.27.2; GOTOOLCHAIN=local) | go work edit -json Go=	"Go": "1.28",
+T16 go.work without go line: go: module . listed in go.work file requires go >= 1.22, but go.work implicitly requires go 1.18; to download and use go 1.22:
+G1 GOWORK=/abs/out/gen1/go.work, absolute use, cwd=/: example.com/a main=true dep=ws/a example.com/dep main=false dep=modcache-probe/example.com/dep@v1.2.0 
+G2 relative use paths resolve against the go.work dir: ws/a
+G3 GOWORK relative: go: invalid GOWORK: not an absolute path
+G4 GOWORK=/abs/work.txt (no .work suffix): example.com/a
+G5 GOWORK missing file: go: reading go.work: open home/admin/scratch/codedoc-go-research/go-modules/p02-gowork/t/out/nonexist/go.work: no such file or directory
+G8 GOWORK overrides ws/go.work found from cwd: v1.0.0  (ws/go.work would give v1.2.0)
+G9 pattern outside used dirs: pattern ws/b/...: directory prefix ws/b does not contain modules listed in go.work or their selected dependencies
+files written next to generated go.work files: gen1: go.work work.txt  gen2: go.work  gen3: go.work 

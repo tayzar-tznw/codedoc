@@ -1,0 +1,1 @@
+package crfunc F() { G() }func G() {}

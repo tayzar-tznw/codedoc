@@ -1,0 +1,6 @@
+## workspace
+# example.com/dep v1.0.0
+## explicit; go 1.21
+# example.com/dep v1.2.0
+## explicit; go 1.21
+example.com/dep

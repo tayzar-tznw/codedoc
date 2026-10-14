@@ -1,0 +1,3 @@
+package inner
+
+func Inner() {}

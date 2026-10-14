@@ -1,0 +1,3 @@
+package loc
+
+func L() {}
