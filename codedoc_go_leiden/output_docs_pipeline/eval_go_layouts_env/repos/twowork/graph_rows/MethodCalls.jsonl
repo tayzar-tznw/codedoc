@@ -1,0 +1,2 @@
+{"edge_id": "a_70a8bcc941c68ba1", "caller_method": "a_03d3dc26ec37db57", "callee_method": "a_2df8abebaaf50d53", "callee_name": "Triple", "resolution": "types", "site_kind": "call", "call_line": 10}
+{"edge_id": "a_06d6f490520b69b6", "caller_method": "a_2df8abebaaf50d53", "callee_method": "a_32ecb4889b413945", "callee_name": "add", "resolution": "types", "site_kind": "call", "call_line": 4}

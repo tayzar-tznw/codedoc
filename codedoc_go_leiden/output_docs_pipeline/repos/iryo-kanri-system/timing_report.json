@@ -1,0 +1,94 @@
+{
+  "target_dir": "/home/admin/dev/code/codedoc_go_leiden/test_codes/iryo-kanri-system",
+  "repo": "iryo-kanri-system",
+  "model": "gemini-3.5-flash",
+  "concurrency": 32,
+  "total_seconds": 17.969149661250412,
+  "timings": {
+    "phase1_scan": 0.021227700635790825,
+    "phase1b_extract": 0.008517569862306118,
+    "phase1c_resolve": 1.340577246621251,
+    "phase4a_communities": 0.3094442281872034,
+    "phase8_write_nodes": 1.7257465636357665,
+    "phase9_write_edges": 0.8531197914853692,
+    "phase9_write_topics": 1.0708625698462129,
+    "phase1_rescan": 0.00538904033601284,
+    "phase2_node_summaries": 0.007091418839991093,
+    "phase3_package_dir_summaries": 0.008431321009993553,
+    "phase4b_naming": 0.00402356032282114,
+    "phase5_topic_pages": 0.018555298447608948,
+    "phase6_index": 0.005711580626666546,
+    "phase10_write_back": 11.70466351788491
+  },
+  "statistics": {
+    "files_scanned": 77,
+    "entities_extracted": 77,
+    "sites_by_status": {
+      "ambiguous": 4,
+      "builtin": 55,
+      "dynamic": 17,
+      "external": 208,
+      "resolved": 248,
+      "unresolved": 18
+    },
+    "rows_written": {
+      "Files": 77,
+      "Packages": 55,
+      "Classes": 152,
+      "Methods": 228,
+      "Directories": 72,
+      "PackageImports": 90,
+      "FileDependsOn": 99,
+      "ClassEmbeds": 10,
+      "ClassImplements": 26,
+      "MethodCalls": 229,
+      "PossiblyCalls": 41,
+      "FileDefinesClass": 152,
+      "ClassDefinesMethod": 228,
+      "DirContainsFile": 77,
+      "PackageContainsFile": 77,
+      "Topics": 23,
+      "ClassBelongsToTopic": 274,
+      "FileBelongsToTopic": 83,
+      "TopicDependsOn": 43,
+      "TopicContainsTopic": 16
+    },
+    "file_summaries": 77,
+    "node_summaries": 303,
+    "package_summaries": 55,
+    "dir_summaries": 72,
+    "topics": 6,
+    "gemini": {
+      "phase2_node_summaries": {
+        "calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 0
+      },
+      "phase3_package_dir_summaries": {
+        "calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 0
+      },
+      "phase4b_naming": {
+        "calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 0
+      },
+      "phase5_topic_pages": {
+        "calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 0
+      },
+      "total": {
+        "calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 0
+      }
+    }
+  }
+}

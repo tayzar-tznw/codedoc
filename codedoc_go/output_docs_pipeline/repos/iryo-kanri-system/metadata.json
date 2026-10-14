@@ -1,0 +1,14 @@
+{
+  "generation_info": {
+    "timestamp": "2026-10-14T10:21:45.681184",
+    "model": "gemini-3.5-flash",
+    "generator": "codedoc_go wiki track (google-genai)",
+    "repo": "iryo-kanri-system",
+    "repo_path": "/home/admin/dev/code/codedoc_go/test_codes/iryo-kanri-system"
+  },
+  "statistics": {
+    "total_files": 77,
+    "total_directories": 72,
+    "total_topics": 7
+  }
+}

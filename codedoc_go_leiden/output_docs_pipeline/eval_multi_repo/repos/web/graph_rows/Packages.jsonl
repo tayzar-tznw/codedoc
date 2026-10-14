@@ -1,0 +1,4 @@
+{"package_id": "a_d45874ceaaae7ec5", "import_path": "example.com/iryo/web/checks", "name": "checks", "directory": "checks", "module": "example.com/iryo/web", "origin": "package", "file_count": 1, "summary": "", "repo": "web"}
+{"package_id": "a_3a4ba89e59ad481d", "import_path": "example.com/iryo/web/clock", "name": "clock", "directory": "clock", "module": "example.com/iryo/web", "origin": "package", "file_count": 1, "summary": "", "repo": "web"}
+{"package_id": "a_97828d34926d3d02", "import_path": "example.com/iryo/web/cmd/web", "name": "main", "directory": "cmd/web", "module": "example.com/iryo/web", "origin": "command", "file_count": 1, "summary": "", "repo": "web"}
+{"package_id": "a_f1aafe5357018122", "import_path": "example.com/iryo/web/orders", "name": "orders", "directory": "orders", "module": "example.com/iryo/web", "origin": "package", "file_count": 1, "summary": "", "repo": "web"}

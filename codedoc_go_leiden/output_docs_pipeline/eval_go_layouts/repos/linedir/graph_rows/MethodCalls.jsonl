@@ -1,0 +1,6 @@
+{"edge_id": "a_4db08475debcffb3", "caller_method": "a_b8c701cfdef87b10", "callee_method": "a_f1368fd15292a5b4", "callee_name": "Render", "resolution": "types", "site_kind": "call", "call_line": 10}
+{"edge_id": "a_4c9c4e10788859cf", "caller_method": "a_b8c701cfdef87b10", "callee_method": "a_677e4d36234dbae7", "callee_name": "CallLined", "resolution": "types", "site_kind": "call", "call_line": 11}
+{"edge_id": "a_b243bf71f75c4c53", "caller_method": "a_817653d90e1ea7db", "callee_method": "a_216faa3f94bb2e0e", "callee_name": "mark", "resolution": "types", "site_kind": "call", "call_line": 5}
+{"edge_id": "a_022806c676eed9da", "caller_method": "a_677e4d36234dbae7", "callee_method": "a_817653d90e1ea7db", "callee_name": "Lined", "resolution": "types", "site_kind": "call", "call_line": 9}
+{"edge_id": "a_1a34ee0329720f77", "caller_method": "a_f1368fd15292a5b4", "callee_method": "a_9dc83b30ebf5d712", "callee_name": "suffix", "resolution": "types", "site_kind": "call", "call_line": 7}
+{"edge_id": "a_dd1381f95ad960ae", "caller_method": "a_9dc83b30ebf5d712", "callee_method": "a_216faa3f94bb2e0e", "callee_name": "mark", "resolution": "types", "site_kind": "call", "call_line": 12}

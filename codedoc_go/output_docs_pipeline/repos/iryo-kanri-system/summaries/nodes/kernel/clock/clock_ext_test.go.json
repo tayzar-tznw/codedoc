@@ -1,0 +1,12 @@
+{
+ "sha256": "293c2737484645c205639d0e4d2134f051f23a4b11796fb52aae3386170533be",
+ "context_hash": "3e278c8801e10b8d1156549ec6be0010c08324e8d028ba6804d66e9272789743",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "このファイルは、clock パッケージの外部テスト（clock_test パッケージ）を実装したものです。パッケージの公開APIである Normalize、NormalizeHook、および Label 関数の動作が期待通りに機能するかを検証します。",
+ "nodes": {
+  "TestExported": "clock.Normalize および clock.NormalizeHook 関数が、入力文字列の不要な空白を正しく除去（正規化）できるかを検証するテスト関数です。",
+  "TestLabel": "clock.Label 関数が、指定された日付とラベル文字列を組み合わせて、期待されるフォーマットのラベルを正しく生成できるかを検証するテスト関数です。"
+ }
+}

@@ -97,6 +97,27 @@ def test_module_group_reaches_in_repo_code_only_through_a_local_replace(tmp_path
     assert a.replaces == (Replace("example.com/b", "", f"{root}/b", "", True),)
 
 
+def test_workspace_group_carries_its_go_work_replaces(tmp_path):
+    """Group.replaces: the repo go.work's replaces, local targets resolved
+    from the go.work's directory (R54 reads them); units.json lists them."""
+    root = os.path.realpath(go_worlds.write_tree(tmp_path / "repo", {
+        "go.work": "go 1.26\n\nuse ./a\n\nreplace (\n\texample.com/b => ./b\n"
+                   "\texample.com/c v1.0.0 => example.com/c-fork v1.1.0\n)\n",
+        "a/go.mod": "module example.com/a\n\ngo 1.26\n",
+        "b/go.mod": "module example.com/b\n\ngo 1.26\n"}))
+    disc = _discover(root, tmp_path)
+    ws, mod = _group(disc, "ws0"), _group(disc, "m0")
+    assert ws.replaces == [Replace("example.com/b", "", f"{root}/b", "", True),
+                           Replace("example.com/c", "v1.0.0", "example.com/c-fork", "v1.1.0", False)]
+    assert mod.modules == ["example.com/b"] and mod.replaces == []
+    path = tmp_path / "units.json"
+    go_units.write_units_json(disc, str(path))
+    groups = {g["id"]: g for g in json.loads(path.read_text())["groups"]}
+    assert groups["ws0"]["replaces"][0] == {"old": "example.com/b", "old_version": "", "new": f"{root}/b",
+                                             "new_version": "", "local": True}
+    assert groups["m0"]["replaces"] == []
+
+
 def test_toolchain_too_new_fails_closed(tmp_path):
     root = go_worlds.write_tree(tmp_path / "repo", {
         "new/go.mod": "module example.com/new\n\ngo 1.28\n",

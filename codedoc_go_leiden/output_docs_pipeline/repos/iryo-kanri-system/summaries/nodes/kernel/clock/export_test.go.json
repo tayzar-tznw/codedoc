@@ -1,0 +1,11 @@
+{
+ "sha256": "16a115ab1ca03391da08090d92d5bb8c4c3e06bc3af2ea15d6a4595e4280d84b",
+ "context_hash": "c2f02de16fc22abb4bdcc3da597e486da78987a2c0cebbd312e96298a8280cc6",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "このファイルは、clockパッケージの非公開（小文字開始）の関数や変数を、外部のテストパッケージからアクセスできるようにエクスポートするためのテスト用ファイルです。テストコードから内部ロジックを直接検証できるように仲介する役割を持ちます。",
+ "nodes": {
+  "Normalize": "非公開の normalize 関数を外部のテストコードから呼び出せるように公開するラッパー関数です。"
+ }
+}

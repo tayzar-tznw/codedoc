@@ -1,0 +1,13 @@
+{
+ "sha256": "e31e6347b71c3358d407b7f68649c10e2d8c6482d992d6b20163a8706be020a7",
+ "context_hash": "b2a0d2a0866d649c331c5000969c00125fc3a4ac9ca930cb8dde083a19ae3d3d",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "Windowsプラットフォーム固有のシステム情報を取得するための関数を提供するファイルです。プラットフォーム名やWindows環境におけるデフォルトのホームディレクトリパスなど、OS依存の設定を定義しています。",
+ "nodes": {
+  "Name": "現在のプラットフォーム名を取得するための公開関数であり、内部的に windowsName を呼び出してその結果を返します。",
+  "homeDir": "Windows環境におけるアプリケーションのデフォルトのホームディレクトリパス（C:\\iryo）を返す内部関数です。",
+  "windowsName": "プラットフォーム名を表す文字列 \"windows\" を返す内部関数です。"
+ }
+}

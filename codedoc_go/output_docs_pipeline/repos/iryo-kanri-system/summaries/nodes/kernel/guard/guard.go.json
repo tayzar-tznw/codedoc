@@ -1,0 +1,14 @@
+{
+ "sha256": "58385322658bfccf344149ba72ea014050db36a7c214a1682b02f2e07860a90e",
+ "context_hash": "3034a3510c8a48f70517c968d2dac6729583882e3eac93ae562d5976a050f7bc",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "このファイルは、アプリケーション全体で共通して使用される値の検証（ガード条件）機能を提供します。必須チェックや数値の正負チェックなど、プログラムの前提条件を検証し、不正なデータによる予期せぬ動作を防ぐ役割を持ちます。",
+ "nodes": {
+  "RequiredError": "必須項目が欠落していることを表すカスタムエラー構造体です。",
+  "RequiredError.Error": "RequiredError構造体をエラーメッセージ文字列に変換するメソッドです。",
+  "Require": "指定された値がnilであるかを検証し、nilの場合はRequiredErrorを返す関数です。",
+  "EnsurePositive": "指定された整数が負の値でないことを検証し、負の場合はパニックを発生させ、正またはゼロの場合はその値を返す関数です。"
+ }
+}

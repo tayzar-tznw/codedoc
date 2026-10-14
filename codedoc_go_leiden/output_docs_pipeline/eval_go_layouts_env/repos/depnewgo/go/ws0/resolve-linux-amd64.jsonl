@@ -1,0 +1,2 @@
+{"kind":"error","pkg":"","path":"","line":0,"msg":"load failed: err: exit status 1: stderr: go: module example.com/thirdparty/newgo@v1.0.0 requires go >= 1.28 (running go 1.27.2; GOTOOLCHAIN=local)\n"}
+{"kind":"summary","packages":0,"errors":1,"load_seconds":0.017920819,"sites":0,"conversions":0,"notcalls":0,"peak_rss_bytes":142946304,"seconds":0.017985219}

@@ -1,0 +1,4 @@
+{"package_id": "a_043273c4c46f3990", "import_path": "example.com/iryo/shared/contracts", "name": "contracts", "directory": "contracts", "module": "example.com/iryo/shared", "origin": "package", "file_count": 2, "summary": "", "repo": "shared"}
+{"package_id": "a_6fe9024534c02907", "import_path": "example.com/iryo/shared/log", "name": "log", "directory": "log", "module": "example.com/iryo/shared", "origin": "package", "file_count": 1, "summary": "", "repo": "shared"}
+{"package_id": "a_0ba2867ec71d1ef7", "import_path": "example.com/iryo/shared/money", "name": "money", "directory": "money", "module": "example.com/iryo/shared", "origin": "package", "file_count": 3, "summary": "", "repo": "shared"}
+{"package_id": "a_6f9a6bfd12579186", "import_path": "example.com/iryo/textkit", "name": "textkit", "directory": "textkit", "module": "example.com/iryo/textkit", "origin": "package", "file_count": 2, "summary": "", "repo": "shared"}

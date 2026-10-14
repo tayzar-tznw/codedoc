@@ -1,0 +1,4 @@
+example.com/thirdparty/textfmt v1.0.0 h1:9+G+gSvIAWSNrV1886ihLfSsoysRG5+BIXmHIojGT1U=
+example.com/thirdparty/textfmt v1.0.0/go.mod h1:IgoeErrL2/lT4NUc+1CgEJFyjeUB7j7BiSkvEpAOUvE=
+example.com/thirdparty/uuidlite v1.0.0 h1:U4ihG+ZfSDCx4Qn73SDgzuKoN31GU+Oz4icQttytru0=
+example.com/thirdparty/uuidlite v1.0.0/go.mod h1:Wicloi4Thty50gJIuDh9Mgg6dA693lPRDliLNNxuFfI=

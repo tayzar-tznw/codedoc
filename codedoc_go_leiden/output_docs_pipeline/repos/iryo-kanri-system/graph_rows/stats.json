@@ -1,0 +1,1 @@
+{"not_edged": {"calls_ambiguous": 4, "calls_builtin": 55, "calls_dynamic": 17, "calls_external": 208, "calls_resolved": 248, "calls_unresolved": 18, "embeds_external": 1, "embeds_unresolved": 1, "imports_external": 79, "imports_unresolved": 4, "possibly_implementation": 24, "possibly_variant": 1}, "external_imports": {"std": 79}}

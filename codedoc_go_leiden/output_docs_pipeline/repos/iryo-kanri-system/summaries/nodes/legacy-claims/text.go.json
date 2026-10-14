@@ -1,0 +1,12 @@
+{
+ "sha256": "3a63549747030563c99bdda7389a7111f6ed990f9614cf7e9fac60bb700c214a",
+ "context_hash": "9073c094fa0941a108cf51a24da2ac42debe484906bca96f1cfb8d98ac3dc74a",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "旧レセプト（診療報酬明細書）のフォーマット処理を行うための構造体とメソッドを定義しているファイルです。金額（円）を受け取り、特定のプレフィックスを付与した文字列に整形する機能を提供します。",
+ "nodes": {
+  "ReceiptFormatter": "旧レセプトのフォーマット処理を担当する構造体です。",
+  "ReceiptFormatter.Format": "指定された金額（円）を「[旧レセ] 〇〇円」という形式の文字列に整形して返します。"
+ }
+}

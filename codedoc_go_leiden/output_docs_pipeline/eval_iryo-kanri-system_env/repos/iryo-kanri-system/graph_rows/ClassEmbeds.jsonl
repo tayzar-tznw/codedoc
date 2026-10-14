@@ -1,0 +1,10 @@
+{"edge_id": "a_27f5e2f9adcf9b5d", "child_class": "a_875bb8b210813ecd", "embedded_class": "a_20531f26e0e268c2", "pointer": false, "resolution": "types"}
+{"edge_id": "a_0358913489b8aafd", "child_class": "a_61eebf24feacc6ec", "embedded_class": "a_875bb8b210813ecd", "pointer": false, "resolution": "types"}
+{"edge_id": "a_754180266a841f14", "child_class": "a_6789645fc77051ae", "embedded_class": "a_61eebf24feacc6ec", "pointer": false, "resolution": "types"}
+{"edge_id": "a_5fae15e0aa65ed0c", "child_class": "a_5a5fdd93db74da41", "embedded_class": "a_61eebf24feacc6ec", "pointer": true, "resolution": "types"}
+{"edge_id": "a_6b23164c78f319dc", "child_class": "a_a6118473964b051f", "embedded_class": "a_a6bbf0c29b5334bc", "pointer": false, "resolution": "types"}
+{"edge_id": "a_926a8546cc4c518b", "child_class": "a_90c850b31caf024d", "embedded_class": "a_65bdc8d569e833d9", "pointer": false, "resolution": "types"}
+{"edge_id": "a_d33a8be636f522fd", "child_class": "a_0725259f82a5201d", "embedded_class": "a_f6e2a6d297a3c29a", "pointer": false, "resolution": "types"}
+{"edge_id": "a_be72009f4ac14cdb", "child_class": "a_22c592560db2efb8", "embedded_class": "a_f6e2a6d297a3c29a", "pointer": false, "resolution": "types"}
+{"edge_id": "a_4698e23ed2962891", "child_class": "a_0dfad0b6f3383327", "embedded_class": "a_19b6ccf2f4276cb0", "pointer": false, "resolution": "types"}
+{"edge_id": "a_5f2c4a284b424b43", "child_class": "a_54edf34932be83c2", "embedded_class": "a_62621fbc90763757", "pointer": false, "resolution": "types"}

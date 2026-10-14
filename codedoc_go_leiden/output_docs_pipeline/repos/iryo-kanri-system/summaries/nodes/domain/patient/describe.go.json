@@ -1,0 +1,13 @@
+{
+ "sha256": "4c764efcebe006dee7f61f417c471e1e73c01afc63df5363d31a88e6e6148d62",
+ "context_hash": "07752cb76de8e2f0bf3edf929c5ce42703ff2bbb5f7e856aaa83cfd9399b8da0",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "このファイルは、患者ドメインにおけるオブジェクトの文字列表現（説明）を取得するための共通インターフェースと、そのスライスを一括処理するユーティリティ関数を定義しています。これにより、PatientやInpatientなどの異なるエンティティに対して、統一された方法で説明テキストを生成・収集できます。",
+ "nodes": {
+  "Describer": "自身を説明する文字列を返す Describe メソッドを定義したインターフェースです。",
+  "Describer.Describe": "対象オブジェクトの文字列表現を取得するためのインターフェースメソッドです。",
+  "DescribeAll": "Describer インターフェースを実装する任意の型のスライスを受け取り、それぞれの説明文字列を一括で取得してスライスとして返すジェネリック関数です。"
+ }
+}

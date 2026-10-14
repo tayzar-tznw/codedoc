@@ -1,0 +1,12 @@
+{
+ "sha256": "9ff86774727a1a529bab9f40577c9034a46948e898eafbf8690e2ada1ecfe1dd",
+ "context_hash": "775493f7c122971ce82cb688321ac9a61221daa77a4f9930c7d6f33f36251b76",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "このファイルは、escalation パッケージにおけるポリシー評価機能の動作を検証するためのテストコードです。テスト用の Policy 構造体に Level メソッドを定義し、Evaluate 関数の挙動が期待通りであるかを検証しています。",
+ "nodes": {
+  "Policy.Level": "テスト用の Policy 構造体に Level メソッドを実装し、固定の文字列「試験」を返します。",
+  "TestEvaluate": "Evaluate 関数に特定の Policy を渡した際の戻り値が期待通りであるかを検証するテスト関数です。"
+ }
+}

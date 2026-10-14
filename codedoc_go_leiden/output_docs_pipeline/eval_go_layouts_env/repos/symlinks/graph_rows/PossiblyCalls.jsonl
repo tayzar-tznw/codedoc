@@ -1,0 +1,2 @@
+{"edge_id": "a_8601fc7a47cff37c", "caller_method": "a_9f62abc83e62ac86", "callee_method": "a_9bac04e8efd822c0", "callee_name": "helper", "reason": "variant", "candidate_count": 2, "open_world": false}
+{"edge_id": "a_68a0fce7834cdd2b", "caller_method": "a_9f62abc83e62ac86", "callee_method": "a_4d483d6b93429a6c", "callee_name": "helper", "reason": "variant", "candidate_count": 2, "open_world": false}

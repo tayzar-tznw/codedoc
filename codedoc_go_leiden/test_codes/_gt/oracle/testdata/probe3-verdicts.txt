@@ -1,0 +1,15 @@
+CONFIRMED lib/lib.go:85:8
+WRONG-MULTI lib/lib.go:47:10
+WRONG-OTHER lib/lib.go:181:14
+WRONG-MULTI lib/lib.go:102:41
+CONFIRMED-NOEXEC lib/lib.go:118:8
+DEFER-GROUP-CONSISTENT lib/lib.go:127:8
+CONFIRMED lib/lib.go:176:11
+CONFIRMED lib/lib.go:169:5
+CONFIRMED-NOEXEC lib/lib.go:151:5
+CONFIRMED lib/lib.go:163:33
+WRONG-OTHER lib/lib.go:163:33
+CONFIRMED-NOEXEC lib/ext_test.go:12:13
+WRONG-OTHER lib/lib.go:187:7
+IFACE-CONSISTENT lib/lib.go:47:10
+IFACE-CONSISTENT lib/lib.go:102:41

@@ -1,0 +1,12 @@
+{
+ "sha256": "044034b57369b1628fdf5d0835c6e66c7a9515d673e75f2170a62451266fa33d",
+ "context_hash": "60a2cc12884218fb58c245f4a592eb2fc7886f854373cdaec979ebc6a4cefa43",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "このファイルは、Linuxプラットフォーム向けに依存する情報を定義するためのものです。プラットフォーム名やデフォルトのホームディレクトリのパスなど、Linux環境固有の設定を提供します。",
+ "nodes": {
+  "Name": "プラットフォームの名前として \"linux\" を返します。",
+  "homeDir": "Linux環境におけるデフォルトのホームディレクトリのパスを返します。"
+ }
+}

@@ -1,0 +1,14 @@
+# Used by mcp_server/deploy.sh via `gcloud builds submit --ignore-file mcp_server/.gcloudignore`.
+# Upload only what mcp_server/Dockerfile copies. Everything else in the repository
+# (.env files, .venv, node_modules, test corpora, generated docs) stays local.
+*
+!mcp_server/
+!mcp_server/**
+!graph_query_agent/
+!graph_query_agent/**
+**/.env
+**/.env.*
+**/__pycache__/
+**/*.pyc
+**/.adk/
+**/.pytest_cache/

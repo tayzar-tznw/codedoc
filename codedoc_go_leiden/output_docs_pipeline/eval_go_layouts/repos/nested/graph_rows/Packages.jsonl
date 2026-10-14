@@ -1,0 +1,3 @@
+{"package_id": "a_4f5e498e6f24da24", "import_path": "example.com/layouts/nested", "name": "main", "directory": "", "module": "example.com/layouts/nested", "origin": "command", "file_count": 1, "summary": "", "repo": "nested"}
+{"package_id": "a_463008945639f4fe", "import_path": "example.com/layouts/nested/inner/calc", "name": "calc", "directory": "inner/calc", "module": "example.com/layouts/nested/inner", "origin": "package", "file_count": 1, "summary": "", "repo": "nested"}
+{"package_id": "a_912716da3785d676", "import_path": "example.com/layouts/nested/report", "name": "report", "directory": "report", "module": "example.com/layouts/nested", "origin": "package", "file_count": 1, "summary": "", "repo": "nested"}

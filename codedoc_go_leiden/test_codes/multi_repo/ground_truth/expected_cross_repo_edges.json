@@ -1,0 +1,194 @@
+{
+ "version": 1,
+ "fixture": "multi_repo",
+ "source": "ground_truth/cases.py CROSS_REPO_EDGES, written by test_codes/_gt/generate_manifest.py; do not edit",
+ "labels": {
+  "file": "<repo>:<repo-relative path>",
+  "package": "<repo>:<repo-relative directory>|<package clause name>",
+  "class": "<repo>:<repo-relative path of the declaration>:<qualname>",
+  "method": "<repo>:<repo-relative path of the declaration>:<qualname>"
+ },
+ "counts": {
+  "CrossRepoCalls": 17,
+  "CrossRepoImports": 8,
+  "CrossRepoRef": 3
+ },
+ "edges": [
+  {
+   "table": "CrossRepoImports",
+   "kind": null,
+   "source": "api:notify/mail/mail.go",
+   "target": "shared:log|log",
+   "import_path": "example.com/iryo/shared/log"
+  },
+  {
+   "table": "CrossRepoImports",
+   "kind": null,
+   "source": "api:service/billing/billing.go",
+   "target": "shared:contracts|contracts",
+   "import_path": "example.com/iryo/shared/contracts"
+  },
+  {
+   "table": "CrossRepoImports",
+   "kind": null,
+   "source": "api:service/billing/billing.go",
+   "target": "shared:log|log",
+   "import_path": "example.com/iryo/shared/log"
+  },
+  {
+   "table": "CrossRepoImports",
+   "kind": null,
+   "source": "api:service/billing/billing.go",
+   "target": "shared:money|money",
+   "import_path": "example.com/iryo/shared/money"
+  },
+  {
+   "table": "CrossRepoImports",
+   "kind": null,
+   "source": "api:service/cmd/api/main.go",
+   "target": "shared:money|money",
+   "import_path": "example.com/iryo/shared/money"
+  },
+  {
+   "table": "CrossRepoImports",
+   "kind": null,
+   "source": "web:clock/clock.go",
+   "target": "shared:contracts|contracts",
+   "import_path": "example.com/iryo/shared/contracts"
+  },
+  {
+   "table": "CrossRepoImports",
+   "kind": null,
+   "source": "web:orders/orders.go",
+   "target": "shared:log|log",
+   "import_path": "example.com/iryo/shared/log"
+  },
+  {
+   "table": "CrossRepoImports",
+   "kind": null,
+   "source": "web:orders/orders.go",
+   "target": "shared:money|money",
+   "import_path": "example.com/iryo/shared/money"
+  },
+  {
+   "table": "CrossRepoRef",
+   "kind": "embeds",
+   "source": "api:service/billing/billing.go:AuditedInvoice",
+   "target": "shared:contracts/audit.go:Audit"
+  },
+  {
+   "table": "CrossRepoRef",
+   "kind": "implements",
+   "source": "web:clock/clock.go:SystemClock",
+   "target": "shared:contracts/clock.go:Clock"
+  },
+  {
+   "table": "CrossRepoRef",
+   "kind": "embeds",
+   "source": "web:orders/orders.go:OrderService",
+   "target": "shared:log/logger.go:Logger"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "api:notify/mail/mail.go:<init>",
+   "target": "shared:log/logger.go:New"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "api:notify/mail/mail.go:Compose",
+   "target": "shared:log/logger.go:Logger.Info"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "api:service/billing/billing.go:InvoiceService.Charge",
+   "target": "shared:log/logger.go:Logger.Info"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "api:service/billing/billing.go:InvoiceService.Charge",
+   "target": "shared:money/price.go:Price.Format"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "api:service/billing/billing.go:InvoiceService.Record",
+   "target": "shared:contracts/audit.go:Audit.Stamp"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "api:service/billing/billing.go:InvoiceService.Record",
+   "target": "shared:log/logger.go:Logger.Info"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "api:service/billing/billing.go:NewInvoiceService",
+   "target": "shared:log/logger.go:New"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "api:service/cmd/api/main.go:main",
+   "target": "shared:contracts/audit.go:Audit.Stamp"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "api:service/cmd/api/main.go:main",
+   "target": "shared:money/price.go:NewPrice"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "web:clock/clock.go:Stamp",
+   "target": "shared:contracts/clock.go:Clock.Now"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "web:orders/orders.go:NewOrderService",
+   "target": "shared:log/logger.go:New"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "web:orders/orders.go:OrderService.Total",
+   "target": "shared:log/logger.go:Logger.Info"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "web:orders/orders.go:OrderService.Total",
+   "target": "shared:money/price.go:NewPrice"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "web:orders/orders.go:OrderService.Total",
+   "target": "shared:money/price.go:Price.Add"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "web:orders/orders.go:OrderService.Total",
+   "target": "shared:money/price.go:Price.Amount"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "web:orders/orders.go:OrderService.Total",
+   "target": "shared:money/price.go:Price.Format"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "web:orders/orders.go:OrderService.Total",
+   "target": "shared:money/round.go:Round"
+  }
+ ]
+}

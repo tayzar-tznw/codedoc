@@ -1,0 +1,2467 @@
+{
+ "version": 1,
+ "fixture": "go_layouts",
+ "go": "go1.27.2",
+ "build": {
+  "goos": "linux",
+  "goarch": "amd64",
+  "cgo": false,
+  "tags": []
+ },
+ "repos": [
+  {
+   "name": "badvendor",
+   "dir": "badvendor"
+  },
+  {
+   "name": "buildignore",
+   "dir": "buildignore"
+  },
+  {
+   "name": "cgo",
+   "dir": "cgo"
+  },
+  {
+   "name": "depnewgo",
+   "dir": "depnewgo"
+  },
+  {
+   "name": "dotimport",
+   "dir": "dotimport"
+  },
+  {
+   "name": "ignoredir",
+   "dir": "ignoredir"
+  },
+  {
+   "name": "linedir",
+   "dir": "linedir"
+  },
+  {
+   "name": "modvendor",
+   "dir": "modvendor"
+  },
+  {
+   "name": "nested",
+   "dir": "nested"
+  },
+  {
+   "name": "newtoolchain",
+   "dir": "newtoolchain"
+  },
+  {
+   "name": "nomodule",
+   "dir": "nomodule"
+  },
+  {
+   "name": "nonancestor",
+   "dir": "nonancestor"
+  },
+  {
+   "name": "nosum",
+   "dir": "nosum"
+  },
+  {
+   "name": "replace-in",
+   "dir": "replace-in"
+  },
+  {
+   "name": "replace-out",
+   "dir": "replace-out"
+  },
+  {
+   "name": "skipdirs",
+   "dir": "skipdirs"
+  },
+  {
+   "name": "symlinks",
+   "dir": "symlinks"
+  },
+  {
+   "name": "toonew",
+   "dir": "toonew"
+  },
+  {
+   "name": "twowork",
+   "dir": "twowork"
+  },
+  {
+   "name": "ws",
+   "dir": "ws"
+  },
+  {
+   "name": "ws-missing",
+   "dir": "ws-missing"
+  },
+  {
+   "name": "ws-toonew",
+   "dir": "ws-toonew"
+  },
+  {
+   "name": "wsvendor",
+   "dir": "wsvendor"
+  }
+ ],
+ "cases": [
+  {
+   "id": "BVD-001",
+   "category": "BVD",
+   "file": "badvendor/main.go",
+   "snippet": "yamlish.Marshal(",
+   "token": "Marshal",
+   "site_kind": "call",
+   "expect": {
+    "status": "unresolved",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": "load-error",
+    "distractors": []
+   },
+   "why": "vendor/ は yamlish v1.0.0 で作ったまま、go.mod は v1.1.0 に上げてある。go コマンドは inconsistent vendoring で止まる。グループの状態は error で、vendor を無視した readonly のビルドはしない",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 10,
+   "col": 20,
+   "offset": 101
+  },
+  {
+   "id": "BVD-002",
+   "category": "BVD",
+   "file": "badvendor/main.go",
+   "snippet": "local())",
+   "token": "local",
+   "site_kind": "call",
+   "expect": {
+    "status": "unresolved",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": "load-error",
+    "distractors": [
+     {
+      "qualname": "local",
+      "module": "example.com/layouts/badvendor",
+      "kind": "method",
+      "file": "badvendor/main.go",
+      "line": 13,
+      "col": 6
+     }
+    ]
+   },
+   "why": "失敗したグループではモジュール自身の呼び出しも unresolved",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 10,
+   "col": 71,
+   "offset": 152
+  },
+  {
+   "id": "CGO-001",
+   "category": "CGO",
+   "file": "cgo/native/describe.go",
+   "snippet": "\"native \" + Version()",
+   "token": "Version",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Version",
+      "module": "example.com/layouts/cgo",
+      "kind": "method",
+      "file": "cgo/native/native_nocgo.go",
+      "line": 5,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "CGO_ENABLED=0 では import \"C\" のファイルは外れ、//go:build !cgo の双子がコンパイルされる (G10)。native_cgo.go の Version は build_variants に載るだけで辺にしない",
+   "occurrence": 1,
+   "entry": "cgo",
+   "expect_offline": null,
+   "line": 4,
+   "col": 21,
+   "offset": 61
+  },
+  {
+   "id": "CGO-002",
+   "category": "CGO",
+   "file": "cgo/native/native_cgo.go",
+   "snippet": "C.GoString(C.CString(\"cgo\"))",
+   "token": "GoString",
+   "site_kind": "call",
+   "expect": {
+    "status": "unresolved",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": "excluded-by-build",
+    "distractors": []
+   },
+   "why": "cgo のファイルは主構成に含まれない",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 8,
+   "col": 27,
+   "offset": 96
+  },
+  {
+   "id": "CGO-003",
+   "category": "CGO",
+   "file": "cgo/native/native_cgo.go",
+   "snippet": "strings.ToUpper(C.GoString",
+   "token": "ToUpper",
+   "site_kind": "call",
+   "expect": {
+    "status": "unresolved",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": "excluded-by-build",
+    "distractors": []
+   },
+   "why": "外れたファイルの中では標準ライブラリの呼び出しも答えない",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 8,
+   "col": 17,
+   "offset": 86
+  },
+  {
+   "id": "CGO-004",
+   "category": "CGO",
+   "file": "cgo/main.go",
+   "snippet": "native.Describe()",
+   "token": "Describe",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Describe",
+      "module": "example.com/layouts/cgo",
+      "kind": "method",
+      "file": "cgo/native/describe.go",
+      "line": 3,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "cgo とは関係ないファイルの宣言",
+   "occurrence": 1,
+   "entry": "cgo",
+   "expect_offline": null,
+   "line": 10,
+   "col": 21,
+   "offset": 102
+  },
+  {
+   "id": "DEG-001",
+   "category": "DEG",
+   "file": "ws-missing/present/main.go",
+   "snippet": "banner(\"present\")",
+   "token": "banner",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "banner",
+      "module": "example.com/layouts/wsmissing/present",
+      "kind": "method",
+      "file": "ws-missing/present/main.go",
+      "line": 12,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "go.work の use ./absent は存在しない。go コマンドは go.work ごと失敗するが、生成する go.work はその行を落として degraded にし、残りのモジュールは解決する",
+   "occurrence": 1,
+   "entry": "ws-missing",
+   "expect_offline": null,
+   "line": 9,
+   "col": 14,
+   "offset": 71
+  },
+  {
+   "id": "DEG-002",
+   "category": "DEG",
+   "file": "ws-missing/present/main.go",
+   "snippet": "strings.Repeat(\"=\", 3)",
+   "token": "Repeat",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "std"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "degraded なグループでも標準ライブラリは external",
+   "occurrence": 1,
+   "entry": "ws-missing",
+   "expect_offline": null,
+   "line": 13,
+   "col": 18,
+   "offset": 141
+  },
+  {
+   "id": "DNG-001",
+   "category": "DNG",
+   "file": "depnewgo/m/main.go",
+   "snippet": "fmt.Println(newgo.F(), local())",
+   "token": "F",
+   "site_kind": "call",
+   "expect": {
+    "status": "unresolved",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": "toolchain",
+    "distractors": []
+   },
+   "why": "依存 example.com/thirdparty/newgo v1.0.0 の go.mod が go 1.28。env モードでは go コマンドが module example.com/thirdparty/newgo@v1.0.0 requires go >= 1.28 でロード全体を止める (toolchain)。オフラインでは newgo が無いので missing-module",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": {
+    "status": "unresolved",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": "missing-module",
+    "distractors": []
+   },
+   "line": 10,
+   "col": 20,
+   "offset": 99
+  },
+  {
+   "id": "DNG-002",
+   "category": "DNG",
+   "file": "depnewgo/m/main.go",
+   "snippet": "local())",
+   "token": "local",
+   "site_kind": "call",
+   "expect": {
+    "status": "unresolved",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": "toolchain",
+    "distractors": []
+   },
+   "why": "ロードが失敗したグループでは、依存と無関係なリポジトリ内の呼び出しも unresolved (toolchain)。グループの状態は error (改訂 R5)。オフラインでは依存の go.mod が見えないのでロードは成功し、local に解決する",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "local",
+      "module": "example.com/layouts/depnewgo/m",
+      "kind": "method",
+      "file": "depnewgo/m/main.go",
+      "line": 13,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "line": 10,
+   "col": 25,
+   "offset": 104
+  },
+  {
+   "id": "DOT-001",
+   "category": "DOT",
+   "file": "dotimport/main.go",
+   "snippet": "Reverse(ToUpper(\"dot\"))",
+   "token": "Reverse",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Reverse",
+      "module": "example.com/layouts/dotimport",
+      "kind": "method",
+      "file": "dotimport/strutil/strutil.go",
+      "line": 3,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Reverse",
+      "module": "example.com/layouts/dotimport",
+      "kind": "method",
+      "file": "dotimport/other/other.go",
+      "line": 3,
+      "col": 6
+     }
+    ]
+   },
+   "why": "ドット import した strutil の関数を修飾なしで呼ぶ。同名の other.Reverse は別パッケージ",
+   "occurrence": 1,
+   "entry": "dotimport",
+   "expect_offline": null,
+   "line": 12,
+   "col": 14,
+   "offset": 156
+  },
+  {
+   "id": "DOT-002",
+   "category": "DOT",
+   "file": "dotimport/main.go",
+   "snippet": "ToUpper(\"dot\")",
+   "token": "ToUpper",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "std"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "標準ライブラリ strings のドット import",
+   "occurrence": 1,
+   "entry": "dotimport",
+   "expect_offline": null,
+   "line": 12,
+   "col": 22,
+   "offset": 164
+  },
+  {
+   "id": "DOT-003",
+   "category": "DOT",
+   "file": "dotimport/main.go",
+   "snippet": "other.Reverse(\"plain\")",
+   "token": "Reverse",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Reverse",
+      "module": "example.com/layouts/dotimport",
+      "kind": "method",
+      "file": "dotimport/other/other.go",
+      "line": 3,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Reverse",
+      "module": "example.com/layouts/dotimport",
+      "kind": "method",
+      "file": "dotimport/strutil/strutil.go",
+      "line": 3,
+      "col": 6
+     }
+    ]
+   },
+   "why": "修飾した呼び出しは other の方",
+   "occurrence": 1,
+   "entry": "dotimport",
+   "expect_offline": null,
+   "line": 12,
+   "col": 45,
+   "offset": 187
+  },
+  {
+   "id": "DOT-004",
+   "category": "DOT",
+   "file": "dotimport/strutil/strutil.go",
+   "snippet": "swap(r, i, j)",
+   "token": "swap",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "swap",
+      "module": "example.com/layouts/dotimport",
+      "kind": "method",
+      "file": "dotimport/strutil/strutil.go",
+      "line": 11,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "ドット import される側の中の呼び出し",
+   "occurrence": 1,
+   "entry": "dotimport",
+   "expect_offline": null,
+   "line": 6,
+   "col": 3,
+   "offset": 118
+  },
+  {
+   "id": "IGD-001",
+   "category": "IGD",
+   "file": "ignoredir/main.go",
+   "snippet": "generated.Banner()",
+   "token": "Banner",
+   "site_kind": "call",
+   "expect": {
+    "status": "unresolved",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": "unscanned",
+    "distractors": []
+   },
+   "why": "go.mod の ignore ./generated は ./... から外すだけで、明示的な import ならコンパイルされる。ignore したディレクトリはスキャンしないので、呼び出し先は unscanned。実行時に走るのは generated.Banner だが、オラクルも ignore したディレクトリを計装しない (改訂 R21) ので runtime には書かない",
+   "occurrence": 1,
+   "entry": "ignoredir",
+   "expect_offline": null,
+   "line": 10,
+   "col": 24,
+   "offset": 114
+  },
+  {
+   "id": "IGD-002",
+   "category": "IGD",
+   "file": "ignoredir/main.go",
+   "snippet": "local())",
+   "token": "local",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "local",
+      "module": "example.com/layouts/ignoredir",
+      "kind": "method",
+      "file": "ignoredir/main.go",
+      "line": 13,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "ignore と無関係な呼び出しは解決する",
+   "occurrence": 1,
+   "entry": "ignoredir",
+   "expect_offline": null,
+   "line": 10,
+   "col": 34,
+   "offset": 124
+  },
+  {
+   "id": "IGN-001",
+   "category": "IGN",
+   "file": "buildignore/tool.go",
+   "snippet": "\"run:\" + Helper()",
+   "token": "Helper",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Helper",
+      "module": "example.com/layouts/buildignore",
+      "kind": "method",
+      "file": "buildignore/tool.go",
+      "line": 3,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Helper",
+      "module": "example.com/layouts/buildignore",
+      "kind": "method",
+      "file": "buildignore/gen.go",
+      "line": 7,
+      "col": 6
+     }
+    ]
+   },
+   "why": "ディレクトリのパッケージは tool (パス要素 buildignore と違う名前)。gen.go の Helper は//go:build ignore の package main にある",
+   "occurrence": 1,
+   "entry": "buildignore",
+   "expect_offline": null,
+   "line": 8,
+   "col": 18,
+   "offset": 92
+  },
+  {
+   "id": "IGN-002",
+   "category": "IGN",
+   "file": "buildignore/gen.go",
+   "snippet": "fmt.Println(Helper())",
+   "token": "Helper",
+   "site_kind": "call",
+   "expect": {
+    "status": "unresolved",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": "excluded-by-build",
+    "distractors": [
+     {
+      "qualname": "Helper",
+      "module": "example.com/layouts/buildignore",
+      "kind": "method",
+      "file": "buildignore/tool.go",
+      "line": 3,
+      "col": 6
+     },
+     {
+      "qualname": "Helper",
+      "module": "example.com/layouts/buildignore",
+      "kind": "method",
+      "file": "buildignore/gen.go",
+      "line": 7,
+      "col": 6
+     }
+    ]
+   },
+   "why": "どの構成もコンパイルしないファイル。ノードは残るが site は unresolved。名前で tool.go の Helper に結び付けない",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 12,
+   "col": 14,
+   "offset": 114
+  },
+  {
+   "id": "IGN-003",
+   "category": "IGN",
+   "file": "buildignore/cmd/run/main.go",
+   "snippet": "tool.Run()",
+   "token": "Run",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Run",
+      "module": "example.com/layouts/buildignore",
+      "kind": "method",
+      "file": "buildignore/tool.go",
+      "line": 7,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "import パスの最後の要素 (buildignore) とパッケージ名 (tool) が違うパッケージへの呼び出し",
+   "occurrence": 1,
+   "entry": "buildignore",
+   "expect_offline": null,
+   "line": 10,
+   "col": 19,
+   "offset": 106
+  },
+  {
+   "id": "LIN-001",
+   "category": "LIN",
+   "file": "linedir/view.go",
+   "snippet": "strings.ToUpper(name) + suffix()",
+   "token": "suffix",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "suffix",
+      "module": "example.com/layouts/linedir",
+      "kind": "method",
+      "file": "linedir/view.go",
+      "line": 11,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "//line view.tmpl:1 の後ろの site と //line view.tmpl:30 の後ろの宣言。位置は物理的な行とバイト列 (PositionFor(p, false))。オラクルは //line のあるファイルを計装しない",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 7,
+   "col": 33,
+   "offset": 120
+  },
+  {
+   "id": "LIN-002",
+   "category": "LIN",
+   "file": "linedir/view.go",
+   "snippet": "strings.ToUpper(name)",
+   "token": "ToUpper",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "std"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "//line の後ろでも標準ライブラリの呼び出し",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 7,
+   "col": 17,
+   "offset": 104
+  },
+  {
+   "id": "LIN-003",
+   "category": "LIN",
+   "file": "linedir/view.go",
+   "snippet": "mark(\"!\")",
+   "token": "mark",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "mark",
+      "module": "example.com/layouts/linedir",
+      "kind": "method",
+      "file": "linedir/view.go",
+      "line": 15,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "インラインの /*line view.tmpl:40:9*/ の直後の呼び出し",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 12,
+   "col": 33,
+   "offset": 207
+  },
+  {
+   "id": "LIN-004",
+   "category": "LIN",
+   "file": "linedir/cmd/show/main.go",
+   "snippet": "linedir.Render(\"go\")",
+   "token": "Render",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Render",
+      "module": "example.com/layouts/linedir",
+      "kind": "method",
+      "file": "linedir/view.go",
+      "line": 6,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "呼び出し先の宣言が //line の後ろにある。調整後の位置 view.tmpl:1 はリポジトリのファイルではない",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 10,
+   "col": 22,
+   "offset": 100
+  },
+  {
+   "id": "LIN-005",
+   "category": "LIN",
+   "file": "linedir/lined.go",
+   "snippet": "return Lined()",
+   "token": "Lined",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Lined",
+      "module": "example.com/layouts/linedir",
+      "kind": "method",
+      "file": "linedir/lined.go",
+      "line": 4,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "mark",
+      "module": "example.com/layouts/linedir",
+      "kind": "method",
+      "file": "linedir/view.go",
+      "line": 15,
+      "col": 6
+     }
+    ]
+   },
+   "why": "lined.go の //line view.go:15:1 は別のリポジトリ内のファイルを指す。Lined の調整後の位置 view.go:15:6 は func mark の名前の位置と同じなので、調整後の位置で引くと誤った辺 CallLined -> mark になる (改訂 R3)",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 9,
+   "col": 9,
+   "offset": 118
+  },
+  {
+   "id": "LIN-006",
+   "category": "LIN",
+   "file": "linedir/cmd/show/main.go",
+   "snippet": "linedir.CallLined()",
+   "token": "CallLined",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "CallLined",
+      "module": "example.com/layouts/linedir",
+      "kind": "method",
+      "file": "linedir/lined.go",
+      "line": 8,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "//line の後ろにある宣言への呼び出し",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 11,
+   "col": 22,
+   "offset": 135
+  },
+  {
+   "id": "NAN-001",
+   "category": "NAN",
+   "file": "nonancestor/server/main.go",
+   "snippet": "api.Version()",
+   "token": "Version",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/layouts/nonancestor/api"
+    },
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Version",
+      "module": "example.com/layouts/nonancestor/api",
+      "kind": "method",
+      "file": "nonancestor/api/api.go",
+      "line": 3,
+      "col": 6
+     }
+    ]
+   },
+   "why": "tools/go.work は ../api と ../server を use するが、server から上へたどっても見つからない。server は単一モジュールのグループで、require した公開版 api v1.0.0 (_proxy) がビルドされる。tools のワークスペースで読むとリポジトリ内の api になり誤答。オフラインでは公開版が無いので unresolved (missing-module)",
+   "occurrence": 1,
+   "entry": "nonancestor-server",
+   "expect_offline": {
+    "status": "unresolved",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": "missing-module",
+    "distractors": [
+     {
+      "qualname": "Version",
+      "module": "example.com/layouts/nonancestor/api",
+      "kind": "method",
+      "file": "nonancestor/api/api.go",
+      "line": 3,
+      "col": 6
+     }
+    ]
+   },
+   "line": 10,
+   "col": 18,
+   "offset": 104
+  },
+  {
+   "id": "NAN-002",
+   "category": "NAN",
+   "file": "nonancestor/api/api.go",
+   "snippet": "label(\"in-repo\")",
+   "token": "label",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "label",
+      "module": "example.com/layouts/nonancestor/api",
+      "kind": "method",
+      "file": "nonancestor/api/api.go",
+      "line": 7,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "リポジトリ内の api は自分の単一モジュールのグループで解決される。server からは呼ばれない",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 4,
+   "col": 9,
+   "offset": 45
+  },
+  {
+   "id": "NEST-001",
+   "category": "NEST",
+   "file": "nested/main.go",
+   "snippet": "calc.Twice(21)",
+   "token": "Twice",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Twice",
+      "module": "example.com/layouts/nested/inner",
+      "kind": "method",
+      "file": "nested/inner/calc/calc.go",
+      "line": 3,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Twice",
+      "module": "example.com/layouts/nested",
+      "kind": "method",
+      "file": "nested/report/report.go",
+      "line": 9,
+      "col": 6
+     }
+    ]
+   },
+   "why": "外側のモジュールは require と replace => ./inner で入れ子のモジュールを使う。単一モジュールのグループでも replace の相対パスはモジュールのルートから解決される。外側の report.Twice は同名の別関数",
+   "occurrence": 1,
+   "entry": "nested",
+   "expect_offline": null,
+   "line": 11,
+   "col": 31,
+   "offset": 156
+  },
+  {
+   "id": "NEST-002",
+   "category": "NEST",
+   "file": "nested/report/report.go",
+   "snippet": "strconv.Itoa(Twice(n))",
+   "token": "Twice",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Twice",
+      "module": "example.com/layouts/nested",
+      "kind": "method",
+      "file": "nested/report/report.go",
+      "line": 9,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Twice",
+      "module": "example.com/layouts/nested/inner",
+      "kind": "method",
+      "file": "nested/inner/calc/calc.go",
+      "line": 3,
+      "col": 6
+     }
+    ]
+   },
+   "why": "外側のモジュールの中の呼び出し。入れ子のモジュールの calc.Twice ではない",
+   "occurrence": 1,
+   "entry": "nested",
+   "expect_offline": null,
+   "line": 6,
+   "col": 33,
+   "offset": 92
+  },
+  {
+   "id": "NEST-003",
+   "category": "NEST",
+   "file": "nested/inner/calc/calc.go",
+   "snippet": "return double(n)",
+   "token": "double",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "double",
+      "module": "example.com/layouts/nested/inner",
+      "kind": "method",
+      "file": "nested/inner/calc/calc.go",
+      "line": 7,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "nested/inner/ のファイルは一番深い go.mod (inner) に属する。外側のグループでは依存パッケージなので、この site は inner のグループの答えだけが使われる",
+   "occurrence": 1,
+   "entry": "nested",
+   "expect_offline": null,
+   "line": 4,
+   "col": 9,
+   "offset": 46
+  },
+  {
+   "id": "NOM-001",
+   "category": "NOM",
+   "file": "nomodule/loose.go",
+   "snippet": "fmt.Println(greet(\"loose\"))",
+   "token": "greet",
+   "site_kind": "call",
+   "expect": {
+    "status": "unresolved",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": "no-module",
+    "distractors": []
+   },
+   "why": "どの go.mod にも属さないファイル。抽出はするが解決しない (GOPATH モードは対象外)",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 6,
+   "col": 14,
+   "offset": 55
+  },
+  {
+   "id": "NOM-002",
+   "category": "NOM",
+   "file": "nomodule/loose.go",
+   "snippet": "fmt.Println(greet(\"loose\"))",
+   "token": "Println",
+   "site_kind": "call",
+   "expect": {
+    "status": "unresolved",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": "no-module",
+    "distractors": []
+   },
+   "why": "モジュールがないので標準ライブラリの呼び出しも答えない",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 6,
+   "col": 6,
+   "offset": 47
+  },
+  {
+   "id": "REP-001",
+   "category": "REP",
+   "file": "replace-in/app/main.go",
+   "snippet": "greet.Hello(\"in\")",
+   "token": "Hello",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Hello",
+      "module": "example.com/layouts/common",
+      "kind": "method",
+      "file": "replace-in/common/greet/greet.go",
+      "line": 3,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "replace => ../common はリポジトリ (replace-in) 内の隣のモジュールを指す。呼び出し先はスキャンしたファイルなのでリポジトリ内の辺になる",
+   "occurrence": 1,
+   "entry": "replace-in",
+   "expect_offline": null,
+   "line": 10,
+   "col": 20,
+   "offset": 103
+  },
+  {
+   "id": "REP-002",
+   "category": "REP",
+   "file": "replace-in/common/greet/greet.go",
+   "snippet": "polish(name)",
+   "token": "polish",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "polish",
+      "module": "example.com/layouts/common",
+      "kind": "method",
+      "file": "replace-in/common/greet/greet.go",
+      "line": 7,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "replace 先のモジュール common は自分の単一モジュールのグループでも解決される",
+   "occurrence": 1,
+   "entry": "replace-in",
+   "expect_offline": null,
+   "line": 4,
+   "col": 20,
+   "offset": 67
+  },
+  {
+   "id": "REP-003",
+   "category": "REP",
+   "file": "replace-out/main.go",
+   "snippet": "extlib.NewLabel(120)",
+   "token": "NewLabel",
+   "site_kind": "call",
+   "expect": {
+    "status": "unresolved",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": "outside-repo",
+    "distractors": []
+   },
+   "why": "replace => ../_outside/extlib はリポジトリの外の実在するディレクトリ。go コマンドはそこをビルドするが、呼び出し先はこのリポジトリのノードでもピアでもない (§5.3 行 9)",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 10,
+   "col": 30,
+   "offset": 107
+  },
+  {
+   "id": "REP-004",
+   "category": "REP",
+   "file": "replace-out/main.go",
+   "snippet": "l.Text()",
+   "token": "Text",
+   "site_kind": "call",
+   "expect": {
+    "status": "unresolved",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": "outside-repo",
+    "distractors": []
+   },
+   "why": "リポジトリの外の型のメソッドも同じ",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 14,
+   "col": 22,
+   "offset": 186
+  },
+  {
+   "id": "REP-005",
+   "category": "REP",
+   "file": "replace-out/main.go",
+   "snippet": "describe(extlib.NewLabel",
+   "token": "describe",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "describe",
+      "module": "example.com/layouts/replaceout",
+      "kind": "method",
+      "file": "replace-out/main.go",
+      "line": 13,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "リポジトリの外を replace していても、モジュール自身の中の呼び出しは解決される",
+   "occurrence": 1,
+   "entry": "replace-out",
+   "expect_offline": null,
+   "line": 10,
+   "col": 14,
+   "offset": 91
+  },
+  {
+   "id": "SKP-001",
+   "category": "SKP",
+   "file": "skipdirs/main.go",
+   "snippet": "draft.Sketch()",
+   "token": "Sketch",
+   "site_kind": "call",
+   "expect": {
+    "status": "unresolved",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": "unscanned",
+    "distractors": []
+   },
+   "why": "_draft/ は ./... からもスキャンからも外れるが、明示的な import ならコンパイルされる。呼び出し先はスキャンしていないリポジトリ内のファイル (§5.3 行 7)",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 12,
+   "col": 20,
+   "offset": 199
+  },
+  {
+   "id": "SKP-002",
+   "category": "SKP",
+   "file": "skipdirs/main.go",
+   "snippet": "golden.Load()",
+   "token": "Load",
+   "site_kind": "call",
+   "expect": {
+    "status": "unresolved",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": "unscanned",
+    "distractors": []
+   },
+   "why": "testdata/ の下のパッケージも同じ",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 12,
+   "col": 37,
+   "offset": 216
+  },
+  {
+   "id": "SKP-003",
+   "category": "SKP",
+   "file": "skipdirs/main.go",
+   "snippet": "cache.Get()",
+   "token": "Get",
+   "site_kind": "call",
+   "expect": {
+    "status": "unresolved",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": "unscanned",
+    "distractors": []
+   },
+   "why": ".cache/ の下のパッケージも同じ",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 12,
+   "col": 51,
+   "offset": 230
+  },
+  {
+   "id": "SKP-004",
+   "category": "SKP",
+   "file": "skipdirs/main.go",
+   "snippet": "local())",
+   "token": "local",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "local",
+      "module": "example.com/layouts/skipdirs",
+      "kind": "method",
+      "file": "skipdirs/main.go",
+      "line": 15,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "_old.go と .dot.go は go コマンドが黙って読み飛ばすファイルで、同名の local を持つ。スキャンもしないのでノードにならない",
+   "occurrence": 1,
+   "entry": "skipdirs",
+   "expect_offline": null,
+   "line": 12,
+   "col": 58,
+   "offset": 237
+  },
+  {
+   "id": "SUM-001",
+   "category": "SUM",
+   "file": "nosum/main.go",
+   "snippet": "uuidlite.FromInt(7)",
+   "token": "FromInt",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/thirdparty/uuidlite"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "go.sum に uuidlite の行はある。env モードでは external、オフラインでは unresolved (missing-module)",
+   "occurrence": 1,
+   "entry": "nosum",
+   "expect_offline": {
+    "status": "unresolved",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": "missing-module",
+    "distractors": []
+   },
+   "line": 10,
+   "col": 23,
+   "offset": 105
+  },
+  {
+   "id": "SUM-002",
+   "category": "SUM",
+   "file": "nosum/caps/caps.go",
+   "snippet": "textfmt.Title(s)",
+   "token": "Title",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/thirdparty/textfmt"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "go.sum に textfmt の行がない。-mod=readonly の go コマンドは missing go.sum entry で import を拒むが、ダウンロードモードは制御ディレクトリの go.mod のコピーに -mod=mod でダウンロードして go.sum のコピーを埋める (改訂 R12)。go.mod のコピーは元に戻す (改訂 R45) ので、readonly の読み込みで external になる。オフラインでは unresolved (missing-module)",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": {
+    "status": "unresolved",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": "missing-module",
+    "distractors": []
+   },
+   "line": 6,
+   "col": 17,
+   "offset": 100
+  },
+  {
+   "id": "SUM-003",
+   "category": "SUM",
+   "file": "nosum/main.go",
+   "snippet": "tag())",
+   "token": "tag",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "tag",
+      "module": "example.com/layouts/nosum",
+      "kind": "method",
+      "file": "nosum/main.go",
+      "line": 13,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "同じモジュールの中の呼び出しは go.sum と無関係に解決する",
+   "occurrence": 1,
+   "entry": "nosum",
+   "expect_offline": null,
+   "line": 10,
+   "col": 44,
+   "offset": 126
+  },
+  {
+   "id": "SYM-001",
+   "category": "SYM",
+   "file": "symlinks/a/real.go",
+   "snippet": "return helper() + \"!\"",
+   "token": "helper",
+   "site_kind": "call",
+   "expect": {
+    "status": "ambiguous",
+    "targets": [],
+    "candidates": [
+     {
+      "qualname": "helper",
+      "module": "example.com/layouts/symlinks",
+      "kind": "method",
+      "file": "symlinks/a/helper.go",
+      "line": 3,
+      "col": 6
+     },
+     {
+      "qualname": "helper",
+      "module": "example.com/layouts/symlinks",
+      "kind": "method",
+      "file": "symlinks/b/helper.go",
+      "line": 3,
+      "col": 6
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "helper",
+      "module": "example.com/layouts/symlinks",
+      "kind": "method",
+      "file": "symlinks/a/helper.go",
+      "line": 3,
+      "col": 6
+     },
+     {
+      "qualname": "helper",
+      "module": "example.com/layouts/symlinks",
+      "kind": "method",
+      "file": "symlinks/b/helper.go",
+      "line": 3,
+      "col": 6
+     }
+    ],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "b/real.go は a/real.go へのシンボリックリンクで、パッケージ a と b の両方でコンパイルされる。実パスが同じ site で二つのパッケージの答えが食い違う (G1 variant)。オラクルはリンクを別ファイルとして計装し、実パスの site とリンクの写しの site の観測を合わせて判定する。a.helper と b.helper の両方が走る",
+   "occurrence": 1,
+   "entry": "symlinks",
+   "expect_offline": null,
+   "line": 4,
+   "col": 9,
+   "offset": 46
+  },
+  {
+   "id": "SYM-002",
+   "category": "SYM",
+   "file": "symlinks/main.go",
+   "snippet": "ka.Describe()",
+   "token": "Describe",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Describe",
+      "module": "example.com/layouts/symlinks",
+      "kind": "method",
+      "file": "symlinks/a/real.go",
+      "line": 3,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "実ファイル a/real.go の宣言",
+   "occurrence": 1,
+   "entry": "symlinks",
+   "expect_offline": null,
+   "line": 11,
+   "col": 17,
+   "offset": 138
+  },
+  {
+   "id": "SYM-003",
+   "category": "SYM",
+   "file": "symlinks/main.go",
+   "snippet": "kb.Describe()",
+   "token": "Describe",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Describe",
+      "module": "example.com/layouts/symlinks",
+      "kind": "method",
+      "file": "symlinks/a/real.go",
+      "line": 3,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "パッケージ b の Describe の宣言位置はリンク b/real.go。実パスにすると a/real.go のノード",
+   "occurrence": 1,
+   "entry": "symlinks",
+   "expect_offline": null,
+   "line": 11,
+   "col": 32,
+   "offset": 153
+  },
+  {
+   "id": "TCH-001",
+   "category": "TCH",
+   "file": "toonew/main.go",
+   "snippet": "fmt.Println(level())",
+   "token": "level",
+   "site_kind": "call",
+   "expect": {
+    "status": "unresolved",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": "toolchain",
+    "distractors": [
+     {
+      "qualname": "level",
+      "module": "example.com/layouts/toonew",
+      "kind": "method",
+      "file": "toonew/main.go",
+      "line": 9,
+      "col": 6
+     }
+    ]
+   },
+   "why": "go.mod の go 1.28 は go1.27.2 より新しい。go コマンドは go.mod requires go >= 1.28 で止まる。グループの全 site が unresolved (toolchain)",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 6,
+   "col": 14,
+   "offset": 55
+  },
+  {
+   "id": "TCH-002",
+   "category": "TCH",
+   "file": "toonew/main.go",
+   "snippet": "fmt.Println(level())",
+   "token": "Println",
+   "site_kind": "call",
+   "expect": {
+    "status": "unresolved",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": "toolchain",
+    "distractors": []
+   },
+   "why": "標準ライブラリの呼び出しも同じグループなので答えない",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 6,
+   "col": 6,
+   "offset": 47
+  },
+  {
+   "id": "TCH-003",
+   "category": "TCH",
+   "file": "ws-toonew/member/main.go",
+   "snippet": "fmt.Println(member())",
+   "token": "member",
+   "site_kind": "call",
+   "expect": {
+    "status": "unresolved",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": "toolchain",
+    "distractors": [
+     {
+      "qualname": "member",
+      "module": "example.com/layouts/wstoonew/member",
+      "kind": "method",
+      "file": "ws-toonew/member/main.go",
+      "line": 9,
+      "col": 6
+     }
+    ]
+   },
+   "why": "go.work の go 1.28 (モジュール自身は go 1.26)。go コマンドは ../go.work requires go >= 1.28 で止まる",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 6,
+   "col": 14,
+   "offset": 55
+  },
+  {
+   "id": "TCH-004",
+   "category": "TCH",
+   "file": "newtoolchain/main.go",
+   "snippet": "fmt.Println(pinned())",
+   "token": "pinned",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "pinned",
+      "module": "example.com/layouts/newtoolchain",
+      "kind": "method",
+      "file": "newtoolchain/main.go",
+      "line": 9,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "go 1.26 と toolchain go1.28.1。GOTOOLCHAIN=local では go 行が満たされていればローカルのツールチェーンでビルドされる。状態は ok で警告だけ (仕様 §3.3、改訂 R23)",
+   "occurrence": 1,
+   "entry": "newtoolchain",
+   "expect_offline": null,
+   "line": 6,
+   "col": 14,
+   "offset": 55
+  },
+  {
+   "id": "TCH-005",
+   "category": "TCH",
+   "file": "newtoolchain/main.go",
+   "snippet": "fmt.Println(pinned())",
+   "token": "Println",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "std"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "toolchain 行が新しくても標準ライブラリは external。警告は標準ライブラリの行き先が違いうることを言う",
+   "occurrence": 1,
+   "entry": "newtoolchain",
+   "expect_offline": null,
+   "line": 6,
+   "col": 6,
+   "offset": 47
+  },
+  {
+   "id": "TWO-001",
+   "category": "TWO",
+   "file": "twowork/app/main.go",
+   "snippet": "calc.Triple(14)",
+   "token": "Triple",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Triple",
+      "module": "example.com/layouts/twowork/core",
+      "kind": "method",
+      "file": "twowork/core/calc/calc.go",
+      "line": 3,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "core はルートの go.work と scratch/go.work の両方に並ぶ。core のグループは上へたどって見つかるルートの go.work の一つだけ (scratch/go.work は警告)",
+   "occurrence": 1,
+   "entry": "twowork",
+   "expect_offline": null,
+   "line": 10,
+   "col": 19,
+   "offset": 107
+  },
+  {
+   "id": "TWO-002",
+   "category": "TWO",
+   "file": "twowork/core/calc/calc.go",
+   "snippet": "add(n, add(n, n))",
+   "token": "add",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "add",
+      "module": "example.com/layouts/twowork/core",
+      "kind": "method",
+      "file": "twowork/core/calc/calc.go",
+      "line": 7,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "グループが一つなので site の答えも一つ",
+   "occurrence": 1,
+   "entry": "twowork",
+   "expect_offline": null,
+   "line": 4,
+   "col": 9,
+   "offset": 47
+  },
+  {
+   "id": "VND-001",
+   "category": "VND",
+   "file": "modvendor/main.go",
+   "snippet": "doc := yamlish.NewDocument()",
+   "token": "NewDocument",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/thirdparty/yamlish"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "単一モジュールの vendor/。-mod=vendor で読むのでオフラインでも external",
+   "occurrence": 1,
+   "entry": "modvendor",
+   "expect_offline": null,
+   "line": 11,
+   "col": 17,
+   "offset": 109
+  },
+  {
+   "id": "VND-002",
+   "category": "VND",
+   "file": "modvendor/main.go",
+   "snippet": "doc.Keys()",
+   "token": "Keys",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/thirdparty/yamlish"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "v1.1.0 にだけあるメソッド。vendor のコピーは v1.1.0",
+   "occurrence": 1,
+   "entry": "modvendor",
+   "expect_offline": null,
+   "line": 13,
+   "col": 31,
+   "offset": 185
+  },
+  {
+   "id": "VND-003",
+   "category": "VND",
+   "file": "modvendor/main.go",
+   "snippet": "fmt.Print(render(doc))",
+   "token": "render",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "render",
+      "module": "example.com/layouts/modvendor",
+      "kind": "method",
+      "file": "modvendor/main.go",
+      "line": 17,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "モジュール自身の関数",
+   "occurrence": 1,
+   "entry": "modvendor",
+   "expect_offline": null,
+   "line": 14,
+   "col": 12,
+   "offset": 210
+  },
+  {
+   "id": "WS-001",
+   "category": "WS",
+   "file": "ws/app/main.go",
+   "snippet": "c := tally.New()",
+   "token": "New",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "New",
+      "module": "example.com/layouts/ws/lib",
+      "kind": "method",
+      "file": "ws/lib/tally/tally.go",
+      "line": 7,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "go.work の use 同士。app の go.mod に lib の require はないが、ワークスペースではリポジトリ内のソースが使われる (GOWORK=off ではビルドできない)",
+   "occurrence": 1,
+   "entry": "ws-app",
+   "expect_offline": null,
+   "line": 10,
+   "col": 13,
+   "offset": 96
+  },
+  {
+   "id": "WS-002",
+   "category": "WS",
+   "file": "ws/app/main.go",
+   "snippet": "c.Add(2)",
+   "token": "Add",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Counter.Add",
+      "module": "example.com/layouts/ws/lib",
+      "kind": "method",
+      "file": "ws/lib/tally/tally.go",
+      "line": 11,
+      "col": 19
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "別のワークスペースモジュールの型のポインタレシーバのメソッド",
+   "occurrence": 1,
+   "entry": "ws-app",
+   "expect_offline": null,
+   "line": 11,
+   "col": 4,
+   "offset": 105
+  },
+  {
+   "id": "WS-003",
+   "category": "WS",
+   "file": "ws/lib/tally/tally.go",
+   "snippet": "c.n = Sum(c.n, k)",
+   "token": "Sum",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Sum",
+      "module": "example.com/layouts/ws/lib",
+      "kind": "method",
+      "file": "ws/lib/tally/tally.go",
+      "line": 19,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "ワークスペースのもう一つのモジュールの中の呼び出し",
+   "occurrence": 1,
+   "entry": "ws-app",
+   "expect_offline": null,
+   "line": 12,
+   "col": 8,
+   "offset": 129
+  },
+  {
+   "id": "WS-004",
+   "category": "WS",
+   "file": "ws/app/headline.go",
+   "snippet": "rows := t.Len()",
+   "token": "Len",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/thirdparty/textfmt"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "app は textfmt v1.0.0、lib は v1.1.0 を require する。ワークスペースの MVS は v1.1.0 を選ぶので、v1.1.0 にだけある Table.Len がコンパイルされる。オフラインでは unresolved (missing-module) で未回答",
+   "occurrence": 1,
+   "entry": "ws-app",
+   "expect_offline": null,
+   "line": 12,
+   "col": 12,
+   "offset": 156
+  },
+  {
+   "id": "WS-005",
+   "category": "WS",
+   "file": "ws/app/headline.go",
+   "snippet": "t := textfmt.NewTable()",
+   "token": "NewTable",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/thirdparty/textfmt"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "第三者モジュールのパッケージ関数。オフラインでは未回答",
+   "occurrence": 1,
+   "entry": "ws-app",
+   "expect_offline": null,
+   "line": 10,
+   "col": 15,
+   "offset": 111
+  },
+  {
+   "id": "WS-006",
+   "category": "WS",
+   "file": "ws/extra/main.go",
+   "snippet": "tally.Sum(40, 2)",
+   "token": "Sum",
+   "site_kind": "call",
+   "expect": {
+    "status": "unresolved",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Sum",
+      "module": "example.com/layouts/ws/lib",
+      "kind": "method",
+      "file": "ws/lib/tally/tally.go",
+      "line": 19,
+      "col": 6
+     }
+    ]
+   },
+   "why": "ws/extra から上へたどって見つかる ws/go.work は extra を use しない。単一モジュール (GOWORK=off) のグループで、lib を require しないので go コマンドは import を拒む。ワークスペースに入れると誤った辺になる",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 10,
+   "col": 20,
+   "offset": 103
+  },
+  {
+   "id": "WSV-001",
+   "category": "WSV",
+   "file": "wsvendor/svc/main.go",
+   "snippet": "id := uuidlite.New()",
+   "token": "New",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/thirdparty/uuidlite"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "ワークスペースの vendor/ (modules.txt の 1 行目が ## workspace) から読む。モジュールキャッシュが空でもオフラインで答えが出る (§5.3 行 5)",
+   "occurrence": 1,
+   "entry": "wsvendor",
+   "expect_offline": null,
+   "line": 11,
+   "col": 17,
+   "offset": 140
+  },
+  {
+   "id": "WSV-002",
+   "category": "WSV",
+   "file": "wsvendor/svc/main.go",
+   "snippet": "id.String()",
+   "token": "String",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/thirdparty/uuidlite"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "vendor にある型のメソッド",
+   "occurrence": 1,
+   "entry": "wsvendor",
+   "expect_offline": null,
+   "line": 12,
+   "col": 26,
+   "offset": 171
+  },
+  {
+   "id": "WSV-003",
+   "category": "WSV",
+   "file": "wsvendor/svc/main.go",
+   "snippet": "pad.Left(id.String(), 40)",
+   "token": "Left",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Left",
+      "module": "example.com/layouts/wsvendor/util",
+      "kind": "method",
+      "file": "wsvendor/util/pad/pad.go",
+      "line": 5,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "vendor モードでもワークスペースのモジュール同士はリポジトリ内のソース",
+   "occurrence": 1,
+   "entry": "wsvendor",
+   "expect_offline": null,
+   "line": 12,
+   "col": 18,
+   "offset": 163
+  },
+  {
+   "id": "WSV-004",
+   "category": "WSV",
+   "file": "wsvendor/util/pad/pad.go",
+   "snippet": "gap(len(s), width)",
+   "token": "gap",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "gap",
+      "module": "example.com/layouts/wsvendor/util",
+      "kind": "method",
+      "file": "wsvendor/util/pad/pad.go",
+      "line": 9,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "util の中の呼び出し",
+   "occurrence": 1,
+   "entry": "wsvendor",
+   "expect_offline": null,
+   "line": 6,
+   "col": 29,
+   "offset": 99
+  }
+ ],
+ "decl_pins": [
+  {
+   "qualname": "Helper",
+   "module": "example.com/layouts/buildignore",
+   "kind": "method",
+   "file": "buildignore/gen.go",
+   "line": 7,
+   "col": 6
+  },
+  {
+   "qualname": "Version",
+   "module": "example.com/layouts/cgo",
+   "kind": "method",
+   "file": "cgo/native/native_cgo.go",
+   "line": 7,
+   "col": 6
+  },
+  {
+   "qualname": "Render",
+   "module": "example.com/layouts/linedir",
+   "kind": "method",
+   "file": "linedir/view.go",
+   "line": 6,
+   "col": 6
+  },
+  {
+   "qualname": "Lined",
+   "module": "example.com/layouts/linedir",
+   "kind": "method",
+   "file": "linedir/lined.go",
+   "line": 4,
+   "col": 6
+  },
+  {
+   "qualname": "Describe",
+   "module": "example.com/layouts/symlinks",
+   "kind": "method",
+   "file": "symlinks/a/real.go",
+   "line": 3,
+   "col": 6
+  },
+  {
+   "qualname": "Twice",
+   "module": "example.com/layouts/nested/inner",
+   "kind": "method",
+   "file": "nested/inner/calc/calc.go",
+   "line": 3,
+   "col": 6
+  },
+  {
+   "qualname": "Counter",
+   "module": "example.com/layouts/ws/lib",
+   "kind": "class",
+   "file": "ws/lib/tally/tally.go",
+   "line": 3,
+   "col": 6
+  },
+  {
+   "qualname": "level",
+   "module": "example.com/layouts/toonew",
+   "kind": "method",
+   "file": "toonew/main.go",
+   "line": 9,
+   "col": 6
+  }
+ ],
+ "cross_repo_edges": [],
+ "xpr_pairs": []
+}

@@ -828,6 +828,17 @@ def test_the_graph_is_cached_and_reloaded_when_a_file_changes(web):
     assert graph_api.load_graph(repo) is not first
     assert {"table": "Methods", "rows": 7} in client.get("/api/graph/stats").json()["node_tables"]
     assert client.get("/api/graph/search", params={"q": "Round"}).json()["results"][0]["label"] == "Round"
+    # an atomic replace within one mtime tick, same size: the new inode still counts
+    second = graph_api.load_graph(repo)
+    st = path.stat()
+    text = path.read_text(encoding="utf-8").replace('"Round"', '"Ruond"')
+    tmp = path.with_name("Methods.jsonl.tmp")
+    tmp.write_text(text, encoding="utf-8")
+    os.replace(tmp, path)
+    os.utime(path, ns=(st.st_atime_ns, st.st_mtime_ns))
+    assert (path.stat().st_mtime_ns, path.stat().st_size) == (st.st_mtime_ns, st.st_size)
+    assert graph_api.load_graph(repo) is not second
+    assert client.get("/api/graph/search", params={"q": "Ruond"}).json()["total"] == 1
 
 
 def test_a_file_that_vanishes_while_reading_is_a_503(web, monkeypatch):

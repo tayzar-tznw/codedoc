@@ -90,7 +90,7 @@ Cloud Spanner に何が入るか（ノード表・エッジ表・ID の決め方
 
 - MethodCalls、PackageImports、ClassEmbeds、ClassImplements は、Phase 1.6 が `resolved` にした記録で、両端がこのリポジトリのノードのものからしか作らない。
 - `external`（標準ライブラリ、依存モジュール、cgo、ピア）、`builtin`、`dynamic`、`unresolved` は数えるだけで、MethodCalls にしない（インタフェースの候補の PossiblyCalls は下記）。ピアの相手は `crossref` が CrossRepo* にする（[CROSS_PROJECT.md](CROSS_PROJECT.md)）。
-- インタフェースの呼び出しは、インタフェースのメソッドへの MethodCalls と、各候補への PossiblyCalls（`reason` は `implementation`）になる。リポジトリの外のインタフェース（`external`）でも、リポジトリ内の候補は PossiblyCalls に載る。`open_world` は、リポジトリの外の型もそのインタフェースを満たすサイトで true になる。
+- インタフェースの呼び出しは、インタフェースのメソッドへの MethodCalls と、各候補への PossiblyCalls（`reason` は `implementation`）になる。リポジトリの外のインタフェース（`external`）でも、リポジトリ内の候補は PossiblyCalls に載る。`open_world` は、候補で尽くせない型もサイトに来うるとき true になる（リポジトリの外の型が満たすサイトと、別のグループがサイトのモジュールをローカルの replace でビルドに入れるサイト。[LSP_RESOLUTION.md](LSP_RESOLUTION.md#6-インタフェースの呼び出しと-open-world)）。
 - 1 サイトの候補が `POSSIBLY_CALLS_MAX_CANDIDATES`（[README](../README.md#設定リファレンス)）を超えると、そのサイトの PossiblyCalls は 1 本も書かず、数だけ数える。名前の推測による候補は作らない。
 - 同じ（表、source、target）の行は 1 本にまとめ、ソース順で最初のサイトの `call_line` と `site_kind` を残す。
 

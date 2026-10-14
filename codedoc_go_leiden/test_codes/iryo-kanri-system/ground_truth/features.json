@@ -1,0 +1,131 @@
+{
+  "features": [
+    {
+      "name": "受付",
+      "files": [
+        "reception-desk/cmd/reception-desk/main.go",
+        "reception-desk/internal/desk/desk.go",
+        "reception-desk/internal/flows/checkin/checkin.go",
+        "domain/patient/entity.go",
+        "domain/patient/describe.go",
+        "domain/visit/visit.go",
+        "domain/wards/north/ward.go",
+        "domain/wards/south/ward.go",
+        "data/repository/repository.go"
+      ]
+    },
+    {
+      "name": "会計・請求",
+      "files": [
+        "billing/fee.go",
+        "billing/fee_test.go",
+        "billing/session.go",
+        "billing/validation/validator.go",
+        "billing/pointmath/pointmath.go",
+        "billing/tariff/tariff.go",
+        "billing/text/receipt.go",
+        "kernel/policy/policy.go",
+        "domain/money/money.go",
+        "reception-desk/internal/flows/accounting/accounting.go"
+      ]
+    },
+    {
+      "name": "調剤",
+      "files": [
+        "pharmacy/dose.go",
+        "pharmacy/logging/logging.go",
+        "pharmacy/validation/validator.go",
+        "pharmacy/pointmath/pointmath.go",
+        "reception-desk/internal/flows/pharmacyflow/pharmacyflow.go"
+      ]
+    },
+    {
+      "name": "予約",
+      "files": [
+        "scheduling/book.go",
+        "scheduling/sms.go"
+      ]
+    },
+    {
+      "name": "帳票",
+      "files": [
+        "reporting/trail.go",
+        "reporting/monthly.go",
+        "reporting/labels.go",
+        "reception-desk/internal/flows/reports/reports.go",
+        "reception-desk/internal/textreport/textreport.go",
+        "admin-console/internal/textreport/textreport.go",
+        "third_party/textfmt/textfmt.go",
+        "data/store/store.go",
+        "data/cache/cache.go"
+      ]
+    },
+    {
+      "name": "患者ポータル",
+      "files": [
+        "patient-portal/cmd/patient-portal/main.go",
+        "patient-portal/internal/server/server.go"
+      ]
+    },
+    {
+      "name": "管理・バッチ",
+      "files": [
+        "admin-console/cmd/admin-console/main.go",
+        "admin-console/internal/console/console.go",
+        "admin-console/internal/batch/daily_batch.go",
+        "reception-desk/internal/flows/closing/daily_close.go",
+        "reception-desk/internal/flows/maintenance/maintenance.go"
+      ]
+    },
+    {
+      "name": "共通基盤",
+      "files": [
+        "kernel/audit/audit.go",
+        "kernel/clock/clock.go",
+        "kernel/clock/clock_test.go",
+        "kernel/clock/clock_ext_test.go",
+        "kernel/clock/export_test.go",
+        "kernel/escalation/escalation.go",
+        "kernel/escalation/escalation_test.go",
+        "kernel/fastmath/add_amd64.go",
+        "kernel/fastmath/add_generic.go",
+        "kernel/fastmath/sum.go",
+        "kernel/guard/guard.go",
+        "kernel/internal/tally/tally.go",
+        "kernel/logging/logging.go",
+        "kernel/metrics/metrics.go",
+        "kernel/notify/notify.go",
+        "kernel/platform/accel_cgo.go",
+        "kernel/platform/accel_nocgo.go",
+        "kernel/platform/platform.go",
+        "kernel/platform/platform_debug.go",
+        "kernel/platform/platform_linux.go",
+        "kernel/platform/platform_other.go",
+        "kernel/platform/platform_windows.go",
+        "kernel/registry/defaults.go",
+        "kernel/registry/registry.go",
+        "reception-desk/internal/flows/dispatch/dispatch.go"
+      ]
+    },
+    {
+      "name": "外部連携",
+      "files": [
+        "interop/exporters/exporters.go",
+        "interop/idkit/idkit.go",
+        "interop/idkit/tracker.go",
+        "interop/lookup/lookup.go",
+        "interop/records/records.go",
+        "interop/text/receipt.go"
+      ]
+    },
+    {
+      "name": "旧レセコン",
+      "files": [
+        "legacy-claims/codes.go",
+        "legacy-claims/codes_gen.go",
+        "legacy-claims/pointtable.go",
+        "legacy-claims/text.go"
+      ]
+    }
+  ]
+}

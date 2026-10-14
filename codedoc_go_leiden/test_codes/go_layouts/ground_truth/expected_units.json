@@ -1,0 +1,1337 @@
+{
+ "version": 1,
+ "doc": [
+  "Discovery facts per layout repo of go_layouts (spec §3, master plan C4/C10), written by hand from the go",
+  "command's rules; never generated from discovery output. Each top-level directory is its own repo (repo name =",
+  "directory name); _outside/ is not a repo. Paths are relative to the layout repo root. Per repo:",
+  "units: module path -> {root, go, toolchain, vendor (the module's own consistent vendor/), group, requires",
+  "[path, version, indirect], replaces (local `new` relative to the repo root; outside the repo it starts with",
+  "../), in_repo_deps (unit keys whose in-repo source the unit compiles: imported packages of modules reached",
+  "through the group's go.work use or a local replace)}. groups: '<kind>:<go.work dir or module root, . = repo",
+  "root>' -> {kind, modules, vendor, degraded, status, pattern, warnings_contain (substrings of the group's",
+  "warnings)}. files: relpath -> owning unit (null = no module, absent from unit_of_file). scanned_files: the",
+  "number of files scan_go_files returns; not_scanned: relpaths it must not return; skipped: skip counts by",
+  "reason, counted in .go files, except that a symlinked directory is not entered and counts once",
+  "('symlink-dir') and dot directories are not entered nor counted. warnings_contain: substrings of the repo's",
+  "warnings (group warnings included). modes: evaluate's offline mode (empty module cache, GOPROXY=off) and env",
+  "mode (download mode against file:///.../test_codes/_proxy): module_source, missing_modules per group",
+  "('path@version'; only groups with status ok and no vendor report them), and status_after_load where the",
+  "load changes a group's status (amendment R5)."
+ ],
+ "toolchain": "go1.27.2",
+ "builds": [
+  {
+   "id": "linux-amd64",
+   "goos": "linux",
+   "goarch": "amd64",
+   "tags": [],
+   "cgo": false,
+   "primary": true
+  }
+ ],
+ "repos": {
+  "badvendor": {
+   "units": {
+    "example.com/layouts/badvendor": {
+     "root": "",
+     "go": "1.26",
+     "toolchain": null,
+     "vendor": false,
+     "group": "module:.",
+     "requires": [
+      [
+       "example.com/thirdparty/yamlish",
+       "v1.1.0",
+       false
+      ]
+     ],
+     "replaces": [],
+     "in_repo_deps": []
+    }
+   },
+   "groups": {
+    "module:.": {
+     "kind": "module",
+     "modules": [
+      "example.com/layouts/badvendor"
+     ],
+     "vendor": false,
+     "degraded": false,
+     "status": "error",
+     "pattern": "./...",
+     "warnings_contain": [
+      "yamlish"
+     ]
+    }
+   },
+   "files": {
+    "main.go": "example.com/layouts/badvendor"
+   },
+   "scanned_files": 1,
+   "not_scanned": [
+    "vendor/example.com/thirdparty/yamlish/yamlish.go"
+   ],
+   "skipped": {
+    "vendor": 1
+   },
+   "warnings_contain": [],
+   "modes": {
+    "offline": {
+     "module_source": "none",
+     "missing_modules": {}
+    },
+    "env": {
+     "module_source": "proxy",
+     "missing_modules": {}
+    }
+   }
+  },
+  "buildignore": {
+   "units": {
+    "example.com/layouts/buildignore": {
+     "root": "",
+     "go": "1.26",
+     "toolchain": null,
+     "vendor": false,
+     "group": "module:.",
+     "requires": [],
+     "replaces": [],
+     "in_repo_deps": []
+    }
+   },
+   "groups": {
+    "module:.": {
+     "kind": "module",
+     "modules": [
+      "example.com/layouts/buildignore"
+     ],
+     "vendor": false,
+     "degraded": false,
+     "status": "ok",
+     "pattern": "./...",
+     "warnings_contain": []
+    }
+   },
+   "files": {
+    "tool.go": "example.com/layouts/buildignore",
+    "gen.go": "example.com/layouts/buildignore",
+    "cmd/run/main.go": "example.com/layouts/buildignore"
+   },
+   "scanned_files": 3,
+   "not_scanned": [],
+   "skipped": {},
+   "warnings_contain": [],
+   "modes": {
+    "offline": {
+     "module_source": "none",
+     "missing_modules": {}
+    },
+    "env": {
+     "module_source": "proxy",
+     "missing_modules": {}
+    }
+   }
+  },
+  "cgo": {
+   "units": {
+    "example.com/layouts/cgo": {
+     "root": "",
+     "go": "1.26",
+     "toolchain": null,
+     "vendor": false,
+     "group": "module:.",
+     "requires": [],
+     "replaces": [],
+     "in_repo_deps": []
+    }
+   },
+   "groups": {
+    "module:.": {
+     "kind": "module",
+     "modules": [
+      "example.com/layouts/cgo"
+     ],
+     "vendor": false,
+     "degraded": false,
+     "status": "ok",
+     "pattern": "./...",
+     "warnings_contain": []
+    }
+   },
+   "files": {
+    "main.go": "example.com/layouts/cgo",
+    "native/describe.go": "example.com/layouts/cgo",
+    "native/native_cgo.go": "example.com/layouts/cgo",
+    "native/native_nocgo.go": "example.com/layouts/cgo"
+   },
+   "scanned_files": 4,
+   "not_scanned": [],
+   "skipped": {},
+   "warnings_contain": [],
+   "modes": {
+    "offline": {
+     "module_source": "none",
+     "missing_modules": {}
+    },
+    "env": {
+     "module_source": "proxy",
+     "missing_modules": {}
+    }
+   }
+  },
+  "depnewgo": {
+   "units": {
+    "example.com/layouts/depnewgo/m": {
+     "root": "m",
+     "go": "1.26",
+     "toolchain": null,
+     "vendor": false,
+     "group": "workspace:.",
+     "requires": [
+      [
+       "example.com/thirdparty/newgo",
+       "v1.0.0",
+       false
+      ]
+     ],
+     "replaces": [],
+     "in_repo_deps": []
+    }
+   },
+   "groups": {
+    "workspace:.": {
+     "kind": "workspace",
+     "modules": [
+      "example.com/layouts/depnewgo/m"
+     ],
+     "vendor": false,
+     "degraded": false,
+     "status": "ok",
+     "pattern": "work",
+     "warnings_contain": []
+    }
+   },
+   "files": {
+    "m/main.go": "example.com/layouts/depnewgo/m"
+   },
+   "scanned_files": 1,
+   "not_scanned": [],
+   "skipped": {},
+   "warnings_contain": [],
+   "modes": {
+    "offline": {
+     "module_source": "none",
+     "missing_modules": {
+      "workspace:.": [
+       "example.com/thirdparty/newgo@v1.0.0"
+      ]
+     }
+    },
+    "env": {
+     "module_source": "proxy",
+     "missing_modules": {},
+     "status_after_load": {
+      "workspace:.": "error"
+     }
+    }
+   }
+  },
+  "dotimport": {
+   "units": {
+    "example.com/layouts/dotimport": {
+     "root": "",
+     "go": "1.26",
+     "toolchain": null,
+     "vendor": false,
+     "group": "module:.",
+     "requires": [],
+     "replaces": [],
+     "in_repo_deps": []
+    }
+   },
+   "groups": {
+    "module:.": {
+     "kind": "module",
+     "modules": [
+      "example.com/layouts/dotimport"
+     ],
+     "vendor": false,
+     "degraded": false,
+     "status": "ok",
+     "pattern": "./...",
+     "warnings_contain": []
+    }
+   },
+   "files": {
+    "main.go": "example.com/layouts/dotimport",
+    "strutil/strutil.go": "example.com/layouts/dotimport",
+    "other/other.go": "example.com/layouts/dotimport"
+   },
+   "scanned_files": 3,
+   "not_scanned": [],
+   "skipped": {},
+   "warnings_contain": [],
+   "modes": {
+    "offline": {
+     "module_source": "none",
+     "missing_modules": {}
+    },
+    "env": {
+     "module_source": "proxy",
+     "missing_modules": {}
+    }
+   }
+  },
+  "ignoredir": {
+   "units": {
+    "example.com/layouts/ignoredir": {
+     "root": "",
+     "go": "1.26",
+     "toolchain": null,
+     "vendor": false,
+     "group": "module:.",
+     "requires": [],
+     "replaces": [],
+     "in_repo_deps": []
+    }
+   },
+   "groups": {
+    "module:.": {
+     "kind": "module",
+     "modules": [
+      "example.com/layouts/ignoredir"
+     ],
+     "vendor": false,
+     "degraded": false,
+     "status": "ok",
+     "pattern": "./...",
+     "warnings_contain": []
+    }
+   },
+   "files": {
+    "main.go": "example.com/layouts/ignoredir"
+   },
+   "scanned_files": 1,
+   "not_scanned": [
+    "generated/gen.go"
+   ],
+   "skipped": {
+    "ignored": 1
+   },
+   "warnings_contain": [],
+   "modes": {
+    "offline": {
+     "module_source": "none",
+     "missing_modules": {}
+    },
+    "env": {
+     "module_source": "proxy",
+     "missing_modules": {}
+    }
+   }
+  },
+  "linedir": {
+   "units": {
+    "example.com/layouts/linedir": {
+     "root": "",
+     "go": "1.26",
+     "toolchain": null,
+     "vendor": false,
+     "group": "module:.",
+     "requires": [],
+     "replaces": [],
+     "in_repo_deps": []
+    }
+   },
+   "groups": {
+    "module:.": {
+     "kind": "module",
+     "modules": [
+      "example.com/layouts/linedir"
+     ],
+     "vendor": false,
+     "degraded": false,
+     "status": "ok",
+     "pattern": "./...",
+     "warnings_contain": []
+    }
+   },
+   "files": {
+    "view.go": "example.com/layouts/linedir",
+    "lined.go": "example.com/layouts/linedir",
+    "cmd/show/main.go": "example.com/layouts/linedir"
+   },
+   "scanned_files": 3,
+   "not_scanned": [],
+   "skipped": {},
+   "warnings_contain": [],
+   "modes": {
+    "offline": {
+     "module_source": "none",
+     "missing_modules": {}
+    },
+    "env": {
+     "module_source": "proxy",
+     "missing_modules": {}
+    }
+   }
+  },
+  "modvendor": {
+   "units": {
+    "example.com/layouts/modvendor": {
+     "root": "",
+     "go": "1.26",
+     "toolchain": null,
+     "vendor": true,
+     "group": "module:.",
+     "requires": [
+      [
+       "example.com/thirdparty/yamlish",
+       "v1.1.0",
+       false
+      ]
+     ],
+     "replaces": [],
+     "in_repo_deps": []
+    }
+   },
+   "groups": {
+    "module:.": {
+     "kind": "module",
+     "modules": [
+      "example.com/layouts/modvendor"
+     ],
+     "vendor": true,
+     "degraded": false,
+     "status": "ok",
+     "pattern": "./...",
+     "warnings_contain": []
+    }
+   },
+   "files": {
+    "main.go": "example.com/layouts/modvendor"
+   },
+   "scanned_files": 1,
+   "not_scanned": [
+    "vendor/example.com/thirdparty/yamlish/yamlish.go"
+   ],
+   "skipped": {
+    "vendor": 1
+   },
+   "warnings_contain": [],
+   "modes": {
+    "offline": {
+     "module_source": "vendor",
+     "missing_modules": {}
+    },
+    "env": {
+     "module_source": "vendor",
+     "missing_modules": {}
+    }
+   }
+  },
+  "nested": {
+   "units": {
+    "example.com/layouts/nested": {
+     "root": "",
+     "go": "1.26",
+     "toolchain": null,
+     "vendor": false,
+     "group": "module:.",
+     "requires": [
+      [
+       "example.com/layouts/nested/inner",
+       "v0.0.0",
+       false
+      ]
+     ],
+     "replaces": [
+      {
+       "old": "example.com/layouts/nested/inner",
+       "old_version": "",
+       "new": "inner",
+       "new_version": "",
+       "local": true
+      }
+     ],
+     "in_repo_deps": [
+      "example.com/layouts/nested/inner"
+     ]
+    },
+    "example.com/layouts/nested/inner": {
+     "root": "inner",
+     "go": "1.26",
+     "toolchain": null,
+     "vendor": false,
+     "group": "module:inner",
+     "requires": [],
+     "replaces": [],
+     "in_repo_deps": []
+    }
+   },
+   "groups": {
+    "module:.": {
+     "kind": "module",
+     "modules": [
+      "example.com/layouts/nested"
+     ],
+     "vendor": false,
+     "degraded": false,
+     "status": "ok",
+     "pattern": "./...",
+     "warnings_contain": []
+    },
+    "module:inner": {
+     "kind": "module",
+     "modules": [
+      "example.com/layouts/nested/inner"
+     ],
+     "vendor": false,
+     "degraded": false,
+     "status": "ok",
+     "pattern": "./...",
+     "warnings_contain": []
+    }
+   },
+   "files": {
+    "main.go": "example.com/layouts/nested",
+    "report/report.go": "example.com/layouts/nested",
+    "inner/calc/calc.go": "example.com/layouts/nested/inner"
+   },
+   "scanned_files": 3,
+   "not_scanned": [],
+   "skipped": {},
+   "warnings_contain": [],
+   "modes": {
+    "offline": {
+     "module_source": "none",
+     "missing_modules": {}
+    },
+    "env": {
+     "module_source": "proxy",
+     "missing_modules": {}
+    }
+   }
+  },
+  "newtoolchain": {
+   "units": {
+    "example.com/layouts/newtoolchain": {
+     "root": "",
+     "go": "1.26",
+     "toolchain": "go1.28.1",
+     "vendor": false,
+     "group": "module:.",
+     "requires": [],
+     "replaces": [],
+     "in_repo_deps": []
+    }
+   },
+   "groups": {
+    "module:.": {
+     "kind": "module",
+     "modules": [
+      "example.com/layouts/newtoolchain"
+     ],
+     "vendor": false,
+     "degraded": false,
+     "status": "ok",
+     "pattern": "./...",
+     "warnings_contain": [
+      "go1.28.1"
+     ]
+    }
+   },
+   "files": {
+    "main.go": "example.com/layouts/newtoolchain"
+   },
+   "scanned_files": 1,
+   "not_scanned": [],
+   "skipped": {},
+   "warnings_contain": [],
+   "modes": {
+    "offline": {
+     "module_source": "none",
+     "missing_modules": {}
+    },
+    "env": {
+     "module_source": "proxy",
+     "missing_modules": {}
+    }
+   }
+  },
+  "nomodule": {
+   "units": {},
+   "groups": {},
+   "files": {
+    "loose.go": null
+   },
+   "scanned_files": 1,
+   "not_scanned": [],
+   "skipped": {},
+   "warnings_contain": [],
+   "modes": {
+    "offline": {
+     "module_source": "none",
+     "missing_modules": {}
+    },
+    "env": {
+     "module_source": "none",
+     "missing_modules": {}
+    }
+   }
+  },
+  "nonancestor": {
+   "units": {
+    "example.com/layouts/nonancestor/api": {
+     "root": "api",
+     "go": "1.26",
+     "toolchain": null,
+     "vendor": false,
+     "group": "module:api",
+     "requires": [],
+     "replaces": [],
+     "in_repo_deps": []
+    },
+    "example.com/layouts/nonancestor/server": {
+     "root": "server",
+     "go": "1.26",
+     "toolchain": null,
+     "vendor": false,
+     "group": "module:server",
+     "requires": [
+      [
+       "example.com/layouts/nonancestor/api",
+       "v1.0.0",
+       false
+      ]
+     ],
+     "replaces": [],
+     "in_repo_deps": []
+    }
+   },
+   "groups": {
+    "module:api": {
+     "kind": "module",
+     "modules": [
+      "example.com/layouts/nonancestor/api"
+     ],
+     "vendor": false,
+     "degraded": false,
+     "status": "ok",
+     "pattern": "./...",
+     "warnings_contain": []
+    },
+    "module:server": {
+     "kind": "module",
+     "modules": [
+      "example.com/layouts/nonancestor/server"
+     ],
+     "vendor": false,
+     "degraded": false,
+     "status": "ok",
+     "pattern": "./...",
+     "warnings_contain": []
+    }
+   },
+   "files": {
+    "api/api.go": "example.com/layouts/nonancestor/api",
+    "server/main.go": "example.com/layouts/nonancestor/server"
+   },
+   "scanned_files": 2,
+   "not_scanned": [],
+   "skipped": {},
+   "warnings_contain": [
+    "tools/go.work"
+   ],
+   "modes": {
+    "offline": {
+     "module_source": "none",
+     "missing_modules": {
+      "module:server": [
+       "example.com/layouts/nonancestor/api@v1.0.0"
+      ]
+     }
+    },
+    "env": {
+     "module_source": "proxy",
+     "missing_modules": {}
+    }
+   }
+  },
+  "nosum": {
+   "units": {
+    "example.com/layouts/nosum": {
+     "root": "",
+     "go": "1.26",
+     "toolchain": null,
+     "vendor": false,
+     "group": "module:.",
+     "requires": [
+      [
+       "example.com/thirdparty/textfmt",
+       "v1.0.0",
+       false
+      ],
+      [
+       "example.com/thirdparty/uuidlite",
+       "v1.0.0",
+       false
+      ]
+     ],
+     "replaces": [],
+     "in_repo_deps": []
+    }
+   },
+   "groups": {
+    "module:.": {
+     "kind": "module",
+     "modules": [
+      "example.com/layouts/nosum"
+     ],
+     "vendor": false,
+     "degraded": false,
+     "status": "ok",
+     "pattern": "./...",
+     "warnings_contain": []
+    }
+   },
+   "files": {
+    "main.go": "example.com/layouts/nosum",
+    "caps/caps.go": "example.com/layouts/nosum"
+   },
+   "scanned_files": 2,
+   "not_scanned": [],
+   "skipped": {},
+   "warnings_contain": [],
+   "modes": {
+    "offline": {
+     "module_source": "none",
+     "missing_modules": {
+      "module:.": [
+       "example.com/thirdparty/textfmt@v1.0.0",
+       "example.com/thirdparty/uuidlite@v1.0.0"
+      ]
+     }
+    },
+    "env": {
+     "module_source": "proxy",
+     "missing_modules": {}
+    }
+   }
+  },
+  "replace-in": {
+   "units": {
+    "example.com/layouts/replacein": {
+     "root": "app",
+     "go": "1.26",
+     "toolchain": null,
+     "vendor": false,
+     "group": "module:app",
+     "requires": [
+      [
+       "example.com/layouts/common",
+       "v0.0.0",
+       false
+      ]
+     ],
+     "replaces": [
+      {
+       "old": "example.com/layouts/common",
+       "old_version": "",
+       "new": "common",
+       "new_version": "",
+       "local": true
+      }
+     ],
+     "in_repo_deps": [
+      "example.com/layouts/common"
+     ]
+    },
+    "example.com/layouts/common": {
+     "root": "common",
+     "go": "1.26",
+     "toolchain": null,
+     "vendor": false,
+     "group": "module:common",
+     "requires": [],
+     "replaces": [],
+     "in_repo_deps": []
+    }
+   },
+   "groups": {
+    "module:app": {
+     "kind": "module",
+     "modules": [
+      "example.com/layouts/replacein"
+     ],
+     "vendor": false,
+     "degraded": false,
+     "status": "ok",
+     "pattern": "./...",
+     "warnings_contain": []
+    },
+    "module:common": {
+     "kind": "module",
+     "modules": [
+      "example.com/layouts/common"
+     ],
+     "vendor": false,
+     "degraded": false,
+     "status": "ok",
+     "pattern": "./...",
+     "warnings_contain": []
+    }
+   },
+   "files": {
+    "app/main.go": "example.com/layouts/replacein",
+    "common/main.go": "example.com/layouts/common",
+    "common/greet/greet.go": "example.com/layouts/common"
+   },
+   "scanned_files": 3,
+   "not_scanned": [],
+   "skipped": {},
+   "warnings_contain": [],
+   "modes": {
+    "offline": {
+     "module_source": "none",
+     "missing_modules": {}
+    },
+    "env": {
+     "module_source": "proxy",
+     "missing_modules": {}
+    }
+   }
+  },
+  "replace-out": {
+   "units": {
+    "example.com/layouts/replaceout": {
+     "root": "",
+     "go": "1.26",
+     "toolchain": null,
+     "vendor": false,
+     "group": "module:.",
+     "requires": [
+      [
+       "example.com/outside/extlib",
+       "v0.0.0",
+       false
+      ]
+     ],
+     "replaces": [
+      {
+       "old": "example.com/outside/extlib",
+       "old_version": "",
+       "new": "../_outside/extlib",
+       "new_version": "",
+       "local": true
+      }
+     ],
+     "in_repo_deps": []
+    }
+   },
+   "groups": {
+    "module:.": {
+     "kind": "module",
+     "modules": [
+      "example.com/layouts/replaceout"
+     ],
+     "vendor": false,
+     "degraded": false,
+     "status": "ok",
+     "pattern": "./...",
+     "warnings_contain": []
+    }
+   },
+   "files": {
+    "main.go": "example.com/layouts/replaceout"
+   },
+   "scanned_files": 1,
+   "not_scanned": [],
+   "skipped": {},
+   "warnings_contain": [],
+   "modes": {
+    "offline": {
+     "module_source": "none",
+     "missing_modules": {}
+    },
+    "env": {
+     "module_source": "proxy",
+     "missing_modules": {}
+    }
+   }
+  },
+  "skipdirs": {
+   "units": {
+    "example.com/layouts/skipdirs": {
+     "root": "",
+     "go": "1.26",
+     "toolchain": null,
+     "vendor": false,
+     "group": "module:.",
+     "requires": [],
+     "replaces": [],
+     "in_repo_deps": []
+    }
+   },
+   "groups": {
+    "module:.": {
+     "kind": "module",
+     "modules": [
+      "example.com/layouts/skipdirs"
+     ],
+     "vendor": false,
+     "degraded": false,
+     "status": "ok",
+     "pattern": "./...",
+     "warnings_contain": []
+    }
+   },
+   "files": {
+    "main.go": "example.com/layouts/skipdirs"
+   },
+   "scanned_files": 1,
+   "not_scanned": [
+    ".cache/cache.go",
+    ".dot.go",
+    "_draft/draft.go",
+    "_old.go",
+    "testdata/golden/golden.go"
+   ],
+   "skipped": {
+    "underscore": 2,
+    "dot": 1,
+    "testdata": 1
+   },
+   "warnings_contain": [],
+   "modes": {
+    "offline": {
+     "module_source": "none",
+     "missing_modules": {}
+    },
+    "env": {
+     "module_source": "proxy",
+     "missing_modules": {}
+    }
+   }
+  },
+  "symlinks": {
+   "units": {
+    "example.com/layouts/symlinks": {
+     "root": "",
+     "go": "1.26",
+     "toolchain": null,
+     "vendor": false,
+     "group": "module:.",
+     "requires": [],
+     "replaces": [],
+     "in_repo_deps": []
+    }
+   },
+   "groups": {
+    "module:.": {
+     "kind": "module",
+     "modules": [
+      "example.com/layouts/symlinks"
+     ],
+     "vendor": false,
+     "degraded": false,
+     "status": "ok",
+     "pattern": "./...",
+     "warnings_contain": []
+    }
+   },
+   "files": {
+    "a/real.go": "example.com/layouts/symlinks",
+    "a/helper.go": "example.com/layouts/symlinks",
+    "b/helper.go": "example.com/layouts/symlinks",
+    "main.go": "example.com/layouts/symlinks"
+   },
+   "scanned_files": 4,
+   "not_scanned": [
+    "alias/helper.go",
+    "alias/real.go",
+    "b/real.go"
+   ],
+   "skipped": {
+    "symlink": 1,
+    "symlink-dir": 1
+   },
+   "warnings_contain": [],
+   "modes": {
+    "offline": {
+     "module_source": "none",
+     "missing_modules": {}
+    },
+    "env": {
+     "module_source": "proxy",
+     "missing_modules": {}
+    }
+   }
+  },
+  "toonew": {
+   "units": {
+    "example.com/layouts/toonew": {
+     "root": "",
+     "go": "1.28",
+     "toolchain": null,
+     "vendor": false,
+     "group": "module:.",
+     "requires": [],
+     "replaces": [],
+     "in_repo_deps": []
+    }
+   },
+   "groups": {
+    "module:.": {
+     "kind": "module",
+     "modules": [
+      "example.com/layouts/toonew"
+     ],
+     "vendor": false,
+     "degraded": false,
+     "status": "toolchain",
+     "pattern": "./...",
+     "warnings_contain": [
+      "1.28"
+     ]
+    }
+   },
+   "files": {
+    "main.go": "example.com/layouts/toonew"
+   },
+   "scanned_files": 1,
+   "not_scanned": [],
+   "skipped": {},
+   "warnings_contain": [],
+   "modes": {
+    "offline": {
+     "module_source": "none",
+     "missing_modules": {}
+    },
+    "env": {
+     "module_source": "proxy",
+     "missing_modules": {}
+    }
+   }
+  },
+  "twowork": {
+   "units": {
+    "example.com/layouts/twowork/app": {
+     "root": "app",
+     "go": "1.26",
+     "toolchain": null,
+     "vendor": false,
+     "group": "workspace:.",
+     "requires": [],
+     "replaces": [],
+     "in_repo_deps": [
+      "example.com/layouts/twowork/core"
+     ]
+    },
+    "example.com/layouts/twowork/core": {
+     "root": "core",
+     "go": "1.26",
+     "toolchain": null,
+     "vendor": false,
+     "group": "workspace:.",
+     "requires": [],
+     "replaces": [],
+     "in_repo_deps": []
+    }
+   },
+   "groups": {
+    "workspace:.": {
+     "kind": "workspace",
+     "modules": [
+      "example.com/layouts/twowork/app",
+      "example.com/layouts/twowork/core"
+     ],
+     "vendor": false,
+     "degraded": false,
+     "status": "ok",
+     "pattern": "work",
+     "warnings_contain": []
+    }
+   },
+   "files": {
+    "app/main.go": "example.com/layouts/twowork/app",
+    "core/calc/calc.go": "example.com/layouts/twowork/core"
+   },
+   "scanned_files": 2,
+   "not_scanned": [],
+   "skipped": {},
+   "warnings_contain": [
+    "scratch/go.work"
+   ],
+   "modes": {
+    "offline": {
+     "module_source": "none",
+     "missing_modules": {}
+    },
+    "env": {
+     "module_source": "proxy",
+     "missing_modules": {}
+    }
+   }
+  },
+  "ws": {
+   "units": {
+    "example.com/layouts/ws/app": {
+     "root": "app",
+     "go": "1.26",
+     "toolchain": null,
+     "vendor": false,
+     "group": "workspace:.",
+     "requires": [
+      [
+       "example.com/thirdparty/textfmt",
+       "v1.0.0",
+       false
+      ]
+     ],
+     "replaces": [],
+     "in_repo_deps": [
+      "example.com/layouts/ws/lib"
+     ]
+    },
+    "example.com/layouts/ws/lib": {
+     "root": "lib",
+     "go": "1.26",
+     "toolchain": null,
+     "vendor": false,
+     "group": "workspace:.",
+     "requires": [
+      [
+       "example.com/thirdparty/textfmt",
+       "v1.1.0",
+       false
+      ]
+     ],
+     "replaces": [],
+     "in_repo_deps": []
+    },
+    "example.com/layouts/ws/extra": {
+     "root": "extra",
+     "go": "1.26",
+     "toolchain": null,
+     "vendor": false,
+     "group": "module:extra",
+     "requires": [],
+     "replaces": [],
+     "in_repo_deps": []
+    }
+   },
+   "groups": {
+    "workspace:.": {
+     "kind": "workspace",
+     "modules": [
+      "example.com/layouts/ws/app",
+      "example.com/layouts/ws/lib"
+     ],
+     "vendor": false,
+     "degraded": false,
+     "status": "ok",
+     "pattern": "work",
+     "warnings_contain": []
+    },
+    "module:extra": {
+     "kind": "module",
+     "modules": [
+      "example.com/layouts/ws/extra"
+     ],
+     "vendor": false,
+     "degraded": false,
+     "status": "ok",
+     "pattern": "./...",
+     "warnings_contain": []
+    }
+   },
+   "files": {
+    "app/main.go": "example.com/layouts/ws/app",
+    "app/headline.go": "example.com/layouts/ws/app",
+    "lib/tally/tally.go": "example.com/layouts/ws/lib",
+    "lib/tally/label.go": "example.com/layouts/ws/lib",
+    "extra/main.go": "example.com/layouts/ws/extra"
+   },
+   "scanned_files": 5,
+   "not_scanned": [],
+   "skipped": {},
+   "warnings_contain": [],
+   "modes": {
+    "offline": {
+     "module_source": "none",
+     "missing_modules": {
+      "workspace:.": [
+       "example.com/thirdparty/textfmt@v1.0.0",
+       "example.com/thirdparty/textfmt@v1.1.0"
+      ]
+     }
+    },
+    "env": {
+     "module_source": "proxy",
+     "missing_modules": {}
+    }
+   }
+  },
+  "ws-missing": {
+   "units": {
+    "example.com/layouts/wsmissing/present": {
+     "root": "present",
+     "go": "1.26",
+     "toolchain": null,
+     "vendor": false,
+     "group": "workspace:.",
+     "requires": [],
+     "replaces": [],
+     "in_repo_deps": []
+    }
+   },
+   "groups": {
+    "workspace:.": {
+     "kind": "workspace",
+     "modules": [
+      "example.com/layouts/wsmissing/present"
+     ],
+     "vendor": false,
+     "degraded": true,
+     "status": "ok",
+     "pattern": "work",
+     "warnings_contain": [
+      "absent"
+     ]
+    }
+   },
+   "files": {
+    "present/main.go": "example.com/layouts/wsmissing/present"
+   },
+   "scanned_files": 1,
+   "not_scanned": [],
+   "skipped": {},
+   "warnings_contain": [],
+   "modes": {
+    "offline": {
+     "module_source": "none",
+     "missing_modules": {}
+    },
+    "env": {
+     "module_source": "proxy",
+     "missing_modules": {}
+    }
+   }
+  },
+  "ws-toonew": {
+   "units": {
+    "example.com/layouts/wstoonew/member": {
+     "root": "member",
+     "go": "1.26",
+     "toolchain": null,
+     "vendor": false,
+     "group": "workspace:.",
+     "requires": [],
+     "replaces": [],
+     "in_repo_deps": []
+    }
+   },
+   "groups": {
+    "workspace:.": {
+     "kind": "workspace",
+     "modules": [
+      "example.com/layouts/wstoonew/member"
+     ],
+     "vendor": false,
+     "degraded": false,
+     "status": "toolchain",
+     "pattern": "work",
+     "warnings_contain": [
+      "1.28"
+     ]
+    }
+   },
+   "files": {
+    "member/main.go": "example.com/layouts/wstoonew/member"
+   },
+   "scanned_files": 1,
+   "not_scanned": [],
+   "skipped": {},
+   "warnings_contain": [],
+   "modes": {
+    "offline": {
+     "module_source": "none",
+     "missing_modules": {}
+    },
+    "env": {
+     "module_source": "proxy",
+     "missing_modules": {}
+    }
+   }
+  },
+  "wsvendor": {
+   "units": {
+    "example.com/layouts/wsvendor/svc": {
+     "root": "svc",
+     "go": "1.26",
+     "toolchain": null,
+     "vendor": false,
+     "group": "workspace:.",
+     "requires": [
+      [
+       "example.com/thirdparty/uuidlite",
+       "v1.0.0",
+       false
+      ]
+     ],
+     "replaces": [],
+     "in_repo_deps": [
+      "example.com/layouts/wsvendor/util"
+     ]
+    },
+    "example.com/layouts/wsvendor/util": {
+     "root": "util",
+     "go": "1.26",
+     "toolchain": null,
+     "vendor": false,
+     "group": "workspace:.",
+     "requires": [],
+     "replaces": [],
+     "in_repo_deps": []
+    }
+   },
+   "groups": {
+    "workspace:.": {
+     "kind": "workspace",
+     "modules": [
+      "example.com/layouts/wsvendor/svc",
+      "example.com/layouts/wsvendor/util"
+     ],
+     "vendor": true,
+     "degraded": false,
+     "status": "ok",
+     "pattern": "work",
+     "warnings_contain": []
+    }
+   },
+   "files": {
+    "svc/main.go": "example.com/layouts/wsvendor/svc",
+    "util/pad/pad.go": "example.com/layouts/wsvendor/util"
+   },
+   "scanned_files": 2,
+   "not_scanned": [
+    "vendor/example.com/thirdparty/uuidlite/uuid.go"
+   ],
+   "skipped": {
+    "vendor": 1
+   },
+   "warnings_contain": [],
+   "modes": {
+    "offline": {
+     "module_source": "vendor",
+     "missing_modules": {}
+    },
+    "env": {
+     "module_source": "vendor",
+     "missing_modules": {}
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,292 @@
+[
+  {
+    "id": "a_989fb334c846a0fc",
+    "name": "医療会計・診療報酬管理",
+    "summary": "# 医療会計・診療報酬管理\n\n## はじめに\n「医療会計・診療報酬管理」トピックは、医療機関における患者の診療費計算、窓口会計、診療報酬点数（タリフ）の管理、およびレセプト（診療報酬明細書）請求データの作成を担うコアモジュールです。\n\n本システムにおいて、このトピックは受付窓口（`reception-desk`）、管理コンソール（`admin-console`）、および患者ポータル（`patient-portal`）の交差点に位置づけられています。日本の医療保険制度における「点数から円への換算（1点＝10円）」を基本としつつ、時間帯や状況に応じた支払ポリシーの適用、窓口での会計セッション管理、新旧システム（レガシーレセプト）間でのデータ相互運用、調剤報酬計算などの多様な会計要件を統一的にサポートします。\n\n---\n\n## アーキテクチャと設計\n本トピックは、**ドメイン駆動設計（DDD）**のパターンを取り入れ、ビジネスルールを明確にカプセル化しています。\n\n1. **ドメインモデルの分離 (`domain/money`)**:\n   金額を表す `Yen` と、診療報酬点数を表す `",
+    "files": [
+      "admin-console/internal/console/console.go",
+      "billing/fee.go",
+      "billing/fee_test.go",
+      "billing/pointmath/pointmath.go",
+      "billing/tariff/tariff.go",
+      "billing/session.go",
+      "billing/validation/validator.go",
+      "domain/money/money.go",
+      "interop/records/records.go",
+      "interop/text/receipt.go",
+      "legacy-claims/codes.go",
+      "legacy-claims/codes_gen.go",
+      "legacy-claims/pointtable.go",
+      "legacy-claims/text.go",
+      "patient-portal/internal/server/server.go",
+      "pharmacy/pointmath/pointmath.go",
+      "reception-desk/internal/flows/accounting/accounting.go"
+    ],
+    "subtopics": [
+      {
+        "name": "診療報酬・調剤報酬計算",
+        "summary": "",
+        "files": [
+          "billing/fee.go",
+          "billing/fee_test.go",
+          "billing/pointmath/pointmath.go",
+          "domain/money/money.go",
+          "legacy-claims/pointtable.go",
+          "pharmacy/pointmath/pointmath.go"
+        ]
+      },
+      {
+        "name": "会計・請求・決済処理",
+        "summary": "",
+        "files": [
+          "billing/session.go",
+          "billing/validation/validator.go",
+          "interop/records/records.go",
+          "interop/text/receipt.go",
+          "patient-portal/internal/server/server.go",
+          "reception-desk/internal/flows/accounting/accounting.go"
+        ]
+      },
+      {
+        "name": "レセプト・点数表管理",
+        "summary": "",
+        "files": [
+          "admin-console/internal/console/console.go",
+          "billing/tariff/tariff.go",
+          "legacy-claims/codes.go",
+          "legacy-claims/codes_gen.go",
+          "legacy-claims/text.go"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "a_d220e99a0b17d2b1",
+    "name": "患者情報・受付・予約・病棟管理",
+    "summary": "# 患者情報・受付・予約・病棟管理\n\n## はじめに\n本ドキュメントは、医療情報システムにおける「患者情報管理」「受付（チェックイン）」「診療予約」「病棟管理」を担うコアモジュールの仕様と設計について解説します。\n\nこのトピックは、来院した患者の受付から、予約の管理、入院患者の病棟割り当て、さらには患者向けポータルを通じたWeb予約や診療費の簡易計算まで、医療機関の窓口業務および病棟業務を支える中心的な役割を担っています。\n\n---\n\n## アーキテクチャと設計\n本システムは、**ドメイン駆動設計（DDD）**の思想を取り入れたレイヤードアーキテクチャを採用しています。\n\n1. **ドメイン層 (`domain/`)**\n   - ビジネスルールとエンティティを定義します。\n   - Goの「構造体の埋め込み（コンポジション）」を駆使し、基本エンティティ（`Entity`）から監査ログ付きエンティティ（`AuditedEntity`）、患者（`Patient`）、入院患者（`Inpatient`）へと、段階的に機能を拡張・再利用する設計となっています。\n2. **データアクセス層 (`",
+    "files": [
+      "data/repository/repository.go",
+      "domain/patient/describe.go",
+      "domain/patient/entity.go",
+      "domain/visit/visit.go",
+      "domain/wards/north/ward.go",
+      "domain/wards/south/ward.go",
+      "interop/idkit/idkit.go",
+      "interop/idkit/tracker.go",
+      "patient-portal/internal/server/server.go",
+      "reception-desk/internal/flows/checkin/checkin.go",
+      "scheduling/book.go"
+    ],
+    "subtopics": [
+      {
+        "name": "患者情報・ID管理",
+        "summary": "",
+        "files": [
+          "data/repository/repository.go",
+          "domain/patient/describe.go",
+          "domain/patient/entity.go",
+          "interop/idkit/idkit.go",
+          "interop/idkit/tracker.go"
+        ]
+      },
+      {
+        "name": "受付・予約管理",
+        "summary": "",
+        "files": [
+          "domain/visit/visit.go",
+          "patient-portal/internal/server/server.go",
+          "reception-desk/internal/flows/checkin/checkin.go",
+          "scheduling/book.go"
+        ]
+      },
+      {
+        "name": "病棟・ベッド管理",
+        "summary": "",
+        "files": [
+          "domain/wards/north/ward.go",
+          "domain/wards/south/ward.go"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "a_22790e26f94845a4",
+    "name": "調剤・薬局業務管理",
+    "summary": "# 調剤・薬局業務管理\n\n## はじめに\n「調剤・薬局業務管理」トピックは、医療システムにおける薬局窓口および調剤室での一連の業務プロセスを管理・実行するためのコンポーネント群です。\n\n本トピックは、処方箋の受付から、記載内容のバリデーション、用量計算、薬袋やラベルへのスタンプ（検印）処理、会計・レセプト請求システムとの連携、および業務ログの記録にいたるまで、薬局窓口における一連のワークフローを統合する役割を担っています。\n\n---\n\n## アーキテクチャと設計\n本トピックは、ドメインロジックの関心事ごとにパッケージが分割されており、それらを上位のアプリケーションフロー層が統合する**レイヤードアーキテクチャ**および**パイプライン/トランザクションスクリプトパターン**を採用しています。\n\n- **ドメイン層 (`pharmacy`)**: 用量計算やスタンプ処理などの純粋なビジネスルールを定義します。インターフェース（`Stamper`）を活用することで、具体的なスタンプの実装に依存しない設計となっています。\n- **バリデーション層 (`pharmacy/validation`",
+    "files": [
+      "pharmacy/dose.go",
+      "pharmacy/validation/validator.go",
+      "pharmacy/logging/logging.go",
+      "reception-desk/internal/flows/pharmacyflow/pharmacyflow.go"
+    ],
+    "subtopics": [
+      {
+        "name": "調剤・処方箋処理",
+        "summary": "",
+        "files": [
+          "pharmacy/dose.go",
+          "pharmacy/validation/validator.go"
+        ]
+      },
+      {
+        "name": "薬局窓口・ログ管理",
+        "summary": "",
+        "files": [
+          "pharmacy/logging/logging.go",
+          "reception-desk/internal/flows/pharmacyflow/pharmacyflow.go"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "a_2bd0c1b56cbbe51e",
+    "name": "業務バッチ・レポート・帳票出力",
+    "summary": "# 業務バッチ・レポート・帳票出力\n\n## はじめに\n\n本ドキュメントは、医療事務システムにおける「業務バッチ」「レポート（月報など）」「帳票出力」および「会計領収書フォーマット」に関する仕様と設計をまとめたテクニカルドキュメントです。\n\nこれらのコンポーネントは、日次の締め処理や点検バッチ、患者の受診状況をまとめる月報、受付業務における各種帳票の出力など、システムのバックオフィスおよびフロントオフィス業務を支える重要な機能を担っています。\n\n---\n\n## アーキテクチャと設計\n\n本トピックのコンポーネント群は、ドメイン層、データアクセス層、およびプレゼンテーション層（テキスト出力）を横断的に統合し、エンドユーザーや管理者向けの出力を生成する役割を持っています。\n\n### 設計の特徴\n1. **出力の抽象化 (`io.Writer` の活用)**\n   日次バッチや帳票出力の実行関数（`Run`）は、具体的な出力先（標準出力、ファイル、ネットワーク等）に依存しないよう、`io.Writer` インターフェースを受け取る設計になっています。これにより、テスト容易性と再利用性が高められて",
+    "files": [
+      "admin-console/internal/batch/daily_batch.go",
+      "admin-console/internal/textreport/textreport.go",
+      "billing/text/receipt.go",
+      "reception-desk/internal/flows/closing/daily_close.go",
+      "reception-desk/internal/flows/reports/reports.go",
+      "reception-desk/internal/textreport/textreport.go",
+      "reporting/monthly.go",
+      "reporting/labels.go"
+    ],
+    "subtopics": [
+      {
+        "name": "日次・月次バッチと締め処理",
+        "summary": "",
+        "files": [
+          "admin-console/internal/batch/daily_batch.go",
+          "reception-desk/internal/flows/closing/daily_close.go"
+        ]
+      },
+      {
+        "name": "レポート・帳票生成",
+        "summary": "",
+        "files": [
+          "admin-console/internal/textreport/textreport.go",
+          "billing/text/receipt.go",
+          "reception-desk/internal/flows/reports/reports.go",
+          "reception-desk/internal/textreport/textreport.go",
+          "reporting/monthly.go",
+          "reporting/labels.go"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "a_9e48dd74b6a4dac7",
+    "name": "テキスト処理・フォーマットユーティリティ",
+    "summary": "# テキスト処理・フォーマットユーティリティ\n\n## はじめに\n`textfmt` パッケージは、アプリケーション内におけるテキストの装飾、フォーマット変換、および等幅フォント環境での配置制御を支援する軽量なユーティリティライブラリです。\n\n特に、日本語の「全角文字（漢字・ひらがな・カタカナ・全角記号）」と「半角文字」が混在する環境において、文字数ではなく**視覚的な表示幅（カラム幅）**を正しく計算して位置揃え（パディング）を行う機能を提供します。これにより、CLI（コマンドラインインターフェース）ツールでの表形式出力や、テキストベースのレポート生成において、美しく整列されたレイアウトを容易に実現できます。\n\n---\n\n## アーキテクチャと設計\n\n本パッケージは、シンプルさと拡張性を両立するために以下の設計パターンを採用しています。\n\n1. **Decorator / Pipeline パターン (`Formatter`)**\n   `Formatter` インターフェースを定義し、大文字変換（`Upper`）や括弧囲み（`Bracket`）などの個別の変換処理をカプセル化していま",
+    "files": [
+      "third_party/textfmt/textfmt.go"
+    ],
+    "subtopics": []
+  },
+  {
+    "id": "a_b19c3db4f238d791",
+    "name": "システム共通基盤・インフラストラクチャ",
+    "summary": "# システム共通基盤・インフラストラクチャ\n\n## はじめに\n「システム共通基盤・インフラストラクチャ」は、アプリケーション全体で共有される低レイヤの技術要素、データ管理、ユーティリティ、および外部システムとの相互運用（インターオペラビリティ）を支える共通基盤パッケージ群です。\n\n本トピックは、ビジネスロジック（ドメイン層）から具体的なインフラストラクチャ（メモリ、OS、ハードウェア、時刻、通知、ログ出力など）への依存を抽象化し、システムのテスタビリティ、ポータビリティ、および保守性を最大化する役割を担います。\n\n---\n\n## アーキテクチャと設計\n\n本基盤は、Go言語の強力な言語機能（ジェネリクス、インターフェース、ビルドタグ、アセンブリ、およびコンパイラディレクティブ）を駆使して設計されています。\n\n### 設計の基本原則\n1. **インターフェースによる抽象化**: 時刻（`Clock`）、通知（`Notifier`）、データ出力（`Exporter`）、ログ（`Logger`, `Sink`）などをインターフェース化し、具象実装（メール、SMS、CSV、XMLなど）から分離し",
+    "files": [
+      "data/cache/cache.go",
+      "data/store/store.go",
+      "interop/exporters/exporters.go",
+      "interop/lookup/lookup.go",
+      "kernel/audit/audit.go",
+      "kernel/logging/logging.go",
+      "kernel/clock/clock.go",
+      "kernel/clock/clock_ext_test.go",
+      "kernel/clock/clock_test.go",
+      "kernel/clock/export_test.go",
+      "kernel/escalation/escalation.go",
+      "kernel/escalation/escalation_test.go",
+      "kernel/policy/policy.go",
+      "kernel/fastmath/add_amd64.go",
+      "kernel/fastmath/add_generic.go",
+      "kernel/fastmath/sum.go",
+      "kernel/internal/tally/tally.go",
+      "kernel/metrics/metrics.go",
+      "kernel/platform/accel_cgo.go",
+      "kernel/platform/accel_nocgo.go",
+      "kernel/platform/platform.go",
+      "kernel/platform/platform_debug.go",
+      "kernel/platform/platform_linux.go",
+      "kernel/platform/platform_other.go",
+      "kernel/platform/platform_windows.go",
+      "kernel/notify/notify.go",
+      "kernel/guard/guard.go",
+      "kernel/registry/defaults.go",
+      "kernel/registry/registry.go",
+      "reporting/trail.go",
+      "scheduling/sms.go"
+    ],
+    "subtopics": [
+      {
+        "name": "データ管理・キャッシュ",
+        "summary": "",
+        "files": [
+          "data/cache/cache.go",
+          "data/store/store.go",
+          "interop/exporters/exporters.go",
+          "interop/lookup/lookup.go"
+        ]
+      },
+      {
+        "name": "ログ・監査・通知",
+        "summary": "",
+        "files": [
+          "kernel/audit/audit.go",
+          "kernel/logging/logging.go",
+          "kernel/notify/notify.go",
+          "reporting/trail.go",
+          "scheduling/sms.go"
+        ]
+      },
+      {
+        "name": "システム共通ユーティリティ",
+        "summary": "",
+        "files": [
+          "kernel/clock/clock.go",
+          "kernel/clock/clock_ext_test.go",
+          "kernel/clock/clock_test.go",
+          "kernel/clock/export_test.go",
+          "kernel/escalation/escalation.go",
+          "kernel/escalation/escalation_test.go",
+          "kernel/policy/policy.go",
+          "kernel/fastmath/add_amd64.go",
+          "kernel/fastmath/add_generic.go",
+          "kernel/fastmath/sum.go",
+          "kernel/internal/tally/tally.go",
+          "kernel/metrics/metrics.go",
+          "kernel/platform/accel_cgo.go",
+          "kernel/platform/accel_nocgo.go",
+          "kernel/platform/platform.go",
+          "kernel/platform/platform_debug.go",
+          "kernel/platform/platform_linux.go",
+          "kernel/platform/platform_other.go",
+          "kernel/platform/platform_windows.go",
+          "kernel/guard/guard.go",
+          "kernel/registry/defaults.go",
+          "kernel/registry/registry.go"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "a_3b597cfa9a2179a3",
+    "name": "アプリケーション実行制御・デモ",
+    "summary": "# アプリケーション実行制御・デモ\n\n## はじめに\n本トピックは、医療システム（`iryo`）を構成する3つの主要アプリケーション（**管理コンソール**、**患者ポータル**、**受付デスク**）の起動エントリーポイント、およびそれぞれの実行制御フローとデモンストレーション機能を管理します。\n\nシステム全体の各ドメイン（会計、予約、患者、レポート、通知、監査など）を統合し、実際の業務シナリオに沿った動作検証やシミュレーションを行うためのハブとして機能します。\n\n---\n\n## アーキテクチャと設計\n\n本トピックでは、システムの保守性とテスト容易性を高めるために以下の設計パターンが採用されています。\n\n1. **CLI/Webエントリーポイントパターン**\n   各アプリケーションの `main` パッケージ（`cmd/...`）は極めて薄く実装されており、実際の実行制御ロジックは `internal` パッケージ（`console`, `server`, `desk`）に委譲されています。これにより、標準入出力（`io.Writer`）を差し替えたテストやデモの実行が容易になります",
+    "files": [
+      "admin-console/cmd/admin-console/main.go",
+      "admin-console/internal/console/console.go",
+      "patient-portal/cmd/patient-portal/main.go",
+      "patient-portal/internal/server/server.go",
+      "reception-desk/cmd/reception-desk/main.go",
+      "reception-desk/internal/desk/desk.go",
+      "reception-desk/internal/flows/dispatch/dispatch.go",
+      "reception-desk/internal/flows/maintenance/maintenance.go"
+    ],
+    "subtopics": []
+  }
+]

@@ -1,0 +1,1407 @@
+{
+ "version": 1,
+ "fixture": "constructs",
+ "go": "go1.27.2",
+ "build": {
+  "goos": "linux",
+  "goarch": "amd64",
+  "cgo": false,
+  "tags": []
+ },
+ "repos": [
+  {
+   "name": "constructs",
+   "dir": "."
+  }
+ ],
+ "cases": [
+  {
+   "id": "BLD-001",
+   "category": "BLD",
+   "file": "lib/excluded.go",
+   "snippet": "return Double(21)",
+   "token": "Double",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Double",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/lib.go",
+      "line": 62,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "file excluded by //go:build ignore",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 5,
+   "col": 30,
+   "offset": 61
+  },
+  {
+   "id": "BLT-001",
+   "category": "BLT",
+   "file": "lib/lib.go",
+   "snippet": "order = append(order, \"first\")",
+   "token": "append",
+   "site_kind": "call",
+   "expect": {
+    "status": "builtin",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "builtin",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 15,
+   "col": 23,
+   "offset": 181
+  },
+  {
+   "id": "CALL-001",
+   "category": "CALL",
+   "file": "lib/lib.go",
+   "snippet": "total += Double(v)",
+   "token": "Double",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Double",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/lib.go",
+      "line": 62,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "static call in a range-over-func body",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 57,
+   "col": 12,
+   "offset": 896
+  },
+  {
+   "id": "CALL-002",
+   "category": "CALL",
+   "file": "lib/lib.go",
+   "snippet": "return Note(\"A\")",
+   "token": "Note",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Note",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/lib.go",
+      "line": 19,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "call in a return statement",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 130,
+   "col": 10,
+   "offset": 2076
+  },
+  {
+   "id": "CALL-003",
+   "category": "CALL",
+   "file": "lib/lib.go",
+   "snippet": "a && Check(b)",
+   "token": "Check",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Check",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/lib.go",
+      "line": 143,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "right operand of &&",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 141,
+   "col": 41,
+   "offset": 2246
+  },
+  {
+   "id": "DEF-001",
+   "category": "DEF",
+   "file": "lib/lib.go",
+   "snippet": "defer func() {",
+   "token": "func",
+   "site_kind": "defer",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Cleanup.func1",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/lib.go",
+      "line": 94,
+      "col": 8
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "deferred closure that runs while the function panics",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 94,
+   "col": 8,
+   "offset": 1405
+  },
+  {
+   "id": "DEF-002",
+   "category": "DEF",
+   "file": "lib/lib.go",
+   "snippet": "defer record(log, \"extra\")",
+   "token": "record",
+   "site_kind": "defer",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "record",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/lib.go",
+      "line": 109,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "conditional defer never taken, yet the case names an entry",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 100,
+   "col": 9,
+   "offset": 1510
+  },
+  {
+   "id": "EXT-001",
+   "category": "EXT",
+   "file": "lib/lib.go",
+   "snippet": "return strings.ToUpper(s)",
+   "token": "ToUpper",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "std"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "stdlib call in a return",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 11,
+   "col": 52,
+   "offset": 119
+  },
+  {
+   "id": "EXT-002",
+   "category": "EXT",
+   "file": "lib/lib.go",
+   "snippet": "switch strings.ToLower(k)",
+   "token": "ToLower",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "std"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "stdlib call in a switch tag (reach counter)",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 134,
+   "col": 17,
+   "offset": 2146
+  },
+  {
+   "id": "FV-001",
+   "category": "FV",
+   "file": "lib/lib.go",
+   "snippet": "return o.F(x)",
+   "token": "F",
+   "site_kind": "call",
+   "expect": {
+    "status": "dynamic",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "Double",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/lib.go",
+      "line": 62,
+      "col": 6
+     }
+    ],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "func field",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 148,
+   "col": 11,
+   "offset": 2401
+  },
+  {
+   "id": "FV-002",
+   "category": "FV",
+   "file": "lib/lib.go",
+   "snippet": "m[\"inc\"](x)",
+   "token": "m",
+   "site_kind": "call",
+   "expect": {
+    "status": "dynamic",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "main.func1",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "cmd/run/main.go",
+      "line": 17,
+      "col": 9
+     }
+    ],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "map of funcs",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 148,
+   "col": 18,
+   "offset": 2408
+  },
+  {
+   "id": "FV-003",
+   "category": "FV",
+   "file": "cmd/run/main.go",
+   "snippet": "fmt.Println(sound(),",
+   "token": "sound",
+   "site_kind": "call",
+   "expect": {
+    "status": "dynamic",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "deliberately wrong: the method value's target is undocumented",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 20,
+   "col": 14,
+   "offset": 629
+  },
+  {
+   "id": "FV-004",
+   "category": "FV",
+   "file": "cmd/run/main.go",
+   "snippet": "lib.Shout(\"hi\")",
+   "token": "Shout",
+   "site_kind": "call",
+   "expect": {
+    "status": "dynamic",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "<init>.func1",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/lib.go",
+      "line": 11,
+      "col": 13
+     }
+    ],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "package-level func variable",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 10,
+   "col": 18,
+   "offset": 95
+  },
+  {
+   "id": "GEN-001",
+   "category": "GEN",
+   "file": "cmd/run/main.go",
+   "snippet": "lib.Max(2, 3)",
+   "token": "Max",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Max",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/lib.go",
+      "line": 82,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "generic func",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 13,
+   "col": 27,
+   "offset": 231
+  },
+  {
+   "id": "GEN-002",
+   "category": "GEN",
+   "file": "cmd/run/main.go",
+   "snippet": "(&lib.Box[int]{}).Get()",
+   "token": "Get",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Box.Get",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/lib.go",
+      "line": 91,
+      "col": 18
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "method of a generic type",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 13,
+   "col": 56,
+   "offset": 260
+  },
+  {
+   "id": "GIF-001",
+   "category": "GIF",
+   "file": "lib/defers.go",
+   "snippet": "defer c.Close()",
+   "token": "Close",
+   "site_kind": "defer",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Closer2.Close",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/defers.go",
+      "line": 47,
+      "col": 25
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "ca.Close",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/defers.go",
+      "line": 51,
+      "col": 11
+     },
+     {
+      "qualname": "cb.Close",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/defers.go",
+      "line": 55,
+      "col": 11
+     }
+    ],
+    "open_world": false,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "deliberately wrong: cb.Close never runs here",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 60,
+   "col": 10,
+   "offset": 829
+  },
+  {
+   "id": "GIF-002",
+   "category": "GIF",
+   "file": "lib/defers.go",
+   "snippet": "defer d.Close()",
+   "token": "Close",
+   "site_kind": "defer",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Closer2.Close",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/defers.go",
+      "line": 47,
+      "col": 25
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "cb.Close",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/defers.go",
+      "line": 55,
+      "col": 11
+     }
+    ],
+    "open_world": false,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "interface method deferred next to another defer",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 65,
+   "col": 10,
+   "offset": 897
+  },
+  {
+   "id": "GO-001",
+   "category": "GO",
+   "file": "lib/lib.go",
+   "snippet": "go send(done, 3)",
+   "token": "send",
+   "site_kind": "go",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "send",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/lib.go",
+      "line": 169,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "go statement",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 154,
+   "col": 5,
+   "offset": 2508
+  },
+  {
+   "id": "GO-002",
+   "category": "GO",
+   "file": "lib/lib.go",
+   "snippet": "go func() { done <- Double(1) }()",
+   "token": "func",
+   "site_kind": "go",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Spawn.func1",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/lib.go",
+      "line": 153,
+      "col": 5
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "go statement with a func literal",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 153,
+   "col": 5,
+   "offset": 2473
+  },
+  {
+   "id": "IFC-001",
+   "category": "IFC",
+   "file": "lib/lib.go",
+   "snippet": "out += a.Sound()",
+   "token": "Sound",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Animal.Sound",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/lib.go",
+      "line": 24,
+      "col": 2
+     }
+    ],
+    "candidates": [
+     {
+      "qualname": "Dog.Sound",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/lib.go",
+      "line": 29,
+      "col": 12
+     },
+     {
+      "qualname": "Cat.Sound",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/lib.go",
+      "line": 33,
+      "col": 15
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "Dog.Sound",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/lib.go",
+      "line": 29,
+      "col": 12
+     },
+     {
+      "qualname": "Cat.Sound",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/lib.go",
+      "line": 33,
+      "col": 15
+     }
+    ],
+    "open_world": false,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "interface method with two implementers",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 38,
+   "col": 12,
+   "offset": 638
+  },
+  {
+   "id": "IFC-002",
+   "category": "IFC",
+   "file": "cmd/run/main.go",
+   "snippet": "lib.Chorus(lib.Dog{}, &lib.Cat{})",
+   "token": "Chorus",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Animal.Sound",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/lib.go",
+      "line": 24,
+      "col": 2
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "Dog.Sound",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/lib.go",
+      "line": 29,
+      "col": 12
+     }
+    ],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "deliberately wrong: Chorus is a plain function",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 11,
+   "col": 18,
+   "offset": 138
+  },
+  {
+   "id": "MEX-001",
+   "category": "MEX",
+   "file": "cmd/run/main.go",
+   "snippet": "(*lib.Cat).Sound(&lib.Cat{})",
+   "token": "Sound",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Cat.Sound",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/lib.go",
+      "line": 33,
+      "col": 15
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "method expression",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 20,
+   "col": 34,
+   "offset": 649
+  },
+  {
+   "id": "OWF-001",
+   "category": "OWF",
+   "file": "lib/defers.go",
+   "snippet": "s.WriteString(\"x\")",
+   "token": "WriteString",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Sink.WriteString",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/defers.go",
+      "line": 70,
+      "col": 2
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": true,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "an else-if condition has no counter, and only strings.Builder implements here",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 76,
+   "col": 22,
+   "offset": 1067
+  },
+  {
+   "id": "PAN-001",
+   "category": "PAN",
+   "file": "lib/panics.go",
+   "snippet": "panic(compute())",
+   "token": "compute",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "compute",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/panics.go",
+      "line": 8,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "the deferred call that runs after the recover is not this site's",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 13,
+   "col": 8,
+   "offset": 202
+  },
+  {
+   "id": "PAN-002",
+   "category": "PAN",
+   "file": "lib/panics.go",
+   "snippet": "defer cleanup()",
+   "token": "cleanup",
+   "site_kind": "defer",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "cleanup",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/panics.go",
+      "line": 5,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "runtime.deferreturn runs it after the recover",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 11,
+   "col": 8,
+   "offset": 155
+  },
+  {
+   "id": "PAN-003",
+   "category": "PAN",
+   "file": "lib/panics.go",
+   "snippet": "_ = Crash()",
+   "token": "Crash",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Crash",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/panics.go",
+      "line": 24,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "the call panics: entries outnumber completions",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 20,
+   "col": 7,
+   "offset": 297
+  },
+  {
+   "id": "PAN-004",
+   "category": "PAN",
+   "file": "lib/panics.go",
+   "snippet": "defer cleanupPtr()",
+   "token": "cleanupPtr",
+   "site_kind": "defer",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "cleanupPtr",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/panics.go",
+      "line": 7,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "the call through *FP on the return line is tagged, not part of the group",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 33,
+   "col": 8,
+   "offset": 432
+  },
+  {
+   "id": "PAN-005",
+   "category": "PAN",
+   "file": "lib/defers.go",
+   "snippet": "panic(compute2())",
+   "token": "compute2",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "compute2",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/defers.go",
+      "line": 6,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "the wrapped deferred call (deferwrap) that runs after the recover is not this site's",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 16,
+   "col": 8,
+   "offset": 262
+  },
+  {
+   "id": "PAN-006",
+   "category": "PAN",
+   "file": "lib/defers.go",
+   "snippet": "defer cleanupArg(1)",
+   "token": "cleanupArg",
+   "site_kind": "defer",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "cleanupArg",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/defers.go",
+      "line": 5,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "deferreturn runs the deferwrap closure, which runs cleanupArg",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 14,
+   "col": 8,
+   "offset": 211
+  },
+  {
+   "id": "PAN-007",
+   "category": "PAN",
+   "file": "lib/defers.go",
+   "snippet": "panic(compute3())",
+   "token": "compute3",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "compute3",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/defers.go",
+      "line": 7,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "a deferred method call is wrapped too",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 22,
+   "col": 8,
+   "offset": 362
+  },
+  {
+   "id": "PAN-008",
+   "category": "PAN",
+   "file": "lib/defers.go",
+   "snippet": "defer w.Close()",
+   "token": "Close",
+   "site_kind": "defer",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "closer.Close",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/defers.go",
+      "line": 11,
+      "col": 15
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "deferred method value after a recover",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 20,
+   "col": 10,
+   "offset": 317
+  },
+  {
+   "id": "RNG-001",
+   "category": "RNG",
+   "file": "lib/lib.go",
+   "snippet": "range c.All",
+   "token": "All",
+   "site_kind": "range",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Counter.All",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/lib.go",
+      "line": 66,
+      "col": 19
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "range over a method value",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 76,
+   "col": 19,
+   "offset": 1164
+  },
+  {
+   "id": "RNG-002",
+   "category": "RNG",
+   "file": "lib/lib.go",
+   "snippet": "for v := range seq",
+   "token": "seq",
+   "site_kind": "range",
+   "expect": {
+    "status": "dynamic",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "Seq.func1",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/lib.go",
+      "line": 44,
+      "col": 9
+     }
+    ],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "range over a func-typed local",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 56,
+   "col": 17,
+   "offset": 879
+  },
+  {
+   "id": "RNG-003",
+   "category": "RNG",
+   "file": "lib/defers.go",
+   "snippet": "defer cleanupR2()",
+   "token": "cleanupR2",
+   "site_kind": "defer",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "cleanupR2",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/defers.go",
+      "line": 26,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "a return inside a range-over-func body exits at the loop's closing brace",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 39,
+   "col": 9,
+   "offset": 588
+  },
+  {
+   "id": "RNG-004",
+   "category": "RNG",
+   "file": "lib/defers.go",
+   "snippet": "defer cleanupR()",
+   "token": "cleanupR",
+   "site_kind": "defer",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "cleanupR",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/defers.go",
+      "line": 25,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "runs on both exits",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 37,
+   "col": 8,
+   "offset": 557
+  },
+  {
+   "id": "VAR-001",
+   "category": "VAR",
+   "file": "lib/vars.go",
+   "snippet": "compute()",
+   "token": "compute",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "compute",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/panics.go",
+      "line": 8,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "package-level initializer in a file without functions",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 3,
+   "col": 12,
+   "offset": 24
+  },
+  {
+   "id": "WRG-001",
+   "category": "WRG",
+   "file": "cmd/run/main.go",
+   "snippet": "lib.SumSeq(3)",
+   "token": "SumSeq",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Double",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/lib.go",
+      "line": 62,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "SumSeq",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/lib.go",
+      "line": 53,
+      "col": 6
+     }
+    ]
+   },
+   "why": "deliberately wrong target",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 11,
+   "col": 53,
+   "offset": 173
+  },
+  {
+   "id": "WRG-002",
+   "category": "WRG",
+   "file": "lib/lib.go",
+   "snippet": "n, _ := w.Write",
+   "token": "Write",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "upper.Write",
+      "module": "example.com/constructs",
+      "kind": "method",
+      "file": "lib/lib.go",
+      "line": 118,
+      "col": 17
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "deliberately wrong: bytes.Buffer.Write also runs here",
+   "occurrence": 1,
+   "entry": "run",
+   "expect_offline": null,
+   "line": 112,
+   "col": 12,
+   "offset": 1735
+  }
+ ],
+ "decl_pins": [
+  {
+   "qualname": "Counter",
+   "module": "example.com/constructs",
+   "kind": "class",
+   "file": "lib/lib.go",
+   "line": 64,
+   "col": 6
+  }
+ ],
+ "cross_repo_edges": [],
+ "xpr_pairs": []
+}

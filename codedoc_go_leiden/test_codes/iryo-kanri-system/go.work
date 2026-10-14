@@ -1,0 +1,16 @@
+go 1.26
+
+use (
+	./billing
+	./data
+	./domain
+	./interop
+	./kernel
+	./legacy-claims
+	./patient-portal
+	./pharmacy
+	./reception-desk
+	./reporting
+	./scheduling
+	./third_party/textfmt
+)

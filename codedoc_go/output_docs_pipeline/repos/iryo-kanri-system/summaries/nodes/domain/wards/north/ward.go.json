@@ -1,0 +1,12 @@
+{
+ "sha256": "2e08d92b2db81b037106149978ad3a28f7bfe283d69c382052a9e93fc171ae1d",
+ "context_hash": "225a1e5ce244c232dc0903f13e5d9ca8492dc2ba25d5a136733efd5d0b700897",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "北病棟（north ward）に関するドメインモデルを定義するファイルです。病棟を表す構造体と、その病棟が持つベッド数を取得する機能を提供します。",
+ "nodes": {
+  "Ward": "北病棟を表す構造体であり、病棟の名前を保持します。",
+  "Ward.Beds": "病棟の総ベッド数を取得するためのメソッドであり、固定値として12を返します。"
+ }
+}

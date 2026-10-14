@@ -1,0 +1,2 @@
+{"edge_id": "a_4c34672a7f56c6a4", "source_file": "a_b38854d16fc76883", "target_package": "a_a5373d985afdf43f", "import_path": "example.com/layouts/common/greet", "alias": "", "kind": "normal"}
+{"edge_id": "a_33ee7821f88d07a3", "source_file": "a_71463bd78b5f545e", "target_package": "a_a5373d985afdf43f", "import_path": "example.com/layouts/common/greet", "alias": "", "kind": "normal"}

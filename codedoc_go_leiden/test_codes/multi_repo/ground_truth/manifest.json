@@ -1,0 +1,1450 @@
+{
+ "version": 1,
+ "fixture": "multi_repo",
+ "go": "go1.27.2",
+ "build": {
+  "goos": "linux",
+  "goarch": "amd64",
+  "cgo": false,
+  "tags": []
+ },
+ "repos": [
+  {
+   "name": "shared",
+   "dir": "shared"
+  },
+  {
+   "name": "web",
+   "dir": "web"
+  },
+  {
+   "name": "api",
+   "dir": "api"
+  }
+ ],
+ "cases": [
+  {
+   "id": "API-001",
+   "category": "API",
+   "file": "api/service/billing/billing.go",
+   "snippet": "textkit.Banner(label)",
+   "token": "Banner",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Banner",
+      "module": "example.com/iryo/textkit",
+      "kind": "method",
+      "file": "api/forks/textkit/textkit.go",
+      "line": 5,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Banner",
+      "module": "example.com/iryo/textkit",
+      "kind": "method",
+      "file": "shared/textkit/textkit.go",
+      "repo": "shared",
+      "line": 5,
+      "col": 6
+     }
+    ]
+   },
+   "why": "service の go.mod は example.com/iryo/textkit を require し、replace => ../forks/textkit でリポジトリ内のフォークを指す。グループのモジュールが自分で replace するパスにはピアの replace を足さない (仕様 §8.2)。足すと go.work の replace が勝ち、ピアの Banner になる",
+   "occurrence": 1,
+   "entry": "api-demo",
+   "expect_offline": null,
+   "line": 27,
+   "col": 30,
+   "offset": 561
+  },
+  {
+   "id": "API-002",
+   "category": "API",
+   "file": "api/service/billing/billing.go",
+   "snippet": "mail.Compose(",
+   "token": "Compose",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Compose",
+      "module": "example.com/iryo/api/notify",
+      "kind": "method",
+      "file": "api/notify/mail/mail.go",
+      "line": 7,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "ワークスペースの別モジュール notify への呼び出し",
+   "occurrence": 1,
+   "entry": "api-demo",
+   "expect_offline": null,
+   "line": 27,
+   "col": 14,
+   "offset": 545
+  },
+  {
+   "id": "API-003",
+   "category": "API",
+   "file": "api/service/cmd/api/main.go",
+   "snippet": "svc.Charge(",
+   "token": "Charge",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "InvoiceService.Charge",
+      "module": "example.com/iryo/api/service",
+      "kind": "method",
+      "file": "api/service/billing/billing.go",
+      "line": 24,
+      "col": 26
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "リポジトリ内の呼び出し",
+   "occurrence": 1,
+   "entry": "api-demo",
+   "expect_offline": null,
+   "line": 12,
+   "col": 18,
+   "offset": 174
+  },
+  {
+   "id": "NEG-001",
+   "category": "NEG",
+   "file": "web/checks/checks.go",
+   "snippet": "textkit.Banner(\"checks\")",
+   "token": "Banner",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/iryo/textkit"
+    },
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Banner",
+      "module": "example.com/iryo/textkit",
+      "kind": "method",
+      "file": "shared/textkit/textkit.go",
+      "repo": "shared",
+      "line": 5,
+      "col": 6
+     },
+     {
+      "qualname": "Banner",
+      "module": "example.com/iryo/textkit",
+      "kind": "method",
+      "file": "api/forks/textkit/textkit.go",
+      "repo": "api",
+      "line": 5,
+      "col": 6
+     }
+    ]
+   },
+   "why": "example.com/iryo/textkit は shared と api (フォーク) の二つのピアが持つので置き換えない。ピアがない場合と同じく公開版 (_proxy の v1.0.0、モジュールキャッシュ) になり、crossref は結ばない。オフラインでは unresolved (missing-module)",
+   "occurrence": 1,
+   "entry": "web-demo",
+   "expect_offline": {
+    "status": "unresolved",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": "missing-module",
+    "distractors": [
+     {
+      "qualname": "Banner",
+      "module": "example.com/iryo/textkit",
+      "kind": "method",
+      "file": "shared/textkit/textkit.go",
+      "repo": "shared",
+      "line": 5,
+      "col": 6
+     },
+     {
+      "qualname": "Banner",
+      "module": "example.com/iryo/textkit",
+      "kind": "method",
+      "file": "api/forks/textkit/textkit.go",
+      "repo": "api",
+      "line": 5,
+      "col": 6
+     }
+    ]
+   },
+   "line": 18,
+   "col": 17,
+   "offset": 256
+  },
+  {
+   "id": "NEG-002",
+   "category": "NEG",
+   "file": "web/checks/checks.go",
+   "snippet": "l.Info(textkit",
+   "token": "Info",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Logger.Info",
+      "module": "example.com/iryo/web",
+      "kind": "method",
+      "file": "web/checks/checks.go",
+      "line": 12,
+      "col": 18
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Logger.Info",
+      "module": "example.com/iryo/shared",
+      "kind": "method",
+      "file": "shared/log/logger.go",
+      "repo": "shared",
+      "line": 13,
+      "col": 18
+     }
+    ]
+   },
+   "why": "単純名が同じ Logger.Info でも web 自身の型。名前でピアに結び付けない",
+   "occurrence": 1,
+   "entry": "web-demo",
+   "expect_offline": null,
+   "line": 18,
+   "col": 4,
+   "offset": 243
+  },
+  {
+   "id": "NEG-003",
+   "category": "NEG",
+   "file": "web/checks/checks.go",
+   "snippet": "uuidlite.FromInt(42)",
+   "token": "FromInt",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/thirdparty/uuidlite"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "どのリポジトリも持たない第三者モジュール (_proxy)。crossref の対象外。オフラインでは未回答",
+   "occurrence": 1,
+   "entry": "web-demo",
+   "expect_offline": null,
+   "line": 19,
+   "col": 18,
+   "offset": 291
+  },
+  {
+   "id": "NEG-004",
+   "category": "NEG",
+   "file": "api/tools/report/report.go",
+   "snippet": "money.NewPrice(yen)",
+   "token": "NewPrice",
+   "site_kind": "call",
+   "expect": {
+    "status": "unresolved",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "NewPrice",
+      "module": "example.com/iryo/shared",
+      "kind": "method",
+      "file": "shared/money/price.go",
+      "repo": "shared",
+      "line": 9,
+      "col": 6
+     }
+    ]
+   },
+   "why": "tools は go.work の外の単一モジュールで、example.com/iryo/shared を require しない (宣言のないピア依存)。ピアは置き換えず、go コマンドも cannot find module providing package で止まる。ダウンロードモードの -mod=mod は shared の require を go.mod のコピーに足すが、コピーは元に戻す (改訂 R45) ので、読み込みは開発者のビルドと同じく止まり unresolved のまま",
+   "occurrence": 1,
+   "entry": null,
+   "expect_offline": null,
+   "line": 6,
+   "col": 15,
+   "offset": 103
+  },
+  {
+   "id": "NEG-005",
+   "category": "NEG",
+   "file": "api/legacy/main.go",
+   "snippet": "money.Round(p.Amount())",
+   "token": "Round",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/iryo/shared"
+    },
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Round",
+      "module": "example.com/iryo/shared",
+      "kind": "method",
+      "file": "shared/money/round.go",
+      "repo": "shared",
+      "line": 3,
+      "col": 6
+     }
+    ]
+   },
+   "why": "legacy は go mod vendor した vendor/ を持つ。vendor のコピー (公開版 v1.0.0) がビルドされるのでピアは置き換えず external (§5.3 行 5)。辺にしない",
+   "occurrence": 1,
+   "entry": "legacy-demo",
+   "expect_offline": null,
+   "line": 12,
+   "col": 44,
+   "offset": 205
+  },
+  {
+   "id": "NEG-006",
+   "category": "NEG",
+   "file": "api/legacy/main.go",
+   "snippet": "money.Legacy(",
+   "token": "Legacy",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/iryo/shared"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "Legacy は公開版にだけあり、ピアの作業中のソースには無い",
+   "occurrence": 1,
+   "entry": "legacy-demo",
+   "expect_offline": null,
+   "line": 12,
+   "col": 31,
+   "offset": 192
+  },
+  {
+   "id": "NEG-007",
+   "category": "NEG",
+   "file": "api/legacy/main.go",
+   "snippet": ".Add(money.NewPrice(20))",
+   "token": "Add",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/iryo/shared"
+    },
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Price.Add",
+      "module": "example.com/iryo/shared",
+      "kind": "method",
+      "file": "shared/money/price.go",
+      "repo": "shared",
+      "line": 13,
+      "col": 16
+     }
+    ]
+   },
+   "why": "両方の版にあるメソッドでも vendor のコピーが勝つ",
+   "occurrence": 1,
+   "entry": "legacy-demo",
+   "expect_offline": null,
+   "line": 11,
+   "col": 27,
+   "offset": 138
+  },
+  {
+   "id": "SHR-001",
+   "category": "SHR",
+   "file": "shared/money/price.go",
+   "snippet": "Round(p.yen)",
+   "token": "Round",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Round",
+      "module": "example.com/iryo/shared",
+      "kind": "method",
+      "file": "shared/money/round.go",
+      "line": 3,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "ピアのリポジトリ自身では通常のリポジトリ内の辺",
+   "occurrence": 1,
+   "entry": "shared-test",
+   "expect_offline": null,
+   "line": 22,
+   "col": 27,
+   "offset": 308
+  },
+  {
+   "id": "SHR-002",
+   "category": "SHR",
+   "file": "shared/textkit/textkit.go",
+   "snippet": "\"[\" + Banner(s)",
+   "token": "Banner",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "Banner",
+      "module": "example.com/iryo/textkit",
+      "kind": "method",
+      "file": "shared/textkit/textkit.go",
+      "line": 5,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "shared の入れ子のモジュール example.com/iryo/textkit の中",
+   "occurrence": 1,
+   "entry": "textkit-test",
+   "expect_offline": null,
+   "line": 10,
+   "col": 15,
+   "offset": 156
+  },
+  {
+   "id": "WEB-001",
+   "category": "WEB",
+   "file": "web/cmd/web/main.go",
+   "snippet": "svc.Total(1234)",
+   "token": "Total",
+   "site_kind": "call",
+   "expect": {
+    "status": "resolved",
+    "targets": [
+     {
+      "qualname": "OrderService.Total",
+      "module": "example.com/iryo/web",
+      "kind": "method",
+      "file": "web/orders/orders.go",
+      "line": 17,
+      "col": 24
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": null,
+    "reason": null,
+    "distractors": []
+   },
+   "why": "リポジトリ内の呼び出しは通常の MethodCalls",
+   "occurrence": 1,
+   "entry": "web-demo",
+   "expect_offline": null,
+   "line": 13,
+   "col": 18,
+   "offset": 192
+  },
+  {
+   "id": "XRP-001",
+   "category": "XRP",
+   "file": "web/orders/orders.go",
+   "snippet": "log.New(\"注文\")",
+   "token": "New",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [
+     {
+      "qualname": "New",
+      "module": "example.com/iryo/shared",
+      "kind": "method",
+      "file": "shared/log/logger.go",
+      "repo": "shared",
+      "line": 9,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/iryo/shared"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "ピア shared のパッケージ関数。web の go.mod は example.com/iryo/shared v1.0.0 を require する",
+   "occurrence": 1,
+   "entry": "web-demo",
+   "expect_offline": null,
+   "line": 14,
+   "col": 35,
+   "offset": 233
+  },
+  {
+   "id": "XRP-002",
+   "category": "XRP",
+   "file": "web/orders/orders.go",
+   "snippet": "money.NewPrice(baseYen)",
+   "token": "NewPrice",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [
+     {
+      "qualname": "NewPrice",
+      "module": "example.com/iryo/shared",
+      "kind": "method",
+      "file": "shared/money/price.go",
+      "repo": "shared",
+      "line": 9,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/iryo/shared"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "CrossRepoCalls OrderService.Total -> NewPrice (同じ組の二つ目の呼び出しは一本にまとまる)",
+   "occurrence": 1,
+   "entry": "web-demo",
+   "expect_offline": null,
+   "line": 18,
+   "col": 16,
+   "offset": 333
+  },
+  {
+   "id": "XRP-003",
+   "category": "XRP",
+   "file": "web/orders/orders.go",
+   "snippet": "base.Add(tax)",
+   "token": "Add",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [
+     {
+      "qualname": "Price.Add",
+      "module": "example.com/iryo/shared",
+      "kind": "method",
+      "file": "shared/money/price.go",
+      "repo": "shared",
+      "line": 13,
+      "col": 16
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/iryo/shared"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "ピアの型の値レシーバのメソッド",
+   "occurrence": 1,
+   "entry": "web-demo",
+   "expect_offline": null,
+   "line": 20,
+   "col": 14,
+   "offset": 414
+  },
+  {
+   "id": "XRP-004",
+   "category": "XRP",
+   "file": "web/orders/orders.go",
+   "snippet": "s.Info(\"合計 \"",
+   "token": "Info",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [
+     {
+      "qualname": "Logger.Info",
+      "module": "example.com/iryo/shared",
+      "kind": "method",
+      "file": "shared/log/logger.go",
+      "repo": "shared",
+      "line": 13,
+      "col": 18
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/iryo/shared"
+    },
+    "reason": null,
+    "distractors": [
+     {
+      "qualname": "Logger.Info",
+      "module": "example.com/iryo/web",
+      "kind": "method",
+      "file": "web/checks/checks.go",
+      "line": 12,
+      "col": 18
+     }
+    ]
+   },
+   "why": "埋め込んだ *log.Logger から昇格したメソッド。web の checks にある同名の Logger.Info ではない",
+   "occurrence": 1,
+   "entry": "web-demo",
+   "expect_offline": null,
+   "line": 21,
+   "col": 4,
+   "offset": 426
+  },
+  {
+   "id": "XRP-005",
+   "category": "XRP",
+   "file": "web/orders/orders.go",
+   "snippet": "sum.Format()",
+   "token": "Format",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [
+     {
+      "qualname": "Price.Format",
+      "module": "example.com/iryo/shared",
+      "kind": "method",
+      "file": "shared/money/price.go",
+      "repo": "shared",
+      "line": 21,
+      "col": 16
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/iryo/shared"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "Format はピアの作業中のソースにだけある。_proxy の公開版 v1.0.0 には無いので、ピアの置き換えが効いていなければ解決できない",
+   "occurrence": 1,
+   "entry": "web-demo",
+   "expect_offline": null,
+   "line": 21,
+   "col": 25,
+   "offset": 447
+  },
+  {
+   "id": "XRP-006",
+   "category": "XRP",
+   "file": "web/orders/orders.go",
+   "snippet": "money.Round(sum.Amount())",
+   "token": "Round",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [
+     {
+      "qualname": "Round",
+      "module": "example.com/iryo/shared",
+      "kind": "method",
+      "file": "shared/money/round.go",
+      "repo": "shared",
+      "line": 3,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/iryo/shared"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "別ファイル round.go の関数",
+   "occurrence": 1,
+   "entry": "web-demo",
+   "expect_offline": null,
+   "line": 22,
+   "col": 15,
+   "offset": 471
+  },
+  {
+   "id": "XRP-007",
+   "category": "XRP",
+   "file": "web/orders/orders.go",
+   "snippet": "sum.Amount()",
+   "token": "Amount",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [
+     {
+      "qualname": "Price.Amount",
+      "module": "example.com/iryo/shared",
+      "kind": "method",
+      "file": "shared/money/price.go",
+      "repo": "shared",
+      "line": 17,
+      "col": 16
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/iryo/shared"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "戻り値の型 money.Price を経由",
+   "occurrence": 1,
+   "entry": "web-demo",
+   "expect_offline": null,
+   "line": 22,
+   "col": 25,
+   "offset": 481
+  },
+  {
+   "id": "XRP-008",
+   "category": "XRP",
+   "file": "web/clock/clock.go",
+   "snippet": "c.Now().Format",
+   "token": "Now",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [
+     {
+      "qualname": "Clock.Now",
+      "module": "example.com/iryo/shared",
+      "kind": "method",
+      "file": "shared/contracts/clock.go",
+      "repo": "shared",
+      "line": 6,
+      "col": 2
+     }
+    ],
+    "candidates": [
+     {
+      "qualname": "SystemClock.Now",
+      "module": "example.com/iryo/web",
+      "kind": "method",
+      "file": "web/clock/clock.go",
+      "line": 11,
+      "col": 20
+     }
+    ],
+    "static_target": null,
+    "runtime_targets": [
+     {
+      "qualname": "SystemClock.Now",
+      "module": "example.com/iryo/web",
+      "kind": "method",
+      "file": "web/clock/clock.go",
+      "line": 11,
+      "col": 20
+     }
+    ],
+    "open_world": null,
+    "external": {
+     "module": "example.com/iryo/shared"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "ピアのインターフェースの呼び出し。静的な行き先はピアのインターフェースメソッド (CrossRepoCalls)、候補は web の実装 SystemClock.Now (PossiblyCalls はリポジトリ内)",
+   "occurrence": 1,
+   "entry": "web-demo",
+   "expect_offline": null,
+   "line": 21,
+   "col": 11,
+   "offset": 278
+  },
+  {
+   "id": "XRP-009",
+   "category": "XRP",
+   "file": "web/clock/clock.go",
+   "snippet": "now := time.Now()",
+   "token": "Now",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "std"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "標準ライブラリ。辺にしない",
+   "occurrence": 1,
+   "entry": "web-demo",
+   "expect_offline": null,
+   "line": 12,
+   "col": 14,
+   "offset": 150
+  },
+  {
+   "id": "XRP-010",
+   "category": "XRP",
+   "file": "api/service/billing/billing.go",
+   "snippet": "log.New(\"請求\")",
+   "token": "New",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [
+     {
+      "qualname": "New",
+      "module": "example.com/iryo/shared",
+      "kind": "method",
+      "file": "shared/log/logger.go",
+      "repo": "shared",
+      "line": 9,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/iryo/shared"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "ワークスペースのグループでは置き換えは生成した go.work の replace",
+   "occurrence": 1,
+   "entry": "api-demo",
+   "expect_offline": null,
+   "line": 21,
+   "col": 37,
+   "offset": 393
+  },
+  {
+   "id": "XRP-011",
+   "category": "XRP",
+   "file": "api/service/billing/billing.go",
+   "snippet": "s.logger.Info(\"請求 \" + label)",
+   "token": "Info",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [
+     {
+      "qualname": "Logger.Info",
+      "module": "example.com/iryo/shared",
+      "kind": "method",
+      "file": "shared/log/logger.go",
+      "repo": "shared",
+      "line": 13,
+      "col": 18
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/iryo/shared"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "フィールドの型 *log.Logger",
+   "occurrence": 1,
+   "entry": "api-demo",
+   "expect_offline": null,
+   "line": 26,
+   "col": 11,
+   "offset": 508
+  },
+  {
+   "id": "XRP-012",
+   "category": "XRP",
+   "file": "api/service/billing/billing.go",
+   "snippet": "amount.Format()",
+   "token": "Format",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [
+     {
+      "qualname": "Price.Format",
+      "module": "example.com/iryo/shared",
+      "kind": "method",
+      "file": "shared/money/price.go",
+      "repo": "shared",
+      "line": 21,
+      "col": 16
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/iryo/shared"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "引数の型 money.Price",
+   "occurrence": 1,
+   "entry": "api-demo",
+   "expect_offline": null,
+   "line": 25,
+   "col": 18,
+   "offset": 489
+  },
+  {
+   "id": "XRP-013",
+   "category": "XRP",
+   "file": "api/service/billing/billing.go",
+   "snippet": "inv.Stamp()",
+   "token": "Stamp",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [
+     {
+      "qualname": "Audit.Stamp",
+      "module": "example.com/iryo/shared",
+      "kind": "method",
+      "file": "shared/contracts/audit.go",
+      "repo": "shared",
+      "line": 7,
+      "col": 16
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/iryo/shared"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "埋め込んだ contracts.Audit から昇格したメソッド (Audit は作業中のソースにだけある)",
+   "occurrence": 1,
+   "entry": "api-demo",
+   "expect_offline": null,
+   "line": 32,
+   "col": 20,
+   "offset": 746
+  },
+  {
+   "id": "XRP-014",
+   "category": "XRP",
+   "file": "api/notify/mail/mail.go",
+   "snippet": "log.New(\"mail\")",
+   "token": "New",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [
+     {
+      "qualname": "New",
+      "module": "example.com/iryo/shared",
+      "kind": "method",
+      "file": "shared/log/logger.go",
+      "repo": "shared",
+      "line": 9,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/iryo/shared"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "パッケージ変数の初期化子の呼び出し。呼び出し元は <init>",
+   "occurrence": 1,
+   "entry": "api-demo",
+   "expect_offline": null,
+   "line": 5,
+   "col": 18,
+   "offset": 69
+  },
+  {
+   "id": "XRP-015",
+   "category": "XRP",
+   "file": "api/notify/mail/mail.go",
+   "snippet": "outbox.Info(body)",
+   "token": "Info",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [
+     {
+      "qualname": "Logger.Info",
+      "module": "example.com/iryo/shared",
+      "kind": "method",
+      "file": "shared/log/logger.go",
+      "repo": "shared",
+      "line": 13,
+      "col": 18
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/iryo/shared"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "パッケージ変数の型 *log.Logger",
+   "occurrence": 1,
+   "entry": "api-demo",
+   "expect_offline": null,
+   "line": 8,
+   "col": 9,
+   "offset": 125
+  },
+  {
+   "id": "XRP-016",
+   "category": "XRP",
+   "file": "api/service/cmd/api/main.go",
+   "snippet": "money.NewPrice(5000)",
+   "token": "NewPrice",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [
+     {
+      "qualname": "NewPrice",
+      "module": "example.com/iryo/shared",
+      "kind": "method",
+      "file": "shared/money/price.go",
+      "repo": "shared",
+      "line": 9,
+      "col": 6
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/iryo/shared"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "main からピアへの呼び出し",
+   "occurrence": 1,
+   "entry": "api-demo",
+   "expect_offline": null,
+   "line": 12,
+   "col": 31,
+   "offset": 187
+  },
+  {
+   "id": "XRP-017",
+   "category": "XRP",
+   "file": "api/service/cmd/api/main.go",
+   "snippet": ".Stamp())",
+   "token": "Stamp",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [
+     {
+      "qualname": "Audit.Stamp",
+      "module": "example.com/iryo/shared",
+      "kind": "method",
+      "file": "shared/contracts/audit.go",
+      "repo": "shared",
+      "line": 7,
+      "col": 16
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/iryo/shared"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "戻り値の型 AuditedInvoice に昇格した Audit.Stamp",
+   "occurrence": 1,
+   "entry": "api-demo",
+   "expect_offline": null,
+   "line": 13,
+   "col": 57,
+   "offset": 260
+  },
+  {
+   "id": "XRP-018",
+   "category": "XRP",
+   "file": "api/service/billing/billing.go",
+   "snippet": "s.logger.Info(inv.Stamp())",
+   "token": "Info",
+   "site_kind": "call",
+   "expect": {
+    "status": "external",
+    "targets": [
+     {
+      "qualname": "Logger.Info",
+      "module": "example.com/iryo/shared",
+      "kind": "method",
+      "file": "shared/log/logger.go",
+      "repo": "shared",
+      "line": 13,
+      "col": 18
+     }
+    ],
+    "candidates": [],
+    "static_target": null,
+    "runtime_targets": [],
+    "open_world": null,
+    "external": {
+     "module": "example.com/iryo/shared"
+    },
+    "reason": null,
+    "distractors": []
+   },
+   "why": "同じ呼び出し元 Record からの二つ目のピア呼び出し",
+   "occurrence": 1,
+   "entry": "api-demo",
+   "expect_offline": null,
+   "line": 32,
+   "col": 11,
+   "offset": 737
+  }
+ ],
+ "decl_pins": [
+  {
+   "qualname": "Price.Format",
+   "module": "example.com/iryo/shared",
+   "kind": "method",
+   "file": "shared/money/price.go",
+   "line": 21,
+   "col": 16
+  },
+  {
+   "qualname": "Clock",
+   "module": "example.com/iryo/shared",
+   "kind": "class",
+   "file": "shared/contracts/clock.go",
+   "line": 5,
+   "col": 6
+  },
+  {
+   "qualname": "OrderService",
+   "module": "example.com/iryo/web",
+   "kind": "class",
+   "file": "web/orders/orders.go",
+   "line": 8,
+   "col": 6
+  },
+  {
+   "qualname": "<init>",
+   "module": "example.com/iryo/api/notify",
+   "kind": "method",
+   "file": "api/notify/mail/mail.go",
+   "line": 5,
+   "col": 0
+  }
+ ],
+ "cross_repo_edges": [
+  {
+   "table": "CrossRepoImports",
+   "kind": null,
+   "source": "api:notify/mail/mail.go",
+   "target": "shared:log|log",
+   "import_path": "example.com/iryo/shared/log"
+  },
+  {
+   "table": "CrossRepoImports",
+   "kind": null,
+   "source": "api:service/billing/billing.go",
+   "target": "shared:contracts|contracts",
+   "import_path": "example.com/iryo/shared/contracts"
+  },
+  {
+   "table": "CrossRepoImports",
+   "kind": null,
+   "source": "api:service/billing/billing.go",
+   "target": "shared:log|log",
+   "import_path": "example.com/iryo/shared/log"
+  },
+  {
+   "table": "CrossRepoImports",
+   "kind": null,
+   "source": "api:service/billing/billing.go",
+   "target": "shared:money|money",
+   "import_path": "example.com/iryo/shared/money"
+  },
+  {
+   "table": "CrossRepoImports",
+   "kind": null,
+   "source": "api:service/cmd/api/main.go",
+   "target": "shared:money|money",
+   "import_path": "example.com/iryo/shared/money"
+  },
+  {
+   "table": "CrossRepoImports",
+   "kind": null,
+   "source": "web:clock/clock.go",
+   "target": "shared:contracts|contracts",
+   "import_path": "example.com/iryo/shared/contracts"
+  },
+  {
+   "table": "CrossRepoImports",
+   "kind": null,
+   "source": "web:orders/orders.go",
+   "target": "shared:log|log",
+   "import_path": "example.com/iryo/shared/log"
+  },
+  {
+   "table": "CrossRepoImports",
+   "kind": null,
+   "source": "web:orders/orders.go",
+   "target": "shared:money|money",
+   "import_path": "example.com/iryo/shared/money"
+  },
+  {
+   "table": "CrossRepoRef",
+   "kind": "embeds",
+   "source": "api:service/billing/billing.go:AuditedInvoice",
+   "target": "shared:contracts/audit.go:Audit"
+  },
+  {
+   "table": "CrossRepoRef",
+   "kind": "implements",
+   "source": "web:clock/clock.go:SystemClock",
+   "target": "shared:contracts/clock.go:Clock"
+  },
+  {
+   "table": "CrossRepoRef",
+   "kind": "embeds",
+   "source": "web:orders/orders.go:OrderService",
+   "target": "shared:log/logger.go:Logger"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "api:notify/mail/mail.go:<init>",
+   "target": "shared:log/logger.go:New"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "api:notify/mail/mail.go:Compose",
+   "target": "shared:log/logger.go:Logger.Info"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "api:service/billing/billing.go:InvoiceService.Charge",
+   "target": "shared:log/logger.go:Logger.Info"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "api:service/billing/billing.go:InvoiceService.Charge",
+   "target": "shared:money/price.go:Price.Format"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "api:service/billing/billing.go:InvoiceService.Record",
+   "target": "shared:contracts/audit.go:Audit.Stamp"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "api:service/billing/billing.go:InvoiceService.Record",
+   "target": "shared:log/logger.go:Logger.Info"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "api:service/billing/billing.go:NewInvoiceService",
+   "target": "shared:log/logger.go:New"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "api:service/cmd/api/main.go:main",
+   "target": "shared:contracts/audit.go:Audit.Stamp"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "api:service/cmd/api/main.go:main",
+   "target": "shared:money/price.go:NewPrice"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "web:clock/clock.go:Stamp",
+   "target": "shared:contracts/clock.go:Clock.Now"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "web:orders/orders.go:NewOrderService",
+   "target": "shared:log/logger.go:New"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "web:orders/orders.go:OrderService.Total",
+   "target": "shared:log/logger.go:Logger.Info"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "web:orders/orders.go:OrderService.Total",
+   "target": "shared:money/price.go:NewPrice"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "web:orders/orders.go:OrderService.Total",
+   "target": "shared:money/price.go:Price.Add"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "web:orders/orders.go:OrderService.Total",
+   "target": "shared:money/price.go:Price.Amount"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "web:orders/orders.go:OrderService.Total",
+   "target": "shared:money/price.go:Price.Format"
+  },
+  {
+   "table": "CrossRepoCalls",
+   "kind": null,
+   "source": "web:orders/orders.go:OrderService.Total",
+   "target": "shared:money/round.go:Round"
+  }
+ ],
+ "xpr_pairs": []
+}

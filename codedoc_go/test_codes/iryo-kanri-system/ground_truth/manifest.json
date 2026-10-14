@@ -1164,12 +1164,12 @@
       "col": 22
      }
     ],
-    "open_world": false,
+    "open_world": true,
     "external": null,
     "reason": null,
     "distractors": []
    },
-   "why": "構造体 AuditTrail に埋め込んだインタフェース Sink 経由の呼び出しはインタフェース呼び出し。候補は Sink の実装: *MemorySink と、埋め込みインタフェースで Sink を満たす AuditTrail (二段目のディスパッチ、候補は Sink.Write 自身)。デモでは *MemorySink が入る",
+   "why": "構造体 AuditTrail に埋め込んだインタフェース Sink 経由の呼び出しはインタフェース呼び出し。候補は Sink の実装: *MemorySink と、埋め込みインタフェースで Sink を満たす AuditTrail (二段目のディスパッチ、候補は Sink.Write 自身)。デモでは *MemorySink が入る。admin-console の go.mod の replace がこのモジュールのディレクトリを別のグループでもビルドに入れるので、open_world は true (spec R54)",
    "occurrence": 1,
    "entry": "reception-desk",
    "expect_offline": null,
@@ -1225,12 +1225,12 @@
       "col": 22
      }
     ],
-    "open_world": false,
+    "open_world": true,
     "external": null,
     "reason": null,
     "distractors": []
    },
-   "why": "Journal を満たす AuditTrail は自分の埋め込みインタフェース Sink で Write を得る (二段目のディスパッチ、候補は Sink.Write)。デモは AuditTrail を渡し、その Sink が *MemorySink なので実行時は MemorySink.Write",
+   "why": "Journal を満たす AuditTrail は自分の埋め込みインタフェース Sink で Write を得る (二段目のディスパッチ、候補は Sink.Write)。デモは AuditTrail を渡し、その Sink が *MemorySink なので実行時は MemorySink.Write。admin-console の go.mod の replace がこのモジュールのディレクトリを別のグループでもビルドに入れるので、open_world は true (spec R54)",
    "occurrence": 1,
    "entry": "reception-desk",
    "expect_offline": null,
@@ -2928,12 +2928,12 @@
       "col": 18
      }
     ],
-    "open_world": false,
+    "open_world": true,
     "external": null,
     "reason": null,
     "distractors": []
    },
-   "why": "型パラメータの制約 Describer のメソッド (typeparam)。候補は Describer を満たす型のメソッドで、AuditedEntity と Inpatient と visit.Visit は昇格で満たす。帳票フローは Inpatient で具体化する",
+   "why": "型パラメータの制約 Describer のメソッド (typeparam)。候補は Describer を満たす型のメソッドで、AuditedEntity と Inpatient と visit.Visit は昇格で満たす。帳票フローは Inpatient で具体化する。admin-console の go.mod の replace がこのモジュールのディレクトリを別のグループでもビルドに入れるので、open_world は true (spec R54)",
    "occurrence": 1,
    "entry": "reception-desk",
    "expect_offline": null,
@@ -3348,12 +3348,12 @@
       "col": 23
      }
     ],
-    "open_world": false,
+    "open_world": true,
     "external": null,
     "reason": null,
     "distractors": []
    },
-   "why": "実装が二つ (共通基盤の MailNotifier と予約モジュールの *SmsNotifier)。受付デモは両方を渡す",
+   "why": "実装が二つ (共通基盤の MailNotifier と予約モジュールの *SmsNotifier)。受付デモは両方を渡す。admin-console の go.mod の replace がこのモジュールのディレクトリを別のグループでもビルドに入れるので、open_world は true (spec R54)",
    "occurrence": 1,
    "entry": "reception-desk",
    "expect_offline": null,
@@ -3401,7 +3401,7 @@
       "col": 23
      }
     ],
-    "open_world": false,
+    "open_world": true,
     "external": null,
     "reason": null,
     "distractors": [
@@ -3415,7 +3415,7 @@
      }
     ]
    },
-   "why": "TrackedNotifier は Notifier を埋め込む。Send を宣言するのは埋め込まれた Notifier。候補は受け手の静的型 TrackedNotifier の実装 (*SmsNotifier だけ。MailNotifier は Sent を持たない)",
+   "why": "TrackedNotifier は Notifier を埋め込む。Send を宣言するのは埋め込まれた Notifier。候補は受け手の静的型 TrackedNotifier の実装 (*SmsNotifier だけ。MailNotifier は Sent を持たない)。admin-console の go.mod の replace がこのモジュールのディレクトリを別のグループでもビルドに入れるので、open_world は true (spec R54)",
    "occurrence": 1,
    "entry": "reception-desk",
    "expect_offline": null,
@@ -3463,12 +3463,12 @@
       "col": 23
      }
     ],
-    "open_world": false,
+    "open_world": true,
     "external": null,
     "reason": null,
     "distractors": []
    },
-   "why": "TrackedNotifier 自身が宣言する Sent。実装は一つでも格上げしない",
+   "why": "TrackedNotifier 自身が宣言する Sent。実装は一つでも格上げしない。admin-console の go.mod の replace がこのモジュールのディレクトリを別のグループでもビルドに入れるので、open_world は true (spec R54)",
    "occurrence": 1,
    "entry": "reception-desk",
    "expect_offline": null,
@@ -3576,12 +3576,12 @@
       "col": 22
      }
     ],
-    "open_world": false,
+    "open_world": true,
     "external": null,
     "reason": null,
     "distractors": []
    },
-   "why": "テストだけの偽実装 fakeClock (clock_test.go) も候補 (test_only)。kernel のテストは TestStamp で fakeClock、TestLabel で OfficeClock を渡す。受付デモも受付フローの v.Dated から OfficeClock で到達する",
+   "why": "テストだけの偽実装 fakeClock (clock_test.go) も候補 (test_only)。kernel のテストは TestStamp で fakeClock、TestLabel で OfficeClock を渡す。受付デモも受付フローの v.Dated から OfficeClock で到達する。admin-console の go.mod の replace がこのモジュールのディレクトリを別のグループでもビルドに入れるので、open_world は true (spec R54)",
    "occurrence": 1,
    "entry": "kernel-tests",
    "expect_offline": null,
@@ -3802,12 +3802,12 @@
       "col": 22
      }
     ],
-    "open_world": false,
+    "open_world": true,
     "external": null,
     "reason": null,
     "distractors": []
    },
-   "why": "リポジトリ内の実装が一つでも RubberStamp.Stamp の MethodCalls には格上げしない (Go は暗黙の実装、spec §5.4)",
+   "why": "リポジトリ内の実装が一つでも RubberStamp.Stamp の MethodCalls には格上げしない (Go は暗黙の実装、spec §5.4)。admin-console の go.mod の replace がこのモジュールのディレクトリを別のグループでもビルドに入れるので、open_world は true (spec R54)",
    "occurrence": 1,
    "entry": "reception-desk",
    "expect_offline": null,

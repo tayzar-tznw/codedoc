@@ -1,0 +1,18 @@
+{
+ "sha256": "9135daa80d8e791e29dcde2a2f067df6e3717209a17498dd66da31358f1a1c00",
+ "context_hash": "0b1fc96649952357cf5613e7ce82eb5a6a695f4326a926f457938ebc549c80fb",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "このファイルは、会計処理における支払い手数料の計算ルール（ポリシー）を定義するパッケージです。基本となるポリシー（BasePolicy）と、それを拡張した標準ポリシー（StandardPolicy）および緊急ポリシー（UrgentPolicy）を提供します。これらは共通のインターフェースを実装しており、状況に応じた柔軟な手数料計算を可能にします。",
+ "nodes": {
+  "PaymentPolicy": "支払い手数料を計算するための共通インターフェースを定義します。",
+  "PaymentPolicy.Fee": "指定された金額に対する手数料を計算して返すメソッドのシグネチャです。",
+  "BasePolicy": "手数料率（Rate）を保持し、基本的な手数料計算とラベルを提供する構造体です。",
+  "BasePolicy.Fee": "設定された手数料率（Rate）に基づいて、基本の手数料を計算して返します。",
+  "BasePolicy.Label": "ポリシーの名称として「標準」という文字列を返します。",
+  "StandardPolicy": "BasePolicyを埋め込み、標準的な支払いポリシーを表す構造体です。",
+  "UrgentPolicy": "BasePolicyを埋め込み、緊急時の支払いポリシーを表す構造体です。",
+  "UrgentPolicy.Fee": "緊急時用の特別な計算式（一律25%）を用いて手数料を計算して返します。"
+ }
+}

@@ -1,0 +1,11 @@
+{
+ "sha256": "7a116b6508c1e101cbfdead84b5a24d4e8790ce8e787218aaf7319fa2c0814b1",
+ "context_hash": "ed5bd778a0b25ef2a0b41d7ee1fe020ebbecb25448fd5406f09c7afbec4f6f4b",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "CGOが有効でない環境（!cgo）において、プラットフォーム固有のアクセラレーション設定を提供するファイルです。ハードウェアアクセラレーションを使用しない純粋なGo（pure Go）実装が選択されていることを示します。",
+ "nodes": {
+  "Accel": "CGOが無効な環境において、アクセラレーションの種類として「pure」という文字列を返します。"
+ }
+}

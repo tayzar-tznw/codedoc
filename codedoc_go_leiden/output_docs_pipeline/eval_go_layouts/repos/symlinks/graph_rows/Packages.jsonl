@@ -1,0 +1,3 @@
+{"package_id": "a_19490de81f74d46f", "import_path": "example.com/layouts/symlinks", "name": "main", "directory": "", "module": "example.com/layouts/symlinks", "origin": "command", "file_count": 1, "summary": "", "repo": "symlinks"}
+{"package_id": "a_105aa05e1f842d87", "import_path": "example.com/layouts/symlinks/a", "name": "kit", "directory": "a", "module": "example.com/layouts/symlinks", "origin": "package", "file_count": 2, "summary": "", "repo": "symlinks"}
+{"package_id": "a_0e705e3a3175f2fe", "import_path": "example.com/layouts/symlinks/b", "name": "kit", "directory": "b", "module": "example.com/layouts/symlinks", "origin": "package", "file_count": 1, "summary": "", "repo": "symlinks"}

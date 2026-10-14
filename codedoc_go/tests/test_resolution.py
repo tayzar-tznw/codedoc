@@ -6,6 +6,7 @@ tests/fixtures/helper/basic/ (helper_fixtures.py) against a copy of that repo.""
 
 from __future__ import annotations
 
+import dataclasses
 import json
 import os
 import shutil
@@ -15,7 +16,7 @@ import pytest
 from graph_generator import resolution
 from graph_generator.go_extract import StaleEntitiesError
 from graph_generator.go_model import (POSSIBLY_REASONS, STATUSES, UNRESOLVED_REASONS, VIA,
-                                      BuildConfig, Discovery, GoUnit, Group)
+                                      BuildConfig, Discovery, GoUnit, Group, Replace)
 from graph_generator.resolution import HelperRun
 from helper_fixtures import replay
 
@@ -470,6 +471,103 @@ def test_group_toolchain_gate_marks_sites_unresolved(world):
     assert calls_by(art, "app/main.go")["Say", 12]["status"] == "resolved"
 
 
+def _replace(world, key, old, new, local=True):
+    """Give unit *key* the go.mod replace `old => new` (new: repo-relative, or absolute)."""
+    r = Replace(old=old, old_version="", new=os.path.join(world.repo, new) if local else new,
+                new_version="" if local else "v1.0.0", local=local)
+    world.disc.units = [dataclasses.replace(u, replaces=(r,)) if u.key == key else u
+                        for u in world.disc.units]
+
+
+def test_r54_a_replace_from_another_group_opens_the_interface_calls(world):
+    """R54 (probe p17): solo's group m0 builds lib from its in-repo directory,
+    so m0's types can reach lib's interface calls, and no load of ws0 knows
+    them. Only open_world changes; m0 not loading (toolchain) does not matter."""
+    before = world.run()
+    _replace(world, "example.com/solo", "example.com/lib", "lib")
+    assert resolution._open_world_units(world.disc) == {"example.com/lib": ["m0"]}
+    lines = []
+    after = world.run(printer=lines.append)
+    lib_b, lib_a = calls_by(before, "lib/lib.go"), calls_by(after, "lib/lib.go")
+    assert (lib_b["Greet", 22]["open_world"], lib_a["Greet", 22]["open_world"]) == (False, True)
+    assert {**lib_a["Greet", 22], "open_world": False} == lib_b["Greet", 22]   # candidates [English.Greet]
+    lib_a.pop(("Greet", 22)), lib_b.pop(("Greet", 22))
+    assert lib_a == lib_b                                                     # Sprint, yield: no interface
+    assert after["files"]["app/main.go"] == before["files"]["app/main.go"]
+    assert [l for l in lines if "R54" in l] == [
+        "[Phase 1.6] 1 interface call(s) opened: another group builds their module from its in-repo "
+        "directory through a local replace (R54): example.com/lib by m0"]
+
+
+def test_r54_only_the_replaced_module_opens(world):
+    before = world.run()
+    _replace(world, "example.com/solo", "example.com/app", "app")
+    after = world.run()
+    assert after["files"]["lib/lib.go"] == before["files"]["lib/lib.go"]
+    main = calls_by(after, "app/main.go")
+    assert main["Greet", 24]["open_world"] and main["Hello", 25]["open_world"]   # named, anonymous interface
+    assert main["Hello", 25]["candidates"] == calls_by(before, "app/main.go")["Hello", 25]["candidates"]
+    assert not main["Say", 12]["open_world"]
+
+
+@pytest.mark.parametrize("key, old, new, local", [
+    ("example.com/app", "example.com/other", "lib", True),        # the site module's own group
+    ("example.com/solo", "example.com/lib", "/elsewhere/lib", True),   # a directory outside the repo
+    ("example.com/solo", "example.com/x", "lib/broken", True),    # a directory that is no module root
+    ("example.com/solo", "example.com/lib", "example.com/fork", False),   # a module version
+    ("example.com/app", "example.com/lib", "solo", True),         # a main module is never replaced
+])
+def test_r54_replaces_that_open_nothing(world, key, old, new, local):
+    before = world.run()
+    _replace(world, key, old, new, local)
+    assert resolution._open_world_units(world.disc) == {}
+    lines = []
+    after = world.run(printer=lines.append)
+    assert {rel: f["calls"] for rel, f in after["files"].items()} == \
+        {rel: f["calls"] for rel, f in before["files"].items()}
+    assert not any("R54" in l for l in lines)
+
+
+def _work_replace(world, gid, old, new, version=""):
+    """Give group *gid* the go.work replace `old [version] => new` (new: repo-relative, or absolute)."""
+    g = next(g for g in world.disc.groups if g.id == gid)
+    g.replaces = [Replace(old=old, old_version=version, new=os.path.join(world.repo, new), new_version="",
+                          local=True)]
+
+
+def test_r54_a_go_work_replace_opens_another_groups_module(world):
+    """R54: solo's group, here a workspace ws1, builds lib through a replace in
+    its go.work; lib's interface calls open as with a go.mod replace."""
+    before = world.run()
+    world.disc.groups[1].id, world.disc.groups[1].kind = "ws1", "workspace"
+    _work_replace(world, "ws1", "example.com/lib", "lib")
+    assert resolution._open_world_units(world.disc) == {"example.com/lib": ["ws1"]}
+    after = world.run()
+    lib_b, lib_a = calls_by(before, "lib/lib.go"), calls_by(after, "lib/lib.go")
+    assert (lib_b["Greet", 22]["open_world"], lib_a["Greet", 22]["open_world"]) == (False, True)
+    assert after["files"]["app/main.go"] == before["files"]["app/main.go"]
+
+
+def test_r54_a_go_work_replace_outside_the_repo_opens_nothing(world):
+    before = world.run()
+    world.disc.groups[1].id, world.disc.groups[1].kind = "ws1", "workspace"
+    _work_replace(world, "ws1", "example.com/lib", "/elsewhere/lib")
+    assert resolution._open_world_units(world.disc) == {}
+    after = world.run()
+    assert {rel: f["calls"] for rel, f in after["files"].items()} == \
+        {rel: f["calls"] for rel, f in before["files"].items()}
+
+
+def test_r54_a_go_work_replace_overrides_the_members_replaces_of_its_path(world):
+    _replace(world, "example.com/app", "example.com/solo", "solo")     # a ws0 member's go.mod
+    assert resolution._open_world_units(world.disc) == {"example.com/solo": ["ws0"]}
+    _work_replace(world, "ws0", "example.com/solo", "/elsewhere/solo")  # ws0's go.work wins
+    assert resolution._open_world_units(world.disc) == {}
+    # A go.work replace of one version leaves the member's replace of every other version.
+    _work_replace(world, "ws0", "example.com/solo", "/elsewhere/solo", version="v1.0.0")
+    assert resolution._open_world_units(world.disc) == {"example.com/solo": ["ws0"]}
+
+
 # ---------------------------------------------------------------- the real helper
 
 def _project(art):
@@ -524,6 +622,48 @@ def test_graph_phases_with_the_real_helper_match_the_replay(tmp_path, monkeypatc
     assert real["stats"]["join_misses"] == 0
     assert os.path.isfile(os.path.join(out, "repos", "basic", "resolutions.json"))
     assert os.path.isfile(os.path.join(out, "repos", "basic", "go", "ws0", "resolve-linux-amd64.jsonl"))
+
+
+P17 = {
+    "go.work": "go 1.26\n\nuse ./ws/lib\n",
+    "ws/lib/go.mod": "module example.com/lib\n\ngo 1.26\n",
+    "ws/lib/lib.go": "package lib\n\ntype Store interface {\n\tCommit() int\n\tRollback() int\n}\n\n"
+                     "func Use(s Store) int {\n\tn := s.Commit()\n\treturn n\n}\n",
+    "outside/go.mod": "module example.com/outside\n\ngo 1.26\n\nrequire example.com/lib v0.0.0\n\n"
+                      "replace example.com/lib => ../ws/lib\n",
+    "outside/main.go": "package main\n\nimport \"example.com/lib\"\n\ntype Impl struct{}\n\n"
+                       "func (Impl) Commit() int   { return 1 }\nfunc (Impl) Rollback() int { return 2 }\n\n"
+                       "func main() { println(lib.Use(Impl{})) }\n",
+}
+
+
+@pytest.mark.go
+def test_r54_probe_p17_with_the_real_helper(tmp_path, monkeypatch):
+    """R54 on probe p17's layout: the go.work uses only ws/lib, whose Use(s
+    Store) calls s.Commit(); outside/ is no workspace module, replaces
+    example.com/lib with ../ws/lib and passes its Impl, which runs there. No
+    load of the workspace knows Impl: no candidates, and open-world."""
+    from go_worlds import GO, have_go, write_tree
+    from graph_generator import config, go_toolchain, pipeline
+    if not have_go():
+        pytest.skip("no Go toolchain")
+    repo = os.path.realpath(write_tree(tmp_path / "p17", P17))
+    monkeypatch.setattr(config, "OUTPUT_DIR", os.path.join(str(tmp_path / "out"), "repos", "p17"))
+    monkeypatch.setattr(config, "GO_TOOLCHAIN", GO)
+    monkeypatch.setattr(config, "GO_USER_MODCACHE", str(tmp_path / "empty-cache"))
+    data = pipeline.PipelineData(target_dir=repo)
+    data.repo = "p17"
+    data.toolchain = go_toolchain.probe_toolchain(GO)
+    pipeline.phase1_scan(data)
+    pipeline.phase1b_extract(data)
+    pipeline.phase1c_resolve(data)
+    art = data.resolutions
+    assert sorted(g["status"] for g in art["groups"].values()) == ["ok", "ok"]
+    commit = calls_by(art, "ws/lib/lib.go")["Commit", 9]
+    assert (commit["status"], commit["target"]["qualname"], commit["candidates"], commit["open_world"]) == \
+        ("resolved", "Store.Commit", [], True)
+    use = calls_by(art, "outside/main.go")["Use", 10]
+    assert (use["status"], use["target"]["qualname"], use["open_world"]) == ("resolved", "Use", False)
 
 
 # ---------------------------------------------------------------- pieces

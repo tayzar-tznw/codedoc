@@ -1,0 +1,1 @@
+{"file_id": "a_b37075da47ca7a44", "file_name": "main.go", "extension": ".go", "directory": "present", "path": "present/main.go", "origin": "command", "generated": false, "package": "example.com/layouts/wsmissing/present", "package_name": "main", "module": "example.com/layouts/wsmissing/present", "build_constraint": "", "build_included": true, "summary": "", "repo": "ws-missing"}

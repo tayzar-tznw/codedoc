@@ -1,0 +1,20 @@
+{
+ "sha256": "70835e95006cc0292e940e4ced38d853a90c49961054467c9afc59e80bfe502c",
+ "context_hash": "6239740e864bdab1731eaac72b23dc49651d81760428f9c78ca28ae990e49ded",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "本ファイルは、医療予約システムにおける予約枠と予約帳を管理するための機能を提供します。予約の登録や患者ごとの予約、通知処理との連携、および登録された予約一覧をイテレータを介して取得する機能を実装しています。",
+ "nodes": {
+  "Slot": "予約の時間帯と予約者名を保持する構造体です。",
+  "Slot.Label": "予約枠の時間と名前を「X時 Y様」の形式の文字列として整形して返すメソッドです。",
+  "AppointmentBook": "予約枠のリストと、通知を行うためのNotifierを保持する予約帳の構造体です。",
+  "NewAppointmentBook": "指定されたNotifierを使用して、新しいAppointmentBookのインスタンスを生成して返すコンストラクタ関数です。",
+  "AppointmentBook.Reserve": "指定された時間と名前で予約枠を作成し、予約帳に追加してその予約枠を返すメソッドです。",
+  "AppointmentBook.ReserveFor": "特定の患者に対する予約を行い、予約完了の通知を送信してその結果を返すメソッドです。",
+  "AppointmentBook.All": "Goのイテレータ（iter.Seq）を用いて、予約帳内のすべての予約枠を順に走査するためのメソッドです。",
+  "AppointmentBook.Each": "予約帳内のすべての予約枠に対して、指定されたコールバック関数を順に実行するメソッドです。",
+  "Countdown": "3から1までの数値を逆順に走査する、デモンストレーションまたはユーティリティ用のイテレータ関数です。",
+  "AppointmentBook.All.func1": "AppointmentBook.All 内の関数リテラル。"
+ }
+}

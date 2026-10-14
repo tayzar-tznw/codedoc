@@ -1,0 +1,9 @@
+./alias.go
+./broken.go
+./emit.go
+./iface.go
+./program.go
+./records.go
+./resolve.go
+./rss_unix.go
+./sites.go

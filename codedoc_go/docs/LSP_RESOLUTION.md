@@ -145,7 +145,9 @@ Go のインタフェースは宣言なしに満たされます。正しいメ�
    - 構造体に埋め込んだインタフェースのフィールド経由の呼び出し（`AuditTrail.Note` の `t.Write(...)`）は、そのフィールドの型 `Sink` でディスパッチします。インタフェース型は候補になりません。
    - `_test.go` で宣言した型の候補には `test_only` が付きます（F1 の `fakeClock.Now`）。
    - 候補はグループの読み込みにある型だけです。F1 の管理コンソールのプログラムは予約モジュールを読み込まないので、そこでの `n.Send(...)` の候補は `MailNotifier.Send` だけです。ワークスペースのグループでの同じインタフェースの呼び出し（`kernel/notify` の `n.Send(msg)`）には `SmsNotifier.Send` も入ります。
-3. **`open_world`。** リポジトリの外の型（標準ライブラリ、依存モジュール。非公開の型を含む）も満たすとき true です。実装かどうか分からないリポジトリの外の型も、満たす型として数えます。F1 では、監査の `Logger` を `*log.Logger` が、フォークした textfmt の `Formatter` を `time.Time` が満たします。
+3. **`open_world`。** 候補で尽くせない型もサイトに来うるとき true です。候補と `candidates_partial` は変わりません。
+   - リポジトリの外の型（標準ライブラリ、依存モジュール。非公開の型を含む）が満たす。実装かどうか分からないリポジトリの外の型も、満たす型として数えます。F1 では、監査の `Logger` を `*log.Logger` が、フォークした textfmt の `Formatter` を `time.Time` が満たします。
+   - 別のグループが、サイトのモジュールのリポジトリ内のディレクトリを、go コマンドが適用するローカルの `replace`（go.mod か go.work）でビルドに入れる（R54）。そのグループの型はサイトのグループの読み込みに無く、引数として渡りうるからです。モジュール単位で決め、そのグループがサイトのパッケージを import するかどうかは問いません。そのグループの型から実装は探さず、控えめに true にします。F1 では、管理コンソールの go.mod の replace が kernel、domain、billing、pharmacy、reporting をビルドに入れるので、これらのモジュールのインタフェース呼び出しはすべて true です。
 4. **エッジ。** インタフェースのメソッドに MethodCalls を、グラフにある各候補に PossiblyCalls（`reason` は `implementation`、列 `open_world` 付き）を張ります。候補が `POSSIBLY_CALLS_MAX_CANDIDATES` を超えるサイトは、PossiblyCalls を 1 本も書かず、数だけを数えます。
 5. **格上げしない。** リポジトリ内の実装が 1 つしかなくても、その実装を MethodCalls にはしません。etcd の `testutil.TB` はリポジトリ内の実装が 1 つですが、`*testing.T` も満たします。F1 の監査の `l.Printf` に実行時に入るのは `*log.Logger` です。
 6. **無名インタフェース。** 無名インタフェース、関数の中で宣言したインタフェース、インラインの制約のメソッドはノードを持ちません。リポジトリ内の実装を候補にした `ambiguous`（`reason` は `implementation`）にし、実装が無ければ `dynamic` にします。どちらも MethodCalls を張らず、囲む関数を相手にしません。
@@ -392,7 +394,7 @@ F1 は `iryo-kanri-system`（医療管理システムの Go 版。13 モジュ�
 
 ## 12. 制限
 
-- **インタフェースの相手は近似。** points-to 解析（VTA、RTA）はしないので、候補は「満たす型」の集まりで、実行時に入る型の集まりではありません。`open_world` が true なら、実際の相手が候補のどれでもないことがあります。
+- **インタフェースの相手は近似。** points-to 解析（VTA、RTA）はしないので、候補は「満たす型」の集まりで、実行時に入る型の集まりではありません。`open_world` が true なら、実際の相手が候補のどれでもないことがあります。別のグループだけがビルドに入れる型（F1 の管理コンソールの型など）は、サイトのグループの候補にならず、`open_world` を true にするだけです（[第 6 節](#6-インタフェースの呼び出しと-open-world)）。
 - **open world のインタフェース呼び出しでは、オラクルはメソッド名しか確かめない。** リポジトリの外の実装は、リポジトリ内のどのメソッドにも転送できます（`io.NopCloser(r)` の `Read` は `r.Read` に入る）。候補の外の関数が入っても、エッジが誤りとは言えません。そのため評価と試験は、open world のエッジでは観測した関数がその名前のメソッドかだけを調べます。同じ名前のメソッドを持つ 2 つのインタフェースの取り違えは、そこでは見つかりません。正解を書いたケース（[第 11.1 節](#111-evaluate)）は、この取り違えも採点します。
 - **panic か Goexit の中で動いた引数の無い `defer` は、defer の集まりの誤りを見逃しうる。** panic 中か `runtime.Goexit`（`t.Fatal` など）の中で動いた遅延呼び出しは、コンパイラの deferwrap が見えればそれを積んだ関数の分として数えます。引数の無い関数値の `defer c()` は deferwrap を持たないので、goracle は積んだ関数を見分けられず、スタック上の `defer` を持つ関数すべての分として数えます。その関数たちの defer の集まりでは、`c` への誤ったエッジが DEFER-GROUP-OTHER にならず、UNEXERCISED（`goracle judge` では UNVERIFIABLE）になります。誤りを隠すことはあっても、誤りを作ることはありません（[goracle の README](../test_codes/_gt/oracle/README.md#知られた限界)）。
 - **cgo は既定で解決しない。** `CGO_ENABLED=0` で読み込みます。`GO_BUILD_CGO=1` にすると go コマンドが gcc と pkg-config を実行します（[README](../README.md#設定リファレンス)）。cgo の呼び出しはモジュール `C` の `external` です。

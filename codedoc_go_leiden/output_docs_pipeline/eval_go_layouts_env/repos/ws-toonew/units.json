@@ -1,0 +1,60 @@
+{
+ "version": 1,
+ "repo": "ws-toonew",
+ "repo_root": "/home/admin/dev/code/codedoc_go_leiden/test_codes/go_layouts/ws-toonew",
+ "toolchain": "go1.27.2",
+ "builds": [
+  {
+   "id": "linux-amd64",
+   "goos": "linux",
+   "goarch": "amd64",
+   "tags": [],
+   "cgo": false,
+   "primary": true
+  }
+ ],
+ "mode": "download",
+ "module_source": "proxy",
+ "groups": [
+  {
+   "id": "ws0",
+   "kind": "workspace",
+   "dir": "/home/admin/dev/code/codedoc_go_leiden/output_docs_pipeline/eval_go_layouts_env/repos/ws-toonew/go/ws0",
+   "gowork": "/home/admin/dev/code/codedoc_go_leiden/output_docs_pipeline/eval_go_layouts_env/repos/ws-toonew/go/ws0/go.work",
+   "modfile": null,
+   "modules": [
+    "example.com/layouts/wstoonew/member"
+   ],
+   "vendor": false,
+   "degraded": false,
+   "status": "toolchain",
+   "pattern": "work",
+   "missing_modules": [],
+   "warnings": [
+    "go.work:1: \"go 1.28\" is newer than the toolchain go1.27.2 (GOTOOLCHAIN=local never downloads another), so the group's sites are unresolved (toolchain). Fix: set GO_TOOLCHAIN to a go >= 1.28 binary (`python -m graph_generator setup go` installs go1.27.2, which is older)"
+   ],
+   "source": "/home/admin/dev/code/codedoc_go_leiden/test_codes/go_layouts/ws-toonew/go.work",
+   "uses": [
+    "/home/admin/dev/code/codedoc_go_leiden/test_codes/go_layouts/ws-toonew/member"
+   ]
+  }
+ ],
+ "units": [
+  {
+   "key": "example.com/layouts/wstoonew/member",
+   "root": "member",
+   "go": "1.26",
+   "toolchain": null,
+   "group": "ws0",
+   "requires": [],
+   "replaces": [],
+   "in_repo_deps": [],
+   "vendor": false
+  }
+ ],
+ "peers": [],
+ "skipped": {},
+ "warnings": [
+  "group ws0: go.work:1: \"go 1.28\" is newer than the toolchain go1.27.2 (GOTOOLCHAIN=local never downloads another), so the group's sites are unresolved (toolchain). Fix: set GO_TOOLCHAIN to a go >= 1.28 binary (`python -m graph_generator setup go` installs go1.27.2, which is older)"
+ ]
+}

@@ -1,0 +1,23 @@
+{
+ "version": 1,
+ "repo": "nomodule",
+ "repo_root": "/home/admin/dev/code/codedoc_go_leiden/test_codes/go_layouts/nomodule",
+ "toolchain": "go1.27.2",
+ "builds": [
+  {
+   "id": "linux-amd64",
+   "goos": "linux",
+   "goarch": "amd64",
+   "tags": [],
+   "cgo": false,
+   "primary": true
+  }
+ ],
+ "mode": "offline",
+ "module_source": "none",
+ "groups": [],
+ "units": [],
+ "peers": [],
+ "skipped": {},
+ "warnings": []
+}

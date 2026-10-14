@@ -1,0 +1,11 @@
+{
+ "sha256": "eb784518f944b387b878131edd7b5d762bb55a39e80f580240f4aaa77f5484ee",
+ "context_hash": "64c0dbd42d656dfdcc3353631cce83d58c7ad582a66eb5f1f4fe3c6d5b929573",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "このファイルは、レジストリパッケージの初期化時にデフォルトの関数を登録するためのものです。パッケージのロード時に自動的に実行され、共通で利用する関数をレジストリに登録します。",
+ "nodes": {
+  "init#1": "パッケージの初期化時に自動的に呼び出され、文字列の前後から空白を削除する `strings.TrimSpace` 関数を「trim」という名前でレジストリに登録します。"
+ }
+}

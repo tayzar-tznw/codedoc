@@ -1,0 +1,6 @@
+{"edge_id": "a_d0ea3cf4235e84c7", "caller_method": "a_c70af0ce1ab9c76d", "callee_method": "a_182b2c869d7d0934", "callee_name": "Info", "resolution": "types", "site_kind": "call", "call_line": 18}
+{"edge_id": "a_a2781071cf8236e0", "caller_method": "a_7a51a8a57fcb101c", "callee_method": "a_83f4406cf5397c28", "callee_name": "NewOrderService", "resolution": "types", "site_kind": "call", "call_line": 12}
+{"edge_id": "a_e165702a2effc1f4", "caller_method": "a_7a51a8a57fcb101c", "callee_method": "a_3cf670b087e8c25d", "callee_name": "Total", "resolution": "types", "site_kind": "call", "call_line": 13}
+{"edge_id": "a_798088ca777da596", "caller_method": "a_7a51a8a57fcb101c", "callee_method": "a_3247b7088c145776", "callee_name": "Stamp", "resolution": "types", "site_kind": "call", "call_line": 14}
+{"edge_id": "a_5d02c27a056d0e2d", "caller_method": "a_7a51a8a57fcb101c", "callee_method": "a_836db2cf08ecf887", "callee_name": "Default", "resolution": "types", "site_kind": "call", "call_line": 14}
+{"edge_id": "a_6705b12cc9643543", "caller_method": "a_7a51a8a57fcb101c", "callee_method": "a_c70af0ce1ab9c76d", "callee_name": "Run", "resolution": "types", "site_kind": "call", "call_line": 15}

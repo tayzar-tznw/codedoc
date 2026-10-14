@@ -1,0 +1,2 @@
+{"package_id": "a_bb89f063ca39ab6e", "import_path": "example.com/layouts/cgo", "name": "main", "directory": "", "module": "example.com/layouts/cgo", "origin": "command", "file_count": 1, "summary": "", "repo": "cgo"}
+{"package_id": "a_f0fac2c804aba553", "import_path": "example.com/layouts/cgo/native", "name": "native", "directory": "native", "module": "example.com/layouts/cgo", "origin": "package", "file_count": 3, "summary": "", "repo": "cgo"}

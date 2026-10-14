@@ -1,0 +1,13 @@
+{
+ "sha256": "4858298f9c8c0f1c69bd76fb3c60aab63206b40a6466ad9ed4314b164ad81c0f",
+ "context_hash": "60fa0ac7dca3cad98afa7093fd7974cd32873e84684715045904ab4a64bfbc23",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "このファイルは、負荷情報を追跡するための Tracker 構造体とその関連機能を提供します。サードパーティの uuidlite.Sequence を埋め込むことで、識別やシーケンス管理の機能を持たせつつ、負荷データの保持と取得を可能にしています。",
+ "nodes": {
+  "Tracker": "uuidlite.Sequence を埋め込み、負荷（load）を表す浮動小数点数データを保持する構造体です。",
+  "NewTracker": "指定された負荷の値で初期化した Tracker のインスタンスを生成して返すコンストラクタ関数です。",
+  "Tracker.Get": "Tracker が保持している現在の負荷（load）の値を返すゲッターメソッドです。"
+ }
+}

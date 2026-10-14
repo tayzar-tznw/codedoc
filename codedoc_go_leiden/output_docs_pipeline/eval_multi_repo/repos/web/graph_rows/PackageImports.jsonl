@@ -1,0 +1,3 @@
+{"edge_id": "a_8c9cbc95fffc67af", "source_file": "a_4ab22d6d2069efd8", "target_package": "a_d45874ceaaae7ec5", "import_path": "example.com/iryo/web/checks", "alias": "", "kind": "normal"}
+{"edge_id": "a_f6218c8886a07693", "source_file": "a_4ab22d6d2069efd8", "target_package": "a_3a4ba89e59ad481d", "import_path": "example.com/iryo/web/clock", "alias": "", "kind": "normal"}
+{"edge_id": "a_a15dee91cd2c8d57", "source_file": "a_4ab22d6d2069efd8", "target_package": "a_f1aafe5357018122", "import_path": "example.com/iryo/web/orders", "alias": "", "kind": "normal"}

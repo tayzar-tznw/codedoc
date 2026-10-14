@@ -1,0 +1,2 @@
+{"edge_id": "a_8f0f4bbbe4d44fdc", "source_file": "a_25c1de579dd65f40", "target_package": "a_105aa05e1f842d87", "import_path": "example.com/layouts/symlinks/a", "alias": "ka", "kind": "normal"}
+{"edge_id": "a_468ca72eecb9f4eb", "source_file": "a_25c1de579dd65f40", "target_package": "a_0e705e3a3175f2fe", "import_path": "example.com/layouts/symlinks/b", "alias": "kb", "kind": "normal"}

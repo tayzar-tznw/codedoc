@@ -1,0 +1,283 @@
+{
+ "pages": {
+  "a_0d8f96841c28344b": {
+   "grounding": {
+    "checked": 133,
+    "found": 133,
+    "missing": [],
+    "missing_count": 0,
+    "rate": 1.0,
+    "skipped": 3
+   },
+   "key": "2a44e212c97dc1e0e817f8b97de046678d30e42c6a4c421172c64533d1bb77fb",
+   "scaffold_problems": []
+  },
+  "a_1738496b3b58e874": {
+   "grounding": {
+    "checked": 152,
+    "found": 151,
+    "missing": [
+     "NormalizeHook"
+    ],
+    "missing_count": 1,
+    "rate": 0.993421052631579,
+    "skipped": 0
+   },
+   "key": "c36454d59f205614291bf24f2a5daf991b9e9fc951ba9ea2c843dd650a530aba",
+   "scaffold_problems": []
+  },
+  "a_2a0cee07421fc722": {
+   "grounding": {
+    "checked": 49,
+    "found": 49,
+    "missing": [],
+    "missing_count": 0,
+    "rate": 1.0,
+    "skipped": 2
+   },
+   "key": "3c94b66d72563cefb766a002401398f7bca9dcbff1013eee07b904eb5c1821b7",
+   "scaffold_problems": []
+  },
+  "a_376f148fea6aff0c": {
+   "grounding": {
+    "checked": 88,
+    "found": 88,
+    "missing": [],
+    "missing_count": 0,
+    "rate": 1.0,
+    "skipped": 0
+   },
+   "key": "314eea86ad1f47631cfc5132fab4866d2154eb1e2762fc9dbf4de80d649ff9a0",
+   "scaffold_problems": []
+  },
+  "a_3fb0d4b35916cf7a": {
+   "grounding": {
+    "checked": 34,
+    "found": 34,
+    "missing": [],
+    "missing_count": 0,
+    "rate": 1.0,
+    "skipped": 0
+   },
+   "key": "d879e247fc0f5a2250877fcf3995b3c15822eb5bbef40802aab70eb9fddc53dc",
+   "scaffold_problems": []
+  },
+  "a_49c810a336d5cc10": {
+   "grounding": {
+    "checked": 192,
+    "found": 191,
+    "missing": [
+     "io.Writer"
+    ],
+    "missing_count": 1,
+    "rate": 0.9947916666666666,
+    "skipped": 6
+   },
+   "key": "923201442fb0e921925357a3b11bfbf31491ec22499162de9060aab0350aacfa",
+   "scaffold_problems": []
+  },
+  "a_4d1ae2ef40a31682": {
+   "grounding": {
+    "checked": 59,
+    "found": 58,
+    "missing": [
+     "Reason"
+    ],
+    "missing_count": 1,
+    "rate": 0.9830508474576272,
+    "skipped": 2
+   },
+   "key": "03b841a784fe6fdb471a731e23d33d1dc9abe61bd7fa94695ef6e1b2f94cf882",
+   "scaffold_problems": []
+  },
+  "a_520a5707b2e29493": {
+   "grounding": {
+    "checked": 102,
+    "found": 102,
+    "missing": [],
+    "missing_count": 0,
+    "rate": 1.0,
+    "skipped": 3
+   },
+   "key": "8ae5c8e966ff0b0a1908d61f0c67c6fbf0d0755a980f169bf1a7d9e671a07945",
+   "scaffold_problems": []
+  },
+  "a_5deaf8f3d003e71f": {
+   "grounding": {
+    "checked": 59,
+    "found": 57,
+    "missing": [
+     "io.Writer"
+    ],
+    "missing_count": 2,
+    "rate": 0.9661016949152542,
+    "skipped": 8
+   },
+   "key": "3d10c9ef2ebe0f823de763545024addec0449e9c2e9f9c74490a62b671d85c57",
+   "scaffold_problems": []
+  },
+  "a_6a7d483053d7ed2a": {
+   "grounding": {
+    "checked": 91,
+    "found": 91,
+    "missing": [],
+    "missing_count": 0,
+    "rate": 1.0,
+    "skipped": 0
+   },
+   "key": "9594f44865edd815cb4c43aae6f0002ff3a54914be6e2cf499446f7e3fbd0f25",
+   "scaffold_problems": []
+  },
+  "a_7c45b91ea0621d4c": {
+   "grounding": {
+    "checked": 77,
+    "found": 77,
+    "missing": [],
+    "missing_count": 0,
+    "rate": 1.0,
+    "skipped": 0
+   },
+   "key": "e0e36a85e7f011f2db90fdada2c8f9ade56e3fd0e408cc98718cb2dcc006896d",
+   "scaffold_problems": []
+  },
+  "a_7ea6eec81c4097c0": {
+   "grounding": {
+    "checked": 115,
+    "found": 115,
+    "missing": [],
+    "missing_count": 0,
+    "rate": 1.0,
+    "skipped": 3
+   },
+   "key": "c6c4f5c888ebe9a3d81500b0e972505ce27b95f20f1c13b097501eb6abee7856",
+   "scaffold_problems": []
+  },
+  "a_8925c5d3209382e0": {
+   "grounding": {
+    "checked": 48,
+    "found": 48,
+    "missing": [],
+    "missing_count": 0,
+    "rate": 1.0,
+    "skipped": 0
+   },
+   "key": "79e6bfcfa21d8758601d8918301cd825baaa961216b37327cb758b3d0d443cc2",
+   "scaffold_problems": []
+  },
+  "a_9763f36d506a05e4": {
+   "grounding": {
+    "checked": 17,
+    "found": 17,
+    "missing": [],
+    "missing_count": 0,
+    "rate": 1.0,
+    "skipped": 0
+   },
+   "key": "bf7a95d66a55cb288ec45faa8c182cece2f403dbb1279190b88c9356265f5075",
+   "scaffold_problems": []
+  },
+  "a_ad7945a402dbd49b": {
+   "grounding": {
+    "checked": 45,
+    "found": 45,
+    "missing": [],
+    "missing_count": 0,
+    "rate": 1.0,
+    "skipped": 0
+   },
+   "key": "0c0147af2e21be34ede361e583e59aeb1d199de9318ff87f41c20d4cd08cb9c4",
+   "scaffold_problems": []
+  },
+  "a_bc867d61e69ad131": {
+   "grounding": {
+    "checked": 31,
+    "found": 31,
+    "missing": [],
+    "missing_count": 0,
+    "rate": 1.0,
+    "skipped": 0
+   },
+   "key": "1975b02fc48026cd1c2eaadc5782cdbaa65bfaf6c767d9ac7e365986cc99c478",
+   "scaffold_problems": []
+  },
+  "a_c3e096abc801b97a": {
+   "grounding": {
+    "checked": 128,
+    "found": 125,
+    "missing": [
+     "uuidlite",
+     "uuidlite.Sequence"
+    ],
+    "missing_count": 3,
+    "rate": 0.9765625,
+    "skipped": 2
+   },
+   "key": "3de1a6d0a597588584250e9ef087b7314a2c4caf8322218315a084689364018b",
+   "scaffold_problems": []
+  },
+  "a_c7003552b35a3101": {
+   "grounding": {
+    "checked": 22,
+    "found": 22,
+    "missing": [],
+    "missing_count": 0,
+    "rate": 1.0,
+    "skipped": 3
+   },
+   "key": "4ee310857e98d9013ab1d1cd8c1164add6e7f93d6ddb7366d4892f8cbf5f83d6",
+   "scaffold_problems": []
+  },
+  "a_e020a32d8a86cb8e": {
+   "grounding": {
+    "checked": 81,
+    "found": 81,
+    "missing": [],
+    "missing_count": 0,
+    "rate": 1.0,
+    "skipped": 0
+   },
+   "key": "3fab1fc31dca4f08135e99e8f798032bef1fa79b1634f1b276064ce9b6498c1d",
+   "scaffold_problems": []
+  },
+  "a_ed07f018f75ee88f": {
+   "grounding": {
+    "checked": 119,
+    "found": 115,
+    "missing": [
+     "uuidlite",
+     "uuidlite.Sequence"
+    ],
+    "missing_count": 4,
+    "rate": 0.9663865546218487,
+    "skipped": 5
+   },
+   "key": "01a0d5b336e7111fa7252d94a634be89c577830384f0374b6bd1cc0b7edcc4de",
+   "scaffold_problems": []
+  },
+  "a_f613a871aeec0f4a": {
+   "grounding": {
+    "checked": 33,
+    "found": 33,
+    "missing": [],
+    "missing_count": 0,
+    "rate": 1.0,
+    "skipped": 0
+   },
+   "key": "76534087154bca05e1b3fc0d4f05b6126aaf08e2d4f93ab1efbf755ad7fcdb90",
+   "scaffold_problems": []
+  },
+  "a_fd3c1c61cf0ddead": {
+   "grounding": {
+    "checked": 31,
+    "found": 31,
+    "missing": [],
+    "missing_count": 0,
+    "rate": 1.0,
+    "skipped": 1
+   },
+   "key": "e94fcdcc7b22a55b84e61924fc819b30e8eecb405cd6a65159d7c4203ff5fdb3",
+   "scaffold_problems": []
+  }
+ },
+ "version": 1
+}

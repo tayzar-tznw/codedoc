@@ -1,0 +1,99 @@
+{
+ "version": 1,
+ "repo": "replace-in",
+ "repo_root": "/home/admin/dev/code/codedoc_go_leiden/test_codes/go_layouts/replace-in",
+ "toolchain": "go1.27.2",
+ "builds": [
+  {
+   "id": "linux-amd64",
+   "goos": "linux",
+   "goarch": "amd64",
+   "tags": [],
+   "cgo": false,
+   "primary": true
+  }
+ ],
+ "mode": "download",
+ "module_source": "proxy",
+ "groups": [
+  {
+   "id": "m0",
+   "kind": "module",
+   "dir": "/home/admin/dev/code/codedoc_go_leiden/test_codes/go_layouts/replace-in/app",
+   "gowork": null,
+   "modfile": "/home/admin/dev/code/codedoc_go_leiden/output_docs_pipeline/eval_go_layouts_env/repos/replace-in/go/m0/go.mod",
+   "modules": [
+    "example.com/layouts/replacein"
+   ],
+   "vendor": false,
+   "degraded": false,
+   "status": "ok",
+   "pattern": "./...",
+   "missing_modules": [],
+   "warnings": [],
+   "source": "/home/admin/dev/code/codedoc_go_leiden/test_codes/go_layouts/replace-in/app/go.mod",
+   "uses": []
+  },
+  {
+   "id": "m1",
+   "kind": "module",
+   "dir": "/home/admin/dev/code/codedoc_go_leiden/test_codes/go_layouts/replace-in/common",
+   "gowork": null,
+   "modfile": "/home/admin/dev/code/codedoc_go_leiden/output_docs_pipeline/eval_go_layouts_env/repos/replace-in/go/m1/go.mod",
+   "modules": [
+    "example.com/layouts/common"
+   ],
+   "vendor": false,
+   "degraded": false,
+   "status": "ok",
+   "pattern": "./...",
+   "missing_modules": [],
+   "warnings": [],
+   "source": "/home/admin/dev/code/codedoc_go_leiden/test_codes/go_layouts/replace-in/common/go.mod",
+   "uses": []
+  }
+ ],
+ "units": [
+  {
+   "key": "example.com/layouts/replacein",
+   "root": "app",
+   "go": "1.26",
+   "toolchain": null,
+   "group": "m0",
+   "requires": [
+    {
+     "path": "example.com/layouts/common",
+     "version": "v0.0.0",
+     "indirect": false
+    }
+   ],
+   "replaces": [
+    {
+     "old": "example.com/layouts/common",
+     "old_version": "",
+     "new": "/home/admin/dev/code/codedoc_go_leiden/test_codes/go_layouts/replace-in/common",
+     "new_version": "",
+     "local": true
+    }
+   ],
+   "in_repo_deps": [
+    "example.com/layouts/common"
+   ],
+   "vendor": false
+  },
+  {
+   "key": "example.com/layouts/common",
+   "root": "common",
+   "go": "1.26",
+   "toolchain": null,
+   "group": "m1",
+   "requires": [],
+   "replaces": [],
+   "in_repo_deps": [],
+   "vendor": false
+  }
+ ],
+ "peers": [],
+ "skipped": {},
+ "warnings": []
+}

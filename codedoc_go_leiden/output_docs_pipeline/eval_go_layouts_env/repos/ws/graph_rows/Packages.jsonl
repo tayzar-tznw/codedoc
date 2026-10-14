@@ -1,0 +1,3 @@
+{"package_id": "a_710db3a0b20374d5", "import_path": "example.com/layouts/ws/app", "name": "main", "directory": "app", "module": "example.com/layouts/ws/app", "origin": "command", "file_count": 2, "summary": "", "repo": "ws"}
+{"package_id": "a_cf616a07a4e3a0d1", "import_path": "example.com/layouts/ws/extra", "name": "main", "directory": "extra", "module": "example.com/layouts/ws/extra", "origin": "command", "file_count": 1, "summary": "", "repo": "ws"}
+{"package_id": "a_5543ab82720c3876", "import_path": "example.com/layouts/ws/lib/tally", "name": "tally", "directory": "lib/tally", "module": "example.com/layouts/ws/lib", "origin": "package", "file_count": 2, "summary": "", "repo": "ws"}

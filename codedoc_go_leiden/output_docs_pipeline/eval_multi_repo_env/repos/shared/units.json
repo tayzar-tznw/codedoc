@@ -1,0 +1,120 @@
+{
+ "version": 1,
+ "repo": "shared",
+ "repo_root": "/home/admin/dev/code/codedoc_go_leiden/test_codes/multi_repo/shared",
+ "toolchain": "go1.27.2",
+ "builds": [
+  {
+   "id": "linux-amd64",
+   "goos": "linux",
+   "goarch": "amd64",
+   "tags": [],
+   "cgo": false,
+   "primary": true
+  }
+ ],
+ "mode": "download",
+ "module_source": "proxy",
+ "groups": [
+  {
+   "id": "m0",
+   "kind": "module",
+   "dir": "/home/admin/dev/code/codedoc_go_leiden/test_codes/multi_repo/shared",
+   "gowork": null,
+   "modfile": "/home/admin/dev/code/codedoc_go_leiden/output_docs_pipeline/eval_multi_repo_env/repos/shared/go/m0/go.mod",
+   "modules": [
+    "example.com/iryo/shared"
+   ],
+   "vendor": false,
+   "degraded": false,
+   "status": "ok",
+   "pattern": "./...",
+   "missing_modules": [],
+   "warnings": [],
+   "source": "/home/admin/dev/code/codedoc_go_leiden/test_codes/multi_repo/shared/go.mod",
+   "uses": []
+  },
+  {
+   "id": "m1",
+   "kind": "module",
+   "dir": "/home/admin/dev/code/codedoc_go_leiden/test_codes/multi_repo/shared/textkit",
+   "gowork": null,
+   "modfile": "/home/admin/dev/code/codedoc_go_leiden/output_docs_pipeline/eval_multi_repo_env/repos/shared/go/m1/go.mod",
+   "modules": [
+    "example.com/iryo/textkit"
+   ],
+   "vendor": false,
+   "degraded": false,
+   "status": "ok",
+   "pattern": "./...",
+   "missing_modules": [],
+   "warnings": [],
+   "source": "/home/admin/dev/code/codedoc_go_leiden/test_codes/multi_repo/shared/textkit/go.mod",
+   "uses": []
+  }
+ ],
+ "units": [
+  {
+   "key": "example.com/iryo/shared",
+   "root": "",
+   "go": "1.26",
+   "toolchain": null,
+   "group": "m0",
+   "requires": [],
+   "replaces": [],
+   "in_repo_deps": [],
+   "vendor": false
+  },
+  {
+   "key": "example.com/iryo/textkit",
+   "root": "textkit",
+   "go": "1.26",
+   "toolchain": null,
+   "group": "m1",
+   "requires": [],
+   "replaces": [],
+   "in_repo_deps": [],
+   "vendor": false
+  }
+ ],
+ "peers": [
+  {
+   "name": "web",
+   "root": "/home/admin/dev/code/codedoc_go_leiden/test_codes/multi_repo/web",
+   "units": [
+    {
+     "key": "example.com/iryo/web",
+     "root": ""
+    }
+   ]
+  },
+  {
+   "name": "api",
+   "root": "/home/admin/dev/code/codedoc_go_leiden/test_codes/multi_repo/api",
+   "units": [
+    {
+     "key": "example.com/iryo/textkit",
+     "root": "forks/textkit"
+    },
+    {
+     "key": "example.com/iryo/api/legacy",
+     "root": "legacy"
+    },
+    {
+     "key": "example.com/iryo/api/notify",
+     "root": "notify"
+    },
+    {
+     "key": "example.com/iryo/api/service",
+     "root": "service"
+    },
+    {
+     "key": "example.com/iryo/api/tools",
+     "root": "tools"
+    }
+   ]
+  }
+ ],
+ "skipped": {},
+ "warnings": []
+}

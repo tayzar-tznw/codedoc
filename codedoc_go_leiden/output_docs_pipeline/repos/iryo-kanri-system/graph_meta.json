@@ -1,0 +1,1 @@
+{"repo": "iryo-kanri-system", "target_dir": "/home/admin/dev/code/codedoc_go_leiden/test_codes/iryo-kanri-system", "id_scheme": 1, "id_prefix": "a", "spanner": {"instance": "codedoc", "database": "codedoc-go-leiden", "graph": "code_graph_a", "id_prefix": "a"}}

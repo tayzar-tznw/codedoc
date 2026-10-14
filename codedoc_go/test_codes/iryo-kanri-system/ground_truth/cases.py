@@ -214,15 +214,18 @@ CASES += [
     case("EMB-012", AC, "urgent.BasePolicy.Fee(10000)", "Fee", "call", resolved(BASE_FEE),
          "埋め込みフィールドを明示した選択は隠された側を呼ぶ", distractors=[URGENT_FEE]),
     case("EMB-013", "reporting/trail.go", 'return t.Write(t.Name + ": " + msg)', "Write", "call",
-         resolved(SINK_WRITE, candidates=[MEMSINK_WRITE, SINK_WRITE], runtime=[MEMSINK_WRITE], open_world=False),
+         resolved(SINK_WRITE, candidates=[MEMSINK_WRITE, SINK_WRITE], runtime=[MEMSINK_WRITE], open_world=True),
          "構造体 AuditTrail に埋め込んだインタフェース Sink 経由の呼び出しはインタフェース呼び出し。"
          "候補は Sink の実装: *MemorySink と、埋め込みインタフェースで Sink を満たす AuditTrail (二段目のディスパッチ、"
-         "候補は Sink.Write 自身)。デモでは *MemorySink が入る"),
+         "候補は Sink.Write 自身)。デモでは *MemorySink が入る。admin-console の go.mod の replace がこのモジュールの"
+         "ディレクトリを別のグループでもビルドに入れるので、open_world は true (spec R54)"),
     case("EMB-014", "reporting/trail.go", 'return j.Write("[公開] " + msg)', "Write", "call",
          resolved(m("Journal.Write", MRP, "reporting/trail.go"), candidates=[MEMSINK_WRITE, SINK_WRITE],
-                  runtime=[MEMSINK_WRITE], open_world=False),
+                  runtime=[MEMSINK_WRITE], open_world=True),
          "Journal を満たす AuditTrail は自分の埋め込みインタフェース Sink で Write を得る (二段目のディスパッチ、"
-         "候補は Sink.Write)。デモは AuditTrail を渡し、その Sink が *MemorySink なので実行時は MemorySink.Write"),
+         "候補は Sink.Write)。デモは AuditTrail を渡し、その Sink が *MemorySink なので実行時は MemorySink.Write。"
+         "admin-console の go.mod の replace がこのモジュールのディレクトリを別のグループでもビルドに入れるので、"
+         "open_world は true (spec R54)"),
     case("EMB-015", REP, "list.Put(7, pt)", "Put", "call", resolved(MS_PUT),
          "ジェネリック型の具体化 store.MemoryStore[patient.Patient] を埋め込み、ポインタメソッド Put が昇格する",
          distractors=[CC_PUT]),
@@ -234,16 +237,21 @@ CASES += [
 NT = "kernel/notify/notify.go"
 CASES += [
     case("IFC-001", NT, "out = append(out, n.Send(msg))", "Send", "call",
-         resolved(NOTIFIER_SEND, candidates=[MAIL_SEND, SMS_SEND], runtime=[MAIL_SEND, SMS_SEND], open_world=False),
-         "実装が二つ (共通基盤の MailNotifier と予約モジュールの *SmsNotifier)。受付デモは両方を渡す"),
+         resolved(NOTIFIER_SEND, candidates=[MAIL_SEND, SMS_SEND], runtime=[MAIL_SEND, SMS_SEND], open_world=True),
+         "実装が二つ (共通基盤の MailNotifier と予約モジュールの *SmsNotifier)。受付デモは両方を渡す。"
+         "admin-console の go.mod の replace がこのモジュールのディレクトリを別のグループでもビルドに入れるので、"
+         "open_world は true (spec R54)"),
     case("IFC-002", NT, "line := tn.Send(msg)", "Send", "call",
-         resolved(NOTIFIER_SEND, candidates=[SMS_SEND], runtime=[SMS_SEND], open_world=False),
+         resolved(NOTIFIER_SEND, candidates=[SMS_SEND], runtime=[SMS_SEND], open_world=True),
          "TrackedNotifier は Notifier を埋め込む。Send を宣言するのは埋め込まれた Notifier。候補は受け手の静的型 "
-         "TrackedNotifier の実装 (*SmsNotifier だけ。MailNotifier は Sent を持たない)", distractors=[MAIL_SEND]),
+         "TrackedNotifier の実装 (*SmsNotifier だけ。MailNotifier は Sent を持たない)。admin-console の go.mod の "
+         "replace がこのモジュールのディレクトリを別のグループでもビルドに入れるので、open_world は true (spec R54)",
+         distractors=[MAIL_SEND]),
     case("IFC-003", NT, "itoa(tn.Sent())", "Sent", "call",
          resolved(m("TrackedNotifier.Sent", MK, NT), candidates=[m("SmsNotifier.Sent", MS, "scheduling/sms.go")],
-                  runtime=[m("SmsNotifier.Sent", MS, "scheduling/sms.go")], open_world=False),
-         "TrackedNotifier 自身が宣言する Sent。実装は一つでも格上げしない"),
+                  runtime=[m("SmsNotifier.Sent", MS, "scheduling/sms.go")], open_world=True),
+         "TrackedNotifier 自身が宣言する Sent。実装は一つでも格上げしない。admin-console の go.mod の replace が"
+         "このモジュールのディレクトリを別のグループでもビルドに入れるので、open_world は true (spec R54)"),
     case("IFC-004", "kernel/audit/audit.go", 'l.Printf("監査 %s 件数=%d", event, count)', "Printf", "call",
          resolved(m("Logger.Printf", MK, "kernel/audit/audit.go"),
                   candidates=[m("ConsoleLogger.Printf", MK, "kernel/audit/audit.go")], open_world=True),
@@ -255,9 +263,11 @@ CASES += [
                               m("fakeClock.Now", MK, "kernel/clock/clock_test.go")],
                   runtime=[m("fakeClock.Now", MK, "kernel/clock/clock_test.go"),
                            m("OfficeClock.Now", MK, "kernel/clock/clock.go")],
-                  open_world=False),
+                  open_world=True),
          "テストだけの偽実装 fakeClock (clock_test.go) も候補 (test_only)。kernel のテストは TestStamp で fakeClock、"
-         "TestLabel で OfficeClock を渡す。受付デモも受付フローの v.Dated から OfficeClock で到達する", entry=KT),
+         "TestLabel で OfficeClock を渡す。受付デモも受付フローの v.Dated から OfficeClock で到達する。admin-console の "
+         "go.mod の replace がこのモジュールのディレクトリを別のグループでもビルドに入れるので、open_world は true "
+         "(spec R54)", entry=KT),
     case("IFC-006", "interop/exporters/exporters.go", "out = append(out, e.Export(rows))", "Export", "call",
          resolved(m("Exporter.Export", MIO, "interop/exporters/exporters.go"),
                   candidates=[m("CsvExporter.Export", MIO, "interop/exporters/exporters.go"),
@@ -281,8 +291,10 @@ CASES += [
     case("IFC-009", "pharmacy/dose.go", "out = append(out, s.Stamp(l))", "Stamp", "call",
          resolved(m("Stamper.Stamp", MPH, "pharmacy/dose.go"),
                   candidates=[m("RubberStamp.Stamp", MPH, "pharmacy/dose.go")],
-                  runtime=[m("RubberStamp.Stamp", MPH, "pharmacy/dose.go")], open_world=False),
-         "リポジトリ内の実装が一つでも RubberStamp.Stamp の MethodCalls には格上げしない (Go は暗黙の実装、spec §5.4)"),
+                  runtime=[m("RubberStamp.Stamp", MPH, "pharmacy/dose.go")], open_world=True),
+         "リポジトリ内の実装が一つでも RubberStamp.Stamp の MethodCalls には格上げしない (Go は暗黙の実装、spec §5.4)。"
+         "admin-console の go.mod の replace がこのモジュールのディレクトリを別のグループでもビルドに入れるので、"
+         "open_world は true (spec R54)"),
     case("IFC-010", AC, "return p.Fee(amount)", "Fee", "call",
          resolved(m("PaymentPolicy.Fee", MK, "kernel/policy/policy.go"), candidates=[BASE_FEE, URGENT_FEE],
                   runtime=[BASE_FEE, URGENT_FEE], open_world=False),
@@ -353,9 +365,11 @@ CASES += [
          distractors=[KLOG_NEW, PLOG_NEW]),
     case("GEN-006", "domain/patient/describe.go", "out = append(out, it.Describe())", "Describe", "call",
          resolved(m("Describer.Describe", MD, "domain/patient/describe.go"),
-                  candidates=[ENTITY_DESCRIBE, PATIENT_DESCRIBE], runtime=[PATIENT_DESCRIBE], open_world=False),
+                  candidates=[ENTITY_DESCRIBE, PATIENT_DESCRIBE], runtime=[PATIENT_DESCRIBE], open_world=True),
          "型パラメータの制約 Describer のメソッド (typeparam)。候補は Describer を満たす型のメソッドで、"
-         "AuditedEntity と Inpatient と visit.Visit は昇格で満たす。帳票フローは Inpatient で具体化する"),
+         "AuditedEntity と Inpatient と visit.Visit は昇格で満たす。帳票フローは Inpatient で具体化する。"
+         "admin-console の go.mod の replace がこのモジュールのディレクトリを別のグループでもビルドに入れるので、"
+         "open_world は true (spec R54)"),
     case("GEN-007", REP, "patient.DescribeAll(inpatients)", "DescribeAll", "call",
          resolved(m("DescribeAll", MD, "domain/patient/describe.go")), "制約付き型パラメータの推論"),
     case("GEN-008", "data/store/store.go", "out = append(out, f(x))", "f", "call",

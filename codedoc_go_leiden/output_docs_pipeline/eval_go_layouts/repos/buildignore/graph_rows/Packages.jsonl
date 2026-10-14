@@ -1,0 +1,3 @@
+{"package_id": "a_488a03f6fa24b10a", "import_path": "example.com/layouts/buildignore", "name": "main", "directory": "", "module": "example.com/layouts/buildignore", "origin": "command", "file_count": 1, "summary": "", "repo": "buildignore"}
+{"package_id": "a_47b39dacb3b4ff40", "import_path": "example.com/layouts/buildignore", "name": "tool", "directory": "", "module": "example.com/layouts/buildignore", "origin": "package", "file_count": 1, "summary": "", "repo": "buildignore"}
+{"package_id": "a_9ace660e7c2acbea", "import_path": "example.com/layouts/buildignore/cmd/run", "name": "main", "directory": "cmd/run", "module": "example.com/layouts/buildignore", "origin": "command", "file_count": 1, "summary": "", "repo": "buildignore"}

@@ -1,0 +1,259 @@
+{
+  "version": 1,
+  "fixture": "iryo-kanri-system",
+  "language": "ja",
+  "questions": [
+    {
+      "id": "QA-01",
+      "question": "受付の振り分けフロー dispatch.Run の中で go 文に渡した関数リテラルは、独立したノードとして存在しますか？",
+      "check": {"type": "node_exists", "subject": "example.com/iryo/reception-desk/internal/flows/dispatch.Run.func3"},
+      "expected": ["exists"],
+      "match": "equals"
+    },
+    {
+      "id": "QA-02",
+      "question": "registry パッケージのパッケージ変数 normalizer に入れた関数リテラルは、ノードとして存在しますか？",
+      "check": {"type": "node_exists", "subject": "example.com/iryo/kernel/registry.<init>.func1"},
+      "expected": ["exists"],
+      "match": "equals"
+    },
+    {
+      "id": "QA-03",
+      "question": "会計の ReceiptFormatter (example.com/iryo/billing/text) はどのファイルで定義されていますか？同名の型が旧レセコンと外部連携にもあります。",
+      "check": {"type": "class_file", "subject": "example.com/iryo/billing/text.ReceiptFormatter"},
+      "expected": ["billing/text/receipt.go"],
+      "match": "equals"
+    },
+    {
+      "id": "QA-04",
+      "question": "FeeCalculator のメソッドをすべて挙げてください。コンストラクタ NewFeeCalculator はパッケージ関数です。",
+      "check": {"type": "methods_of", "subject": "example.com/iryo/billing.FeeCalculator"},
+      "expected": ["Calculate", "Scaled"],
+      "match": "exact_set"
+    },
+    {
+      "id": "QA-05",
+      "question": "受付の日次締め closing.Run が呼ぶリポジトリ内の関数はどれですか？",
+      "check": {"type": "callees_of", "subject": "example.com/iryo/reception-desk/internal/flows/closing.Run"},
+      "expected": [
+        "example.com/iryo/billing/pointmath.ToYen",
+        "example.com/iryo/billing/validation.Validator.Validate",
+        "example.com/iryo/kernel/logging.Logger.Lines",
+        "example.com/iryo/kernel/logging.Logger.Log",
+        "example.com/iryo/kernel/logging.New"
+      ],
+      "match": "exact_set"
+    },
+    {
+      "id": "QA-06",
+      "question": "管理コンソールの日次バッチ batch.Run は、受付と同じ手続き行から、どの関数を呼んでいますか？",
+      "check": {"type": "callees_of", "subject": "example.com/iryo/admin-console/internal/batch.Run"},
+      "expected": [
+        "example.com/iryo/pharmacy/logging.Logger.Lines",
+        "example.com/iryo/pharmacy/logging.Logger.Log",
+        "example.com/iryo/pharmacy/logging.New",
+        "example.com/iryo/pharmacy/pointmath.ToYen",
+        "example.com/iryo/pharmacy/validation.Validator.Validate"
+      ],
+      "match": "exact_set"
+    },
+    {
+      "id": "QA-07",
+      "question": "薬局の Logger.Log を呼んでいる関数をすべて挙げてください。共通基盤の Logger.Log の呼び出し元が混ざってはいけません。",
+      "check": {"type": "callers_of", "subject": "example.com/iryo/pharmacy/logging.Logger.Log"},
+      "expected": [
+        "example.com/iryo/admin-console/internal/batch.Run",
+        "example.com/iryo/reception-desk/internal/flows/pharmacyflow.Run"
+      ],
+      "match": "exact_set"
+    },
+    {
+      "id": "QA-08",
+      "question": "共通基盤の Logger.Log の呼び出し元に、日次締め、患者リポジトリの検索、月報の描画、メソッド値の別名で呼ぶ振り分けフローは含まれますか？",
+      "check": {"type": "callers_of", "subject": "example.com/iryo/kernel/logging.Logger.Log"},
+      "expected": [
+        "example.com/iryo/data/repository.SqlPatientRepository.Find",
+        "example.com/iryo/reception-desk/internal/flows/closing.Run",
+        "example.com/iryo/reception-desk/internal/flows/dispatch.Run",
+        "example.com/iryo/reporting.MonthlyReport.Render"
+      ],
+      "match": "contains_all"
+    },
+    {
+      "id": "QA-09",
+      "question": "ExportAll が確定的に呼ぶメソッドはどれですか？インタフェースの呼び出しはインタフェースのメソッドへの辺になります。",
+      "check": {"type": "callees_of", "subject": "example.com/iryo/interop/exporters.ExportAll"},
+      "expected": ["example.com/iryo/interop/exporters.Exporter.Export"],
+      "match": "exact_set"
+    },
+    {
+      "id": "QA-10",
+      "question": "ExportAll から呼ばれる可能性のある実装はどれですか？",
+      "check": {"type": "possibly_callees_of", "subject": "example.com/iryo/interop/exporters.ExportAll"},
+      "expected": [
+        "example.com/iryo/interop/exporters.CsvExporter.Export",
+        "example.com/iryo/interop/exporters.XmlExporter.Export"
+      ],
+      "match": "exact_set"
+    },
+    {
+      "id": "QA-11",
+      "question": "監査の Record が確定的に呼ぶメソッドは何ですか？実行時の受け手は標準ライブラリの *log.Logger かもしれません。",
+      "check": {"type": "callees_of", "subject": "example.com/iryo/kernel/audit.Record"},
+      "expected": ["example.com/iryo/kernel/audit.Logger.Printf"],
+      "match": "exact_set"
+    },
+    {
+      "id": "QA-12",
+      "question": "監査の Record から呼ばれる可能性のあるリポジトリ内の実装はどれですか？",
+      "check": {"type": "possibly_callees_of", "subject": "example.com/iryo/kernel/audit.Record"},
+      "expected": ["example.com/iryo/kernel/audit.ConsoleLogger.Printf"],
+      "match": "exact_set"
+    },
+    {
+      "id": "QA-13",
+      "question": "通知インタフェース Notifier を実装している型をすべて挙げてください。予約モジュールの型も含みます。",
+      "check": {"type": "implementers_of", "subject": "example.com/iryo/kernel/notify.Notifier"},
+      "expected": [
+        "example.com/iryo/kernel/notify.MailNotifier",
+        "example.com/iryo/scheduling.SmsNotifier"
+      ],
+      "match": "exact_set"
+    },
+    {
+      "id": "QA-14",
+      "question": "入院患者 Inpatient が直接埋め込んでいる型はどれですか？",
+      "check": {"type": "embeds_of", "subject": "example.com/iryo/domain/patient.Inpatient"},
+      "expected": ["example.com/iryo/domain/patient.Patient"],
+      "match": "exact_set"
+    },
+    {
+      "id": "QA-15",
+      "question": "監査証跡 AuditTrail が埋め込んでいる型はどれですか？",
+      "check": {"type": "embeds_of", "subject": "example.com/iryo/reporting.AuditTrail"},
+      "expected": ["example.com/iryo/reporting.Sink"],
+      "match": "exact_set"
+    },
+    {
+      "id": "QA-16",
+      "question": "metrics.Count が本体のない宣言 bump を通して実際に呼ぶ関数はどれですか？",
+      "check": {"type": "callees_of", "subject": "example.com/iryo/kernel/metrics.Count"},
+      "expected": ["example.com/iryo/kernel/internal/tally.bump"],
+      "match": "exact_set"
+    },
+    {
+      "id": "QA-17",
+      "question": "薬局窓口フロー pharmacyflow.Run が呼ぶ、受付とは別のモジュールの関数をすべて挙げてください。",
+      "check": {"type": "cross_module_callees_of", "subject": "example.com/iryo/reception-desk/internal/flows/pharmacyflow.Run"},
+      "expected": [
+        "example.com/iryo/billing.FeeCalculator.Calculate",
+        "example.com/iryo/billing.NewFeeCalculator",
+        "example.com/iryo/billing/validation.Validator.Validate",
+        "example.com/iryo/kernel/logging.Logger.Lines",
+        "example.com/iryo/kernel/logging.Logger.Log",
+        "example.com/iryo/kernel/logging.New",
+        "example.com/iryo/legacy-claims.PointTable.Calculate",
+        "example.com/iryo/pharmacy.DoseCalculator.Calculate",
+        "example.com/iryo/pharmacy.StampAll",
+        "example.com/iryo/pharmacy/logging.Logger.Lines",
+        "example.com/iryo/pharmacy/logging.Logger.Log",
+        "example.com/iryo/pharmacy/logging.New",
+        "example.com/iryo/pharmacy/validation.Validator.Validate"
+      ],
+      "match": "exact_set"
+    },
+    {
+      "id": "QA-18",
+      "question": "管理コンソールの textreport.Line にリポジトリ内の呼び出し先はありますか？管理コンソールは go.work の外にあり、公開版の textfmt を使います。",
+      "check": {"type": "callees_of", "subject": "example.com/iryo/admin-console/internal/textreport.Line"},
+      "expected": [],
+      "match": "exact_set"
+    },
+    {
+      "id": "QA-19",
+      "question": "受付の textreport.Line (管理コンソールとバイト単位で同じファイル) が呼ぶリポジトリ内の関数はどれですか？",
+      "check": {"type": "callees_of", "subject": "example.com/iryo/reception-desk/internal/textreport.Line"},
+      "expected": ["example.com/thirdparty/textfmt.PadRight"],
+      "match": "exact_set"
+    },
+    {
+      "id": "QA-20",
+      "question": "makeBanner を呼んでいるのはどこですか？",
+      "check": {"type": "callers_of", "subject": "example.com/iryo/kernel/registry.makeBanner"},
+      "expected": ["example.com/iryo/kernel/registry.<init>"],
+      "match": "exact_set"
+    },
+    {
+      "id": "QA-21",
+      "question": "Register は registry.go の二つ目の init 関数から呼ばれていますか？",
+      "check": {"type": "callers_of", "subject": "example.com/iryo/kernel/registry.Register"},
+      "expected": ["example.com/iryo/kernel/registry.init#2"],
+      "match": "contains_all"
+    },
+    {
+      "id": "QA-22",
+      "question": "escalation.Evaluate の p.Level() は確定した呼び出しの辺になりますか？製品のパッケージとテスト変種で束縛先が違います。",
+      "check": {"type": "callees_of", "subject": "example.com/iryo/kernel/escalation.Evaluate"},
+      "expected": [],
+      "match": "exact_set"
+    },
+    {
+      "id": "QA-23",
+      "question": "escalation.Evaluate から呼ばれる可能性のあるメソッドはどれですか？",
+      "check": {"type": "possibly_callees_of", "subject": "example.com/iryo/kernel/escalation.Evaluate"},
+      "expected": [
+        "example.com/iryo/kernel/escalation.Policy.Level",
+        "example.com/iryo/kernel/escalation.rule.Level"
+      ],
+      "match": "exact_set"
+    },
+    {
+      "id": "QA-24",
+      "question": "無名インタフェースの Describe を呼ぶ describeAny から、確定した呼び出しの辺はありますか？",
+      "check": {"type": "callees_of", "subject": "example.com/iryo/reception-desk/internal/flows/checkin.describeAny"},
+      "expected": [],
+      "match": "exact_set"
+    },
+    {
+      "id": "QA-25",
+      "question": "旧レセコンの CodeLabel が呼ぶ関数はどれですか？呼び先は生成ファイルにあります。",
+      "check": {"type": "callees_of", "subject": "example.com/iryo/legacy-claims.CodeLabel"},
+      "expected": ["example.com/iryo/legacy-claims.LookupCode"],
+      "match": "exact_set"
+    },
+    {
+      "id": "QA-26",
+      "question": "引数検査の EnsurePositive は少なくとも 2 か所から呼ばれていますか？",
+      "check": {"type": "callers_of", "subject": "example.com/iryo/kernel/guard.EnsurePositive"},
+      "expected": [2],
+      "match": "count_at_least"
+    },
+    {
+      "id": "QA-27",
+      "question": "describeAny が無名インタフェース経由で呼ぶ可能性のあるメソッドはどれですか？",
+      "check": {"type": "possibly_callees_of", "subject": "example.com/iryo/reception-desk/internal/flows/checkin.describeAny"},
+      "expected": [
+        "example.com/iryo/domain/patient.Entity.Describe",
+        "example.com/iryo/domain/patient.Patient.Describe"
+      ],
+      "match": "exact_set"
+    },
+    {
+      "id": "QA-28",
+      "question": "インライン制約の型パラメータで Label を呼ぶ reporting.LabelAll から、確定した呼び出しの辺はありますか？",
+      "check": {"type": "callees_of", "subject": "example.com/iryo/reporting.LabelAll"},
+      "expected": [],
+      "match": "exact_set"
+    },
+    {
+      "id": "QA-29",
+      "question": "reporting.LabelAll から呼ばれる可能性のあるメソッドはどれですか？",
+      "check": {"type": "possibly_callees_of", "subject": "example.com/iryo/reporting.LabelAll"},
+      "expected": [
+        "example.com/iryo/kernel/policy.BasePolicy.Label",
+        "example.com/iryo/scheduling.Slot.Label"
+      ],
+      "match": "exact_set"
+    }
+  ]
+}

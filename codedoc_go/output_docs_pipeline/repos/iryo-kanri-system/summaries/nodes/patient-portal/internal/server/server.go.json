@@ -1,0 +1,17 @@
+{
+ "sha256": "6b04084d92be17f14cd14f26fe10d361d8429a2f9feccdaa4a95d010b9fdfa6c",
+ "context_hash": "35274d9d0634a56ed65ea450060cbe0e47eeb7337a071da236323d986f1b2f88",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "このファイルは、患者ポータル（Patient Portal）のWebサーバー機能を実装しています。予約管理や診療費計算などのドメインロジックをHTTPハンドラーとして公開し、ルーティングの設定やデモ実行用の関数を提供します。",
+ "nodes": {
+  "Portal": "予約管理（AppointmentBook）と診療費計算（FeeCalculator）の依存関係を保持する、患者ポータルサーバーのメイン構造体です。",
+  "NewPortal": "メール通知機能を設定し、予約管理と診療費計算のインスタンスを初期化したPortal構造体を生成するコンストラクタ関数です。",
+  "Portal.Routes": "HTTPリクエストのパス（/fees, /health, /appointments）とそれぞれのハンドラーメソッドをマッピングしたルーターを構築して返します。",
+  "Portal.handleFees": "診療費計算ロジックを呼び出し、計算された診察料をクライアントにレスポンスとして返すHTTPハンドラーです。",
+  "Portal.handleHealth": "サーバーのヘルスチェック用エンドポイントであり、ステータスが正常であることを示す 'ok' を返します。",
+  "Portal.handleAppointments": "クエリパラメータから患者名を取得して予約を実行し、予約時間と患者の情報をレスポンスとして返すHTTPハンドラーです。",
+  "Demo": "モックのHTTPリクエストを各エンドポイントに送信し、レスポンスを出力することで、患者ポータルの動作をシミュレートするデモ用関数です。"
+ }
+}

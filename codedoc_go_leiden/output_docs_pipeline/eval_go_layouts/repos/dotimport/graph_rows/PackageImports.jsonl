@@ -1,0 +1,2 @@
+{"edge_id": "a_029b7ec3b5883783", "source_file": "a_846d8dd5fc60abe2", "target_package": "a_4d56ffd2a861ceef", "import_path": "example.com/layouts/dotimport/other", "alias": "", "kind": "normal"}
+{"edge_id": "a_cb9382de4705b089", "source_file": "a_846d8dd5fc60abe2", "target_package": "a_6b1adb428290c789", "import_path": "example.com/layouts/dotimport/strutil", "alias": ".", "kind": "dot"}

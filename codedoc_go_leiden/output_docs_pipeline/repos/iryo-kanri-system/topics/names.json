@@ -1,0 +1,124 @@
+{
+ "names": {
+  "a_0d8f96841c28344b": {
+   "inherited_from": "a_0d8f96841c28344b",
+   "label_source": "inherited",
+   "name": "患者ポータルと帳票出力"
+  },
+  "a_1738496b3b58e874": {
+   "inherited_from": "a_1738496b3b58e874",
+   "label_source": "inherited",
+   "name": "患者受付と来院通知"
+  },
+  "a_2a0cee07421fc722": {
+   "inherited_from": "a_2a0cee07421fc722",
+   "label_source": "inherited",
+   "name": "メールとSMS通知送信"
+  },
+  "a_376f148fea6aff0c": {
+   "inherited_from": "a_376f148fea6aff0c",
+   "label_source": "inherited",
+   "name": "薬局調剤と処方監査"
+  },
+  "a_3fb0d4b35916cf7a": {
+   "inherited_from": "a_3fb0d4b35916cf7a",
+   "label_source": "inherited",
+   "name": "請求と返金の記録"
+  },
+  "a_49c810a336d5cc10": {
+   "inherited_from": "a_49c810a336d5cc10",
+   "label_source": "inherited",
+   "name": "薬局窓口と日次バッチ処理"
+  },
+  "a_4d1ae2ef40a31682": {
+   "inherited_from": "a_4d1ae2ef40a31682",
+   "label_source": "inherited",
+   "name": "患者情報と来院記録"
+  },
+  "a_520a5707b2e29493": {
+   "inherited_from": "a_520a5707b2e29493",
+   "label_source": "inherited",
+   "name": "管理コンソールと月報作成"
+  },
+  "a_5deaf8f3d003e71f": {
+   "inherited_from": "a_5deaf8f3d003e71f",
+   "label_source": "inherited",
+   "name": "受付日次締めと請求検証"
+  },
+  "a_6a7d483053d7ed2a": {
+   "inherited_from": "a_6a7d483053d7ed2a",
+   "label_source": "inherited",
+   "name": "診療費会計と領収書発行"
+  },
+  "a_7c45b91ea0621d4c": {
+   "inherited_from": "a_7c45b91ea0621d4c",
+   "label_source": "inherited",
+   "name": "テキストレポートの整形出力"
+  },
+  "a_7ea6eec81c4097c0": {
+   "inherited_from": "a_7ea6eec81c4097c0",
+   "label_source": "inherited",
+   "name": "帳票出力とデータ管理"
+  },
+  "a_8925c5d3209382e0": {
+   "inherited_from": "a_8925c5d3209382e0",
+   "label_source": "inherited",
+   "name": "患者受付とデータ永続化"
+  },
+  "a_9763f36d506a05e4": {
+   "inherited_from": "a_9763f36d506a05e4",
+   "label_source": "inherited",
+   "name": "コード情報のルックアップ"
+  },
+  "a_ad7945a402dbd49b": {
+   "inherited_from": "a_ad7945a402dbd49b",
+   "label_source": "inherited",
+   "name": "患者ポータルと予約管理"
+  },
+  "a_bc867d61e69ad131": {
+   "inherited_from": "a_bc867d61e69ad131",
+   "label_source": "inherited",
+   "name": "監査ログとメッセージ記録"
+  },
+  "a_c3e096abc801b97a": {
+   "inherited_from": "a_c3e096abc801b97a",
+   "label_source": "inherited",
+   "name": "システム保守とデータ出力"
+  },
+  "a_c7003552b35a3101": {
+   "inherited_from": "a_c7003552b35a3101",
+   "label_source": "inherited",
+   "name": "実行プラットフォーム情報"
+  },
+  "a_e020a32d8a86cb8e": {
+   "inherited_from": "a_e020a32d8a86cb8e",
+   "label_source": "inherited",
+   "name": "受付振り分けと医療費計算"
+  },
+  "a_ed07f018f75ee88f": {
+   "inherited_from": "a_ed07f018f75ee88f",
+   "label_source": "inherited",
+   "name": "システム保守とメトリクス収集"
+  },
+  "a_f613a871aeec0f4a": {
+   "inherited_from": "a_f613a871aeec0f4a",
+   "label_source": "inherited",
+   "name": "システム時刻と時計管理"
+  },
+  "a_fd3c1c61cf0ddead": {
+   "inherited_from": "a_fd3c1c61cf0ddead",
+   "label_source": "inherited",
+   "name": "データ出力とアーカイブ"
+  }
+ },
+ "prompt_version": 1,
+ "stats": {
+  "calls": 0,
+  "errors": [],
+  "fallbacks": 0,
+  "inherited": 22,
+  "llm": 0,
+  "retries": 0
+ },
+ "version": 1
+}

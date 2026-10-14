@@ -1,0 +1,12 @@
+{
+ "sha256": "419428df8714304d083a83b0330ff8a088a19f945c26f338186ad9b875e20e8f",
+ "context_hash": "6b2cfe06384fe29e55baa6af87a76fb20a3dfd8dc5f13b661aec55bb0300c82a",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "処方箋データのバリデーションを行うための Validator 構造体とそのメソッドを定義しているファイルです。入力された処方箋情報が正しいフォーマットを満たしているかを検証する機能を提供します。",
+ "nodes": {
+  "Validator": "処方箋のバリデーション機能をカプセル化するための構造体です。",
+  "Validator.Validate": "与えられた処方箋文字列が「Rp」で始まっているかをチェックし、有効な処方箋形式であるかを判定するメソッドです。"
+ }
+}

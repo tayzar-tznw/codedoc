@@ -1,0 +1,620 @@
+[
+  {
+    "id": "a_49c810a336d5cc10",
+    "name": "薬局窓口と日次バッチ処理",
+    "summary": "# 薬局窓口と日次バッチ処理\n\n## はじめに\n本トピックは、医療システムにおける薬局窓口業務のシミュレーション、受付の振り分け、日次締め処理、および管理コンソールにおける日次バッチ処理などの一連のフローを担うコンポーネント群で構成されています。\n\nアプリケーション内ではレベル 1 に位置づけられており、型・疑似型 36 個、ファイル 22 個（うち `attached-file` が 7 個、`attached-test` が 1 個、`primary` が 28 個）の規模を持ちます。トピック内の中心的なハブとして `reception-desk/internal/flows/pharmacyflow/pharmacyflow.go` が機能しています。\n\n## アーキテクチャと設計\n\n### コンポーネント関係図\n以下に、本トピック内における主要コンポーネント間の呼び出し関係を示します。\n\n```mermaid\ngraph LR\n    n1[\"reception-desk/internal/flows/pharmacyflow/pharmacyflow.go\"]\n    n2[",
+    "files": [
+      "admin-console/cmd/admin-console/main.go",
+      "admin-console/internal/batch/daily_batch.go",
+      "admin-console/internal/console/console.go",
+      "admin-console/internal/textreport/textreport.go",
+      "billing/fee.go",
+      "billing/fee_test.go",
+      "billing/pointmath/pointmath.go",
+      "billing/validation/validator.go",
+      "kernel/audit/audit.go",
+      "kernel/guard/guard.go",
+      "kernel/logging/logging.go",
+      "kernel/registry/defaults.go",
+      "kernel/registry/registry.go",
+      "legacy-claims/pointtable.go",
+      "pharmacy/dose.go",
+      "pharmacy/logging/logging.go",
+      "pharmacy/pointmath/pointmath.go",
+      "pharmacy/validation/validator.go",
+      "reception-desk/internal/flows/closing/daily_close.go",
+      "reception-desk/internal/flows/dispatch/dispatch.go",
+      "reception-desk/internal/flows/pharmacyflow/pharmacyflow.go",
+      "reporting/monthly.go"
+    ],
+    "class_ids": [
+      "a_0de042cebe7a8098",
+      "a_1c2c7a85e04e44c2",
+      "a_206313dea48fa182",
+      "a_2d9c834a2cbe9d42",
+      "a_3d203c8aa9bdb546",
+      "a_4060f70d3785c65d",
+      "a_4b541c049683b0db",
+      "a_4e686bc72252c160",
+      "a_4fd65b3676447212",
+      "a_5862e8b0a3fffd14",
+      "a_603d18d1c9b38ebc",
+      "a_60815d5494d6bba2",
+      "a_65d0ca67be21772a",
+      "a_6e64170600482aba",
+      "a_7acfabb3bf8b0dbc",
+      "a_7ebbe3e274697787",
+      "a_8119ec8d668a6718",
+      "a_8adfec202255db5b",
+      "a_9771684f16745433",
+      "a_a0da15a7b37011b3",
+      "a_abaac5c9bd2266cb",
+      "a_b628d85e721eb026",
+      "a_bafdf388482e3a31",
+      "a_c21fff990b574637",
+      "a_c71c5244fe957bf0",
+      "a_c8934b1552d6c976",
+      "a_ce49898abb179ca9",
+      "a_cf7c21f0377fa0f9",
+      "a_cfbbb143a0068289",
+      "a_e55f0fbc83ec196c",
+      "a_f160a1ebedfa5103",
+      "a_f1e4fa5727d5d505",
+      "a_f5f304fbdf555d4a",
+      "a_f9e17cfb298e2a18",
+      "a_fe1d07f2c1544880",
+      "a_ff6a51302bb35490"
+    ],
+    "subtopics": [
+      {
+        "id": "a_376f148fea6aff0c",
+        "name": "薬局調剤と処方監査",
+        "summary": "# 薬局調剤と処方監査\n\n## はじめに\nこのトピックは「薬局調剤と処方監査」に関する処理を担っており、アプリケーション内では「薬局窓口と日次バッチ処理」の上位トピックに属するレベル 2 のトピックとして位置づけられています。\n\n本トピックの規模は、型・疑似型 11 個、ファイル 7 個（attached-file 2、primary 9）で構成されています。トピック内のハブとして `reception-desk/internal/flows/pharmacyflow/pharmacyflow.go` が機能しており、凝集度は 0.181818、コンダクタンスは 0.289102 です。\n\n## アーキテクチャと設計\n\n### コンポーネント関係図\n```mermaid\ngraph LR\n    n1[\"reception-desk/internal/flows/pharmacyflow/pharmacyflow.go\"]\n    n2[\"admin-console/internal/batch/daily_batch.go\"]\n    n3[\"Logger\"]\n    n4[\"pha",
+        "files": [
+          "admin-console/internal/batch/daily_batch.go",
+          "legacy-claims/pointtable.go",
+          "pharmacy/dose.go",
+          "pharmacy/logging/logging.go",
+          "pharmacy/pointmath/pointmath.go",
+          "pharmacy/validation/validator.go",
+          "reception-desk/internal/flows/pharmacyflow/pharmacyflow.go"
+        ],
+        "class_ids": [
+          "a_1c2c7a85e04e44c2",
+          "a_4e686bc72252c160",
+          "a_603d18d1c9b38ebc",
+          "a_60815d5494d6bba2",
+          "a_65d0ca67be21772a",
+          "a_7acfabb3bf8b0dbc",
+          "a_8119ec8d668a6718",
+          "a_abaac5c9bd2266cb",
+          "a_c8934b1552d6c976",
+          "a_f1e4fa5727d5d505",
+          "a_f5f304fbdf555d4a"
+        ]
+      },
+      {
+        "id": "a_520a5707b2e29493",
+        "name": "管理コンソールと月報作成",
+        "summary": "# 管理コンソールと月報作成\n\n## はじめに\n「管理コンソールと月報作成」は、医療管理システムにおける管理コンソールのメイン処理の制御や、月次レポート（月報）の生成、料金計算、値の検証などを行うトピックです。本トピックは「薬局窓口と日次バッチ処理」の上位トピックに属するレベル2のトピックであり、型・疑似型10個、ファイル8個（うち `attached-file` が1個、`primary` が9個）の規模で構成されています。\n\n## アーキテクチャと設計\n\n### コンポーネント関係図\n```mermaid\ngraph LR\n    n1[\"admin-console/internal/console/console.go\"]\n    n2[\"kernel/guard/guard.go\"]\n    n3[\"FeeCalculator\"]\n    n4[\"reporting/monthly.go\"]\n    n5[\"MonthlyReport\"]\n    n6[\"admin-console/internal/textreport/textreport.go\"]\n    n7[\"Dose",
+        "files": [
+          "admin-console/cmd/admin-console/main.go",
+          "admin-console/internal/console/console.go",
+          "admin-console/internal/textreport/textreport.go",
+          "billing/fee.go",
+          "kernel/audit/audit.go",
+          "kernel/guard/guard.go",
+          "pharmacy/dose.go",
+          "reporting/monthly.go"
+        ],
+        "class_ids": [
+          "a_0de042cebe7a8098",
+          "a_206313dea48fa182",
+          "a_2d9c834a2cbe9d42",
+          "a_3d203c8aa9bdb546",
+          "a_6e64170600482aba",
+          "a_9771684f16745433",
+          "a_b628d85e721eb026",
+          "a_c71c5244fe957bf0",
+          "a_f9e17cfb298e2a18",
+          "a_ff6a51302bb35490"
+        ]
+      },
+      {
+        "id": "a_e020a32d8a86cb8e",
+        "name": "受付振り分けと医療費計算",
+        "summary": "# 受付振り分けと医療費計算\n\n## はじめに\n「受付振り分けと医療費計算」は、医療受付システムにおける「振り分け（dispatch）」フローの制御や、医療費などの料金計算、および文字列処理ハンドラを管理するレジストリ機能を提供するトピックです。\n\n本トピックは、上位トピックである「薬局窓口と日次バッチ処理」の下位に位置するレベル 2 のトピックです。その規模は、型・疑似型 9 個、ファイル 6 個（attached-file 3、attached-test 1、primary 5）で構成されており、トピック内のハブとして `reception-desk/internal/flows/dispatch/dispatch.go` が機能しています。\n\n## アーキテクチャと設計\n\n### コンポーネント関係図\n```mermaid\ngraph LR\n    n1[\"reception-desk/internal/flows/dispatch/dispatch.go\"]\n    n2[\"kernel/registry/registry.go\"]\n    n3[\"billing/fee.go",
+        "files": [
+          "billing/fee.go",
+          "billing/fee_test.go",
+          "kernel/registry/defaults.go",
+          "kernel/registry/registry.go",
+          "pharmacy/dose.go",
+          "reception-desk/internal/flows/dispatch/dispatch.go"
+        ],
+        "class_ids": [
+          "a_4060f70d3785c65d",
+          "a_4b541c049683b0db",
+          "a_4fd65b3676447212",
+          "a_8adfec202255db5b",
+          "a_bafdf388482e3a31",
+          "a_c21fff990b574637",
+          "a_e55f0fbc83ec196c",
+          "a_f160a1ebedfa5103",
+          "a_fe1d07f2c1544880"
+        ]
+      },
+      {
+        "id": "a_5deaf8f3d003e71f",
+        "name": "受付日次締めと請求検証",
+        "summary": "# 受付日次締めと請求検証\n\n## はじめに\n「受付日次締めと請求検証」は、薬局窓口業務における日次締め（日次点検）の実行フローを担うトピックです。このトピックは、上位トピックである「薬局窓口と日次バッチ処理」の下に位置づけられるレベル2のトピックです。\n\n本トピックは、型・疑似型6個、ファイル4個（うち `attached-file` 1個、`primary` 5個）の規模で構成されており、ハブとして `reception-desk/internal/flows/closing/daily_close.go` を持ちます。凝集度は 0.266667、コンダクタンスは 0.589526 です。\n\n主な役割は、受付業務における日次締めの実行フローを定義し、ログの記録、バリデーションチェック、点数から日本円への換算を行い、その処理結果を指定された出力先（`io.Writer`）に書き出すことです。\n\n## アーキテクチャと設計\n\n### コンポーネント関係図\n```mermaid\ngraph LR\n    n1[\"reception-desk/internal/flows/closing/",
+        "files": [
+          "billing/pointmath/pointmath.go",
+          "billing/validation/validator.go",
+          "kernel/logging/logging.go",
+          "reception-desk/internal/flows/closing/daily_close.go"
+        ],
+        "class_ids": [
+          "a_5862e8b0a3fffd14",
+          "a_7ebbe3e274697787",
+          "a_a0da15a7b37011b3",
+          "a_ce49898abb179ca9",
+          "a_cf7c21f0377fa0f9",
+          "a_cfbbb143a0068289"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "a_c3e096abc801b97a",
+    "name": "システム保守とデータ出力",
+    "summary": "# システム保守とデータ出力\n\n## はじめに\n本トピックは、医療受付システムにおける保守フローの実行と、それに伴うデータの出力（エクスポート）やアーカイブ、プラットフォーム情報の取得、メトリクス収集、監査ログ記録、ID管理、高速な数値計算などのシステム保守に関連する機能を担っています。\n\nアプリケーション内では、システム保守とデータ出力を行うレベル 1 のトピックとして位置づけられており、型・疑似型 36 個、ファイル 19 個（attached-file 4、attached-generated 1、attached-test 1、primary 30）の規模で構成されています。\n\n## アーキテクチャと設計\n\n### コンポーネント関係図\n```mermaid\ngraph LR\n    n1[\"reception-desk/internal/flows/maintenance/maintenance.go\"]\n    n2[\"interop/exporters/exporters.go\"]\n    n3[\"kernel/platform/platform.go\"]\n    n4[",
+    "files": [
+      "billing/tariff/tariff.go",
+      "interop/exporters/exporters.go",
+      "interop/idkit/idkit.go",
+      "interop/idkit/tracker.go",
+      "interop/lookup/lookup.go",
+      "interop/records/records.go",
+      "kernel/audit/audit.go",
+      "kernel/escalation/escalation.go",
+      "kernel/escalation/escalation_test.go",
+      "kernel/fastmath/add_amd64.go",
+      "kernel/fastmath/sum.go",
+      "kernel/internal/tally/tally.go",
+      "kernel/metrics/metrics.go",
+      "kernel/platform/accel_nocgo.go",
+      "kernel/platform/platform.go",
+      "kernel/platform/platform_linux.go",
+      "legacy-claims/codes.go",
+      "legacy-claims/codes_gen.go",
+      "reception-desk/internal/flows/maintenance/maintenance.go"
+    ],
+    "class_ids": [
+      "a_0f30707f93683245",
+      "a_1298e63ac4d4fb82",
+      "a_1f7553d576df49d0",
+      "a_233c61a744d41216",
+      "a_3fb5d4a3c1c7749e",
+      "a_40945a22309e28c0",
+      "a_45edf89f9bc3eb77",
+      "a_49b7a6fe11dbf0f9",
+      "a_4a70185f88ec428a",
+      "a_4b0c3df59ae7beba",
+      "a_4ef5ccc72bf51ce7",
+      "a_644eeb5b9ecf39f9",
+      "a_69a647fca162b500",
+      "a_736da6ed0c97b446",
+      "a_7c7c8573c8ae12c7",
+      "a_83ae2e8165263131",
+      "a_8894cab4487470b9",
+      "a_89a8e61f0086a467",
+      "a_910b0816da55423c",
+      "a_916120554600fba4",
+      "a_97fdd9e4e0a68d6b",
+      "a_9c81f3637e2de83a",
+      "a_a5f3eabc32cc571b",
+      "a_a6118473964b051f",
+      "a_a6bbf0c29b5334bc",
+      "a_a72197c9e3941df9",
+      "a_a89e370071d44437",
+      "a_ad7b7c9bf745d699",
+      "a_be51fd4c70a79309",
+      "a_c32427f707288708",
+      "a_c8a0dff180b7efdf",
+      "a_ca11a4c66b2843b2",
+      "a_cb1f8ff0ebd7ff41",
+      "a_ef3ba0b9d08d0240",
+      "a_efadb6a6ad831189",
+      "a_eff5d8d97674ad30"
+    ],
+    "subtopics": [
+      {
+        "id": "a_ed07f018f75ee88f",
+        "name": "システム保守とメトリクス収集",
+        "summary": "# システム保守とメトリクス収集\n\n## はじめに\n本トピックは、医療受付システムにおける保守フローの実行と、それに伴うメトリクス収集、監査ログ記録、ID管理、高速な数値計算などのシステム保守に関連する機能を担っています。このトピックは、Goコードの呼び出し・埋め込み・実装の構造から決定されており、システム保守とデータ出力という上位トピックに属するレベル2のトピックとして位置づけられています。\n\n## アーキテクチャと設計\n\n### コンポーネント関係図\n```mermaid\ngraph LR\n    n1[\"reception-desk/internal/flows/maintenance/maintenance.go\"]\n    n2[\"kernel/metrics/metrics.go\"]\n    n3[\"Policy\"]\n    n4[\"rule\"]\n    n5[\"kernel/audit/audit.go\"]\n    n6[\"kernel/fastmath/sum.go\"]\n    n7[\"interop/idkit/idkit.go\"]\n    n8[\"Table\"]\n ",
+        "files": [
+          "billing/tariff/tariff.go",
+          "interop/idkit/idkit.go",
+          "interop/idkit/tracker.go",
+          "kernel/audit/audit.go",
+          "kernel/escalation/escalation.go",
+          "kernel/escalation/escalation_test.go",
+          "kernel/fastmath/add_amd64.go",
+          "kernel/fastmath/sum.go",
+          "kernel/internal/tally/tally.go",
+          "kernel/metrics/metrics.go",
+          "legacy-claims/codes.go",
+          "legacy-claims/codes_gen.go",
+          "reception-desk/internal/flows/maintenance/maintenance.go"
+        ],
+        "class_ids": [
+          "a_0f30707f93683245",
+          "a_1298e63ac4d4fb82",
+          "a_1f7553d576df49d0",
+          "a_233c61a744d41216",
+          "a_49b7a6fe11dbf0f9",
+          "a_4a70185f88ec428a",
+          "a_4ef5ccc72bf51ce7",
+          "a_644eeb5b9ecf39f9",
+          "a_69a647fca162b500",
+          "a_89a8e61f0086a467",
+          "a_910b0816da55423c",
+          "a_916120554600fba4",
+          "a_97fdd9e4e0a68d6b",
+          "a_a5f3eabc32cc571b",
+          "a_a6118473964b051f",
+          "a_a6bbf0c29b5334bc",
+          "a_c32427f707288708",
+          "a_ca11a4c66b2843b2",
+          "a_ef3ba0b9d08d0240",
+          "a_eff5d8d97674ad30"
+        ]
+      },
+      {
+        "id": "a_fd3c1c61cf0ddead",
+        "name": "データ出力とアーカイブ",
+        "summary": "# データ出力とアーカイブ\n\n## はじめに\n本トピックは、システムにおけるデータの出力（エクスポート）およびアーカイブ処理を担当します。アプリケーション内では「システム保守とデータ出力」という上位トピックに属するレベル 2 のトピックとして位置づけられています。\n\nこのトピックは、データを異なるフォーマットで出力するためのインターフェースと具体的な実装（CSVおよびXML）、およびデータのアーカイブ処理を抽象化するインターフェースとそれを安全に実行するためのユーティリティ関数を提供します。規模は型・疑似型 5 個、ファイル 1 個（すべて primary）で構成され、ハブとして `Exporter` が機能しています。凝集度は 0.4、コンダクタンスは 0.301104 です。\n\n## アーキテクチャと設計\n\n### コンポーネント関係図\n```mermaid\ngraph LR\n    n1[\"Exporter\"]\n    n2[\"interop/exporters/exporters.go\"]\n    n3[\"Archiver\"]\n    n4[\"XmlExporter\"]\n   ",
+        "files": [
+          "interop/exporters/exporters.go"
+        ],
+        "class_ids": [
+          "a_3fb5d4a3c1c7749e",
+          "a_40945a22309e28c0",
+          "a_4b0c3df59ae7beba",
+          "a_9c81f3637e2de83a",
+          "a_a89e370071d44437"
+        ]
+      },
+      {
+        "id": "a_3fb0d4b35916cf7a",
+        "name": "請求と返金の記録",
+        "summary": "# 請求と返金の記録\n\n## はじめに\n「請求と返金の記録」は、システム保守とデータ出力を上位トピックとするレベル 2 のトピックです。このトピックは、医療ドメインにおける「請求」や「返金」などの記録データを統一的に扱うためのインターフェースと構造体を定義する役割を持っています。\n\n## アーキテクチャと設計\n\n### コンポーネント関係図\n```mermaid\ngraph LR\n    n1[\"Record\"]\n    n2[\"interop/records/records.go\"]\n    n3[\"Claim\"]\n    n4[\"Refund\"]\n    n3 -.->|実装| n1\n    n4 -.->|実装| n1\n    n2 -->|呼び出し 1| n1\n```\n\n## データフロー\n```mermaid\nsequenceDiagram\n    participant p1 as interop/records/records.go\n    participant p2 as Record\n    p1->>p2: Kind\n```\n\n## 主要コンポーネント\nこのトピッ",
+        "files": [
+          "interop/records/records.go"
+        ],
+        "class_ids": [
+          "a_45edf89f9bc3eb77",
+          "a_83ae2e8165263131",
+          "a_8894cab4487470b9",
+          "a_be51fd4c70a79309"
+        ]
+      },
+      {
+        "id": "a_9763f36d506a05e4",
+        "name": "コード情報のルックアップ",
+        "summary": "# コード情報のルックアップ\n\n## はじめに\n「コード情報のルックアップ」は、上位トピック「システム保守とデータ出力」に属するレベル 2 のトピックです。\nこのトピックは、外部ソースからコード情報を取得・解決するためのインターフェースと、その固定値による簡易実装を提供するパッケージであり、主に医療システムなどの相互運用において、コード情報のルックアップ処理を抽象化する役割を持ちます。\n\n## アーキテクチャと設計\n### コンポーネント関係図\n```mermaid\ngraph LR\n    n1[\"Source\"]\n    n2[\"interop/lookup/lookup.go\"]\n    n3[\"Fixed\"]\n    n3 -.->|実装| n1\n    n2 -->|呼び出し 1| n1\n```\n\n## データフロー\n```mermaid\nsequenceDiagram\n    participant p1 as interop/lookup/lookup.go\n    participant p2 as Source\n    p1->>p2: Get\n```\n\n## 主要コ",
+        "files": [
+          "interop/lookup/lookup.go"
+        ],
+        "class_ids": [
+          "a_7c7c8573c8ae12c7",
+          "a_a72197c9e3941df9",
+          "a_ad7b7c9bf745d699",
+          "a_cb1f8ff0ebd7ff41"
+        ]
+      },
+      {
+        "id": "a_c7003552b35a3101",
+        "name": "実行プラットフォーム情報",
+        "summary": "# 実行プラットフォーム情報\n\n## はじめに\n「実行プラットフォーム情報」は、システムのプラットフォーム名、ホームディレクトリ、およびアクセラレータ情報を取得・統合して記述するための機能を提供するトピックです。\n\n本トピックは、システム全体において以下の位置づけを持ちます。\n- **レベル**: 2\n- **上位トピック**: システム保守とデータ出力\n- **規模**: 型・疑似型 3 個、ファイル 3 個（すべて primary）\n- **ハブ**: `kernel/platform/platform.go`\n- **凝集度**: 0.666667\n- **コンダクタンス**: 0.162077\n\n## アーキテクチャと設計\n\n### コンポーネント関係図\n```mermaid\ngraph LR\n    n1[\"kernel/platform/platform.go\"]\n    n2[\"kernel/platform/platform_linux.go\"]\n    n3[\"kernel/platform/accel_nocgo.go\"]\n    n1 -->|呼び出し 2| n2",
+        "files": [
+          "kernel/platform/accel_nocgo.go",
+          "kernel/platform/platform.go",
+          "kernel/platform/platform_linux.go"
+        ],
+        "class_ids": [
+          "a_736da6ed0c97b446",
+          "a_c8a0dff180b7efdf",
+          "a_efadb6a6ad831189"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "a_0d8f96841c28344b",
+    "name": "患者ポータルと帳票出力",
+    "summary": "# 患者ポータルと帳票出力\n\n## はじめに\n本トピックは、医療システムにおける患者ポータルのWebサーバー機能、予約管理、および帳票出力フローの実行を担うコンポーネント群で構成されています。データストア、患者ドメイン、予約スケジュール、監査ログなどの多様なモジュールを統合し、帳票データの生成、出力、およびWebインターフェースを通じたサービス提供を行う役割を持っています。\n\n本トピックはレベル 1 に位置づけられ、規模として型・疑似型 25 個、ファイル 11 個（attached-file 5、primary 20）を含んでいます。\n\n## アーキテクチャと設計\n\n### コンポーネント関係図\n```mermaid\ngraph LR\n    n1[\"reception-desk/internal/flows/reports/reports.go\"]\n    n2[\"AuditTrail\"]\n    n3[\"MemoryStore\"]\n    n4[\"Sink\"]\n    n5[\"patient-portal/internal/server/server.go\"]\n    n6[\"A",
+    "files": [
+      "data/cache/cache.go",
+      "data/store/store.go",
+      "domain/patient/describe.go",
+      "domain/wards/north/ward.go",
+      "domain/wards/south/ward.go",
+      "patient-portal/cmd/patient-portal/main.go",
+      "patient-portal/internal/server/server.go",
+      "reception-desk/internal/flows/reports/reports.go",
+      "reporting/labels.go",
+      "reporting/trail.go",
+      "scheduling/book.go"
+    ],
+    "class_ids": [
+      "a_06d8778d23c0cccd",
+      "a_0dfad0b6f3383327",
+      "a_112780d370f651e4",
+      "a_188ac241b3887616",
+      "a_19b6ccf2f4276cb0",
+      "a_222faaf1f2fd0c87",
+      "a_3fc73d1e67753ac9",
+      "a_4a5c1bc59ce0305d",
+      "a_51059e5ea71019a2",
+      "a_54edf34932be83c2",
+      "a_5bc2a6e48be36246",
+      "a_62621fbc90763757",
+      "a_6b129818f202894c",
+      "a_76ceb4714624291a",
+      "a_77dc414062cfe782",
+      "a_8f3773929b6c87aa",
+      "a_9602a9e227c1547b",
+      "a_a8997cfa0d14b64c",
+      "a_abccd1b35cea0e34",
+      "a_af016b44fd1803c4",
+      "a_b28d7c3d3add2168",
+      "a_d39e78abf4b6176a",
+      "a_d566fce228f8c696",
+      "a_e0418ebefc43e639",
+      "a_eb8b3d31c7e0945c"
+    ],
+    "subtopics": [
+      {
+        "id": "a_7ea6eec81c4097c0",
+        "name": "帳票出力とデータ管理",
+        "summary": "# 帳票出力とデータ管理\n\n## はじめに\nこのトピックは、「患者ポータルと帳票出力」の上位トピックに属するレベル 2 のトピックです。医療システムにおける帳票出力フローの実行や、インメモリデータストア、キャッシュ、予約スケジュール、病棟ドメインなどの多様なモジュールを統合し、帳票データの生成と出力を管理する役割を担っています。\n\n本トピックは、型・疑似型 16 個、ファイル 8 個（うち attached-file 5 個、primary 11 個）で構成されており、凝集度は 0.083333、コンダクタンスは 0.266942 です。トピック内の中心的なハブとして `reception-desk/internal/flows/reports/reports.go` が機能しています。\n\n## アーキテクチャと設計\n\n### コンポーネント関係図\n```mermaid\ngraph LR\n    n1[\"reception-desk/internal/flows/reports/reports.go\"]\n    n2[\"MemoryStore\"]\n    n3[\"data/store/",
+        "files": [
+          "data/cache/cache.go",
+          "data/store/store.go",
+          "domain/patient/describe.go",
+          "domain/wards/north/ward.go",
+          "domain/wards/south/ward.go",
+          "reception-desk/internal/flows/reports/reports.go",
+          "reporting/labels.go",
+          "scheduling/book.go"
+        ],
+        "class_ids": [
+          "a_0dfad0b6f3383327",
+          "a_112780d370f651e4",
+          "a_188ac241b3887616",
+          "a_19b6ccf2f4276cb0",
+          "a_222faaf1f2fd0c87",
+          "a_3fc73d1e67753ac9",
+          "a_4a5c1bc59ce0305d",
+          "a_51059e5ea71019a2",
+          "a_5bc2a6e48be36246",
+          "a_76ceb4714624291a",
+          "a_77dc414062cfe782",
+          "a_9602a9e227c1547b",
+          "a_a8997cfa0d14b64c",
+          "a_d39e78abf4b6176a",
+          "a_d566fce228f8c696",
+          "a_e0418ebefc43e639"
+        ]
+      },
+      {
+        "id": "a_bc867d61e69ad131",
+        "name": "監査ログとメッセージ記録",
+        "summary": "# 監査ログとメッセージ記録\n\n## はじめに\n「監査ログとメッセージ記録」は、上位トピックである「患者ポータルと帳票出力」に属するレベル 2 のトピックです。\n\n本トピックは、監査ログやメッセージの記録（シンク）およびジャーナル処理を行うためのインターフェースと、その具体的な実装を提供します。メモリ上にログを保持する構造体や、名前付きでメッセージを記録する構造体が定義されており、アプリケーション内での柔軟なログ出力や公開処理の抽象化を可能にします。\n\n本トピックの規模は、型・疑似型が 5 個、ファイルが 1 個（`reporting/trail.go`）で構成されています。トピック内のハブとして `Sink` が機能しており、凝集度は 0.5、コンダクタンスは 0.2 です。\n\n## アーキテクチャと設計\n\n### コンポーネント関係図\n```mermaid\ngraph LR\n    n1[\"Sink\"]\n    n2[\"AuditTrail\"]\n    n3[\"Journal\"]\n    n4[\"reporting/trail.go\"]\n    n5[\"MemorySink\"]\n ",
+        "files": [
+          "reporting/trail.go"
+        ],
+        "class_ids": [
+          "a_54edf34932be83c2",
+          "a_62621fbc90763757",
+          "a_6b129818f202894c",
+          "a_8f3773929b6c87aa",
+          "a_eb8b3d31c7e0945c"
+        ]
+      },
+      {
+        "id": "a_ad7945a402dbd49b",
+        "name": "患者ポータルと予約管理",
+        "summary": "# 患者ポータルと予約管理\n\n## はじめに\n本トピックは、患者ポータルのWebサーバー機能、予約管理、およびアプリケーションのエントリーポイントを提供するコンポーネント群で構成されています。\n\nこのトピックは「レベル 2」に位置づけられており、上位トピックは「患者ポータルと帳票出力」です。トピックの規模は型・疑似型 4 個、ファイル 3 個（すべて primary メンバー）であり、ハブとして `patient-portal/internal/server/server.go` が機能しています。また、トピックの凝集度は 0.5、コンダクタンスは 0.523241 です。\n\n## アーキテクチャと設計\n### コンポーネント関係図\n```mermaid\ngraph LR\n    n1[\"patient-portal/internal/server/server.go\"]\n    n2[\"scheduling/book.go\"]\n    n3[\"patient-portal/cmd/patient-portal/main.go\"]\n    n4[\"Portal\"]\n    n3 -->",
+        "files": [
+          "patient-portal/cmd/patient-portal/main.go",
+          "patient-portal/internal/server/server.go",
+          "scheduling/book.go"
+        ],
+        "class_ids": [
+          "a_06d8778d23c0cccd",
+          "a_abccd1b35cea0e34",
+          "a_af016b44fd1803c4",
+          "a_b28d7c3d3add2168"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "a_1738496b3b58e874",
+    "name": "患者受付と来院通知",
+    "summary": "# 患者受付と来院通知\n\n## はじめに\n本トピックは、システム内においてレベル 1 に位置づけられる「患者受付と来院通知」に関する設計ドキュメントです。\n\nこのトピックは、型・疑似型 25 個、ファイル 11 個（うち primary 18 個、attached-file 3 個、attached-test 4 個）の規模で構成されており、凝集度は 0.133333、コンダクタンスは 0.145024 です。トピック内の中心的なハブとして `reception-desk/internal/flows/checkin/checkin.go` が機能しています。\n\n主な役割は、医療受付（チェックイン）の業務フローの実行およびシミュレーションであり、患者情報の検索・保存、診察情報の作成、通知の送信、予約の作成など、ドメインモデルやリポジトリなどの各コンポーネントを組み合わせて一連の受付処理の流れを実演・検証することです。\n\n## アーキテクチャと設計\n\n### コンポーネント関係図\n```mermaid\ngraph LR\n    n1[\"reception-desk/internal/fl",
+    "files": [
+      "data/repository/repository.go",
+      "domain/patient/describe.go",
+      "domain/patient/entity.go",
+      "domain/visit/visit.go",
+      "kernel/clock/clock.go",
+      "kernel/clock/clock_ext_test.go",
+      "kernel/clock/clock_test.go",
+      "kernel/clock/export_test.go",
+      "kernel/notify/notify.go",
+      "reception-desk/internal/flows/checkin/checkin.go",
+      "scheduling/sms.go"
+    ],
+    "class_ids": [
+      "a_0255a967f8bbeefc",
+      "a_18ea1c89bb102d3b",
+      "a_20531f26e0e268c2",
+      "a_2bdbd9316dd02806",
+      "a_326d62b9773456de",
+      "a_3b791f7829af1c63",
+      "a_503505d819481603",
+      "a_56e6398128d56810",
+      "a_59df62263a4f7f5a",
+      "a_5a5fdd93db74da41",
+      "a_5d682054beabb4bf",
+      "a_61eebf24feacc6ec",
+      "a_63c78c8029421049",
+      "a_65bdc8d569e833d9",
+      "a_6789645fc77051ae",
+      "a_6ff59bdb6a65086a",
+      "a_70a0173bd7700f44",
+      "a_875bb8b210813ecd",
+      "a_87f37464eebe0a02",
+      "a_8eb36d5b26eadcde",
+      "a_90c850b31caf024d",
+      "a_a824ea9b21964b46",
+      "a_c23823d2022570c8",
+      "a_c72627e2f507a27c",
+      "a_eb1df09ee0942295"
+    ],
+    "subtopics": [
+      {
+        "id": "a_4d1ae2ef40a31682",
+        "name": "患者情報と来院記録",
+        "summary": "# 患者情報と来院記録\n\n## はじめに\n「患者情報と来院記録」は、アプリケーションにおいて患者の基本情報や来院（受診）記録を管理するためのトピックです。本トピックは、全体設計においてレベル 2 に位置づけられており、上位トピックである「患者受付と来院通知」の下位に属しています。\n\n本トピックの規模は、型・疑似型が 8 個、ファイルが 3 個（うち `attached-file` が 2 個、`primary` が 6 個）で構成されています。トピック内の中心的な役割を果たすハブは `Patient` であり、凝集度は 0.357143、コンダクタンスは 0.280677 です。\n\n## アーキテクチャと設計\n\n### コンポーネント関係図\n```mermaid\ngraph LR\n    n1[\"Patient\"]\n    n2[\"AuditedEntity\"]\n    n3[\"Entity\"]\n    n4[\"Visit\"]\n    n5[\"Describer\"]\n    n6[\"Inpatient\"]\n    n3 -.->|実装| n5\n    n4 -.->|実装| n5\n  ",
+        "files": [
+          "domain/patient/describe.go",
+          "domain/patient/entity.go",
+          "domain/visit/visit.go"
+        ],
+        "class_ids": [
+          "a_18ea1c89bb102d3b",
+          "a_20531f26e0e268c2",
+          "a_503505d819481603",
+          "a_5a5fdd93db74da41",
+          "a_61eebf24feacc6ec",
+          "a_6789645fc77051ae",
+          "a_6ff59bdb6a65086a",
+          "a_875bb8b210813ecd"
+        ]
+      },
+      {
+        "id": "a_f613a871aeec0f4a",
+        "name": "システム時刻と時計管理",
+        "summary": "# システム時刻と時計管理\n\n## はじめに\nこのトピックは、システム内で時刻を扱うための抽象化や具体的な時計の実装、および時刻に関連するユーティリティ関数を提供する役割を担っています。上位トピックである「患者受付と来院通知」の下に位置づけられるレベル 2 のトピックであり、テスト時における時刻のモック化を容易にし、一貫した日付フォーマットやラベル生成を支援します。\n\n## アーキテクチャと設計\n### コンポーネント関係図\n```mermaid\ngraph LR\n    n1[\"Clock\"]\n    n2[\"kernel/clock/clock.go\"]\n    n3[\"OfficeClock\"]\n    n3 -.->|実装| n1\n    n2 -->|呼び出し 1| n1\n```\n\n## データフロー\n```mermaid\nsequenceDiagram\n    participant p1 as kernel/clock/clock.go\n    participant p2 as Clock\n    p1->>p2: Now\n```\n\n## 主要コンポーネント\nこのトピッ",
+        "files": [
+          "kernel/clock/clock.go",
+          "kernel/clock/clock_ext_test.go",
+          "kernel/clock/clock_test.go",
+          "kernel/clock/export_test.go"
+        ],
+        "class_ids": [
+          "a_326d62b9773456de",
+          "a_56e6398128d56810",
+          "a_59df62263a4f7f5a",
+          "a_63c78c8029421049",
+          "a_70a0173bd7700f44",
+          "a_87f37464eebe0a02",
+          "a_a824ea9b21964b46"
+        ]
+      },
+      {
+        "id": "a_2a0cee07421fc722",
+        "name": "メールとSMS通知送信",
+        "summary": "# メールとSMS通知送信\n\n## はじめに\n「メールとSMS通知送信」は、システム内における通知送信機能を抽象化し、メールやSMS（ショートメッセージサービス）といった具体的な手段による通知処理をサポートするレベル 2 のトピックです。上位トピックである「患者受付と来院通知」に属しています。\n\n本トピックは、型・疑似型 6 個、ファイル 2 個（`attached-file` 1個、`primary` 5個）の規模で構成され、ハブとして `Notifier` を中心に設計されています。トピック内の凝集度は 0.4、コンダクタンスは 0.273649 です。\n\n## アーキテクチャと設計\n\n### コンポーネント関係図\n```mermaid\ngraph LR\n    n1[\"Notifier\"]\n    n2[\"TrackedNotifier\"]\n    n3[\"kernel/notify/notify.go\"]\n    n4[\"SmsNotifier\"]\n    n5[\"MailNotifier\"]\n    n3 -->|呼び出し 2| n1\n    n3 -->|呼び出し 1| n",
+        "files": [
+          "kernel/notify/notify.go",
+          "scheduling/sms.go"
+        ],
+        "class_ids": [
+          "a_2bdbd9316dd02806",
+          "a_5d682054beabb4bf",
+          "a_65bdc8d569e833d9",
+          "a_90c850b31caf024d",
+          "a_c23823d2022570c8",
+          "a_c72627e2f507a27c"
+        ]
+      },
+      {
+        "id": "a_8925c5d3209382e0",
+        "name": "患者受付とデータ永続化",
+        "summary": "# 患者受付とデータ永続化\n\n## はじめに\nこのトピックは、アプリケーション内においてレベル 2に位置し、上位トピックである「患者受付と来院通知」に属しています。規模は型・疑似型 4 個、ファイル 2 個（primary 4）で構成されています。\n主な役割は、医療受付（チェックイン）の業務フローの実行・検証と、患者データの永続化および取得に関する抽象化と具体的なデータ操作処理を提供することです。\n\n## アーキテクチャと設計\n### コンポーネント関係図\n```mermaid\ngraph LR\n    n1[\"reception-desk/internal/flows/checkin/checkin.go\"]\n    n2[\"SqlPatientRepository\"]\n    n3[\"data/repository/repository.go\"]\n    n4[\"Repository\"]\n    n1 -->|呼び出し 1| n2\n    n1 -->|呼び出し 1| n3\n    n1 -->|呼び出し 1| n4\n```\n\n## データフロー\n```mermaid\nsequen",
+        "files": [
+          "data/repository/repository.go",
+          "reception-desk/internal/flows/checkin/checkin.go"
+        ],
+        "class_ids": [
+          "a_0255a967f8bbeefc",
+          "a_3b791f7829af1c63",
+          "a_8eb36d5b26eadcde",
+          "a_eb1df09ee0942295"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "a_6a7d483053d7ed2a",
+    "name": "診療費会計と領収書発行",
+    "summary": "# 診療費会計と領収書発行\n\n## はじめに\n本トピックは、アプリケーション内における診療費の会計処理および領収書の発行フローを担うコンポーネント群で構成されています。\nこのトピックは、型・疑似型17個、ファイル7個（attached-file 5、primary 12）の規模を持ち、凝集度は0.110294、コンダクタンスは0.111169です。トピック内の中心的なハブとして `reception-desk/internal/flows/accounting/accounting.go` が機能しており、各種ポリシーに基づく料金計算や、セッション管理を用いた決済、領収書のテキストフォーマット出力などの一連の会計窓口業務を制御しています。\n\n## アーキテクチャと設計\n\n### コンポーネント関係図\n```mermaid\ngraph LR\n    n1[\"reception-desk/internal/flows/accounting/accounting.go\"]\n    n2[\"BasePolicy\"]\n    n3[\"UrgentPolicy\"]\n    n4[\"PaymentP",
+    "files": [
+      "billing/session.go",
+      "billing/text/receipt.go",
+      "domain/money/money.go",
+      "interop/text/receipt.go",
+      "kernel/policy/policy.go",
+      "legacy-claims/text.go",
+      "reception-desk/internal/flows/accounting/accounting.go"
+    ],
+    "class_ids": [
+      "a_037202f748915ac1",
+      "a_0725259f82a5201d",
+      "a_0754565446320342",
+      "a_1ae312a91ac86615",
+      "a_1c4f3d59be4585f6",
+      "a_21ef8b7aac8233ea",
+      "a_22c592560db2efb8",
+      "a_2458590b78eda365",
+      "a_2b3bee9f2efc1be6",
+      "a_331126631f969962",
+      "a_3ba736ac1019e802",
+      "a_783c932b1b2edd3d",
+      "a_89fe26360d61e46c",
+      "a_d530d2aa9d6924d1",
+      "a_f2ed298d2a3a181e",
+      "a_f6e2a6d297a3c29a",
+      "a_fa51035a89542969"
+    ],
+    "subtopics": []
+  },
+  {
+    "id": "a_7c45b91ea0621d4c",
+    "name": "テキストレポートの整形出力",
+    "summary": "# テキストレポートの整形出力\n\n## はじめに\nこのトピックは、アプリケーション内においてテキストレポートの整形および出力を行う役割を担っています。医療受付業務のデモ実行フローから呼び出され、サードパーティのテキストフォーマットライブラリを活用して、見出し、テーブル、金額行などの整形されたテキストレポートを生成・出力する位置づけとなっています。\n\n## アーキテクチャと設計\n\n### コンポーネント関係図\n```mermaid\ngraph LR\n    n1[\"reception-desk/internal/textreport/textreport.go\"]\n    n2[\"third_party/textfmt/textfmt.go\"]\n    n3[\"Formatter\"]\n    n4[\"reception-desk/internal/desk/desk.go\"]\n    n5[\"Table\"]\n    n6[\"reception-desk/cmd/reception-desk/main.go\"]\n    n7[\"Bracket\"]\n    n8[\"Upper\"]\n    n",
+    "files": [
+      "reception-desk/cmd/reception-desk/main.go",
+      "reception-desk/internal/desk/desk.go",
+      "reception-desk/internal/textreport/textreport.go",
+      "third_party/textfmt/textfmt.go"
+    ],
+    "class_ids": [
+      "a_0c0be42f0d6c8bd7",
+      "a_3c7467a9e725eb84",
+      "a_4e3931394cea304e",
+      "a_7bb729fc132f874b",
+      "a_855a83d193635c63",
+      "a_a47ffc3089c5dad4",
+      "a_b91ef6b8067096b9",
+      "a_e7125d0f82190a2f"
+    ],
+    "subtopics": []
+  }
+]

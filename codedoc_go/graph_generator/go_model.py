@@ -5,8 +5,8 @@ the pipeline, resolution, surfaces and evaluate read them. The on-disk shape of
 units.json is in the spec (§3.8); the vocabularies are those of spec §5.7
 (statuses, provenance, reasons) and §6.1-6.2 (site, file, class and member kinds).
 
-Beyond C4: Group.source and Group.uses, Discovery.unit() and group_of(), and
-Toolchain, which find_toolchain() returns.
+Beyond C4: Group.source, Group.uses and Group.replaces, Discovery.unit() and
+group_of(), and Toolchain, which find_toolchain() returns.
 """
 from __future__ import annotations
 
@@ -79,6 +79,8 @@ class Group:
     warnings: list[str] = field(default_factory=list)
     source: str | None = None                  # absolute repo go.work (workspace) or go.mod (module)
     uses: list[str] = field(default_factory=list)   # absolute module dirs in the generated go.work
+    replaces: list[Replace] = field(default_factory=list)   # the repo go.work's replaces (workspace
+                                                            # only; members' are on their units)
 
 
 @dataclass(frozen=True)

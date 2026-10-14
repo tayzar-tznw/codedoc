@@ -1,0 +1,11 @@
+{
+ "sha256": "acff54366f484487ac56504e25c2b7edf7db6bbc27f53dcfff263406ab5b1e84",
+ "context_hash": "c2b0c406108f10b918ab0017ce9f146cf89726ccbafe1a6323d7fc488a4f991f",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "調剤報酬などの点数を日本円に変換するための計算処理を提供するファイルです。点数に対して特定の倍率（10.8倍）を掛けた金額を算出する機能を持ちます。",
+ "nodes": {
+  "ToYen": "与えられた点数を日本円に変換して返す関数です。点数に10.8を掛けた値を計算します。"
+ }
+}

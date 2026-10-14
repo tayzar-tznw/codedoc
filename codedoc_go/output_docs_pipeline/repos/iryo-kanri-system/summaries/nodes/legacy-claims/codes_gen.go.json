@@ -1,0 +1,12 @@
+{
+ "sha256": "fe36b8db26f25a2db0681bed7a7ca20c5b19a57c5bd56b416e064041fec98856",
+ "context_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+ "mode": "generated",
+ "model": "",
+ "prompt_version": "go-wiki-2",
+ "file": "生成コード（rezeptgen）。",
+ "nodes": {
+  "LookupCode": "生成コード",
+  "KnownCodes": "生成コード"
+ }
+}

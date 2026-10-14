@@ -1,0 +1,3 @@
+./add_amd64.go
+./sum.go
+./add_amd64.s

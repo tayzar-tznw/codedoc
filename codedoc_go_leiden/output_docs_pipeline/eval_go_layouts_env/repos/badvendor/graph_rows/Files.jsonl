@@ -1,0 +1,1 @@
+{"file_id": "a_6c4c14665b428667", "file_name": "main.go", "extension": ".go", "directory": "", "path": "main.go", "origin": "command", "generated": false, "package": "example.com/layouts/badvendor", "package_name": "main", "module": "example.com/layouts/badvendor", "build_constraint": "", "build_included": true, "summary": "", "repo": "badvendor"}

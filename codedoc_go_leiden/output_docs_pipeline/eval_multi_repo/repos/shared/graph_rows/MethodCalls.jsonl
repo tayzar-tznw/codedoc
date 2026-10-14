@@ -1,0 +1,5 @@
+{"edge_id": "a_e4d453619b119e01", "caller_method": "a_b3b2aa728b616de6", "callee_method": "a_744e9b8d5c67ae74", "callee_name": "Round", "resolution": "types", "site_kind": "call", "call_line": 22}
+{"edge_id": "a_89b4da7b9b275415", "caller_method": "a_079c41ac879bc9d2", "callee_method": "a_3896060fc3151ce9", "callee_name": "NewPrice", "resolution": "types", "site_kind": "call", "call_line": 6}
+{"edge_id": "a_ba86595bbca9abba", "caller_method": "a_079c41ac879bc9d2", "callee_method": "a_b3b2aa728b616de6", "callee_name": "Format", "resolution": "types", "site_kind": "call", "call_line": 6}
+{"edge_id": "a_ccf06916f78b7a75", "caller_method": "a_7abcde5bc50130b0", "callee_method": "a_ec9a6b65534a85bd", "callee_name": "Banner", "resolution": "types", "site_kind": "call", "call_line": 10}
+{"edge_id": "a_eacd26d82d03aedc", "caller_method": "a_443069774e9b0c73", "callee_method": "a_7abcde5bc50130b0", "callee_name": "Frame", "resolution": "types", "site_kind": "call", "call_line": 6}

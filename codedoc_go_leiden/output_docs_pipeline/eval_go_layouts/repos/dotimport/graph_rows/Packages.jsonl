@@ -1,0 +1,3 @@
+{"package_id": "a_e62bfdc7e17e3f47", "import_path": "example.com/layouts/dotimport", "name": "main", "directory": "", "module": "example.com/layouts/dotimport", "origin": "command", "file_count": 1, "summary": "", "repo": "dotimport"}
+{"package_id": "a_4d56ffd2a861ceef", "import_path": "example.com/layouts/dotimport/other", "name": "other", "directory": "other", "module": "example.com/layouts/dotimport", "origin": "package", "file_count": 1, "summary": "", "repo": "dotimport"}
+{"package_id": "a_6b1adb428290c789", "import_path": "example.com/layouts/dotimport/strutil", "name": "strutil", "directory": "strutil", "module": "example.com/layouts/dotimport", "origin": "package", "file_count": 1, "summary": "", "repo": "dotimport"}

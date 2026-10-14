@@ -10,7 +10,8 @@ tables), plus the leiden topics schema when present, else from the rows
 themselves (Phase 8/9 write the primary key first, then an edge's source and
 destination). Summaries come from the wiki's summary caches, which the docs
 pages read too. The files are indexed in memory per repo and re-read when one
-of them changes (mtime or size).
+of them changes (mtime, size or inode: the pipeline replaces files
+atomically, which gives a new inode even within one coarse mtime tick).
 """
 from __future__ import annotations
 
@@ -134,9 +135,9 @@ def _read_rows(path: Path) -> list[dict]:
     return out
 
 
-def _table_files(rows_dir: Path) -> list[tuple[str, Path, int, int]]:
-    """(table, path, mtime_ns, size) of each regular <Table>.jsonl directly in
-    graph_rows/ (symlinks and other names are skipped)."""
+def _table_files(rows_dir: Path) -> list[tuple[str, Path, int, int, int]]:
+    """(table, path, mtime_ns, size, inode) of each regular <Table>.jsonl
+    directly in graph_rows/ (symlinks and other names are skipped)."""
     out = []
     with os.scandir(rows_dir) as entries:
         for entry in entries:
@@ -145,7 +146,7 @@ def _table_files(rows_dir: Path) -> list[tuple[str, Path, int, int]]:
                     or not entry.is_file(follow_symlinks=False):
                 continue
             st = entry.stat(follow_symlinks=False)
-            out.append((stem, Path(entry.path), st.st_mtime_ns, st.st_size))
+            out.append((stem, Path(entry.path), st.st_mtime_ns, st.st_size, st.st_ino))
     return sorted(out)
 
 
@@ -165,17 +166,17 @@ def find_topic(tree, ref: str) -> dict | None:
 
 
 def _json_file(path: Path):
-    """A JSON file's content, cached by (path, mtime, size); None when missing
-    or unreadable."""
+    """A JSON file's content, cached by (path, mtime, size, inode); None when
+    missing or unreadable."""
     try:
         st = path.stat()
     except OSError:
         return None
-    return _json_cached(str(path), st.st_mtime_ns, st.st_size)
+    return _json_cached(str(path), st.st_mtime_ns, st.st_size, st.st_ino)
 
 
 @functools.lru_cache(maxsize=64)
-def _json_cached(path: str, _mtime: int, _size: int):
+def _json_cached(path: str, _mtime: int, _size: int, _inode: int):
     try:
         return json.loads(Path(path).read_text(encoding="utf-8"))
     except (OSError, ValueError):
@@ -876,7 +877,7 @@ def load_graph(root: Path) -> Graph:
         files = _table_files(rows_dir)
     except FileNotFoundError:
         raise busy from None
-    signature = tuple((table, mtime, size) for table, _path, mtime, size in files)
+    signature = tuple((table, mtime, size, inode) for table, _path, mtime, size, inode in files)
     key = str(rows_dir.resolve())
     with _lock:
         hit = _graphs.get(key)
@@ -884,7 +885,7 @@ def load_graph(root: Path) -> Graph:
             _graphs.move_to_end(key)
             return hit[1]
         try:
-            graph = Graph(root, {table: _read_rows(path) for table, path, _m, _s in files})
+            graph = Graph(root, {table: _read_rows(path) for table, path, *_stat in files})
         except FileNotFoundError:
             raise busy from None
         except (GraphError, UnicodeDecodeError) as exc:

@@ -1,0 +1,14 @@
+{
+ "sha256": "ced7bb0dc0e8fbee1041cc107d099bdd462ec1cddc7592a78eae6106106d6ab8",
+ "context_hash": "ea01703b769736463580a6803abf0d261cc9c5a654b98176311fbd8efcf0b920",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "このファイルは、医療システム等における患者IDの生成や正規化を行うためのユーティリティを提供しています。サードパーティの uuidlite パッケージを利用して、シード値に基づいた一意のIDシーケンスを管理し、特定のフォーマット（\"P-\" 接頭辞付き）の患者IDを発行する機能や、生のID文字列を正規化された形式に変換する機能を備えています。",
+ "nodes": {
+  "PatientIDs": "uuidlite のシーケンスを保持し、一連の患者IDを生成・管理するための構造体です。",
+  "NewPatientIDs": "指定されたシード値を用いて初期化された PatientIDs 構造体のインスタンスを生成して返します。",
+  "PatientIDs.Issue": "シーケンスから新しいUUIDを生成し、末尾の部分文字列に \"P-\" 接頭辞を付与した患者IDを発行します。",
+  "Canonical": "生のID文字列をパースし、UUIDのフル形式とショート形式をスラッシュで連結した正規化された文字列を返します。"
+ }
+}

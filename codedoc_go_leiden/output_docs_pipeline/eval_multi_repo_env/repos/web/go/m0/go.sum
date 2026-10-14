@@ -1,0 +1,6 @@
+example.com/iryo/shared v1.0.0 h1:9k5WzIA1tCsqpX6/iZuBXCItjWPrLnI1+6MhfXd9Q04=
+example.com/iryo/shared v1.0.0/go.mod h1:wX7h9myCb10kG/d5O0ABwO5DfvehxMiMPTQTCCg2YqM=
+example.com/iryo/textkit v1.0.0 h1:TJACKaRjtCyRlSXk1KBewMRH1RHQ3/9nd/GTjmxVbzQ=
+example.com/iryo/textkit v1.0.0/go.mod h1:+0MXmLhJcisVGEYa4G2TD08C0Em44y2G/M/UYEJ4fKw=
+example.com/thirdparty/uuidlite v1.0.0 h1:U4ihG+ZfSDCx4Qn73SDgzuKoN31GU+Oz4icQttytru0=
+example.com/thirdparty/uuidlite v1.0.0/go.mod h1:Wicloi4Thty50gJIuDh9Mgg6dA693lPRDliLNNxuFfI=

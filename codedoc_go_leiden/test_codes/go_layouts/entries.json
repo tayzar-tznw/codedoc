@@ -1,0 +1,19 @@
+{
+ "nested": {"dir": "nested", "cmd": ["go", "run", "."]},
+ "ws-app": {"dir": "ws/app", "cmd": ["go", "run", "."]},
+ "wsvendor": {"dir": "wsvendor/svc", "cmd": ["go", "run", "."]},
+ "modvendor": {"dir": "modvendor", "cmd": ["go", "run", "."]},
+ "replace-in": {"dir": "replace-in/app", "cmd": ["go", "run", "."]},
+ "replace-out": {"dir": "replace-out", "cmd": ["go", "run", "."]},
+ "ws-missing": {"dir": "ws-missing/present", "cmd": ["go", "run", "."], "env": {"GOWORK": "off"}},
+ "newtoolchain": {"dir": "newtoolchain", "cmd": ["go", "run", "."]},
+ "nosum": {"dir": "nosum", "cmd": ["go", "run", "."]},
+ "skipdirs": {"dir": "skipdirs", "cmd": ["go", "run", "."]},
+ "ignoredir": {"dir": "ignoredir", "cmd": ["go", "run", "."]},
+ "buildignore": {"dir": "buildignore", "cmd": ["go", "run", "./cmd/run"]},
+ "symlinks": {"dir": "symlinks", "cmd": ["go", "run", "."]},
+ "cgo": {"dir": "cgo", "cmd": ["go", "run", "."]},
+ "dotimport": {"dir": "dotimport", "cmd": ["go", "run", "."]},
+ "nonancestor-server": {"dir": "nonancestor/server", "cmd": ["go", "run", "."]},
+ "twowork": {"dir": "twowork/app", "cmd": ["go", "run", "."]}
+}

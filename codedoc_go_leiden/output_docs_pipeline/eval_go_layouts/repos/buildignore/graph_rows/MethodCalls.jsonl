@@ -1,0 +1,2 @@
+{"edge_id": "a_61691d1ab385bb75", "caller_method": "a_55cb1f720b778ed5", "callee_method": "a_341956a66e7a9600", "callee_name": "Run", "resolution": "types", "site_kind": "call", "call_line": 10}
+{"edge_id": "a_40134558a745460b", "caller_method": "a_341956a66e7a9600", "callee_method": "a_5421e2fdd4cadc3b", "callee_name": "Helper", "resolution": "types", "site_kind": "call", "call_line": 8}

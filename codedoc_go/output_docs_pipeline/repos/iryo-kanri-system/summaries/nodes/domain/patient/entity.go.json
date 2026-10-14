@@ -1,0 +1,20 @@
+{
+ "sha256": "5fda70514de68a0419a6fb3ad8100f9f30bab57df45dc3ff704619588c4ef9e6",
+ "context_hash": "bfc4cd104640545ed3cbc6242ca60beaf6d2d607479eb72bb489c3829ccb76f4",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "患者ドメインにおける基本エンティティ、監査ログ付きエンティティ、患者、および入院患者のデータ構造を定義するファイルです。構造体の埋め込み（コンポジション）を活用して、共通のID管理や監査機能、患者情報の定義と振る舞いを段階的に拡張しています。",
+ "nodes": {
+  "Entity": "すべてのエンティティの基盤となる構造体で、一意のIDを保持します。",
+  "Entity.Describe": "エンティティのIDを含む説明用の文字列を返します。",
+  "Entity.Touch": "エンティティのIDをインクリメントして更新し、新しいIDを返します。",
+  "Entity.Save": "エンティティの保存状態を表す文字列を返します。",
+  "AuditedEntity": "Entityを埋め込み、操作履歴などの監査ログを保持できるように拡張した構造体です。",
+  "AuditedEntity.Record": "監査ログに新しい記録を追加し、現在のログ件数を返します。",
+  "Patient": "AuditedEntityを埋め込み、患者の名前などの基本情報を保持する構造体です。",
+  "Patient.Describe": "患者の名前を含む説明用の文字列を返します。",
+  "Patient.Save": "患者情報の保存処理を表す文字列を返し、内部で埋め込まれたEntityの保存処理も呼び出します。",
+  "Inpatient": "Patientを埋め込み、病棟情報を追加した入院患者を表す構造体です。"
+ }
+}

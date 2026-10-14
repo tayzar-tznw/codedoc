@@ -1,0 +1,11 @@
+{
+ "sha256": "fa48c7c0633405fe333002edccdbc757cfff5999fa68ceb96b6b4602e1d0afdd",
+ "context_hash": "7f07166dc4f19db2c0904ae7772158c6e13de5177a813af4a97ea28f0eb58df1",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "このファイルは、管理コンソール（admin-console）アプリケーションのエントリポイントです。標準出力を引数として内部パッケージの `console.Run` を呼び出し、アプリケーションの実行を開始する役割を持ちます。",
+ "nodes": {
+  "main": "アプリケーションの起動時に最初に実行される関数であり、標準出力を渡して管理コンソールのメイン処理を実行します。"
+ }
+}

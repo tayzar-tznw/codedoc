@@ -1,0 +1,11 @@
+{
+ "sha256": "0019352149df05135011d02f001190f9a236cdbb11d80d08ed3672856f310099",
+ "context_hash": "e58a017af27744fb7f2b9b882a8a3d0258b6ca69ea04d0b171cdbe9d91943609",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "このファイルは、受付デスク（reception-desk）アプリケーションのエントリーポイントです。標準出力を引数として内部パッケージの実行関数（desk.Run）を呼び出し、アプリケーションを起動する役割を担っています。",
+ "nodes": {
+  "main": "アプリケーションの開始点であり、標準出力を引数として内部パッケージの `desk.Run` 関数を呼び出します。"
+ }
+}

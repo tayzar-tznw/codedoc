@@ -1,0 +1,120 @@
+{
+ "version": 1,
+ "repo": "web",
+ "repo_root": "/home/admin/dev/code/codedoc_go_leiden/test_codes/multi_repo/web",
+ "toolchain": "go1.27.2",
+ "builds": [
+  {
+   "id": "linux-amd64",
+   "goos": "linux",
+   "goarch": "amd64",
+   "tags": [],
+   "cgo": false,
+   "primary": true
+  }
+ ],
+ "mode": "offline",
+ "module_source": "none",
+ "groups": [
+  {
+   "id": "m0",
+   "kind": "module",
+   "dir": "/home/admin/dev/code/codedoc_go_leiden/test_codes/multi_repo/web",
+   "gowork": null,
+   "modfile": "/home/admin/dev/code/codedoc_go_leiden/output_docs_pipeline/eval_multi_repo/repos/web/go/m0/go.mod",
+   "modules": [
+    "example.com/iryo/web"
+   ],
+   "vendor": false,
+   "degraded": false,
+   "status": "ok",
+   "pattern": "./...",
+   "missing_modules": [
+    "example.com/iryo/textkit@v1.0.0",
+    "example.com/thirdparty/uuidlite@v1.0.0"
+   ],
+   "warnings": [
+    "example.com/iryo/textkit is provided by several peers (shared, api); it is not substituted and resolves as without peers",
+    "2 required modules are missing offline (first: example.com/iryo/textkit@v1.0.0, example.com/thirdparty/uuidlite@v1.0.0); calls into them and on values of their types will be unresolved (missing-module). Fix: add --download-modules."
+   ],
+   "source": "/home/admin/dev/code/codedoc_go_leiden/test_codes/multi_repo/web/go.mod",
+   "uses": []
+  }
+ ],
+ "units": [
+  {
+   "key": "example.com/iryo/web",
+   "root": "",
+   "go": "1.26",
+   "toolchain": null,
+   "group": "m0",
+   "requires": [
+    {
+     "path": "example.com/iryo/shared",
+     "version": "v1.0.0",
+     "indirect": false
+    },
+    {
+     "path": "example.com/iryo/textkit",
+     "version": "v1.0.0",
+     "indirect": false
+    },
+    {
+     "path": "example.com/thirdparty/uuidlite",
+     "version": "v1.0.0",
+     "indirect": false
+    }
+   ],
+   "replaces": [],
+   "in_repo_deps": [],
+   "vendor": false
+  }
+ ],
+ "peers": [
+  {
+   "name": "shared",
+   "root": "/home/admin/dev/code/codedoc_go_leiden/test_codes/multi_repo/shared",
+   "units": [
+    {
+     "key": "example.com/iryo/shared",
+     "root": ""
+    },
+    {
+     "key": "example.com/iryo/textkit",
+     "root": "textkit"
+    }
+   ]
+  },
+  {
+   "name": "api",
+   "root": "/home/admin/dev/code/codedoc_go_leiden/test_codes/multi_repo/api",
+   "units": [
+    {
+     "key": "example.com/iryo/textkit",
+     "root": "forks/textkit"
+    },
+    {
+     "key": "example.com/iryo/api/legacy",
+     "root": "legacy"
+    },
+    {
+     "key": "example.com/iryo/api/notify",
+     "root": "notify"
+    },
+    {
+     "key": "example.com/iryo/api/service",
+     "root": "service"
+    },
+    {
+     "key": "example.com/iryo/api/tools",
+     "root": "tools"
+    }
+   ]
+  }
+ ],
+ "skipped": {},
+ "warnings": [
+  "group m0: example.com/iryo/textkit is provided by several peers (shared, api); it is not substituted and resolves as without peers",
+  "group m0: 2 required modules are missing offline (first: example.com/iryo/textkit@v1.0.0, example.com/thirdparty/uuidlite@v1.0.0); calls into them and on values of their types will be unresolved (missing-module). Fix: add --download-modules."
+ ]
+}

@@ -1,0 +1,11 @@
+{
+ "sha256": "f3250d04ec48a431ed3f1bcd3653ee3dfa41c837c17dd9eb94b4d54dc6e244d6",
+ "context_hash": "1f7a996e85ee80d5df2629f216db80ce51d93ef07713a1beec1f147790af9085",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "医療費などの計算において、点数を日本円に変換するためのユーティリティ関数を提供するファイルです。1点あたり10円として計算するシンプルな変換処理を定義しています。",
+ "nodes": {
+  "ToYen": "引数として受け取った点数を10倍し、日本円に換算した金額を返します。"
+ }
+}

@@ -1,0 +1,41 @@
+{
+ "grounding": {
+  "checked": 1706,
+  "found": 1694,
+  "missing_distinct": 5,
+  "pages": 22,
+  "rate": 0.9929660023446659,
+  "top_missing": [
+   "io.Writer",
+   "uuidlite",
+   "uuidlite.Sequence",
+   "Reason",
+   "NormalizeHook"
+  ]
+ },
+ "scaffold_problems": 0,
+ "structure": {
+  "coverage": 1.0,
+  "intra_weight_share": 0.850091,
+  "isolated_atoms": 22,
+  "leaves": 18,
+  "mean_conductance": 0.145656,
+  "modularity": 0.656008,
+  "modularity_at_resolution": 0.704529,
+  "roles": {
+   "attached-file": 24,
+   "attached-generated": 1,
+   "attached-test": 6,
+   "primary": 116,
+   "unassigned": 5
+  },
+  "topics": {
+   "1": 6,
+   "2": 16
+  },
+  "unassigned": 5,
+  "unassigned_by_reason": {
+   "build": 5
+  }
+ }
+}

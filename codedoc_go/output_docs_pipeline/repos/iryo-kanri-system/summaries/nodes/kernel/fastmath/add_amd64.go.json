@@ -1,0 +1,11 @@
+{
+ "sha256": "5941d383ced196b0b14fee925aba20295a2e5490c4acddb30d3fefe6399e3530",
+ "context_hash": "5973ea6ae5c87365b4b7e78f5983b8348c8c369d568f58b93ae5ae2763b95f7a",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "このファイルは、AMD64アーキテクチャ向けに最適化された高速な数値加算処理を提供するGoのソースコードです。アセンブリ言語などで実装された実体に対するGo言語側の関数宣言を定義しています。",
+ "nodes": {
+  "AddPoints": "2つの64ビット整数を高速に加算して結果を返す関数であり、パッケージ内のTotal関数などから呼び出されます。"
+ }
+}

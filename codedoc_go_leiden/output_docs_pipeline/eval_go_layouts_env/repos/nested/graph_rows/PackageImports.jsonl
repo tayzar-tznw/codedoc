@@ -1,0 +1,2 @@
+{"edge_id": "a_ae3015dbee25c737", "source_file": "a_77166d2bb5f4da13", "target_package": "a_463008945639f4fe", "import_path": "example.com/layouts/nested/inner/calc", "alias": "", "kind": "normal"}
+{"edge_id": "a_742ad5cba1e03c21", "source_file": "a_77166d2bb5f4da13", "target_package": "a_912716da3785d676", "import_path": "example.com/layouts/nested/report", "alias": "", "kind": "normal"}

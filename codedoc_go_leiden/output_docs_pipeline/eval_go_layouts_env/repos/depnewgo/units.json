@@ -1,0 +1,66 @@
+{
+ "version": 1,
+ "repo": "depnewgo",
+ "repo_root": "/home/admin/dev/code/codedoc_go_leiden/test_codes/go_layouts/depnewgo",
+ "toolchain": "go1.27.2",
+ "builds": [
+  {
+   "id": "linux-amd64",
+   "goos": "linux",
+   "goarch": "amd64",
+   "tags": [],
+   "cgo": false,
+   "primary": true
+  }
+ ],
+ "mode": "download",
+ "module_source": "proxy",
+ "groups": [
+  {
+   "id": "ws0",
+   "kind": "workspace",
+   "dir": "/home/admin/dev/code/codedoc_go_leiden/output_docs_pipeline/eval_go_layouts_env/repos/depnewgo/go/ws0",
+   "gowork": "/home/admin/dev/code/codedoc_go_leiden/output_docs_pipeline/eval_go_layouts_env/repos/depnewgo/go/ws0/go.work",
+   "modfile": null,
+   "modules": [
+    "example.com/layouts/depnewgo/m"
+   ],
+   "vendor": false,
+   "degraded": false,
+   "status": "ok",
+   "pattern": "work",
+   "missing_modules": [],
+   "warnings": [
+    "dependency example.com/thirdparty/newgo@v1.0.0 says \"go 1.28\" in its go.mod, newer than the toolchain go1.27.2: the go command will refuse to load this group, so its sites will be unresolved (toolchain). Fix: set GO_TOOLCHAIN to a go >= 1.28 binary (`python -m graph_generator setup go` installs go1.27.2, which is older)"
+   ],
+   "source": "/home/admin/dev/code/codedoc_go_leiden/test_codes/go_layouts/depnewgo/go.work",
+   "uses": [
+    "/home/admin/dev/code/codedoc_go_leiden/test_codes/go_layouts/depnewgo/m"
+   ]
+  }
+ ],
+ "units": [
+  {
+   "key": "example.com/layouts/depnewgo/m",
+   "root": "m",
+   "go": "1.26",
+   "toolchain": null,
+   "group": "ws0",
+   "requires": [
+    {
+     "path": "example.com/thirdparty/newgo",
+     "version": "v1.0.0",
+     "indirect": false
+    }
+   ],
+   "replaces": [],
+   "in_repo_deps": [],
+   "vendor": false
+  }
+ ],
+ "peers": [],
+ "skipped": {},
+ "warnings": [
+  "group ws0: dependency example.com/thirdparty/newgo@v1.0.0 says \"go 1.28\" in its go.mod, newer than the toolchain go1.27.2: the go command will refuse to load this group, so its sites will be unresolved (toolchain). Fix: set GO_TOOLCHAIN to a go >= 1.28 binary (`python -m graph_generator setup go` installs go1.27.2, which is older)"
+ ]
+}

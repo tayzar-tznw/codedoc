@@ -1,0 +1,2 @@
+{"package_id": "a_4a3bc6eb4ada0d1a", "import_path": "example.com/layouts/wsvendor/svc", "name": "main", "directory": "svc", "module": "example.com/layouts/wsvendor/svc", "origin": "command", "file_count": 1, "summary": "", "repo": "wsvendor"}
+{"package_id": "a_551672e4e82c0c0a", "import_path": "example.com/layouts/wsvendor/util/pad", "name": "pad", "directory": "util/pad", "module": "example.com/layouts/wsvendor/util", "origin": "package", "file_count": 1, "summary": "", "repo": "wsvendor"}

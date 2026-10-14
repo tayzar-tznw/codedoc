@@ -1828,6 +1828,7 @@ def discover(repo_root: str, repo: str, *, builds: list[BuildConfig], peers: lis
         g = Group(id=gid, kind="workspace", dir=os.path.join(base, gid), modules=members,
                   gowork=os.path.join(base, gid, "go.work"), modfile=None, vendor=False,
                   degraded=False, status="ok", pattern="work", source=os.path.join(root, wrel))
+        g.replaces = [_replace_obj(r, os.path.dirname(g.source)) for r in parsed.get("Replace") or []]
         work_text = _read(g.source) or ""
         seen: dict[str, str] = {}
         lines: list = []
@@ -2239,7 +2240,10 @@ def write_units_json(discovery: Discovery, path: str) -> None:
                     "modfile": g.modfile, "modules": list(g.modules), "vendor": g.vendor,
                     "degraded": g.degraded, "status": g.status, "pattern": g.pattern,
                     "missing_modules": list(g.missing_modules), "warnings": list(g.warnings),
-                    "source": g.source, "uses": list(g.uses)} for g in discovery.groups],
+                    "source": g.source, "uses": list(g.uses),
+                    "replaces": [{"old": r.old, "old_version": r.old_version, "new": r.new,
+                                  "new_version": r.new_version, "local": r.local} for r in g.replaces]}
+                   for g in discovery.groups],
         "units": [{"key": u.key, "root": u.root, "go": u.go, "toolchain": u.toolchain,
                    "group": group_of.get(u.key),
                    "requires": [{"path": p, "version": v, "indirect": i} for p, v, i in u.requires],

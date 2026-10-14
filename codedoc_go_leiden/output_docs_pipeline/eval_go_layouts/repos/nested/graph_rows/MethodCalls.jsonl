@@ -1,0 +1,4 @@
+{"edge_id": "a_572a27eb6f5dd3fa", "caller_method": "a_1b77da4ad724a2d3", "callee_method": "a_a8cbb48cb0647051", "callee_name": "double", "resolution": "types", "site_kind": "call", "call_line": 4}
+{"edge_id": "a_05c5068781c60f2c", "caller_method": "a_8d9b001f59640812", "callee_method": "a_083b9730a575bb86", "callee_name": "Line", "resolution": "types", "site_kind": "call", "call_line": 11}
+{"edge_id": "a_097bb59a48135f0b", "caller_method": "a_8d9b001f59640812", "callee_method": "a_1b77da4ad724a2d3", "callee_name": "Twice", "resolution": "types", "site_kind": "call", "call_line": 11}
+{"edge_id": "a_413a3f7aebbd6b79", "caller_method": "a_083b9730a575bb86", "callee_method": "a_ef0d2b3759eeac33", "callee_name": "Twice", "resolution": "types", "site_kind": "call", "call_line": 6}

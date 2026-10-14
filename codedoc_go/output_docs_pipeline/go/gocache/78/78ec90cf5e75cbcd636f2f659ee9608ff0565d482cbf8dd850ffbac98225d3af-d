@@ -1,0 +1,12 @@
+./assignedaddress.go
+./classify_call.go
+./element.go
+./errorcode.go
+./errorcode_string.go
+./fx.go
+./isnamed.go
+./qualifier.go
+./recv.go
+./toonew.go
+./types.go
+./zerovalue.go

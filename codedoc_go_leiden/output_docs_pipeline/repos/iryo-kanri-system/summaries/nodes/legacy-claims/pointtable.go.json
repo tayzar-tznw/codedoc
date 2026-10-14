@@ -1,0 +1,12 @@
+{
+ "sha256": "669e6559041446026eec8fbb0f027e017f1d9865aa7b042a3a9ca6007198036c",
+ "context_hash": "97f6a2442cbc5b09c5441b236a6d2c3793f662fdf3e5c87b0d8b36fb8a66ed49",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "レセプト（診療報酬請求）における点数計算のロジックを定義するファイルです。点数と回数に基づき、特定の加算処理を伴う合計点数の算出機能を提供します。",
+ "nodes": {
+  "PointTable": "点数計算に関する処理をまとめるための構造体です。",
+  "PointTable.Calculate": "与えられた点数と回数を掛け合わせ、固定の加算値（1000）を加算した合計点数を計算するメソッドです。"
+ }
+}

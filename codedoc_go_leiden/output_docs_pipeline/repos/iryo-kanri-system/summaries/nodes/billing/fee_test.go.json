@@ -1,0 +1,11 @@
+{
+ "sha256": "dc12c0d9dec57e109824de7a4464e161ee7e43a50a2ca2c85f0e1845b7945ebe",
+ "context_hash": "849d3560f2ffa165924b8270536b9361e2c69eb536d86f01586e3792bf14013f",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "このファイルは、医療費計算に関連する機能のユニットテストを実装しています。料金計算器の初期化、料金計算処理、および端数処理（Round）が期待通りに動作することを確認するためのテストケースを提供します。",
+ "nodes": {
+  "TestCalculate": "料金計算器の計算機能（Calculate）と端数処理機能（Round）が、指定された入力に対して正しい結果を返すかを検証するテスト関数です。"
+ }
+}

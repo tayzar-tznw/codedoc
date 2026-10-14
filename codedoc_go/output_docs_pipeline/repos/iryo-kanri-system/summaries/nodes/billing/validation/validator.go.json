@@ -1,0 +1,12 @@
+{
+ "sha256": "bd197dc7963021e556c27f2bbba3ffc7e36483cc4fa8223e8e1e8416a11f5e77",
+ "context_hash": "03e50233ec1cb87c73bca7f99f552ab4849aa11e83cd0a1b42b09b95ef67dc02",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "このファイルは、請求処理におけるIDの妥当性を検証するためのバリデータを提供します。Validator構造体とその検証メソッドを定義し、システム全体で一貫したIDフォーマットのチェックを可能にします。",
+ "nodes": {
+  "Validator": "請求データのバリデーションロジックをカプセル化するための構造体です。",
+  "Validator.Validate": "指定されたIDが特定の接頭辞（'H'）を持ち、かつ指定された長さ（9文字）であるかを検証するメソッドです。"
+ }
+}

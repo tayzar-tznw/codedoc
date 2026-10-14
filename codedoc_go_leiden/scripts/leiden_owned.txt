@@ -1,0 +1,37 @@
+# rsync exclusions for scripts/sync_from_codedoc_go.sh.
+# Leiden-owned paths: never overwritten or deleted by the sync.
+/graph_generator/topics/
+/graph_generator/topics_phase.py
+/graph_generator/topics_schema.py
+/tests/test_topics_*.py
+/tests/test_leiden_*.py
+/tests/leiden_plugin.py
+/tests/leiden_worlds.py
+/scripts/sync_from_codedoc_go.sh
+/scripts/leiden_hooks.py
+/scripts/leiden_owned.txt
+/docs/superpowers/
+# The docs adapted for this variant (leiden spec §7). docs/LSP_RESOLUTION.md and
+# docs/CROSS_PROJECT.md stay codedoc_go's and are synced.
+/README.md
+/CLAUDE.md
+/sample_prompt.txt
+/docs/ARCHITECTURE.md
+/docs/GRAPH_SCHEMA.md
+/mcp_server/README.md
+# Local state and build output, in neither variant's tree. A .env at any depth
+# (the root's, graph_query_agent/.env, webapp/frontend/.env) holds this
+# variant's settings (its own database): never copied over, never deleted.
+# The pattern matches only files named exactly .env, not .env.example. ADK
+# keeps session state in .adk/ wherever `adk run` was started.
+.env
+.adk/
+/.claude/settings.local.json
+/.venv/
+/.tools/
+/output_docs*/
+/.coverage
+/.pytest_cache/
+__pycache__/
+/webapp/frontend/node_modules/
+/webapp/frontend/dist/

@@ -1,0 +1,12 @@
+{
+ "sha256": "6c4e10c029670acb42c7d71cf09a86708f5806b7e73a234736246f64d17b34eb",
+ "context_hash": "9073c094fa0941a108cf51a24da2ac42debe484906bca96f1cfb8d98ac3dc74a",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "会計処理における領収書のテキスト表現を生成するためのフォーマッタを提供するファイルです。金額を指定されたテキスト形式に整形する役割を持ちます。",
+ "nodes": {
+  "ReceiptFormatter": "領収書のテキストフォーマット処理をカプセル化するための構造体です。",
+  "ReceiptFormatter.Format": "指定された円単位の金額を、会計用のテキスト形式（[会計] 〇〇円）に整形して返すメソッドです。"
+ }
+}

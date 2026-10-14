@@ -1,0 +1,2 @@
+{"package_id": "a_1585c3a6fa19e840", "import_path": "example.com/layouts/nosum", "name": "main", "directory": "", "module": "example.com/layouts/nosum", "origin": "command", "file_count": 1, "summary": "", "repo": "nosum"}
+{"package_id": "a_9c27e332bf17ac9c", "import_path": "example.com/layouts/nosum/caps", "name": "caps", "directory": "caps", "module": "example.com/layouts/nosum", "origin": "package", "file_count": 1, "summary": "", "repo": "nosum"}

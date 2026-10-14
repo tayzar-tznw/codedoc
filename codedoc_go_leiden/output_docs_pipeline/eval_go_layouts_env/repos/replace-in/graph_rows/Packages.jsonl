@@ -1,0 +1,3 @@
+{"package_id": "a_f0aa9ec3da2dd040", "import_path": "example.com/layouts/replacein", "name": "main", "directory": "app", "module": "example.com/layouts/replacein", "origin": "command", "file_count": 1, "summary": "", "repo": "replace-in"}
+{"package_id": "a_93444f0fd96d009b", "import_path": "example.com/layouts/common", "name": "main", "directory": "common", "module": "example.com/layouts/common", "origin": "command", "file_count": 1, "summary": "", "repo": "replace-in"}
+{"package_id": "a_a5373d985afdf43f", "import_path": "example.com/layouts/common/greet", "name": "greet", "directory": "common/greet", "module": "example.com/layouts/common", "origin": "package", "file_count": 1, "summary": "", "repo": "replace-in"}

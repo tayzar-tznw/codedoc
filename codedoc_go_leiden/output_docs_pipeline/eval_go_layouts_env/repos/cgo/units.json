@@ -1,0 +1,54 @@
+{
+ "version": 1,
+ "repo": "cgo",
+ "repo_root": "/home/admin/dev/code/codedoc_go_leiden/test_codes/go_layouts/cgo",
+ "toolchain": "go1.27.2",
+ "builds": [
+  {
+   "id": "linux-amd64",
+   "goos": "linux",
+   "goarch": "amd64",
+   "tags": [],
+   "cgo": false,
+   "primary": true
+  }
+ ],
+ "mode": "download",
+ "module_source": "proxy",
+ "groups": [
+  {
+   "id": "m0",
+   "kind": "module",
+   "dir": "/home/admin/dev/code/codedoc_go_leiden/test_codes/go_layouts/cgo",
+   "gowork": null,
+   "modfile": "/home/admin/dev/code/codedoc_go_leiden/output_docs_pipeline/eval_go_layouts_env/repos/cgo/go/m0/go.mod",
+   "modules": [
+    "example.com/layouts/cgo"
+   ],
+   "vendor": false,
+   "degraded": false,
+   "status": "ok",
+   "pattern": "./...",
+   "missing_modules": [],
+   "warnings": [],
+   "source": "/home/admin/dev/code/codedoc_go_leiden/test_codes/go_layouts/cgo/go.mod",
+   "uses": []
+  }
+ ],
+ "units": [
+  {
+   "key": "example.com/layouts/cgo",
+   "root": "",
+   "go": "1.26",
+   "toolchain": null,
+   "group": "m0",
+   "requires": [],
+   "replaces": [],
+   "in_repo_deps": [],
+   "vendor": false
+  }
+ ],
+ "peers": [],
+ "skipped": {},
+ "warnings": []
+}

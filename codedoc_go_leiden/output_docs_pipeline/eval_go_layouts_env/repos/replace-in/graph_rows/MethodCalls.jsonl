@@ -1,0 +1,3 @@
+{"edge_id": "a_5cd23e777cd0f72f", "caller_method": "a_9efdc0fab3734e43", "callee_method": "a_ebbcd1f1922b88c8", "callee_name": "Hello", "resolution": "types", "site_kind": "call", "call_line": 10}
+{"edge_id": "a_9b6a1145185f9175", "caller_method": "a_ebbcd1f1922b88c8", "callee_method": "a_c8a433715ae5e88d", "callee_name": "polish", "resolution": "types", "site_kind": "call", "call_line": 4}
+{"edge_id": "a_a3e439320ad8fb71", "caller_method": "a_f16efd3e7c492a21", "callee_method": "a_ebbcd1f1922b88c8", "callee_name": "Hello", "resolution": "types", "site_kind": "call", "call_line": 10}

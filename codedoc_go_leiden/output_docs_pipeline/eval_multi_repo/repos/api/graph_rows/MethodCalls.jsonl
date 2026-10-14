@@ -1,0 +1,5 @@
+{"edge_id": "a_c66acdea85d0ab19", "caller_method": "a_0e4ec809500e296c", "callee_method": "a_0eb37b1983a3d711", "callee_name": "Compose", "resolution": "types", "site_kind": "call", "call_line": 27}
+{"edge_id": "a_529e28be148de7df", "caller_method": "a_0e4ec809500e296c", "callee_method": "a_f9a81786a908a7ef", "callee_name": "Banner", "resolution": "types", "site_kind": "call", "call_line": 27}
+{"edge_id": "a_960a5adde2464b53", "caller_method": "a_26c3d225af9917d0", "callee_method": "a_356fb3dd44389aa4", "callee_name": "NewInvoiceService", "resolution": "types", "site_kind": "call", "call_line": 11}
+{"edge_id": "a_6a422bf7840ea63c", "caller_method": "a_26c3d225af9917d0", "callee_method": "a_0e4ec809500e296c", "callee_name": "Charge", "resolution": "types", "site_kind": "call", "call_line": 12}
+{"edge_id": "a_fd8ae025b84b370c", "caller_method": "a_26c3d225af9917d0", "callee_method": "a_2a7ca1fa5ff38686", "callee_name": "Record", "resolution": "types", "site_kind": "call", "call_line": 13}

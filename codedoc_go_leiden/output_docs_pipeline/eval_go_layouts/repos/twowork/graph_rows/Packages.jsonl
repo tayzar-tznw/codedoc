@@ -1,0 +1,2 @@
+{"package_id": "a_c51d63f7feaeadac", "import_path": "example.com/layouts/twowork/app", "name": "main", "directory": "app", "module": "example.com/layouts/twowork/app", "origin": "command", "file_count": 1, "summary": "", "repo": "twowork"}
+{"package_id": "a_f7161b6f4b4b5173", "import_path": "example.com/layouts/twowork/core/calc", "name": "calc", "directory": "core/calc", "module": "example.com/layouts/twowork/core", "origin": "package", "file_count": 1, "summary": "", "repo": "twowork"}

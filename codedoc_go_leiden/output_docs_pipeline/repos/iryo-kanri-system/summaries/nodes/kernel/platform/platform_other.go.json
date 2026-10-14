@@ -1,0 +1,12 @@
+{
+ "sha256": "7366e8a266372b4e6bc84f0329848f1acd329988d74cfd62b2db032661a0a80c",
+ "context_hash": "5ade35528b00f7c00de9706ada66cd9e81a9f16bfea4cf3cb5dd057b1556196c",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "LinuxおよびWindows以外のプラットフォーム向けに、プラットフォーム固有の情報を定義するファイルです。プラットフォーム名やデフォルトのホームディレクトリのパスを提供します。",
+ "nodes": {
+  "Name": "プラットフォーム名として \"other\" を返します。",
+  "homeDir": "このプラットフォームにおけるデフォルトのホームディレクトリパス（\"/var/iryo\"）を返します。"
+ }
+}

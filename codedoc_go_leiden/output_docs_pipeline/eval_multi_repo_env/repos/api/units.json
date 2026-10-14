@@ -1,0 +1,224 @@
+{
+ "version": 1,
+ "repo": "api",
+ "repo_root": "/home/admin/dev/code/codedoc_go_leiden/test_codes/multi_repo/api",
+ "toolchain": "go1.27.2",
+ "builds": [
+  {
+   "id": "linux-amd64",
+   "goos": "linux",
+   "goarch": "amd64",
+   "tags": [],
+   "cgo": false,
+   "primary": true
+  }
+ ],
+ "mode": "download",
+ "module_source": "proxy",
+ "groups": [
+  {
+   "id": "ws0",
+   "kind": "workspace",
+   "dir": "/home/admin/dev/code/codedoc_go_leiden/output_docs_pipeline/eval_multi_repo_env/repos/api/go/ws0",
+   "gowork": "/home/admin/dev/code/codedoc_go_leiden/output_docs_pipeline/eval_multi_repo_env/repos/api/go/ws0/go.work",
+   "modfile": null,
+   "modules": [
+    "example.com/iryo/api/notify",
+    "example.com/iryo/api/service"
+   ],
+   "vendor": false,
+   "degraded": false,
+   "status": "ok",
+   "pattern": "work",
+   "missing_modules": [],
+   "warnings": [
+    "example.com/iryo/textkit is a module of this repo and of peer shared; it is not substituted"
+   ],
+   "source": "/home/admin/dev/code/codedoc_go_leiden/test_codes/multi_repo/api/go.work",
+   "uses": [
+    "/home/admin/dev/code/codedoc_go_leiden/test_codes/multi_repo/api/notify",
+    "/home/admin/dev/code/codedoc_go_leiden/test_codes/multi_repo/api/service"
+   ]
+  },
+  {
+   "id": "m0",
+   "kind": "module",
+   "dir": "/home/admin/dev/code/codedoc_go_leiden/test_codes/multi_repo/api/forks/textkit",
+   "gowork": null,
+   "modfile": "/home/admin/dev/code/codedoc_go_leiden/output_docs_pipeline/eval_multi_repo_env/repos/api/go/m0/go.mod",
+   "modules": [
+    "example.com/iryo/textkit"
+   ],
+   "vendor": false,
+   "degraded": false,
+   "status": "ok",
+   "pattern": "./...",
+   "missing_modules": [],
+   "warnings": [],
+   "source": "/home/admin/dev/code/codedoc_go_leiden/test_codes/multi_repo/api/forks/textkit/go.mod",
+   "uses": []
+  },
+  {
+   "id": "m1",
+   "kind": "module",
+   "dir": "/home/admin/dev/code/codedoc_go_leiden/test_codes/multi_repo/api/legacy",
+   "gowork": null,
+   "modfile": "/home/admin/dev/code/codedoc_go_leiden/output_docs_pipeline/eval_multi_repo_env/repos/api/go/m1/go.mod",
+   "modules": [
+    "example.com/iryo/api/legacy"
+   ],
+   "vendor": true,
+   "degraded": false,
+   "status": "ok",
+   "pattern": "./...",
+   "missing_modules": [],
+   "warnings": [
+    "peer modules (example.com/iryo/shared from shared) are not substituted: the group is vendored, so its vendored copies win"
+   ],
+   "source": "/home/admin/dev/code/codedoc_go_leiden/test_codes/multi_repo/api/legacy/go.mod",
+   "uses": []
+  },
+  {
+   "id": "m2",
+   "kind": "module",
+   "dir": "/home/admin/dev/code/codedoc_go_leiden/test_codes/multi_repo/api/tools",
+   "gowork": null,
+   "modfile": "/home/admin/dev/code/codedoc_go_leiden/output_docs_pipeline/eval_multi_repo_env/repos/api/go/m2/go.mod",
+   "modules": [
+    "example.com/iryo/api/tools"
+   ],
+   "vendor": false,
+   "degraded": false,
+   "status": "ok",
+   "pattern": "./...",
+   "missing_modules": [],
+   "warnings": [],
+   "source": "/home/admin/dev/code/codedoc_go_leiden/test_codes/multi_repo/api/tools/go.mod",
+   "uses": []
+  }
+ ],
+ "units": [
+  {
+   "key": "example.com/iryo/textkit",
+   "root": "forks/textkit",
+   "go": "1.26",
+   "toolchain": null,
+   "group": "m0",
+   "requires": [],
+   "replaces": [],
+   "in_repo_deps": [],
+   "vendor": false
+  },
+  {
+   "key": "example.com/iryo/api/legacy",
+   "root": "legacy",
+   "go": "1.26",
+   "toolchain": null,
+   "group": "m1",
+   "requires": [
+    {
+     "path": "example.com/iryo/shared",
+     "version": "v1.0.0",
+     "indirect": false
+    }
+   ],
+   "replaces": [],
+   "in_repo_deps": [],
+   "vendor": true
+  },
+  {
+   "key": "example.com/iryo/api/notify",
+   "root": "notify",
+   "go": "1.26",
+   "toolchain": null,
+   "group": "ws0",
+   "requires": [
+    {
+     "path": "example.com/iryo/shared",
+     "version": "v1.0.0",
+     "indirect": false
+    }
+   ],
+   "replaces": [],
+   "in_repo_deps": [],
+   "vendor": false
+  },
+  {
+   "key": "example.com/iryo/api/service",
+   "root": "service",
+   "go": "1.26",
+   "toolchain": null,
+   "group": "ws0",
+   "requires": [
+    {
+     "path": "example.com/iryo/shared",
+     "version": "v1.0.0",
+     "indirect": false
+    },
+    {
+     "path": "example.com/iryo/textkit",
+     "version": "v1.0.0",
+     "indirect": false
+    }
+   ],
+   "replaces": [
+    {
+     "old": "example.com/iryo/textkit",
+     "old_version": "",
+     "new": "/home/admin/dev/code/codedoc_go_leiden/test_codes/multi_repo/api/forks/textkit",
+     "new_version": "",
+     "local": true
+    }
+   ],
+   "in_repo_deps": [
+    "example.com/iryo/api/notify",
+    "example.com/iryo/textkit"
+   ],
+   "vendor": false
+  },
+  {
+   "key": "example.com/iryo/api/tools",
+   "root": "tools",
+   "go": "1.26",
+   "toolchain": null,
+   "group": "m2",
+   "requires": [],
+   "replaces": [],
+   "in_repo_deps": [],
+   "vendor": false
+  }
+ ],
+ "peers": [
+  {
+   "name": "shared",
+   "root": "/home/admin/dev/code/codedoc_go_leiden/test_codes/multi_repo/shared",
+   "units": [
+    {
+     "key": "example.com/iryo/shared",
+     "root": ""
+    },
+    {
+     "key": "example.com/iryo/textkit",
+     "root": "textkit"
+    }
+   ]
+  },
+  {
+   "name": "web",
+   "root": "/home/admin/dev/code/codedoc_go_leiden/test_codes/multi_repo/web",
+   "units": [
+    {
+     "key": "example.com/iryo/web",
+     "root": ""
+    }
+   ]
+  }
+ ],
+ "skipped": {
+  "vendor": 4
+ },
+ "warnings": [
+  "group ws0: example.com/iryo/textkit is a module of this repo and of peer shared; it is not substituted",
+  "group m1: peer modules (example.com/iryo/shared from shared) are not substituted: the group is vendored, so its vendored copies win"
+ ]
+}

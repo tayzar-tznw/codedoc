@@ -1,0 +1,2 @@
+{"package_id": "a_7812a9f2d9d2fb24", "import_path": "example.com/layouts/nonancestor/api", "name": "api", "directory": "api", "module": "example.com/layouts/nonancestor/api", "origin": "package", "file_count": 1, "summary": "", "repo": "nonancestor"}
+{"package_id": "a_c94b6fb8267e46c3", "import_path": "example.com/layouts/nonancestor/server", "name": "main", "directory": "server", "module": "example.com/layouts/nonancestor/server", "origin": "command", "file_count": 1, "summary": "", "repo": "nonancestor"}

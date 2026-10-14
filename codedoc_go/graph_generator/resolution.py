@@ -444,15 +444,20 @@ def _open_world_units(disc) -> dict[str, list[str]]:
     """R54: unit key -> the other groups that build the unit from its in-repo
     directory through a local replace. Their types are in no load of the
     unit's group and can be passed to its interface calls. The replaces are
-    those the go command applies: a single module's go.mod, a workspace
-    member's go.mod; a main module is never replaced, and dependencies'
-    replaces do not count."""
+    those the go command applies: a single module's go.mod; a workspace's
+    go.work and its members' go.mod files, where a go.work replace of a path
+    overrides the members' replaces of it (of the same version, or all of
+    them when it names none). A main module is never replaced, and
+    dependencies' replaces do not count."""
     group_of = {key: g.id for g in disc.groups for key in g.modules}
     at_root = {os.path.realpath(os.path.join(disc.repo_root, u.root)): u.key for u in disc.units}
     units = {u.key: u for u in disc.units}
     out: dict[str, set[str]] = {}
     for g in disc.groups:
-        for r in (r for key in g.modules if key in units for r in units[key].replaces):
+        work = list(g.replaces)
+        members = [r for key in g.modules if key in units for r in units[key].replaces
+                   if not any(w.old == r.old and w.old_version in ("", r.old_version) for w in work)]
+        for r in work + members:
             target = at_root.get(r.new) if r.local and r.old not in g.modules else None
             if target is not None and group_of.get(target) != g.id:
                 out.setdefault(target, set()).add(g.id)

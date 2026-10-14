@@ -1,0 +1,11 @@
+{
+ "sha256": "e009cb696f0795b3f3dff0bc356d46d8d6cb9107a1a8fb17cbac154b8ca6a3df",
+ "context_hash": "fc2bc21407bd9319804d5b9f21e82b259faf1ac793147446078124d41d077b51",
+ "mode": "batched",
+ "model": "gemini-3.5-flash",
+ "prompt_version": "go-wiki-2",
+ "file": "Cgoが有効なビルド環境において、プラットフォームのアクセラレーション情報を取得するための実装を提供するファイルです。システムがCgoを利用したアクセラレーションに対応していることを示します。",
+ "nodes": {
+  "Accel": "Cgoビルド環境において、アクセラレーションの種類として文字列 \"cgo\" を返します。"
+ }
+}
