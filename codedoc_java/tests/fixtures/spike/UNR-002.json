@@ -1,0 +1,11 @@
+{
+ "case": "UNR-002",
+ "site_kind": "invocation",
+ "pos": {
+  "line": 46,
+  "character": 43
+ },
+ "file": "Iryo.ReceptionDesk/Flows/MaintenanceFlow.cs",
+ "definition": null,
+ "hover": null
+}

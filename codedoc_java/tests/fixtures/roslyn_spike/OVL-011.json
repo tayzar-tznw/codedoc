@@ -1,0 +1,42 @@
+{
+ "case": "OVL-011",
+ "site_kind": "operator",
+ "pos": {
+  "line": 38,
+  "character": 33
+ },
+ "definition": [
+  {
+   "uri": "file:///tmp/MetadataAsSource/98d0f9b62c64485abf0118c0d14a5b1d/DecompilationMetadataAsSourceFileProvider/c0c939f957a74d718739ebf3da48cd0d/Money.cs",
+   "range": {
+    "start": {
+     "line": 9,
+     "character": 33
+    },
+    "end": {
+     "line": 9,
+     "character": 34
+    }
+   }
+  }
+ ],
+ "hover": {
+  "contents": {
+   "kind": "markdown",
+   "value": "```csharp\nMoney Money.operator +(Money left, Money right)\n```\n  \n"
+  },
+  "range": {
+   "start": {
+    "line": 38,
+    "character": 33
+   },
+   "end": {
+    "line": 38,
+    "character": 34
+   }
+  }
+ },
+ "target_uri": "file:///tmp/MetadataAsSource/98d0f9b62c64485abf0118c0d14a5b1d/DecompilationMetadataAsSourceFileProvider/c0c939f957a74d718739ebf3da48cd0d/Money.cs",
+ "target_head": "﻿#region Assembly Iryo.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null\n// /home/admin/.nuget/packages/iryo.domain/1.0.0/lib/net10.0/Iryo.Domain.dll\n// Decompiled with ICSharpCode.Decompiler \n#endregion\n\nnamespace Iryo.Domain;\n\npublic record Money(decimal Amount)\n{\n    public static Money operator +(Money left, Money right)\n    {\n        return left with\n        {\n            Amount = left.Amount + right.Amount\n        };\n    }\n\n    public static implicit operator decimal(Money money)\n    {\n        return money.Amount;\n    }\n\n    public override string ToString()\n    {\n        ret",
+ "target_len": 2419
+}

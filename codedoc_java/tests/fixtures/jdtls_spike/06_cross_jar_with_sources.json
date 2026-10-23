@@ -1,0 +1,81 @@
+{
+  "source_toggle": {
+    "restored_source_jar": "/tmp/jdtls_spike_mini/_feed/jp/iryo/spike/mini-lib/1.0.0/mini-lib-1.0.0-sources.jar",
+    "restored_sha256": "1af16a4a4660ce6ccd5c41eaac7ba66ebaa841890b2de09cca967d51ee47d82e",
+    "isolated_local_gav_absent_before_session": true
+  },
+  "definition": {
+    "site": {
+      "site": "overload_mixed",
+      "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+      "relative_file": "App.java",
+      "source_line": "        long widened = Calculations.calculate(1, 2L);",
+      "token": "calculate",
+      "token_occurrence": 0,
+      "position": {
+        "line": 28,
+        "character": 36
+      }
+    },
+    "did_open": true,
+    "request": {
+      "method": "textDocument/definition",
+      "params": {
+        "textDocument": {
+          "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+        },
+        "position": {
+          "line": 28,
+          "character": 36
+        }
+      }
+    },
+    "response": [
+      {
+        "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Calculations.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Calculations.class",
+        "range": {
+          "start": {
+            "line": 13,
+            "character": 3
+          },
+          "end": {
+            "line": 15,
+            "character": 4
+          }
+        }
+      }
+    ]
+  },
+  "jdt_uri_exact": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Calculations.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Calculations.class",
+  "uri_contract": {
+    "container": "mini-lib-1.0.0.jar",
+    "artifact_label": "mini-lib",
+    "rule": "exact GAV map jp.iryo.spike:mini-lib:1.0.0 -> artifactId"
+  },
+  "class_file_contents": {
+    "success": true,
+    "attempts": [
+      {
+        "request": {
+          "method": "java/classFileContents",
+          "params": {
+            "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Calculations.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Calculations.class"
+          }
+        },
+        "response": "package jp.iryo.spike.lib;\n\n/** SOURCE_SENTINEL_JDTLS_SPIKE real attached source. */\npublic final class Calculations {\n    public static final String 日本語定数 = \"診療\";\n\n    private Calculations() {}\n\n    public static int calculate(int a, int b) {\n        return a + b;\n    }\n\n    public static long calculate(long a, long b) {\n        return a + b;\n    }\n\n    public static int calculate(int... values) {\n        int total = 0;\n        for (int value : values) {\n            total += value;\n        }\n        return total;\n    }\n\n    public static int 点数変換(int 点数) {\n        return 点数 * 10;\n    }\n}\n",
+        "elapsed_ms": 18107.119
+      }
+    ],
+    "final": {
+      "request": {
+        "method": "java/classFileContents",
+        "params": {
+          "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Calculations.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Calculations.class"
+        }
+      },
+      "response": "package jp.iryo.spike.lib;\n\n/** SOURCE_SENTINEL_JDTLS_SPIKE real attached source. */\npublic final class Calculations {\n    public static final String 日本語定数 = \"診療\";\n\n    private Calculations() {}\n\n    public static int calculate(int a, int b) {\n        return a + b;\n    }\n\n    public static long calculate(long a, long b) {\n        return a + b;\n    }\n\n    public static int calculate(int... values) {\n        int total = 0;\n        for (int value : values) {\n            total += value;\n        }\n        return total;\n    }\n\n    public static int 点数変換(int 点数) {\n        return 点数 * 10;\n    }\n}\n",
+      "elapsed_ms": 18107.119
+    }
+  },
+  "first_30_lines": "package jp.iryo.spike.lib;\n\n/** SOURCE_SENTINEL_JDTLS_SPIKE real attached source. */\npublic final class Calculations {\n    public static final String 日本語定数 = \"診療\";\n\n    private Calculations() {}\n\n    public static int calculate(int a, int b) {\n        return a + b;\n    }\n\n    public static long calculate(long a, long b) {\n        return a + b;\n    }\n\n    public static int calculate(int... values) {\n        int total = 0;\n        for (int value : values) {\n            total += value;\n        }\n        return total;\n    }\n\n    public static int 点数変換(int 点数) {\n        return 点数 * 10;\n    }\n}"
+}

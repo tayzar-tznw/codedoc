@@ -1,0 +1,60 @@
+{
+  "projects": {
+    "mini-lib": {
+      "checked": [
+        ".project",
+        ".classpath",
+        ".settings",
+        "bin"
+      ],
+      "found": {
+        ".project": {
+          "type": "file",
+          "size": 833
+        },
+        ".classpath": {
+          "type": "file",
+          "size": 2300
+        },
+        ".settings": {
+          "type": "directory",
+          "entries": [
+            ".settings/org.eclipse.core.resources.prefs",
+            ".settings/org.eclipse.jdt.apt.core.prefs",
+            ".settings/org.eclipse.jdt.core.prefs",
+            ".settings/org.eclipse.m2e.core.prefs"
+          ]
+        }
+      },
+      "polluted": true
+    },
+    "mini-app": {
+      "checked": [
+        ".project",
+        ".classpath",
+        ".settings",
+        "bin"
+      ],
+      "found": {
+        ".project": {
+          "type": "file",
+          "size": 833
+        },
+        ".classpath": {
+          "type": "file",
+          "size": 2300
+        },
+        ".settings": {
+          "type": "directory",
+          "entries": [
+            ".settings/org.eclipse.core.resources.prefs",
+            ".settings/org.eclipse.jdt.apt.core.prefs",
+            ".settings/org.eclipse.jdt.core.prefs",
+            ".settings/org.eclipse.m2e.core.prefs"
+          ]
+        }
+      },
+      "polluted": true
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+ "case": "UNR-002",
+ "site_kind": "invocation",
+ "pos": {
+  "line": 46,
+  "character": 43
+ },
+ "definition": [],
+ "hover": {
+  "contents": {
+   "kind": "markdown",
+   "value": "```csharp\ndynamic\n```\n  \nRepresents an object whose operations will be resolved at runtime\\.  \n"
+  },
+  "range": {
+   "start": {
+    "line": 46,
+    "character": 43
+   },
+   "end": {
+    "line": 46,
+    "character": 50
+   }
+  }
+ }
+}

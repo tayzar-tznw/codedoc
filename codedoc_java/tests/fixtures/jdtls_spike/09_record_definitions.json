@@ -1,0 +1,86 @@
+{
+  "constructor": {
+    "site": {
+      "site": "record_ctor",
+      "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+      "relative_file": "App.java",
+      "source_line": "        Rec rec = new Rec(5);",
+      "token": "Rec",
+      "token_occurrence": 1,
+      "position": {
+        "line": 33,
+        "character": 22
+      }
+    },
+    "did_open": true,
+    "request": {
+      "method": "textDocument/definition",
+      "params": {
+        "textDocument": {
+          "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+        },
+        "position": {
+          "line": 33,
+          "character": 22
+        }
+      }
+    },
+    "response": [
+      {
+        "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Rec.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Rec.class",
+        "range": {
+          "start": {
+            "line": 0,
+            "character": 0
+          },
+          "end": {
+            "line": 0,
+            "character": 0
+          }
+        }
+      }
+    ]
+  },
+  "accessor": {
+    "site": {
+      "site": "record_accessor",
+      "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+      "relative_file": "App.java",
+      "source_line": "        int amount = rec.amount();",
+      "token": "amount",
+      "token_occurrence": 1,
+      "position": {
+        "line": 34,
+        "character": 25
+      }
+    },
+    "did_open": true,
+    "request": {
+      "method": "textDocument/definition",
+      "params": {
+        "textDocument": {
+          "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+        },
+        "position": {
+          "line": 34,
+          "character": 25
+        }
+      }
+    },
+    "response": [
+      {
+        "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Rec.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Rec.class",
+        "range": {
+          "start": {
+            "line": 0,
+            "character": 0
+          },
+          "end": {
+            "line": 0,
+            "character": 0
+          }
+        }
+      }
+    ]
+  }
+}

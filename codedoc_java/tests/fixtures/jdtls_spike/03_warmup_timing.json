@@ -1,0 +1,272 @@
+{
+  "no_sources": {
+    "service_ready_ms": 3928.66,
+    "warmup": {
+      "success": true,
+      "attempts": [
+        {
+          "started_ms": 2522.277,
+          "request": {
+            "method": "textDocument/definition",
+            "params": {
+              "textDocument": {
+                "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+              },
+              "position": {
+                "line": 28,
+                "character": 36
+              }
+            }
+          },
+          "completed_ms": 7438.936,
+          "response": [
+            {
+              "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Calculations.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Calculations.class",
+              "range": {
+                "start": {
+                  "line": 13,
+                  "character": 3
+                },
+                "end": {
+                  "line": 15,
+                  "character": 4
+                }
+              }
+            }
+          ],
+          "target_uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Calculations.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Calculations.class"
+        }
+      ],
+      "first_success_ms": 7438.936,
+      "target_uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Calculations.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Calculations.class"
+    },
+    "language_statuses": [
+      {
+        "params": {
+          "type": "Starting",
+          "message": "Init..."
+        },
+        "elapsed_ms": 2508.239
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "0% Starting Java Language Server"
+        },
+        "elapsed_ms": 2508.465
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "27% Starting Java Language Server - 0% https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-resources-plugin/3.4.0/maven-resources-plugin-3.4.0.jar"
+        },
+        "elapsed_ms": 2775.377
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "27% Starting Java Language Server - file:///tmp/jdtls_spike_mini/_feed/jp/iryo/spike/mini-lib/1.0.0/mini-lib-1.0.0.pom"
+        },
+        "elapsed_ms": 3078.096
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "59% Starting Java Language Server - 0% https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/4.0.2/plexus-utils-4.0.2.pom"
+        },
+        "elapsed_ms": 3288.882
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "59% Starting Java Language Server - 0% https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-filtering/3.4.0/maven-filtering-3.4.0.jar"
+        },
+        "elapsed_ms": 3490.223
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "70% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3901.4
+      },
+      {
+        "params": {
+          "type": "ProjectStatus",
+          "message": "OK"
+        },
+        "elapsed_ms": 3904.11
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "100% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3904.219
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "1000% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3904.782
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "1005% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3904.922
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "1010% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3906.246
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "1100% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3906.373
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "1100% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3906.453
+      },
+      {
+        "params": {
+          "type": "Started",
+          "message": "Ready"
+        },
+        "elapsed_ms": 3906.926
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "1100% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3920.549
+      },
+      {
+        "params": {
+          "type": "ServiceReady",
+          "message": "ServiceReady"
+        },
+        "elapsed_ms": 3928.66
+      }
+    ]
+  },
+  "with_sources": {
+    "service_ready_ms": 3287.702,
+    "warmup": {
+      "success": true,
+      "attempts": [
+        {
+          "started_ms": 2506.727,
+          "request": {
+            "method": "textDocument/definition",
+            "params": {
+              "textDocument": {
+                "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+              },
+              "position": {
+                "line": 28,
+                "character": 36
+              }
+            }
+          },
+          "completed_ms": 7144.654,
+          "response": [
+            {
+              "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Calculations.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Calculations.class",
+              "range": {
+                "start": {
+                  "line": 13,
+                  "character": 3
+                },
+                "end": {
+                  "line": 15,
+                  "character": 4
+                }
+              }
+            }
+          ],
+          "target_uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Calculations.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Calculations.class"
+        }
+      ],
+      "first_success_ms": 7144.654,
+      "target_uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Calculations.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Calculations.class"
+    },
+    "language_statuses": [
+      {
+        "params": {
+          "type": "Starting",
+          "message": "Init..."
+        },
+        "elapsed_ms": 2488.856
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "0% Starting Java Language Server"
+        },
+        "elapsed_ms": 2489.084
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "27% Starting Java Language Server - file:///tmp/jdtls_spike_mini/_feed/jp/iryo/spike/mini-lib/1.0.0/mini-lib-1.0.0.pom"
+        },
+        "elapsed_ms": 2841.475
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "51% Starting Java Language Server"
+        },
+        "elapsed_ms": 3112.151
+      },
+      {
+        "params": {
+          "type": "ProjectStatus",
+          "message": "OK"
+        },
+        "elapsed_ms": 3269.369
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "100% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3269.488
+      },
+      {
+        "params": {
+          "type": "Started",
+          "message": "Ready"
+        },
+        "elapsed_ms": 3270.319
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "100% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3282.697
+      },
+      {
+        "params": {
+          "type": "ServiceReady",
+          "message": "ServiceReady"
+        },
+        "elapsed_ms": 3287.702
+      }
+    ]
+  }
+}

@@ -1,0 +1,65 @@
+{
+ "case": "OVL-001",
+ "site_kind": "invocation",
+ "pos": {
+  "line": 19,
+  "character": 24
+ },
+ "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+ "definition": [
+  {
+   "uri": "csharp:/home/admin/dev/codedoc_csharp/test_codes/iryo-kanri-system/Iryo.ReceptionDesk/Iryo.ReceptionDesk.csproj/decompiled/Iryo.Billing.FeeCalculator.cs",
+   "range": {
+    "start": {
+     "line": 7,
+     "character": 12
+    },
+    "end": {
+     "line": 7,
+     "character": 21
+    }
+   }
+  },
+  {
+   "uri": "csharp:/home/admin/dev/codedoc_csharp/test_codes/iryo-kanri-system/Iryo.ReceptionDesk/Iryo.ReceptionDesk.csproj/decompiled/Iryo.Billing.FeeCalculator.cs",
+   "range": {
+    "start": {
+     "line": 12,
+     "character": 13
+    },
+    "end": {
+     "line": 12,
+     "character": 22
+    }
+   }
+  },
+  {
+   "uri": "csharp:/home/admin/dev/codedoc_csharp/test_codes/iryo-kanri-system/Iryo.ReceptionDesk/Iryo.ReceptionDesk.csproj/decompiled/Iryo.Billing.FeeCalculator.cs",
+   "range": {
+    "start": {
+     "line": 17,
+     "character": 15
+    },
+    "end": {
+     "line": 17,
+     "character": 24
+    }
+   }
+  }
+ ],
+ "hover": {
+  "contents": {
+   "kind": "markdown",
+   "value": "```csharp\nint FeeCalculator.Calculate(int a, int b)\n```"
+  }
+ },
+ "metadata_shape": "textDocument",
+ "metadata": {
+  "projectName": "Iryo.ReceptionDesk",
+  "assemblyName": "Iryo.Billing",
+  "symbolName": "Iryo.Billing.FeeCalculator",
+  "source_head": "using System;\nusing System.Threading.Tasks;\n\nnamespace Iryo.Billing;\n\npublic class FeeCalculator\n{\n\tpublic int Calculate(int a, int b)\n\t{\n\t\treturn a + b;\n\t}\n\n\tpublic long Calculate(long a, long b)\n\t{\n\t\treturn a + b;\n\t}\n\n\tpublic double Calculate(double a, double b)\n\t{\n\t\treturn a + b;\n\t}\n\n\tpublic int Calculate(int a, int b, int c)\n\t{\n\t\treturn a + b + c;\n\t}\n\n\tpublic int Calculate(params int[] points)",
+  "source_len": 943
+ },
+ "metadata_source": "using System;\nusing System.Threading.Tasks;\n\nnamespace Iryo.Billing;\n\npublic class FeeCalculator\n{\n\tpublic int Calculate(int a, int b)\n\t{\n\t\treturn a + b;\n\t}\n\n\tpublic long Calculate(long a, long b)\n\t{\n\t\treturn a + b;\n\t}\n\n\tpublic double Calculate(double a, double b)\n\t{\n\t\treturn a + b;\n\t}\n\n\tpublic int Calculate(int a, int b, int c)\n\t{\n\t\treturn a + b + c;\n\t}\n\n\tpublic int Calculate(params int[] points)\n\t{\n\t\tint num = 0;\n\t\tforeach (int num2 in points)\n\t\t{\n\t\t\tnum += num2;\n\t\t}\n\t\tif (points.Length > 3)\n\t\t{\n\t\t\tnum = (int)((double)num * 0.9);\n\t\t}\n\t\treturn num;\n\t}\n\n\tpublic string Run(Action task)\n\t{\n\t\ttask();\n\t\treturn \"同期実行\";\n\t}\n\n\tpublic string Run(Func<Task> task)\n\t{\n\t\ttask().GetAwaiter().GetResult();\n\t\treturn \"非同期実行\";\n\t}\n\n\tpublic int Scale(int value, int factor)\n\t{\n\t\treturn value * factor;\n\t}\n\n\tpublic double Scale(int value, double factor)\n\t{\n\t\treturn (double)value * factor;\n\t}\n\n\tpublic decimal Pay(decimal amount)\n\t{\n\t\treturn amount;\n\t}\n}\n"
+}

@@ -1,0 +1,39 @@
+{
+ "case": "OVL-011",
+ "site_kind": "operator",
+ "pos": {
+  "line": 38,
+  "character": 33
+ },
+ "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+ "definition": [
+  {
+   "uri": "csharp:/home/admin/dev/codedoc_csharp/test_codes/iryo-kanri-system/Iryo.ReceptionDesk/Iryo.ReceptionDesk.csproj/decompiled/Iryo.Domain.Money.cs",
+   "range": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 0,
+     "character": 1
+    }
+   }
+  }
+ ],
+ "hover": {
+  "contents": {
+   "kind": "markdown",
+   "value": "```csharp\nMoney Money.operator +(Money left, Money right)\n```"
+  }
+ },
+ "metadata_shape": "textDocument",
+ "metadata": {
+  "projectName": "Iryo.ReceptionDesk",
+  "assemblyName": "Iryo.Domain",
+  "symbolName": "Iryo.Domain.Money",
+  "source_head": "namespace Iryo.Domain;\n\npublic record Money(decimal Amount)\n{\n\tpublic static Money operator +(Money left, Money right)\n\t{\n\t\treturn left with\n\t\t{\n\t\t\tAmount = left.Amount + right.Amount\n\t\t};\n\t}\n\n\tpublic static implicit operator decimal(Money money)\n\t{\n\t\treturn money.Amount;\n\t}\n\n\tpublic override string ToString()\n\t{\n\t\treturn Amount + \"円\";\n\t}\n}\n",
+  "source_len": 343
+ },
+ "metadata_source": "namespace Iryo.Domain;\n\npublic record Money(decimal Amount)\n{\n\tpublic static Money operator +(Money left, Money right)\n\t{\n\t\treturn left with\n\t\t{\n\t\t\tAmount = left.Amount + right.Amount\n\t\t};\n\t}\n\n\tpublic static implicit operator decimal(Money money)\n\t{\n\t\treturn money.Amount;\n\t}\n\n\tpublic override string ToString()\n\t{\n\t\treturn Amount + \"円\";\n\t}\n}\n"
+}

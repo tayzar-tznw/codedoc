@@ -1,0 +1,42 @@
+{
+ "case": "EXT-002",
+ "site_kind": "invocation",
+ "pos": {
+  "line": 45,
+  "character": 15
+ },
+ "definition": [
+  {
+   "uri": "file:///tmp/MetadataAsSource/98d0f9b62c64485abf0118c0d14a5b1d/DecompilationMetadataAsSourceFileProvider/05d25f97d5a74ce39f32054e1666c708/KarteExtensions.cs",
+   "range": {
+    "start": {
+     "line": 17,
+     "character": 23
+    },
+    "end": {
+     "line": 17,
+     "character": 26
+    }
+   }
+  }
+ ],
+ "hover": {
+  "contents": {
+   "kind": "markdown",
+   "value": "```csharp\n(extension) void Logger.Log(Exception error, bool includeStack) (+ 4 overloads)\n```\n  \n"
+  },
+  "range": {
+   "start": {
+    "line": 45,
+    "character": 15
+   },
+   "end": {
+    "line": 45,
+    "character": 18
+   }
+  }
+ },
+ "target_uri": "file:///tmp/MetadataAsSource/98d0f9b62c64485abf0118c0d14a5b1d/DecompilationMetadataAsSourceFileProvider/05d25f97d5a74ce39f32054e1666c708/KarteExtensions.cs",
+ "target_head": "﻿#region Assembly Iryo.Reporting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null\n// /home/admin/.nuget/packages/iryo.reporting/1.0.0/lib/net10.0/Iryo.Reporting.dll\n// Decompiled with ICSharpCode.Decompiler \n#endregion\n\nusing System;\nusing Iryo.Kernel.Logging;\n\nnamespace Iryo.Reporting;\n\npublic static class KarteExtensions\n{\n    public static void Log(this Logger logger, Exception error)\n    {\n        logger.Log(\"拡張: \" + error.Message);\n    }\n\n    public static void Log(this Logger logger, Exception error, bool includeStack)\n    {\n        logger.Log(\"拡張詳細: \" + error.Message + (includeSta",
+ "target_len": 2371
+}

@@ -1,0 +1,42 @@
+{
+ "case": "OVL-001",
+ "site_kind": "invocation",
+ "pos": {
+  "line": 19,
+  "character": 24
+ },
+ "definition": [
+  {
+   "uri": "file:///tmp/MetadataAsSource/98d0f9b62c64485abf0118c0d14a5b1d/DecompilationMetadataAsSourceFileProvider/d9482dba83ab49fdb1b4c6ad4bfe6f03/FeeCalculator.cs",
+   "range": {
+    "start": {
+     "line": 12,
+     "character": 15
+    },
+    "end": {
+     "line": 12,
+     "character": 24
+    }
+   }
+  }
+ ],
+ "hover": {
+  "contents": {
+   "kind": "markdown",
+   "value": "```csharp\nint FeeCalculator.Calculate(int a, int b) (+ 4 overloads)\n```\n  \n"
+  },
+  "range": {
+   "start": {
+    "line": 19,
+    "character": 24
+   },
+   "end": {
+    "line": 19,
+    "character": 33
+   }
+  }
+ },
+ "target_uri": "file:///tmp/MetadataAsSource/98d0f9b62c64485abf0118c0d14a5b1d/DecompilationMetadataAsSourceFileProvider/d9482dba83ab49fdb1b4c6ad4bfe6f03/FeeCalculator.cs",
+ "target_head": "﻿#region Assembly Iryo.Billing, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null\n// /home/admin/.nuget/packages/iryo.billing/1.0.0/lib/net10.0/Iryo.Billing.dll\n// Decompiled with ICSharpCode.Decompiler \n#endregion\n\nusing System;\nusing System.Threading.Tasks;\n\nnamespace Iryo.Billing;\n\npublic class FeeCalculator\n{\n    public int Calculate(int a, int b)\n    {\n        return a + b;\n    }\n\n    public long Calculate(long a, long b)\n    {\n        return a + b;\n    }\n\n    public double Calculate(double a, double b)\n    {\n        return a + b;\n    }\n\n    public int Calculate(int a, int b, int c)\n ",
+ "target_len": 2514
+}

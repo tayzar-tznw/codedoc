@@ -1,0 +1,527 @@
+{
+ "label": "ReceptionDesk",
+ "probes": {
+  "XPR-001": {
+   "case": "XPR-001",
+   "site_kind": "object_creation",
+   "pos": {
+    "line": 16,
+    "character": 25
+   },
+   "definition": [
+    {
+     "uri": "file:///tmp/MetadataAsSource/98d0f9b62c64485abf0118c0d14a5b1d/DecompilationMetadataAsSourceFileProvider/fc1f37909cff4aaeb5dc258fa35d93e0/Logger.cs",
+     "range": {
+      "start": {
+       "line": 31,
+       "character": 11
+      },
+      "end": {
+       "line": 31,
+       "character": 17
+      }
+     }
+    }
+   ],
+   "hover": {
+    "contents": {
+     "kind": "markdown",
+     "value": "```csharp\nLogger.Logger() (+ 1 overload)\n```\n  \n"
+    },
+    "range": {
+     "start": {
+      "line": 16,
+      "character": 25
+     },
+     "end": {
+      "line": 16,
+      "character": 31
+     }
+    }
+   },
+   "target_uri": "file:///tmp/MetadataAsSource/98d0f9b62c64485abf0118c0d14a5b1d/DecompilationMetadataAsSourceFileProvider/fc1f37909cff4aaeb5dc258fa35d93e0/Logger.cs",
+   "target_head": "﻿#region Assembly Iryo.Kernel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null\n// /home/admin/.nuget/packages/iryo.kernel/1.0.0/lib/net10.0/Iryo.Kernel.dll\n// Decompiled with ICSharpCode.Decompiler \n#endregion\n\nusing System;\nusing System.Collections.Generic;\n\nnamespace Iryo.Kernel.Logging;\n\npublic class Logger\n{\n    private readonly string _name;\n\n    private readonly List<string> _lines = new List<string>();\n\n    private string _lastMessage = \"\";\n\n    public string LastMessage\n    {\n        get\n        {\n            Flush();\n            return _lastMessage;\n        }\n    }\n\n    public s",
+   "target_len": 2703
+  },
+  "OVL-001": {
+   "case": "OVL-001",
+   "site_kind": "invocation",
+   "pos": {
+    "line": 19,
+    "character": 24
+   },
+   "definition": [
+    {
+     "uri": "file:///tmp/MetadataAsSource/98d0f9b62c64485abf0118c0d14a5b1d/DecompilationMetadataAsSourceFileProvider/d9482dba83ab49fdb1b4c6ad4bfe6f03/FeeCalculator.cs",
+     "range": {
+      "start": {
+       "line": 12,
+       "character": 15
+      },
+      "end": {
+       "line": 12,
+       "character": 24
+      }
+     }
+    }
+   ],
+   "hover": {
+    "contents": {
+     "kind": "markdown",
+     "value": "```csharp\nint FeeCalculator.Calculate(int a, int b) (+ 4 overloads)\n```\n  \n"
+    },
+    "range": {
+     "start": {
+      "line": 19,
+      "character": 24
+     },
+     "end": {
+      "line": 19,
+      "character": 33
+     }
+    }
+   },
+   "target_uri": "file:///tmp/MetadataAsSource/98d0f9b62c64485abf0118c0d14a5b1d/DecompilationMetadataAsSourceFileProvider/d9482dba83ab49fdb1b4c6ad4bfe6f03/FeeCalculator.cs",
+   "target_head": "﻿#region Assembly Iryo.Billing, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null\n// /home/admin/.nuget/packages/iryo.billing/1.0.0/lib/net10.0/Iryo.Billing.dll\n// Decompiled with ICSharpCode.Decompiler \n#endregion\n\nusing System;\nusing System.Threading.Tasks;\n\nnamespace Iryo.Billing;\n\npublic class FeeCalculator\n{\n    public int Calculate(int a, int b)\n    {\n        return a + b;\n    }\n\n    public long Calculate(long a, long b)\n    {\n        return a + b;\n    }\n\n    public double Calculate(double a, double b)\n    {\n        return a + b;\n    }\n\n    public int Calculate(int a, int b, int c)\n ",
+   "target_len": 2514
+  },
+  "OVL-005": {
+   "case": "OVL-005",
+   "site_kind": "invocation",
+   "pos": {
+    "line": 23,
+    "character": 26
+   },
+   "definition": [
+    {
+     "uri": "file:///tmp/MetadataAsSource/98d0f9b62c64485abf0118c0d14a5b1d/DecompilationMetadataAsSourceFileProvider/d9482dba83ab49fdb1b4c6ad4bfe6f03/FeeCalculator.cs",
+     "range": {
+      "start": {
+       "line": 32,
+       "character": 15
+      },
+      "end": {
+       "line": 32,
+       "character": 24
+      }
+     }
+    }
+   ],
+   "hover": {
+    "contents": {
+     "kind": "markdown",
+     "value": "```csharp\nint FeeCalculator.Calculate(params int[] points) (+ 4 overloads)\n```\n  \n"
+    },
+    "range": {
+     "start": {
+      "line": 23,
+      "character": 26
+     },
+     "end": {
+      "line": 23,
+      "character": 35
+     }
+    }
+   },
+   "target_uri": "file:///tmp/MetadataAsSource/98d0f9b62c64485abf0118c0d14a5b1d/DecompilationMetadataAsSourceFileProvider/d9482dba83ab49fdb1b4c6ad4bfe6f03/FeeCalculator.cs",
+   "target_head": "﻿#region Assembly Iryo.Billing, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null\n// /home/admin/.nuget/packages/iryo.billing/1.0.0/lib/net10.0/Iryo.Billing.dll\n// Decompiled with ICSharpCode.Decompiler \n#endregion\n\nusing System;\nusing System.Threading.Tasks;\n\nnamespace Iryo.Billing;\n\npublic class FeeCalculator\n{\n    public int Calculate(int a, int b)\n    {\n        return a + b;\n    }\n\n    public long Calculate(long a, long b)\n    {\n        return a + b;\n    }\n\n    public double Calculate(double a, double b)\n    {\n        return a + b;\n    }\n\n    public int Calculate(int a, int b, int c)\n ",
+   "target_len": 2514
+  },
+  "EXT-002": {
+   "case": "EXT-002",
+   "site_kind": "invocation",
+   "pos": {
+    "line": 45,
+    "character": 15
+   },
+   "definition": [
+    {
+     "uri": "file:///tmp/MetadataAsSource/98d0f9b62c64485abf0118c0d14a5b1d/DecompilationMetadataAsSourceFileProvider/05d25f97d5a74ce39f32054e1666c708/KarteExtensions.cs",
+     "range": {
+      "start": {
+       "line": 17,
+       "character": 23
+      },
+      "end": {
+       "line": 17,
+       "character": 26
+      }
+     }
+    }
+   ],
+   "hover": {
+    "contents": {
+     "kind": "markdown",
+     "value": "```csharp\n(extension) void Logger.Log(Exception error, bool includeStack) (+ 4 overloads)\n```\n  \n"
+    },
+    "range": {
+     "start": {
+      "line": 45,
+      "character": 15
+     },
+     "end": {
+      "line": 45,
+      "character": 18
+     }
+    }
+   },
+   "target_uri": "file:///tmp/MetadataAsSource/98d0f9b62c64485abf0118c0d14a5b1d/DecompilationMetadataAsSourceFileProvider/05d25f97d5a74ce39f32054e1666c708/KarteExtensions.cs",
+   "target_head": "﻿#region Assembly Iryo.Reporting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null\n// /home/admin/.nuget/packages/iryo.reporting/1.0.0/lib/net10.0/Iryo.Reporting.dll\n// Decompiled with ICSharpCode.Decompiler \n#endregion\n\nusing System;\nusing Iryo.Kernel.Logging;\n\nnamespace Iryo.Reporting;\n\npublic static class KarteExtensions\n{\n    public static void Log(this Logger logger, Exception error)\n    {\n        logger.Log(\"拡張: \" + error.Message);\n    }\n\n    public static void Log(this Logger logger, Exception error, bool includeStack)\n    {\n        logger.Log(\"拡張詳細: \" + error.Message + (includeSta",
+   "target_len": 2371
+  },
+  "LNQ-001": {
+   "case": "LNQ-001",
+   "site_kind": "query_clause",
+   "pos": {
+    "line": 21,
+    "character": 12
+   },
+   "definition": [
+    {
+     "uri": "file:///tmp/MetadataAsSource/98d0f9b62c64485abf0118c0d14a5b1d/DecompilationMetadataAsSourceFileProvider/03162e8a1033414e9dffab52c00360a0/VitalSequenceLinq.cs",
+     "range": {
+      "start": {
+       "line": 11,
+       "character": 32
+      },
+      "end": {
+       "line": 11,
+       "character": 37
+      }
+     }
+    }
+   ],
+   "hover": {
+    "contents": {
+     "kind": "markdown",
+     "value": "```csharp\n(extension) VitalSequence VitalSequence.Where(Func<int, bool> predicate)\n```\n  \n"
+    },
+    "range": {
+     "start": {
+      "line": 21,
+      "character": 12
+     },
+     "end": {
+      "line": 21,
+      "character": 17
+     }
+    }
+   },
+   "target_uri": "file:///tmp/MetadataAsSource/98d0f9b62c64485abf0118c0d14a5b1d/DecompilationMetadataAsSourceFileProvider/03162e8a1033414e9dffab52c00360a0/VitalSequenceLinq.cs",
+   "target_head": "﻿#region Assembly Iryo.Reporting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null\n// /home/admin/.nuget/packages/iryo.reporting/1.0.0/lib/net10.0/Iryo.Reporting.dll\n// Decompiled with ICSharpCode.Decompiler \n#endregion\n\nusing System;\n\nnamespace Iryo.Reporting;\n\npublic static class VitalSequenceLinq\n{\n    public static VitalSequence Where(this VitalSequence source, Func<int, bool> predicate)\n    {\n        VitalSequence vitalSequence = new VitalSequence();\n        foreach (int item in source)\n        {\n            if (predicate(item))\n            {\n                vitalSequence.Add(item);\n",
+   "target_len": 2702
+  },
+  "GEN-008": {
+   "case": "GEN-008",
+   "site_kind": "indexer",
+   "pos": {
+    "line": 31,
+    "character": 32
+   },
+   "definition": [
+    {
+     "uri": "file:///tmp/MetadataAsSource/98d0f9b62c64485abf0118c0d14a5b1d/DecompilationMetadataAsSourceFileProvider/12119940d3724e1fad933aeec573df85/ChartCache.cs",
+     "range": {
+      "start": {
+       "line": 13,
+       "character": 18
+      },
+      "end": {
+       "line": 13,
+       "character": 22
+      }
+     }
+    }
+   ],
+   "hover": {
+    "contents": {
+     "kind": "markdown",
+     "value": "```csharp\nint ChartCache<string, int>.this[string key] { get; set; }\n```\n  \n"
+    },
+    "range": {
+     "start": {
+      "line": 31,
+      "character": 32
+     },
+     "end": {
+      "line": 31,
+      "character": 33
+     }
+    }
+   },
+   "target_uri": "file:///tmp/MetadataAsSource/98d0f9b62c64485abf0118c0d14a5b1d/DecompilationMetadataAsSourceFileProvider/12119940d3724e1fad933aeec573df85/ChartCache.cs",
+   "target_head": "﻿#region Assembly Iryo.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null\n// /home/admin/.nuget/packages/iryo.data/1.0.0/lib/net10.0/Iryo.Data.dll\n// Decompiled with ICSharpCode.Decompiler \n#endregion\n\nusing System.Collections.Generic;\n\nnamespace Iryo.Data;\n\npublic class ChartCache<TKey, TValue>\n{\n    private readonly Dictionary<TKey, TValue> _map = new Dictionary<TKey, TValue>();\n\n    public TValue this[TKey key]\n    {\n        get\n        {\n            return _map[key];\n        }\n        set\n        {\n            _map[key] = value;\n        }\n    }\n\n    public bool Has(TKey key)\n    {",
+   "target_len": 2662
+  },
+  "OVL-011": {
+   "case": "OVL-011",
+   "site_kind": "operator",
+   "pos": {
+    "line": 38,
+    "character": 33
+   },
+   "definition": [
+    {
+     "uri": "file:///tmp/MetadataAsSource/98d0f9b62c64485abf0118c0d14a5b1d/DecompilationMetadataAsSourceFileProvider/c0c939f957a74d718739ebf3da48cd0d/Money.cs",
+     "range": {
+      "start": {
+       "line": 9,
+       "character": 33
+      },
+      "end": {
+       "line": 9,
+       "character": 34
+      }
+     }
+    }
+   ],
+   "hover": {
+    "contents": {
+     "kind": "markdown",
+     "value": "```csharp\nMoney Money.operator +(Money left, Money right)\n```\n  \n"
+    },
+    "range": {
+     "start": {
+      "line": 38,
+      "character": 33
+     },
+     "end": {
+      "line": 38,
+      "character": 34
+     }
+    }
+   },
+   "target_uri": "file:///tmp/MetadataAsSource/98d0f9b62c64485abf0118c0d14a5b1d/DecompilationMetadataAsSourceFileProvider/c0c939f957a74d718739ebf3da48cd0d/Money.cs",
+   "target_head": "﻿#region Assembly Iryo.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null\n// /home/admin/.nuget/packages/iryo.domain/1.0.0/lib/net10.0/Iryo.Domain.dll\n// Decompiled with ICSharpCode.Decompiler \n#endregion\n\nnamespace Iryo.Domain;\n\npublic record Money(decimal Amount)\n{\n    public static Money operator +(Money left, Money right)\n    {\n        return left with\n        {\n            Amount = left.Amount + right.Amount\n        };\n    }\n\n    public static implicit operator decimal(Money money)\n    {\n        return money.Amount;\n    }\n\n    public override string ToString()\n    {\n        ret",
+   "target_len": 2419
+  },
+  "BND-001": {
+   "case": "BND-001",
+   "site_kind": "object_creation",
+   "pos": {
+    "line": 54,
+    "character": 26
+   },
+   "definition": [
+    {
+     "uri": "file:///home/admin/dev/codedoc_csharp/test_codes/iryo-kanri-system/Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+     "range": {
+      "start": {
+       "line": 5,
+       "character": 6
+      },
+      "end": {
+       "line": 5,
+       "character": 20
+      }
+     }
+    }
+   ],
+   "hover": {
+    "contents": {
+     "kind": "markdown",
+     "value": "```csharp\nclass Iryo.Billing.Text.ReceiptFormatter (+ 1 overload)\n```\n  \n"
+    },
+    "range": {
+     "start": {
+      "line": 54,
+      "character": 26
+     },
+     "end": {
+      "line": 54,
+      "character": 40
+     }
+    }
+   },
+   "target_uri": "file:///home/admin/dev/codedoc_csharp/test_codes/iryo-kanri-system/Iryo.ReceptionDesk/Flows/AccountingFlow.cs"
+  },
+  "UNR-002": {
+   "case": "UNR-002",
+   "site_kind": "invocation",
+   "pos": {
+    "line": 46,
+    "character": 43
+   },
+   "definition": [],
+   "hover": {
+    "contents": {
+     "kind": "markdown",
+     "value": "```csharp\ndynamic\n```\n  \nRepresents an object whose operations will be resolved at runtime\\.  \n"
+    },
+    "range": {
+     "start": {
+      "line": 46,
+      "character": 43
+     },
+     "end": {
+      "line": 46,
+      "character": 50
+     }
+    }
+   }
+  },
+  "VAR-001": {
+   "case": "VAR-001",
+   "site_kind": "invocation",
+   "pos": {
+    "line": 25,
+    "character": 37
+   },
+   "definition": [
+    {
+     "uri": "file:///tmp/MetadataAsSource/98d0f9b62c64485abf0118c0d14a5b1d/DecompilationMetadataAsSourceFileProvider/1d4fc29d780347ef9330076224f5e0c4/RepositoryFactory.cs",
+     "range": {
+      "start": {
+       "line": 11,
+       "character": 39
+      },
+      "end": {
+       "line": 11,
+       "character": 52
+      }
+     }
+    }
+   ],
+   "hover": {
+    "contents": {
+     "kind": "markdown",
+     "value": "```csharp\nSqlPatientRepository RepositoryFactory.CreateDefault()\n```\n  \n"
+    },
+    "range": {
+     "start": {
+      "line": 25,
+      "character": 37
+     },
+     "end": {
+      "line": 25,
+      "character": 50
+     }
+    }
+   },
+   "target_uri": "file:///tmp/MetadataAsSource/98d0f9b62c64485abf0118c0d14a5b1d/DecompilationMetadataAsSourceFileProvider/1d4fc29d780347ef9330076224f5e0c4/RepositoryFactory.cs",
+   "target_head": "﻿#region Assembly Iryo.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null\n// /home/admin/.nuget/packages/iryo.data/1.0.0/lib/net10.0/Iryo.Data.dll\n// Decompiled with ICSharpCode.Decompiler \n#endregion\n\nusing Iryo.Kernel.Logging;\n\nnamespace Iryo.Data;\n\npublic static class RepositoryFactory\n{\n    public static SqlPatientRepository CreateDefault()\n    {\n        return new SqlPatientRepository(new Logger(\"工場\"));\n    }\n}\n#if false // Decompilation log\n'178' items in cache\n------------------\nResolve: 'System.Runtime, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'\nFound ",
+   "target_len": 2444
+  }
+ },
+ "server_capability_keys": [
+  "_vs_onAutoInsertProvider",
+  "callHierarchyProvider",
+  "codeActionProvider",
+  "codeLensProvider",
+  "completionProvider",
+  "definitionProvider",
+  "documentFormattingProvider",
+  "documentHighlightProvider",
+  "documentOnTypeFormattingProvider",
+  "documentRangeFormattingProvider",
+  "documentSymbolProvider",
+  "executeCommandProvider",
+  "foldingRangeProvider",
+  "hoverProvider",
+  "implementationProvider",
+  "inlayHintProvider",
+  "referencesProvider",
+  "renameProvider",
+  "selectionRangeProvider",
+  "semanticTokensProvider",
+  "signatureHelpProvider",
+  "textDocumentSync",
+  "typeDefinitionProvider",
+  "typeHierarchyProvider",
+  "workspace",
+  "workspaceSymbolProvider"
+ ],
+ "ready_signal": "workspace/projectInitializationComplete",
+ "documentSymbol_ok": true,
+ "warmup_rounds": 1,
+ "server_requests_seen": {
+  "workspace/configuration": 2,
+  "window/workDoneProgress/create": 1,
+  "client/registerCapability": 1
+ },
+ "notifications_seen": {
+  "$/progress": 4,
+  "workspace/projectInitializationComplete": 1
+ },
+ "config_sections": [
+  "code_style.formatting.new_line.insert_final_newline",
+  "csharp|auto_insert.dotnet_enable_auto_insert",
+  "csharp|background_analysis.dotnet_analyzer_diagnostics_scope",
+  "csharp|background_analysis.dotnet_compiler_diagnostics_scope",
+  "csharp|code_lens.dotnet_enable_references_code_lens",
+  "csharp|code_lens.dotnet_enable_tests_code_lens",
+  "csharp|code_style.formatting.indentation_and_spacing.indent_size",
+  "csharp|code_style.formatting.indentation_and_spacing.indent_style",
+  "csharp|code_style.formatting.indentation_and_spacing.tab_width",
+  "csharp|code_style.formatting.new_line.end_of_line",
+  "csharp|completion.dotnet_completion_items_from_unimported_namespaces_commit_behavior",
+  "csharp|completion.dotnet_provide_regex_completions",
+  "csharp|completion.dotnet_show_completion_items_from_unimported_namespaces",
+  "csharp|completion.dotnet_show_name_completion_suggestions",
+  "csharp|completion.dotnet_trigger_completion_in_argument_lists",
+  "csharp|formatting.dotnet_organize_imports_on_format",
+  "csharp|highlighting.dotnet_highlight_related_json_components",
+  "csharp|highlighting.dotnet_highlight_related_regex_components",
+  "csharp|inlay_hints.csharp_enable_inlay_hints_for_collection_expressions",
+  "csharp|inlay_hints.csharp_enable_inlay_hints_for_implicit_object_creation",
+  "csharp|inlay_hints.csharp_enable_inlay_hints_for_implicit_variable_types",
+  "csharp|inlay_hints.csharp_enable_inlay_hints_for_lambda_parameter_types",
+  "csharp|inlay_hints.csharp_enable_inlay_hints_for_types",
+  "csharp|inlay_hints.dotnet_enable_inlay_hints_for_indexer_parameters",
+  "csharp|inlay_hints.dotnet_enable_inlay_hints_for_literal_parameters",
+  "csharp|inlay_hints.dotnet_enable_inlay_hints_for_object_creation_parameters",
+  "csharp|inlay_hints.dotnet_enable_inlay_hints_for_other_parameters",
+  "csharp|inlay_hints.dotnet_enable_inlay_hints_for_parameters",
+  "csharp|inlay_hints.dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix",
+  "csharp|inlay_hints.dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name",
+  "csharp|inlay_hints.dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent",
+  "csharp|quick_info.dotnet_show_remarks_in_quick_info",
+  "csharp|symbol_search.dotnet_search_reference_assemblies",
+  "csharp|type_members.dotnet_member_insertion_location",
+  "csharp|type_members.dotnet_property_generation_behavior",
+  "html.auto_closing_tags",
+  "navigation.dotnet_navigate_to_decompiled_sources",
+  "navigation.dotnet_navigate_to_source_link_and_embedded_sources",
+  "projects.dotnet_binary_log_path",
+  "projects.dotnet_enable_automatic_restore",
+  "projects.dotnet_enable_file_based_programs",
+  "projects.dotnet_enable_file_based_programs_when_ambiguous",
+  "razor.completion.commit_elements_with_space",
+  "razor.format.attribute_indent_style",
+  "razor.format.code_block_brace_on_next_line",
+  "visual_basic|auto_insert.dotnet_enable_auto_insert",
+  "visual_basic|background_analysis.dotnet_analyzer_diagnostics_scope",
+  "visual_basic|background_analysis.dotnet_compiler_diagnostics_scope",
+  "visual_basic|code_lens.dotnet_enable_references_code_lens",
+  "visual_basic|code_lens.dotnet_enable_tests_code_lens",
+  "visual_basic|code_style.formatting.indentation_and_spacing.indent_size",
+  "visual_basic|code_style.formatting.indentation_and_spacing.indent_style",
+  "visual_basic|code_style.formatting.indentation_and_spacing.tab_width",
+  "visual_basic|code_style.formatting.new_line.end_of_line",
+  "visual_basic|completion.dotnet_completion_items_from_unimported_namespaces_commit_behavior",
+  "visual_basic|completion.dotnet_provide_regex_completions",
+  "visual_basic|completion.dotnet_show_completion_items_from_unimported_namespaces",
+  "visual_basic|completion.dotnet_show_name_completion_suggestions",
+  "visual_basic|completion.dotnet_trigger_completion_in_argument_lists",
+  "visual_basic|formatting.dotnet_organize_imports_on_format",
+  "visual_basic|highlighting.dotnet_highlight_related_json_components",
+  "visual_basic|highlighting.dotnet_highlight_related_regex_components",
+  "visual_basic|inlay_hints.csharp_enable_inlay_hints_for_collection_expressions",
+  "visual_basic|inlay_hints.csharp_enable_inlay_hints_for_implicit_object_creation",
+  "visual_basic|inlay_hints.csharp_enable_inlay_hints_for_implicit_variable_types",
+  "visual_basic|inlay_hints.csharp_enable_inlay_hints_for_lambda_parameter_types",
+  "visual_basic|inlay_hints.csharp_enable_inlay_hints_for_types",
+  "visual_basic|inlay_hints.dotnet_enable_inlay_hints_for_indexer_parameters",
+  "visual_basic|inlay_hints.dotnet_enable_inlay_hints_for_literal_parameters",
+  "visual_basic|inlay_hints.dotnet_enable_inlay_hints_for_object_creation_parameters",
+  "visual_basic|inlay_hints.dotnet_enable_inlay_hints_for_other_parameters",
+  "visual_basic|inlay_hints.dotnet_enable_inlay_hints_for_parameters",
+  "visual_basic|inlay_hints.dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix",
+  "visual_basic|inlay_hints.dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name",
+  "visual_basic|inlay_hints.dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent",
+  "visual_basic|quick_info.dotnet_show_remarks_in_quick_info",
+  "visual_basic|symbol_search.dotnet_search_reference_assemblies",
+  "visual_basic|type_members.dotnet_member_insertion_location",
+  "visual_basic|type_members.dotnet_property_generation_behavior"
+ ]
+}

@@ -1,0 +1,57 @@
+{
+  "xmx": "700m",
+  "with_sources_idle_process": {
+    "pid": 429,
+    "is_alive": true,
+    "returncode": null,
+    "cmdline": "-Declipse.application=org.eclipse.jdt.ls.core.id1 -Dosgi.bundles.defaultStartLevel=4 -Declipse.product=org.eclipse.jdt.ls.core.product -Dosgi.checkConfiguration=true -Dosgi.sharedConfiguration.area=/home/admin/tools/jdt-language-server/config_linux -Dosgi.sharedConfiguration.area.readOnly=true -Dosgi.configuration.cascaded=true -Xms1G --add-modules=ALL-SYSTEM --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED -Xms128m -Xmx700m -Dosgi.configuration.area=/tmp/jdtls_spike_mini/_jdtls/with_sources/configuration -jar /home/admin/tools/jdt-language-server/plugins/org.eclipse.equinox.launcher_1.7.200.v20260619-2039.jar -data /tmp/jdtls_spike_mini/_jdtls/with_sources/data",
+    "ps_argv": [
+      "ps",
+      "-o",
+      "pid=,ppid=,rss=,etime=,args=",
+      "-p",
+      "429"
+    ],
+    "ps_stdout": "    429       2 1186712     00:20 -Declipse.application=org.eclipse.jdt.ls.core.id1 -Dosgi.bundles.defaultStartLevel=4 -Declipse.product=org.eclipse.jdt.ls.core.product -Dosgi.checkConfiguration=true -Dosgi.sharedConfiguration.area=/home/admin/tools/jdt-language-server/config_linux -Dosgi.sharedConfiguration.area.readOnly=true -Dosgi.configuration.cascaded=true -Xms1G --add-modules=ALL-SYSTEM --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED -Xms128m -Xmx700m -Dosgi.configuration.area=/tmp/jdtls_spike_mini/_jdtls/with_sources/configuration -jar /home/admin/tools/jdt-language-server/plugins/org.eclipse.equinox.launcher_1.7.200.v20260619-2039.jar -data /tmp/jdtls_spike_mini/_jdtls/with_sources/data\n",
+    "ps_stderr": "",
+    "ps_returncode": 0,
+    "rss_kib": 1186712
+  },
+  "concurrency": {
+    "both_ready": true,
+    "lib_process": {
+      "pid": 707,
+      "is_alive": true,
+      "returncode": null,
+      "cmdline": "-Declipse.application=org.eclipse.jdt.ls.core.id1 -Dosgi.bundles.defaultStartLevel=4 -Declipse.product=org.eclipse.jdt.ls.core.product -Dosgi.checkConfiguration=true -Dosgi.sharedConfiguration.area=/home/admin/tools/jdt-language-server/config_linux -Dosgi.sharedConfiguration.area.readOnly=true -Dosgi.configuration.cascaded=true -Xms1G --add-modules=ALL-SYSTEM --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED -Xms128m -Xmx700m -Dosgi.configuration.area=/tmp/jdtls_spike_mini/_jdtls/concurrent_unique_lib/configuration -jar /home/admin/tools/jdt-language-server/plugins/org.eclipse.equinox.launcher_1.7.200.v20260619-2039.jar -data /tmp/jdtls_spike_mini/_jdtls/concurrent_unique_lib/data",
+      "ps_argv": [
+        "ps",
+        "-o",
+        "pid=,ppid=,rss=,etime=,args=",
+        "-p",
+        "707"
+      ],
+      "ps_stdout": "    707       2 714432      00:07 -Declipse.application=org.eclipse.jdt.ls.core.id1 -Dosgi.bundles.defaultStartLevel=4 -Declipse.product=org.eclipse.jdt.ls.core.product -Dosgi.checkConfiguration=true -Dosgi.sharedConfiguration.area=/home/admin/tools/jdt-language-server/config_linux -Dosgi.sharedConfiguration.area.readOnly=true -Dosgi.configuration.cascaded=true -Xms1G --add-modules=ALL-SYSTEM --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED -Xms128m -Xmx700m -Dosgi.configuration.area=/tmp/jdtls_spike_mini/_jdtls/concurrent_unique_lib/configuration -jar /home/admin/tools/jdt-language-server/plugins/org.eclipse.equinox.launcher_1.7.200.v20260619-2039.jar -data /tmp/jdtls_spike_mini/_jdtls/concurrent_unique_lib/data\n",
+      "ps_stderr": "",
+      "ps_returncode": 0,
+      "rss_kib": 714432
+    },
+    "app_process": {
+      "pid": 708,
+      "is_alive": true,
+      "returncode": null,
+      "cmdline": "-Declipse.application=org.eclipse.jdt.ls.core.id1 -Dosgi.bundles.defaultStartLevel=4 -Declipse.product=org.eclipse.jdt.ls.core.product -Dosgi.checkConfiguration=true -Dosgi.sharedConfiguration.area=/home/admin/tools/jdt-language-server/config_linux -Dosgi.sharedConfiguration.area.readOnly=true -Dosgi.configuration.cascaded=true -Xms1G --add-modules=ALL-SYSTEM --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED -Xms128m -Xmx700m -Dosgi.configuration.area=/tmp/jdtls_spike_mini/_jdtls/concurrent_unique_app/configuration -jar /home/admin/tools/jdt-language-server/plugins/org.eclipse.equinox.launcher_1.7.200.v20260619-2039.jar -data /tmp/jdtls_spike_mini/_jdtls/concurrent_unique_app/data",
+      "ps_argv": [
+        "ps",
+        "-o",
+        "pid=,ppid=,rss=,etime=,args=",
+        "-p",
+        "708"
+      ],
+      "ps_stdout": "    708       2 759120      00:07 -Declipse.application=org.eclipse.jdt.ls.core.id1 -Dosgi.bundles.defaultStartLevel=4 -Declipse.product=org.eclipse.jdt.ls.core.product -Dosgi.checkConfiguration=true -Dosgi.sharedConfiguration.area=/home/admin/tools/jdt-language-server/config_linux -Dosgi.sharedConfiguration.area.readOnly=true -Dosgi.configuration.cascaded=true -Xms1G --add-modules=ALL-SYSTEM --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED -Xms128m -Xmx700m -Dosgi.configuration.area=/tmp/jdtls_spike_mini/_jdtls/concurrent_unique_app/configuration -jar /home/admin/tools/jdt-language-server/plugins/org.eclipse.equinox.launcher_1.7.200.v20260619-2039.jar -data /tmp/jdtls_spike_mini/_jdtls/concurrent_unique_app/data\n",
+      "ps_stderr": "",
+      "ps_returncode": 0,
+      "rss_kib": 759120
+    }
+  }
+}

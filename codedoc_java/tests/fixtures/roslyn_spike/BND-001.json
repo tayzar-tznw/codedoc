@@ -1,0 +1,40 @@
+{
+ "case": "BND-001",
+ "site_kind": "object_creation",
+ "pos": {
+  "line": 54,
+  "character": 26
+ },
+ "definition": [
+  {
+   "uri": "file:///home/admin/dev/codedoc_csharp/test_codes/iryo-kanri-system/Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 6
+    },
+    "end": {
+     "line": 5,
+     "character": 20
+    }
+   }
+  }
+ ],
+ "hover": {
+  "contents": {
+   "kind": "markdown",
+   "value": "```csharp\nclass Iryo.Billing.Text.ReceiptFormatter (+ 1 overload)\n```\n  \n"
+  },
+  "range": {
+   "start": {
+    "line": 54,
+    "character": 26
+   },
+   "end": {
+    "line": 54,
+    "character": 40
+   }
+  }
+ },
+ "target_uri": "file:///home/admin/dev/codedoc_csharp/test_codes/iryo-kanri-system/Iryo.ReceptionDesk/Flows/AccountingFlow.cs"
+}

@@ -1,0 +1,39 @@
+{
+ "case": "XPR-005",
+ "site_kind": "invocation",
+ "pos": {
+  "line": 21,
+  "character": 28
+ },
+ "file": "Iryo.ReceptionDesk/Flows/DailyCloseFlow.cs",
+ "definition": [
+  {
+   "uri": "csharp:/home/admin/dev/codedoc_csharp/test_codes/iryo-kanri-system/Iryo.ReceptionDesk/Iryo.ReceptionDesk.csproj/decompiled/Iryo.Billing.PointMath.cs",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 19
+    },
+    "end": {
+     "line": 4,
+     "character": 24
+    }
+   }
+  }
+ ],
+ "hover": {
+  "contents": {
+   "kind": "markdown",
+   "value": "```csharp\nint PointMath.ToYen(int points)\n```"
+  }
+ },
+ "metadata_shape": "textDocument",
+ "metadata": {
+  "projectName": "Iryo.ReceptionDesk",
+  "assemblyName": "Iryo.Billing",
+  "symbolName": "Iryo.Billing.PointMath",
+  "source_head": "namespace Iryo.Billing;\n\npublic static class PointMath\n{\n\tpublic static int ToYen(int points)\n\t{\n\t\treturn points * 10;\n\t}\n\n\tpublic static int RoundTo10(int yen)\n\t{\n\t\treturn (yen + 5) / 10 * 10;\n\t}\n}\n",
+  "source_len": 199
+ },
+ "metadata_source": "namespace Iryo.Billing;\n\npublic static class PointMath\n{\n\tpublic static int ToYen(int points)\n\t{\n\t\treturn points * 10;\n\t}\n\n\tpublic static int RoundTo10(int yen)\n\t{\n\t\treturn (yen + 5) / 10 * 10;\n\t}\n}\n"
+}

@@ -1,0 +1,86 @@
+{
+  "this": {
+    "site": {
+      "site": "this_ctor",
+      "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+      "relative_file": "App.java",
+      "source_line": "    public App() { this(\"既定\"); }",
+      "token": "this",
+      "token_occurrence": 0,
+      "position": {
+        "line": 17,
+        "character": 19
+      }
+    },
+    "did_open": true,
+    "request": {
+      "method": "textDocument/definition",
+      "params": {
+        "textDocument": {
+          "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+        },
+        "position": {
+          "line": 17,
+          "character": 19
+        }
+      }
+    },
+    "response": [
+      {
+        "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+        "range": {
+          "start": {
+            "line": 19,
+            "character": 11
+          },
+          "end": {
+            "line": 19,
+            "character": 14
+          }
+        }
+      }
+    ]
+  },
+  "super": {
+    "site": {
+      "site": "super_ctor",
+      "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+      "relative_file": "App.java",
+      "source_line": "    public App(String name) { super(); this.name = name; }",
+      "token": "super",
+      "token_occurrence": 0,
+      "position": {
+        "line": 19,
+        "character": 30
+      }
+    },
+    "did_open": true,
+    "request": {
+      "method": "textDocument/definition",
+      "params": {
+        "textDocument": {
+          "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+        },
+        "position": {
+          "line": 19,
+          "character": 30
+        }
+      }
+    },
+    "response": [
+      {
+        "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/BaseThing.java",
+        "range": {
+          "start": {
+            "line": 3,
+            "character": 4
+          },
+          "end": {
+            "line": 3,
+            "character": 13
+          }
+        }
+      }
+    ]
+  }
+}

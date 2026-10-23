@@ -1,0 +1,5 @@
+`Program.java`は、医療ドメイン向けシステム（`iryo`名前空間）におけるJava言語仕様に基づいた型解決やバインディングの正当性を実行時に検証する、グラウンドトゥルース検証プローブ（テストハーネス）クラスです。製品コードを変更することなく、静的型推論、オーバーロード解決規則、リフレクション、`SerializedLambda`を用いたメソッド参照の束縛先シグネチャ検証、および標準出力の検証を通じて、システム全体の静的・動的セマンティクスが期待通りに動作しているかを網羅的に検査します。
+
+本ファイルの主要クラスである`Program`はエントリポイント`main`を持ち、オーバーロード解決（`overloadChecks`）、同名別クラスのツイン検証（`twinChecks`）、プロジェクト間のインポート差異（`crossProjectChecks`）、DIコンテナの挙動（`containerChecks`）、クラス継承や共変戻り値（`inheritanceChecks`）、多重継承における既定メソッド解決（`defaultMethodChecks`）、JAR走査（`structureChecks`）など10項目の検証メソッドを統括します。重要メソッドである`boundSignature`は、シリアライズ可能な関数型インタフェースを介してコンパイラが実際に結合したメソッド記述子を動的に抽出・特定し、正確なオーバーロード束縛を実証します。
+
+依存関係として、ドメイン（`domain`）、会計（`billing`）、調剤（`pharmacy`）、データ永続化（`data`）、基盤（`kernel`）、外部連携（`interop`）といった多岐にわたる`iryo`内部モジュールと連携し、同一シグネチャやクラス名が衝突する境界での解決差異を検証対象としています。実装内では、`ServiceCollection`/`ServiceProvider`による**Dependency Injection（DI）コンテナ**や**シングルトンパターン**、`PaymentPolicy`による**ストラテジーパターン**、`RepositoryFactory`による**ファクトリパターン**、そして`VitalSequence`による**Fluent Interface（メソッドチェーン）パターン**の振る舞いと整合性が確認されています。

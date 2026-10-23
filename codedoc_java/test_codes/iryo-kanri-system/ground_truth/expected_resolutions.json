@@ -1,0 +1,3439 @@
+{
+  "version": 2,
+  "root": "test_codes/iryo-kanri-system",
+  "language_note": "why_hard / today.note は日本語。symbol は英語の C# シンボル文法。",
+  "symbol_grammar": "型: Namespace.Type(入れ子型は '+'、ジェネリック定義は宣言どおり ChartCache<T> / ChartCache<TKey,TValue>)。メソッド: Type.Name(仮引数型リスト)(C# キーワード型名、引数名なし、params は保持)。コンストラクタ: Type..ctor(...)(裸の型シンボルは型そのもの: 暗黙コンストラクタの new・nameof・DI 型引数)。プロパティ: Type.Name { get }、インデクサ: Type.this[TKey] { get }。演算子: Type.operator +(A, B)、変換: Type.implicit operator T(S)。拡張メソッドは宣言側静的クラスに、レシーバを第 1 引数として表記。明示的インタフェース実装: Type.Interface.Method(...)。ローカル関数: Type.Method(...)/Local(引数型)。既定インタフェース実装(DIM)はインタフェース側に表記。特殊値: RUNTIME(dynamic)、AMBIGUOUS(n)(リフレクション候補集合)、EXTERNAL(<assembly>) <display>(リポジトリ外が正解)。",
+  "case_count": 106,
+  "cases": [
+    {
+      "id": "BLD-001",
+      "category": "parser-blind-spots/nested-type",
+      "file": "Iryo.ReceptionDesk/Flows/MaintenanceFlow.cs",
+      "line": 35,
+      "token": "Start",
+      "site_kind": "invocation",
+      "snippet": "ChartArchive.Compactor.Start()",
+      "source_line": "var job = ChartArchive.Compactor.Start();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Data.ChartArchive+Compactor.Start()",
+            "kind": "method",
+            "project": "Iryo.Data",
+            "assembly": "Iryo.Data",
+            "via": "nuget",
+            "file": "Iryo.Data/ChartArchive.cs",
+            "line": 9
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Domain.Wards.WardBoard.Start()"
+      ],
+      "today": {
+        "failure_mode": "missing-node",
+        "note": "入れ子型・partial・ローカル関数・nameof はノード化されないか幻の呼び出しになる"
+      },
+      "why_hard": "入れ子型は今日のグラフに存在しない(クラス本体へ再帰しない)"
+    },
+    {
+      "id": "BLD-002",
+      "category": "parser-blind-spots/nested-type",
+      "file": "Iryo.ReceptionDesk/Flows/MaintenanceFlow.cs",
+      "line": 36,
+      "token": "Status",
+      "site_kind": "invocation",
+      "snippet": "job.Status()",
+      "source_line": "Console.WriteLine(\"アーカイブ: \" + job.Status());",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Data.ChartArchive+Compactor.Status()",
+            "kind": "method",
+            "project": "Iryo.Data",
+            "assembly": "Iryo.Data",
+            "via": "nuget",
+            "file": "Iryo.Data/ChartArchive.cs",
+            "line": 14
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "missing-node",
+        "note": "入れ子型・partial・ローカル関数・nameof はノード化されないか幻の呼び出しになる"
+      },
+      "why_hard": "構文抽出には不可視だが、正確な宣言位置を持つ"
+    },
+    {
+      "id": "BLD-003",
+      "category": "parser-blind-spots/partial-class",
+      "file": "Iryo.ReceptionDesk/Flows/MaintenanceFlow.cs",
+      "line": 39,
+      "token": "Start",
+      "site_kind": "invocation",
+      "snippet": "board.Start()",
+      "source_line": "Console.WriteLine(\"掲示: \" + board.Start());",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Domain.Wards.WardBoard.Start()",
+            "kind": "method",
+            "project": "Iryo.Domain",
+            "assembly": "Iryo.Domain",
+            "via": "nuget",
+            "file": "Iryo.Domain/Wards/WardBoard.Main.cs",
+            "line": 9
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Data.ChartArchive+Compactor.Start()"
+      ],
+      "today": {
+        "failure_mode": "missing-node",
+        "note": "入れ子型・partial・ローカル関数・nameof はノード化されないか幻の呼び出しになる"
+      },
+      "why_hard": "partial クラス: Start の本体は別ファイルの Finish を呼ぶ。今日はファイルごとに別クラス行になる"
+    },
+    {
+      "id": "BLD-004",
+      "category": "parser-blind-spots/nameof",
+      "file": "Iryo.ReceptionDesk/Flows/MaintenanceFlow.cs",
+      "line": 41,
+      "token": "FeeCalculator",
+      "site_kind": "nameof",
+      "snippet": "nameof(FeeCalculator)",
+      "source_line": "Console.WriteLine(\"点検対象: \" + nameof(FeeCalculator));",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Billing.FeeCalculator",
+            "kind": "type",
+            "project": "Iryo.Billing",
+            "assembly": "Iryo.Billing",
+            "via": "nuget",
+            "file": "Iryo.Billing/FeeCalculator.cs",
+            "line": 12
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "phantom-call",
+        "note": "今日は nameof という名前の呼び出しが記録される(V4)"
+      },
+      "why_hard": "呼び出しではなく型への記号参照"
+    },
+    {
+      "id": "BLD-005",
+      "category": "parser-blind-spots/local-function",
+      "file": "Iryo.ReceptionDesk/Flows/MaintenanceFlow.cs",
+      "line": 51,
+      "token": "ToYen",
+      "site_kind": "invocation",
+      "snippet": "int probe = ToYen(10)",
+      "source_line": "int probe = ToYen(10);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.ReceptionDesk.Flows.MaintenanceFlow.Run()/ToYen(int)",
+            "kind": "local_function",
+            "project": "Iryo.ReceptionDesk",
+            "assembly": "Iryo.ReceptionDesk",
+            "via": "source",
+            "file": "Iryo.ReceptionDesk/Flows/MaintenanceFlow.cs",
+            "line": 54
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Billing.PointMath.ToYen(int)",
+        "Iryo.Pharmacy.PointMath.ToYen(int)"
+      ],
+      "today": {
+        "failure_mode": "missing-node",
+        "note": "入れ子型・partial・ローカル関数・nameof はノード化されないか幻の呼び出しになる"
+      },
+      "why_hard": "TWIN-001 と同じ裸の ToYen(…) スペルだが、ローカル関数がブロックスコープで using static を隠す"
+    },
+    {
+      "id": "BND-001",
+      "category": "binary-boundary/alias",
+      "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+      "line": 55,
+      "token": "BillingReceipt",
+      "site_kind": "object_creation",
+      "snippet": "new BillingReceipt()",
+      "source_line": "var current = new BillingReceipt();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Billing.Text.ReceiptFormatter",
+            "kind": "type",
+            "project": "Iryo.Billing",
+            "assembly": "Iryo.Billing",
+            "via": "nuget",
+            "file": "Iryo.Billing/Text/ReceiptFormatter.cs",
+            "line": 7
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Interop.Text.ReceiptFormatter",
+        "Iryo.Legacy.Claims.Text.ReceiptFormatter"
+      ],
+      "today": {
+        "failure_mode": "alias-lost",
+        "note": "3 つの同名 ReceiptFormatter が先勝ちで縮退。参照機構(.csproj/NuGet)は今日いっさい読まれない"
+      },
+      "why_hard": "コンパイル済みパッケージ越しの束縛。パッケージ id からリポジトリ内ソースへ橋を架ける必要がある"
+    },
+    {
+      "id": "BND-002",
+      "category": "binary-boundary/alias",
+      "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+      "line": 56,
+      "token": "LegacyReceipt",
+      "site_kind": "object_creation",
+      "snippet": "new LegacyReceipt()",
+      "source_line": "var legacy = new LegacyReceipt();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Legacy.Claims.Text.ReceiptFormatter",
+            "kind": "type",
+            "project": "Iryo.Legacy.Claims",
+            "assembly": "Iryo.Legacy.Claims",
+            "via": "nuget",
+            "file": "Iryo.Legacy.Claims/Text/ReceiptFormatter.cs",
+            "line": 7
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Billing.Text.ReceiptFormatter",
+        "Iryo.Interop.Text.ReceiptFormatter"
+      ],
+      "today": {
+        "failure_mode": "alias-lost",
+        "note": "3 つの同名 ReceiptFormatter が先勝ちで縮退。参照機構(.csproj/NuGet)は今日いっさい読まれない"
+      },
+      "why_hard": "コンパイル済みパッケージ越しの束縛。パッケージ id からリポジトリ内ソースへ橋を架ける必要がある"
+    },
+    {
+      "id": "BND-003",
+      "category": "binary-boundary/alias",
+      "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+      "line": 57,
+      "token": "InteropReceipt",
+      "site_kind": "object_creation",
+      "snippet": "new InteropReceipt()",
+      "source_line": "var interop = new InteropReceipt();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Interop.Text.ReceiptFormatter",
+            "kind": "type",
+            "project": "Iryo.Interop",
+            "assembly": "Iryo.Interop",
+            "via": "nuget",
+            "file": "Iryo.Interop/Text/ReceiptFormatter.cs",
+            "line": 7
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Billing.Text.ReceiptFormatter",
+        "Iryo.Legacy.Claims.Text.ReceiptFormatter"
+      ],
+      "today": {
+        "failure_mode": "alias-lost",
+        "note": "3 つの同名 ReceiptFormatter が先勝ちで縮退。参照機構(.csproj/NuGet)は今日いっさい読まれない"
+      },
+      "why_hard": "コンパイル済みパッケージ越しの束縛。パッケージ id からリポジトリ内ソースへ橋を架ける必要がある"
+    },
+    {
+      "id": "BND-004",
+      "category": "binary-boundary",
+      "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+      "line": 58,
+      "token": "Format",
+      "site_kind": "invocation",
+      "snippet": "current.Format(total)",
+      "source_line": "Console.WriteLine(current.Format(total));",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Billing.Text.ReceiptFormatter.Format(object)",
+            "kind": "method",
+            "project": "Iryo.Billing",
+            "assembly": "Iryo.Billing",
+            "via": "nuget",
+            "file": "Iryo.Billing/Text/ReceiptFormatter.cs",
+            "line": 9
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Interop.Text.ReceiptFormatter.Format(object)",
+        "Iryo.Legacy.Claims.Text.ReceiptFormatter.Format(object)"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "3 つの同名 ReceiptFormatter が先勝ちで縮退。参照機構(.csproj/NuGet)は今日いっさい読まれない"
+      },
+      "why_hard": "三兄弟 ReceiptFormatter の 1 つ目。BND-005/006 と構文は同一"
+    },
+    {
+      "id": "BND-005",
+      "category": "binary-boundary",
+      "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+      "line": 59,
+      "token": "Format",
+      "site_kind": "invocation",
+      "snippet": "legacy.Format(total)",
+      "source_line": "Console.WriteLine(legacy.Format(total));",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Legacy.Claims.Text.ReceiptFormatter.Format(object)",
+            "kind": "method",
+            "project": "Iryo.Legacy.Claims",
+            "assembly": "Iryo.Legacy.Claims",
+            "via": "nuget",
+            "file": "Iryo.Legacy.Claims/Text/ReceiptFormatter.cs",
+            "line": 9
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Billing.Text.ReceiptFormatter.Format(object)",
+        "Iryo.Interop.Text.ReceiptFormatter.Format(object)"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "3 つの同名 ReceiptFormatter が先勝ちで縮退。参照機構(.csproj/NuGet)は今日いっさい読まれない"
+      },
+      "why_hard": "NuGet パッケージ Iryo.Legacy.Claims の中へ束縛。ソース所在はリポジトリ内 Iryo.Legacy.Claims/"
+    },
+    {
+      "id": "BND-006",
+      "category": "binary-boundary",
+      "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+      "line": 60,
+      "token": "Format",
+      "site_kind": "invocation",
+      "snippet": "interop.Format(total)",
+      "source_line": "Console.WriteLine(interop.Format(total));",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Interop.Text.ReceiptFormatter.Format(object)",
+            "kind": "method",
+            "project": "Iryo.Interop",
+            "assembly": "Iryo.Interop",
+            "via": "nuget",
+            "file": "Iryo.Interop/Text/ReceiptFormatter.cs",
+            "line": 9
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Billing.Text.ReceiptFormatter.Format(object)",
+        "Iryo.Legacy.Claims.Text.ReceiptFormatter.Format(object)"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "3 つの同名 ReceiptFormatter が先勝ちで縮退。参照機構(.csproj/NuGet)は今日いっさい読まれない"
+      },
+      "why_hard": "コンパイル済みパッケージ越しの束縛。パッケージ id からリポジトリ内ソースへ橋を架ける必要がある"
+    },
+    {
+      "id": "BND-007",
+      "category": "binary-boundary/obsolete",
+      "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+      "line": 63,
+      "token": "PointTable",
+      "site_kind": "object_creation",
+      "snippet": "new Iryo.Legacy.Claims.PointTable()",
+      "source_line": "var oldTable = new Iryo.Legacy.Claims.PointTable();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Legacy.Claims.PointTable",
+            "kind": "type",
+            "project": "Iryo.Legacy.Claims",
+            "assembly": "Iryo.Legacy.Claims",
+            "via": "nuget",
+            "file": "Iryo.Legacy.Claims/PointTable.cs",
+            "line": 10
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "3 つの同名 ReceiptFormatter が先勝ちで縮退。参照機構(.csproj/NuGet)は今日いっさい読まれない"
+      },
+      "why_hard": "[Obsolete] 型の生成(意図的な CS0618 発生箇所)"
+    },
+    {
+      "id": "BND-008",
+      "category": "binary-boundary",
+      "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+      "line": 64,
+      "token": "Calculate",
+      "site_kind": "invocation",
+      "snippet": "oldTable.Calculate(288, 146)",
+      "source_line": "int migrated = oldTable.Calculate(288, 146);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Legacy.Claims.PointTable.Calculate(int, int)",
+            "kind": "method",
+            "project": "Iryo.Legacy.Claims",
+            "assembly": "Iryo.Legacy.Claims",
+            "via": "nuget",
+            "file": "Iryo.Legacy.Claims/PointTable.cs",
+            "line": 13
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Billing.FeeCalculator.Calculate(double, double)",
+        "Iryo.Billing.FeeCalculator.Calculate(int, int)",
+        "Iryo.Billing.FeeCalculator.Calculate(int, int, int)",
+        "Iryo.Billing.FeeCalculator.Calculate(long, long)",
+        "Iryo.Billing.FeeCalculator.Calculate(params int[])",
+        "Iryo.Pharmacy.DoseCalculator.Calculate(int, int)"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "3 つの同名 ReceiptFormatter が先勝ちで縮退。参照機構(.csproj/NuGet)は今日いっさい読まれない"
+      },
+      "why_hard": "3 つ目の Calculate(int,int)。OVL-001/TWIN-009 と同名同引数の別パッケージ実装"
+    },
+    {
+      "id": "DI-001",
+      "category": "dependency-injection/registration",
+      "file": "Iryo.ReceptionDesk/Program.cs",
+      "line": 35,
+      "token": "MailNotifier",
+      "site_kind": "type_argument",
+      "snippet": "AddSingleton<INotifier, MailNotifier>",
+      "source_line": "services.AddSingleton<INotifier, MailNotifier>();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Kernel.Notifications.MailNotifier",
+            "kind": "type",
+            "project": "Iryo.Kernel",
+            "assembly": "Iryo.Kernel",
+            "via": "nuget",
+            "file": "Iryo.Kernel/Notifications/MailNotifier.cs",
+            "line": 4
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "missing-edge",
+        "note": "DI 登録はジェネリック呼び出しのため今日は落ちる(V6)。インタフェース型呼び出しは単純名一致でどこへでも繋がり得る(V11)"
+      },
+      "why_hard": "登録エッジ(インタフェース→実装)。先に登録されるため単一解決では選ばれない側"
+    },
+    {
+      "id": "DI-002",
+      "category": "dependency-injection/registration",
+      "file": "Iryo.ReceptionDesk/Program.cs",
+      "line": 36,
+      "token": "SmsNotifier",
+      "site_kind": "type_argument",
+      "snippet": "AddSingleton<INotifier, Iryo.Scheduling.SmsNotifier>",
+      "source_line": "services.AddSingleton<INotifier, Iryo.Scheduling.SmsNotifier>();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Scheduling.SmsNotifier",
+            "kind": "type",
+            "project": "Iryo.Scheduling",
+            "assembly": "Iryo.Scheduling",
+            "via": "nuget",
+            "file": "Iryo.Scheduling/SmsNotifier.cs",
+            "line": 9
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "missing-edge",
+        "note": "DI 登録はジェネリック呼び出しのため今日は落ちる(V6)。インタフェース型呼び出しは単純名一致でどこへでも繋がり得る(V11)"
+      },
+      "why_hard": "登録エッジ。INotifier の最後の登録なので GetRequiredService で勝つ側"
+    },
+    {
+      "id": "DI-003",
+      "category": "dependency-injection/registration",
+      "file": "Iryo.ReceptionDesk/Program.cs",
+      "line": 37,
+      "token": "SqlPatientRepository",
+      "site_kind": "type_argument",
+      "snippet": "AddSingleton<IRepository<Patient>, SqlPatientRepository>",
+      "source_line": "services.AddSingleton<IRepository<Patient>, SqlPatientRepository>();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Data.SqlPatientRepository",
+            "kind": "type",
+            "project": "Iryo.Data",
+            "assembly": "Iryo.Data",
+            "via": "nuget",
+            "file": "Iryo.Data/SqlPatientRepository.cs",
+            "line": 10
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "missing-edge",
+        "note": "DI 登録はジェネリック呼び出しのため今日は落ちる(V6)。インタフェース型呼び出しは単純名一致でどこへでも繋がり得る(V11)"
+      },
+      "why_hard": "閉じたジェネリックサービス型の登録"
+    },
+    {
+      "id": "DI-004",
+      "category": "dependency-injection/registration",
+      "file": "Iryo.ReceptionDesk/Program.cs",
+      "line": 38,
+      "token": "Logger",
+      "site_kind": "object_creation",
+      "snippet": "new Logger(\"受付端末\")",
+      "source_line": "services.AddSingleton<Logger>(sp => new Logger(\"受付端末\"));",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Kernel.Logging.Logger..ctor(string)",
+            "kind": "constructor",
+            "project": "Iryo.Kernel",
+            "assembly": "Iryo.Kernel",
+            "via": "nuget",
+            "file": "Iryo.Kernel/Logging/Logger.cs",
+            "line": 24
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Kernel.Logging.Logger",
+        "Iryo.Kernel.Logging.Logger..ctor()",
+        "Iryo.Pharmacy.Logger"
+      ],
+      "today": {
+        "failure_mode": "missing-edge",
+        "note": "DI 登録はジェネリック呼び出しのため今日は落ちる(V6)。インタフェース型呼び出しは単純名一致でどこへでも繋がり得る(V11)"
+      },
+      "why_hard": "ファクトリラムダ登録。注入されるすべての Logger の出所はこの 1 行"
+    },
+    {
+      "id": "DI-005",
+      "category": "dependency-injection/last-wins",
+      "file": "Iryo.ReceptionDesk/Flows/CheckInFlow.cs",
+      "line": 19,
+      "token": "Send",
+      "site_kind": "invocation",
+      "snippet": "notifier.Send(\"受付を開始しました\")",
+      "source_line": "Console.WriteLine(notifier.Send(\"受付を開始しました\"));",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Scheduling.SmsNotifier.Send(string)",
+            "kind": "method",
+            "project": "Iryo.Scheduling",
+            "assembly": "Iryo.Scheduling",
+            "via": "nuget",
+            "file": "Iryo.Scheduling/SmsNotifier.cs",
+            "line": 11
+          }
+        ],
+        "static_target": {
+          "symbol": "Iryo.Kernel.Notifications.INotifier.Send(string)",
+          "file": "Iryo.Kernel/Notifications/INotifier.cs",
+          "line": 11
+        }
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "missing-edge",
+        "note": "DI 登録はジェネリック呼び出しのため今日は落ちる(V6)。インタフェース型呼び出しは単純名一致でどこへでも繋がり得る(V11)"
+      },
+      "why_hard": "静的型は INotifier。Mail→SMS の登録順(最後勝ち)だけが SMS を正解にする"
+    },
+    {
+      "id": "DI-006",
+      "category": "dependency-injection/interface-receiver",
+      "file": "Iryo.ReceptionDesk/Flows/CheckInFlow.cs",
+      "line": 22,
+      "token": "Find",
+      "site_kind": "invocation",
+      "snippet": "registry.Find(3)",
+      "source_line": "Patient waiting = registry.Find(3);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Data.SqlPatientRepository.Find(int)",
+            "kind": "method",
+            "project": "Iryo.Data",
+            "assembly": "Iryo.Data",
+            "via": "nuget",
+            "file": "Iryo.Data/SqlPatientRepository.cs",
+            "line": 19
+          }
+        ],
+        "static_target": {
+          "symbol": "Iryo.Data.IRepository<T>.Find(int)",
+          "file": "Iryo.Data/IRepository.cs",
+          "line": 12
+        }
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "missing-edge",
+        "note": "DI 登録はジェネリック呼び出しのため今日は落ちる(V6)。インタフェース型呼び出しは単純名一致でどこへでも繋がり得る(V11)"
+      },
+      "why_hard": "インタフェース型レシーバ。登録済み実装(コンストラクタ注入済み)へ解決すべき"
+    },
+    {
+      "id": "DIM-001",
+      "category": "default-interface-method",
+      "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+      "line": 51,
+      "token": "Fee",
+      "site_kind": "invocation",
+      "snippet": "standard.Fee(10000m)",
+      "source_line": "Console.WriteLine(\"手数料: 標準 \" + standard.Fee(10000m)",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Kernel.Notifications.IPaymentPolicy.Fee(decimal)",
+            "kind": "interface_default_method",
+            "project": "Iryo.Kernel",
+            "assembly": "Iryo.Kernel",
+            "via": "nuget",
+            "file": "Iryo.Kernel/Notifications/INotifier.cs",
+            "line": 20
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Kernel.Notifications.UrgentPolicy.Fee(decimal)"
+      ],
+      "today": {
+        "failure_mode": "id-collision",
+        "note": "インタフェース既定実装とクラス上書きは名前一致では区別できない"
+      },
+      "why_hard": "StandardPolicy は Fee を宣言しない。インタフェースの既定本体が定義先でも実行先でもある"
+    },
+    {
+      "id": "DIM-002",
+      "category": "default-interface-method",
+      "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+      "line": 52,
+      "token": "Fee",
+      "site_kind": "invocation",
+      "snippet": "urgent.Fee(10000m)",
+      "source_line": "+ \"円 / 時間外 \" + urgent.Fee(10000m)",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Kernel.Notifications.IPaymentPolicy.Fee(decimal)",
+            "kind": "interface_default_method",
+            "project": "Iryo.Kernel",
+            "assembly": "Iryo.Kernel",
+            "via": "nuget",
+            "file": "Iryo.Kernel/Notifications/INotifier.cs",
+            "line": 20
+          }
+        ],
+        "runtime_target": {
+          "symbol": "Iryo.Kernel.Notifications.UrgentPolicy.Fee(decimal)",
+          "file": "Iryo.Kernel/Notifications/INotifier.cs",
+          "line": 34
+        }
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "id-collision",
+        "note": "インタフェース既定実装とクラス上書きは名前一致では区別できない"
+      },
+      "why_hard": "DIM-001 と同一構文・同一静的束縛先だが、実装クラスが既定実装を上書きしているため実行先が異なる"
+    },
+    {
+      "id": "DIM-003",
+      "category": "default-interface-method",
+      "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+      "line": 53,
+      "token": "Fee",
+      "site_kind": "invocation",
+      "snippet": "urgentDirect.Fee(10000m)",
+      "source_line": "+ \"円 / 時間外(直接) \" + urgentDirect.Fee(10000m) + \"円\");",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Kernel.Notifications.UrgentPolicy.Fee(decimal)",
+            "kind": "method",
+            "project": "Iryo.Kernel",
+            "assembly": "Iryo.Kernel",
+            "via": "nuget",
+            "file": "Iryo.Kernel/Notifications/INotifier.cs",
+            "line": 34
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Kernel.Notifications.IPaymentPolicy.Fee(decimal)"
+      ],
+      "today": {
+        "failure_mode": "id-collision",
+        "note": "インタフェース既定実装とクラス上書きは名前一致では区別できない"
+      },
+      "why_hard": "具象型レシーバなので静的束縛先も上書き実装"
+    },
+    {
+      "id": "DLG-001",
+      "category": "delegates/event-subscription",
+      "file": "Iryo.ReceptionDesk/Flows/CheckInFlow.cs",
+      "line": 52,
+      "token": "OnDischarged",
+      "site_kind": "event_subscription",
+      "snippet": "patient.Discharged += OnDischarged",
+      "source_line": "patient.Discharged += OnDischarged;",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.ReceptionDesk.Flows.CheckInFlow.OnDischarged(string)",
+            "kind": "method",
+            "project": "Iryo.ReceptionDesk",
+            "assembly": "Iryo.ReceptionDesk",
+            "via": "source",
+            "file": "Iryo.ReceptionDesk/Flows/CheckInFlow.cs",
+            "line": 58
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "missing-edge",
+        "note": "メソッドグループ・イベント購読・?.Invoke は invocation 式を持たず、今日は何も抽出されない(V3)"
+      },
+      "why_hard": "括弧なしのメソッドグループ購読。呼び出し式が存在しないため今日はエッジが出ない(V3)"
+    },
+    {
+      "id": "DLG-002",
+      "category": "delegates/event-raise",
+      "file": "Iryo.ReceptionDesk/Flows/CheckInFlow.cs",
+      "line": 53,
+      "token": "Discharge",
+      "site_kind": "invocation",
+      "snippet": "patient.Discharge();",
+      "source_line": "patient.Discharge();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Domain.Patients.Patient.Discharge()",
+            "kind": "method",
+            "project": "Iryo.Domain",
+            "assembly": "Iryo.Domain",
+            "via": "nuget",
+            "file": "Iryo.Domain/Patients/Patient.cs",
+            "line": 44
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "missing-edge",
+        "note": "メソッドグループ・イベント購読・?.Invoke は invocation 式を持たず、今日は何も抽出されない(V3)"
+      },
+      "why_hard": "本体の Discharged?.Invoke も V3 で不可視"
+    },
+    {
+      "id": "EIF-001",
+      "category": "explicit-interfaces",
+      "file": "Iryo.ReceptionDesk/Flows/ReportFlow.cs",
+      "line": 58,
+      "token": "Export",
+      "site_kind": "invocation",
+      "snippet": "Console.WriteLine(writer.Export())",
+      "source_line": "Console.WriteLine(writer.Export());",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.ReceptionDesk.Flows.ReceiptWriter.Export()",
+            "kind": "method",
+            "project": "Iryo.ReceptionDesk",
+            "assembly": "Iryo.ReceptionDesk",
+            "via": "source",
+            "file": "Iryo.ReceptionDesk/Flows/ReportFlow.cs",
+            "line": 70
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.ReceptionDesk.Flows.ReceiptWriter.IArchiver.Export()",
+        "Iryo.ReceptionDesk.Flows.ReceiptWriter.IExporter.Export()"
+      ],
+      "today": {
+        "failure_mode": "id-collision",
+        "note": "public 版と 2 つの明示的実装はすべて同じ method_id に併合される(V7)"
+      },
+      "why_hard": "public 版。EIF-002/003 と見た目が同じ 3 つの Export の 1 つ目"
+    },
+    {
+      "id": "EIF-002",
+      "category": "explicit-interfaces",
+      "file": "Iryo.ReceptionDesk/Flows/ReportFlow.cs",
+      "line": 59,
+      "token": "Export",
+      "site_kind": "invocation",
+      "snippet": "((IExporter)writer).Export()",
+      "source_line": "Console.WriteLine(((IExporter)writer).Export());",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.ReceptionDesk.Flows.ReceiptWriter.IExporter.Export()",
+            "kind": "method",
+            "project": "Iryo.ReceptionDesk",
+            "assembly": "Iryo.ReceptionDesk",
+            "via": "source",
+            "file": "Iryo.ReceptionDesk/Flows/ReportFlow.cs",
+            "line": 75
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.ReceptionDesk.Flows.ReceiptWriter.Export()",
+        "Iryo.ReceptionDesk.Flows.ReceiptWriter.IArchiver.Export()"
+      ],
+      "today": {
+        "failure_mode": "id-collision",
+        "note": "public 版と 2 つの明示的実装はすべて同じ method_id に併合される(V7)"
+      },
+      "why_hard": "レシーバの静的型だけで明示的実装へ分岐する"
+    },
+    {
+      "id": "EIF-003",
+      "category": "explicit-interfaces",
+      "file": "Iryo.ReceptionDesk/Flows/ReportFlow.cs",
+      "line": 60,
+      "token": "Export",
+      "site_kind": "invocation",
+      "snippet": "((IArchiver)writer).Export()",
+      "source_line": "Console.WriteLine(((IArchiver)writer).Export());",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.ReceptionDesk.Flows.ReceiptWriter.IArchiver.Export()",
+            "kind": "method",
+            "project": "Iryo.ReceptionDesk",
+            "assembly": "Iryo.ReceptionDesk",
+            "via": "source",
+            "file": "Iryo.ReceptionDesk/Flows/ReportFlow.cs",
+            "line": 80
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.ReceptionDesk.Flows.ReceiptWriter.Export()",
+        "Iryo.ReceptionDesk.Flows.ReceiptWriter.IExporter.Export()"
+      ],
+      "today": {
+        "failure_mode": "id-collision",
+        "note": "public 版と 2 つの明示的実装はすべて同じ method_id に併合される(V7)"
+      },
+      "why_hard": "同じ見た目の 3 呼び出しがレシーバの静的型だけで別メンバーに分岐する"
+    },
+    {
+      "id": "EXT-001",
+      "category": "extension-methods/instance-wins",
+      "file": "Iryo.ReceptionDesk/Flows/ReportFlow.cs",
+      "line": 45,
+      "token": "Log",
+      "site_kind": "invocation",
+      "snippet": "logger.Log(incident);",
+      "source_line": "logger.Log(incident);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Kernel.Logging.Logger.Log(Exception)",
+            "kind": "method",
+            "project": "Iryo.Kernel",
+            "assembly": "Iryo.Kernel",
+            "via": "nuget",
+            "file": "Iryo.Kernel/Logging/Logger.cs",
+            "line": 35
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Kernel.Logging.Logger.Log(string)",
+        "Iryo.Kernel.Logging.Logger.Log(string, int)",
+        "Iryo.Pharmacy.Logger.Log(string)",
+        "Iryo.Reporting.KarteExtensions.Log(Logger, Exception)",
+        "Iryo.Reporting.KarteExtensions.Log(Logger, Exception, bool)"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "レシーバが捨てられるため、インスタンス版と拡張版の Log は同じ裸の名前になる"
+      },
+      "why_hard": "適用可能な拡張 KarteExtensions.Log(Logger,Exception) がスコープ内にあるが、インスタンスメソッドが常に勝つ"
+    },
+    {
+      "id": "EXT-002",
+      "category": "extension-methods/extension-wins",
+      "file": "Iryo.ReceptionDesk/Flows/ReportFlow.cs",
+      "line": 46,
+      "token": "Log",
+      "site_kind": "invocation",
+      "snippet": "logger.Log(incident, true)",
+      "source_line": "logger.Log(incident, true);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Reporting.KarteExtensions.Log(Logger, Exception, bool)",
+            "kind": "extension_method",
+            "project": "Iryo.Reporting",
+            "assembly": "Iryo.Reporting",
+            "via": "nuget",
+            "file": "Iryo.Reporting/KarteExtensions.cs",
+            "line": 19
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Kernel.Logging.Logger.Log(Exception)",
+        "Iryo.Kernel.Logging.Logger.Log(string)",
+        "Iryo.Kernel.Logging.Logger.Log(string, int)",
+        "Iryo.Pharmacy.Logger.Log(string)",
+        "Iryo.Reporting.KarteExtensions.Log(Logger, Exception)"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "レシーバが捨てられるため、インスタンス版と拡張版の Log は同じ裸の名前になる"
+      },
+      "why_hard": "(Exception,bool) を取るインスタンスオーバーロードがないため拡張が勝つ。EXT-001 と同じ見た目"
+    },
+    {
+      "id": "EXT-003",
+      "category": "extension-methods/static-call",
+      "file": "Iryo.ReceptionDesk/Flows/ReportFlow.cs",
+      "line": 47,
+      "token": "Log",
+      "site_kind": "invocation",
+      "snippet": "KarteExtensions.Log(logger, incident)",
+      "source_line": "KarteExtensions.Log(logger, incident);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Reporting.KarteExtensions.Log(Logger, Exception)",
+            "kind": "extension_method",
+            "project": "Iryo.Reporting",
+            "assembly": "Iryo.Reporting",
+            "via": "nuget",
+            "file": "Iryo.Reporting/KarteExtensions.cs",
+            "line": 14
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Kernel.Logging.Logger.Log(Exception)",
+        "Iryo.Kernel.Logging.Logger.Log(string)",
+        "Iryo.Kernel.Logging.Logger.Log(string, int)",
+        "Iryo.Pharmacy.Logger.Log(string)",
+        "Iryo.Reporting.KarteExtensions.Log(Logger, Exception, bool)"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "レシーバが捨てられるため、インスタンス版と拡張版の Log は同じ裸の名前になる"
+      },
+      "why_hard": "インスタンス呼び出しでは影に隠れる拡張へ、静的呼び出し構文でのみ到達できる"
+    },
+    {
+      "id": "GEN-001",
+      "category": "generics/arity",
+      "file": "Iryo.ReceptionDesk/Flows/MaintenanceFlow.cs",
+      "line": 18,
+      "token": "ChartCache",
+      "site_kind": "object_creation",
+      "snippet": "var plain = new ChartCache()",
+      "source_line": "var plain = new ChartCache();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Data.ChartCache",
+            "kind": "type",
+            "project": "Iryo.Data",
+            "assembly": "Iryo.Data",
+            "via": "nuget",
+            "file": "Iryo.Data/ChartCache.cs",
+            "line": 6
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Data.ChartCache<T>"
+      ],
+      "today": {
+        "failure_mode": "missing-edge",
+        "note": "ジェネリック呼び出しは落ちるか型引数付きで捕捉されて照合に失敗する(V6)。アリティ三兄弟は同名に縮退"
+      },
+      "why_hard": "アリティ 0/1/2 の三兄弟のうち非ジェネリック版"
+    },
+    {
+      "id": "GEN-002",
+      "category": "generics/arity",
+      "file": "Iryo.ReceptionDesk/Flows/MaintenanceFlow.cs",
+      "line": 19,
+      "token": "Warm",
+      "site_kind": "invocation",
+      "snippet": "plain.Warm()",
+      "source_line": "plain.Warm();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Data.ChartCache.Warm()",
+            "kind": "method",
+            "project": "Iryo.Data",
+            "assembly": "Iryo.Data",
+            "via": "nuget",
+            "file": "Iryo.Data/ChartCache.cs",
+            "line": 10
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "missing-edge",
+        "note": "ジェネリック呼び出しは落ちるか型引数付きで捕捉されて照合に失敗する(V6)。アリティ三兄弟は同名に縮退"
+      },
+      "why_hard": "別名展開とアリティの区別が必要"
+    },
+    {
+      "id": "GEN-003",
+      "category": "generics/static-generic-callee",
+      "file": "Iryo.ReceptionDesk/Flows/MaintenanceFlow.cs",
+      "line": 22,
+      "token": "Of",
+      "site_kind": "invocation",
+      "snippet": "ChartCache<int>.Of(42)",
+      "source_line": "var single = ChartCache<int>.Of(42);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Data.ChartCache<T>.Of(T)",
+            "kind": "method",
+            "project": "Iryo.Data",
+            "assembly": "Iryo.Data",
+            "via": "nuget",
+            "file": "Iryo.Data/ChartCache.cs",
+            "line": 26
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "missing-edge",
+        "note": "ジェネリック呼び出しは落ちるか型引数付きで捕捉されて照合に失敗する(V6)。アリティ三兄弟は同名に縮退"
+      },
+      "why_hard": "ジェネリック静的呼び出し。今日のパーサはレシーバの構築型を失い裸の Of だけ残す(V6)"
+    },
+    {
+      "id": "GEN-004",
+      "category": "generics/arity",
+      "file": "Iryo.ReceptionDesk/Flows/MaintenanceFlow.cs",
+      "line": 23,
+      "token": "Get",
+      "site_kind": "invocation",
+      "snippet": "single.Get()",
+      "source_line": "Console.WriteLine(\"単一値キャッシュ: \" + single.Get());",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Data.ChartCache<T>.Get()",
+            "kind": "method",
+            "project": "Iryo.Data",
+            "assembly": "Iryo.Data",
+            "via": "nuget",
+            "file": "Iryo.Data/ChartCache.cs",
+            "line": 33
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "missing-edge",
+        "note": "ジェネリック呼び出しは落ちるか型引数付きで捕捉されて照合に失敗する(V6)。アリティ三兄弟は同名に縮退"
+      },
+      "why_hard": "別名展開とアリティの区別が必要"
+    },
+    {
+      "id": "GEN-005",
+      "category": "generics/alias-to-constructed",
+      "file": "Iryo.ReceptionDesk/Flows/MaintenanceFlow.cs",
+      "line": 25,
+      "token": "KarteCache",
+      "site_kind": "object_creation",
+      "snippet": "new KarteCache()",
+      "source_line": "var karte = new KarteCache();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Data.ChartCache<T>",
+            "kind": "type",
+            "project": "Iryo.Data",
+            "assembly": "Iryo.Data",
+            "via": "nuget",
+            "file": "Iryo.Data/ChartCache.cs",
+            "line": 22
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Data.ChartCache"
+      ],
+      "today": {
+        "failure_mode": "alias-lost",
+        "note": "ジェネリック呼び出しは落ちるか型引数付きで捕捉されて照合に失敗する(V6)。アリティ三兄弟は同名に縮退"
+      },
+      "why_hard": "構築ジェネリック ChartCache<ChartEntry> への別名。別名展開+アリティ選択の二段が必要"
+    },
+    {
+      "id": "GEN-006",
+      "category": "generics/alias-to-constructed",
+      "file": "Iryo.ReceptionDesk/Flows/MaintenanceFlow.cs",
+      "line": 26,
+      "token": "Set",
+      "site_kind": "invocation",
+      "snippet": "karte.Set(new ChartEntry(7",
+      "source_line": "karte.Set(new ChartEntry(7, \"経過良好\"));",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Data.ChartCache<T>.Set(T)",
+            "kind": "method",
+            "project": "Iryo.Data",
+            "assembly": "Iryo.Data",
+            "via": "nuget",
+            "file": "Iryo.Data/ChartCache.cs",
+            "line": 38
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "missing-edge",
+        "note": "ジェネリック呼び出しは落ちるか型引数付きで捕捉されて照合に失敗する(V6)。アリティ三兄弟は同名に縮退"
+      },
+      "why_hard": "別名展開とアリティの区別が必要"
+    },
+    {
+      "id": "GEN-007",
+      "category": "generics/alias-to-constructed",
+      "file": "Iryo.ReceptionDesk/Flows/MaintenanceFlow.cs",
+      "line": 27,
+      "token": "Get",
+      "site_kind": "invocation",
+      "snippet": "ChartEntry entry = karte.Get()",
+      "source_line": "ChartEntry entry = karte.Get();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Data.ChartCache<T>.Get()",
+            "kind": "method",
+            "project": "Iryo.Data",
+            "assembly": "Iryo.Data",
+            "via": "nuget",
+            "file": "Iryo.Data/ChartCache.cs",
+            "line": 33
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "missing-edge",
+        "note": "ジェネリック呼び出しは落ちるか型引数付きで捕捉されて照合に失敗する(V6)。アリティ三兄弟は同名に縮退"
+      },
+      "why_hard": "別名展開とアリティの区別が必要"
+    },
+    {
+      "id": "GEN-008",
+      "category": "generics/indexer",
+      "file": "Iryo.ReceptionDesk/Flows/MaintenanceFlow.cs",
+      "line": 32,
+      "token": "[",
+      "site_kind": "indexer",
+      "snippet": "int outpatients = byDept[\"外来\"]",
+      "source_line": "int outpatients = byDept[\"外来\"];",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Data.ChartCache<TKey,TValue>.this[TKey] { get }",
+            "kind": "indexer_get",
+            "project": "Iryo.Data",
+            "assembly": "Iryo.Data",
+            "via": "nuget",
+            "file": "Iryo.Data/ChartCache.cs",
+            "line": 49
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "missing-edge",
+        "note": "ジェネリック呼び出しは落ちるか型引数付きで捕捉されて照合に失敗する(V6)。アリティ三兄弟は同名に縮退"
+      },
+      "why_hard": "名前がソースに現れないインデクサアクセス。宣言自体も今日は抽出されない"
+    },
+    {
+      "id": "GEN-009",
+      "category": "generics/arity",
+      "file": "Iryo.ReceptionDesk/Flows/MaintenanceFlow.cs",
+      "line": 33,
+      "token": "Has",
+      "site_kind": "invocation",
+      "snippet": "byDept.Has(\"外来\")",
+      "source_line": "Console.WriteLine(\"外来数 \" + outpatients + \" / 登録済 \" + byDept.Has(\"外来\"));",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Data.ChartCache<TKey,TValue>.Has(TKey)",
+            "kind": "method",
+            "project": "Iryo.Data",
+            "assembly": "Iryo.Data",
+            "via": "nuget",
+            "file": "Iryo.Data/ChartCache.cs",
+            "line": 55
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "missing-edge",
+        "note": "ジェネリック呼び出しは落ちるか型引数付きで捕捉されて照合に失敗する(V6)。アリティ三兄弟は同名に縮退"
+      },
+      "why_hard": "別名展開とアリティの区別が必要"
+    },
+    {
+      "id": "INH-001",
+      "category": "inheritance/skip-level",
+      "file": "Iryo.ReceptionDesk/Flows/CheckInFlow.cs",
+      "line": 39,
+      "token": "Describe",
+      "site_kind": "invocation",
+      "snippet": "ledgerView.Describe()",
+      "source_line": "Console.WriteLine(\"台帳表示: \" + ledgerView.Describe());",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Domain.Patients.Entity.Describe()",
+            "kind": "method",
+            "project": "Iryo.Domain",
+            "assembly": "Iryo.Domain",
+            "via": "nuget",
+            "file": "Iryo.Domain/Patients/Entity.cs",
+            "line": 11
+          }
+        ],
+        "runtime_target": {
+          "symbol": "Iryo.Domain.Patients.Patient.Describe()",
+          "file": "Iryo.Domain/Patients/Patient.cs",
+          "line": 24
+        }
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "Save/Describe/Clone が階層内で名前衝突。ctor・base 連鎖は呼び出しとして出ない(V3)"
+      },
+      "why_hard": "AuditedEntity は Describe を宣言しない。静的束縛(定義へ移動)は祖父母 Entity、実行時は Patient の上書き"
+    },
+    {
+      "id": "INH-002",
+      "category": "inheritance/hiding",
+      "file": "Iryo.ReceptionDesk/Flows/CheckInFlow.cs",
+      "line": 42,
+      "token": "Save",
+      "site_kind": "invocation",
+      "snippet": "Console.WriteLine(patient.Save())",
+      "source_line": "Console.WriteLine(patient.Save());",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Domain.Patients.Patient.Save()",
+            "kind": "method",
+            "project": "Iryo.Domain",
+            "assembly": "Iryo.Domain",
+            "via": "nuget",
+            "file": "Iryo.Domain/Patients/Patient.cs",
+            "line": 36
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Domain.Patients.Entity.Save()"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "Save/Describe/Clone が階層内で名前衝突。ctor・base 連鎖は呼び出しとして出ない(V3)"
+      },
+      "why_hard": "new による隠蔽。同じオブジェクトでもレシーバの静的型で束縛先が変わる(INH-003 と対)"
+    },
+    {
+      "id": "INH-003",
+      "category": "inheritance/hiding",
+      "file": "Iryo.ReceptionDesk/Flows/CheckInFlow.cs",
+      "line": 43,
+      "token": "Save",
+      "site_kind": "invocation",
+      "snippet": "((Entity)patient).Save()",
+      "source_line": "Console.WriteLine(((Entity)patient).Save());",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Domain.Patients.Entity.Save()",
+            "kind": "method",
+            "project": "Iryo.Domain",
+            "assembly": "Iryo.Domain",
+            "via": "nuget",
+            "file": "Iryo.Domain/Patients/Entity.cs",
+            "line": 22
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Domain.Patients.Patient.Save()"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "Save/Describe/Clone が階層内で名前衝突。ctor・base 連鎖は呼び出しとして出ない(V3)"
+      },
+      "why_hard": "束縛先はレシーバの静的型が継承鎖のどこで解決されるかで決まる"
+    },
+    {
+      "id": "INH-004",
+      "category": "inheritance/grandparent-member",
+      "file": "Iryo.ReceptionDesk/Flows/CheckInFlow.cs",
+      "line": 45,
+      "token": "Touch",
+      "site_kind": "invocation",
+      "snippet": "patient.Touch()",
+      "source_line": "patient.Touch();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Domain.Patients.Entity.Touch()",
+            "kind": "method",
+            "project": "Iryo.Domain",
+            "assembly": "Iryo.Domain",
+            "via": "nuget",
+            "file": "Iryo.Domain/Patients/Entity.cs",
+            "line": 28
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "Save/Describe/Clone が階層内で名前衝突。ctor・base 連鎖は呼び出しとして出ない(V3)"
+      },
+      "why_hard": "孫レシーバ経由で祖父母クラスの実メンバーへ"
+    },
+    {
+      "id": "INH-005",
+      "category": "inheritance/parent-member",
+      "file": "Iryo.ReceptionDesk/Flows/CheckInFlow.cs",
+      "line": 46,
+      "token": "Audit",
+      "site_kind": "invocation",
+      "snippet": "patient.Audit(\"受付済\")",
+      "source_line": "patient.Audit(\"受付済\");",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Domain.Patients.AuditedEntity.Audit(string)",
+            "kind": "method",
+            "project": "Iryo.Domain",
+            "assembly": "Iryo.Domain",
+            "via": "nuget",
+            "file": "Iryo.Domain/Patients/AuditedEntity.cs",
+            "line": 11
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "Save/Describe/Clone が階層内で名前衝突。ctor・base 連鎖は呼び出しとして出ない(V3)"
+      },
+      "why_hard": "束縛先はレシーバの静的型が継承鎖のどこで解決されるかで決まる"
+    },
+    {
+      "id": "INH-006",
+      "category": "inheritance/covariant-return",
+      "file": "Iryo.ReceptionDesk/Flows/CheckInFlow.cs",
+      "line": 48,
+      "token": "Clone",
+      "site_kind": "invocation",
+      "snippet": "Patient copy = patient.Clone()",
+      "source_line": "Patient copy = patient.Clone();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Domain.Patients.Patient.Clone()",
+            "kind": "method",
+            "project": "Iryo.Domain",
+            "assembly": "Iryo.Domain",
+            "via": "nuget",
+            "file": "Iryo.Domain/Patients/Patient.cs",
+            "line": 30
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Domain.Patients.Entity.Clone()"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "Save/Describe/Clone が階層内で名前衝突。ctor・base 連鎖は呼び出しとして出ない(V3)"
+      },
+      "why_hard": "共変戻り値の上書き(基底は Entity を返す)"
+    },
+    {
+      "id": "INH-007",
+      "category": "inheritance/covariant-return",
+      "file": "Iryo.ReceptionDesk/Flows/CheckInFlow.cs",
+      "line": 49,
+      "token": "Clone",
+      "site_kind": "invocation",
+      "snippet": "((Entity)patient).Clone()",
+      "source_line": "Entity general = ((Entity)patient).Clone();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Domain.Patients.Entity.Clone()",
+            "kind": "method",
+            "project": "Iryo.Domain",
+            "assembly": "Iryo.Domain",
+            "via": "nuget",
+            "file": "Iryo.Domain/Patients/Entity.cs",
+            "line": 16
+          }
+        ],
+        "runtime_target": {
+          "symbol": "Iryo.Domain.Patients.Patient.Clone()",
+          "file": "Iryo.Domain/Patients/Patient.cs",
+          "line": 30
+        }
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "Save/Describe/Clone が階層内で名前衝突。ctor・base 連鎖は呼び出しとして出ない(V3)"
+      },
+      "why_hard": "束縛先はレシーバの静的型が継承鎖のどこで解決されるかで決まる"
+    },
+    {
+      "id": "LNQ-001",
+      "category": "linq/query-syntax",
+      "file": "Iryo.ReceptionDesk/Flows/ReportFlow.cs",
+      "line": 22,
+      "token": "where",
+      "site_kind": "query_clause",
+      "snippet": "where v > 130",
+      "source_line": "where v > 130",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Reporting.VitalSequenceLinq.Where(VitalSequence, Func<int, bool>)",
+            "kind": "extension_method",
+            "project": "Iryo.Reporting",
+            "assembly": "Iryo.Reporting",
+            "via": "nuget",
+            "file": "Iryo.Reporting/VitalSequenceLinq.cs",
+            "line": 12
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "missing-edge",
+        "note": "クエリ構文の Where/Select は今日いっさい捕捉されない(V5)。メソッド構文は BCL 呼び出しと衝突する"
+      },
+      "why_hard": "クエリ構文: ソースに Where というトークンは現れない。System.Linq も同居しているが VitalSequence 版が betterness で勝つ"
+    },
+    {
+      "id": "LNQ-002",
+      "category": "linq/query-syntax",
+      "file": "Iryo.ReceptionDesk/Flows/ReportFlow.cs",
+      "line": 23,
+      "token": "select",
+      "site_kind": "query_clause",
+      "snippet": "select v - 130",
+      "source_line": "select v - 130;",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Reporting.VitalSequenceLinq.Select(VitalSequence, Func<int, int>)",
+            "kind": "extension_method",
+            "project": "Iryo.Reporting",
+            "assembly": "Iryo.Reporting",
+            "via": "nuget",
+            "file": "Iryo.Reporting/VitalSequenceLinq.cs",
+            "line": 25
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "missing-edge",
+        "note": "クエリ構文の Where/Select は今日いっさい捕捉されない(V5)。メソッド構文は BCL 呼び出しと衝突する"
+      },
+      "why_hard": "束縛先はレシーバ型と拡張メソッドの betterness で決まる"
+    },
+    {
+      "id": "LNQ-003",
+      "category": "linq/method-syntax",
+      "file": "Iryo.ReceptionDesk/Flows/ReportFlow.cs",
+      "line": 31,
+      "token": "Where",
+      "site_kind": "invocation",
+      "snippet": "vitals.Where(v => v > 120)",
+      "source_line": "var filtered = vitals.Where(v => v > 120);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Reporting.VitalSequenceLinq.Where(VitalSequence, Func<int, bool>)",
+            "kind": "extension_method",
+            "project": "Iryo.Reporting",
+            "assembly": "Iryo.Reporting",
+            "via": "nuget",
+            "file": "Iryo.Reporting/VitalSequenceLinq.cs",
+            "line": 12
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "missing-edge",
+        "note": "クエリ構文の Where/Select は今日いっさい捕捉されない(V5)。メソッド構文は BCL 呼び出しと衝突する"
+      },
+      "why_hard": "束縛先はレシーバ型と拡張メソッドの betterness で決まる"
+    },
+    {
+      "id": "LNQ-004",
+      "category": "linq/method-syntax",
+      "file": "Iryo.ReceptionDesk/Flows/ReportFlow.cs",
+      "line": 32,
+      "token": "Select",
+      "site_kind": "invocation",
+      "snippet": "filtered.Select(v => v - 120)",
+      "source_line": "var shifted = filtered.Select(v => v - 120);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Reporting.VitalSequenceLinq.Select(VitalSequence, Func<int, int>)",
+            "kind": "extension_method",
+            "project": "Iryo.Reporting",
+            "assembly": "Iryo.Reporting",
+            "via": "nuget",
+            "file": "Iryo.Reporting/VitalSequenceLinq.cs",
+            "line": 25
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "missing-edge",
+        "note": "クエリ構文の Where/Select は今日いっさい捕捉されない(V5)。メソッド構文は BCL 呼び出しと衝突する"
+      },
+      "why_hard": "束縛先はレシーバ型と拡張メソッドの betterness で決まる"
+    },
+    {
+      "id": "LNQ-005",
+      "category": "linq/bcl",
+      "file": "Iryo.ReceptionDesk/Flows/ReportFlow.cs",
+      "line": 40,
+      "token": "Where",
+      "site_kind": "invocation",
+      "snippet": "new List<int> { 180, 90, 200 }.Where(v => v > 150)",
+      "source_line": "var extremes = new List<int> { 180, 90, 200 }.Where(v => v > 150).ToList();",
+      "expected": {
+        "resolution": "external",
+        "targets": [
+          {
+            "symbol": "Enumerable.Where<TSource>(IEnumerable<TSource>, Func<TSource, bool>)",
+            "kind": "extension_method",
+            "project": null,
+            "assembly": "System.Linq",
+            "via": "bcl",
+            "file": null,
+            "line": null
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "missing-edge",
+        "note": "クエリ構文の Where/Select は今日いっさい捕捉されない(V5)。メソッド構文は BCL 呼び出しと衝突する"
+      },
+      "why_hard": "LNQ-003 と同一スペルの呼び出しだがレシーバが List<int> のため BCL に束縛。正解はリポジトリ外"
+    },
+    {
+      "id": "LNQ-006",
+      "category": "linq/method-syntax",
+      "file": "Iryo.AdminConsole/ReportDigest.cs",
+      "line": 15,
+      "token": "Where",
+      "site_kind": "invocation",
+      "snippet": "pulses.Where(v => v > 65)",
+      "source_line": "var elevated = pulses.Where(v => v > 65).Select(v => v - 60);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Reporting.VitalSequenceLinq.Where(VitalSequence, Func<int, bool>)",
+            "kind": "extension_method",
+            "project": "Iryo.Reporting",
+            "assembly": "Iryo.Reporting",
+            "via": "nuget",
+            "file": "Iryo.Reporting/VitalSequenceLinq.cs",
+            "line": 12
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "missing-edge",
+        "note": "クエリ構文の Where/Select は今日いっさい捕捉されない(V5)。メソッド構文は BCL 呼び出しと衝突する"
+      },
+      "why_hard": "このファイルは System.Linq を using しないため、スコープ内の適用可能拡張は VitalSequence 版のみ(betterness は関与しない)"
+    },
+    {
+      "id": "LNQ-007",
+      "category": "linq/method-syntax",
+      "file": "Iryo.AdminConsole/ReportDigest.cs",
+      "line": 15,
+      "token": "Select",
+      "site_kind": "invocation",
+      "snippet": ".Select(v => v - 60)",
+      "source_line": "var elevated = pulses.Where(v => v > 65).Select(v => v - 60);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Reporting.VitalSequenceLinq.Select(VitalSequence, Func<int, int>)",
+            "kind": "extension_method",
+            "project": "Iryo.Reporting",
+            "assembly": "Iryo.Reporting",
+            "via": "nuget",
+            "file": "Iryo.Reporting/VitalSequenceLinq.cs",
+            "line": 25
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "missing-edge",
+        "note": "クエリ構文の Where/Select は今日いっさい捕捉されない(V5)。メソッド構文は BCL 呼び出しと衝突する"
+      },
+      "why_hard": "このファイルは System.Linq を using しないため、スコープ内の適用可能拡張は VitalSequence 版のみ"
+    },
+    {
+      "id": "NSP-001",
+      "category": "namespace-tricks/type-shadows-namespace",
+      "file": "Iryo.ReceptionDesk/Flows/PharmacyFlow.cs",
+      "line": 42,
+      "token": "RecordAudit",
+      "site_kind": "invocation",
+      "snippet": "Pharmacy.RecordAudit(\"麻薬金庫点検\")",
+      "source_line": "Pharmacy.RecordAudit(\"麻薬金庫点検\");",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.ReceptionDesk.Flows.Pharmacy.RecordAudit(string)",
+            "kind": "method",
+            "project": "Iryo.ReceptionDesk",
+            "assembly": "Iryo.ReceptionDesk",
+            "via": "source",
+            "file": "Iryo.ReceptionDesk/Flows/PharmacyFlow.cs",
+            "line": 59
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "namespace-lost",
+        "note": "名前空間はファイルに 1 つ(最後の宣言が勝つ)しか記録されず、同名クラスは 1 行に併合される(V8)"
+      },
+      "why_hard": "名前空間修飾に見えるが、単純名 Pharmacy はローカルのクラスに解決される"
+    },
+    {
+      "id": "NSP-002",
+      "category": "namespace-tricks/global",
+      "file": "Iryo.ReceptionDesk/Flows/PharmacyFlow.cs",
+      "line": 43,
+      "token": "Logger",
+      "site_kind": "object_creation",
+      "snippet": "new global::Iryo.Pharmacy.Logger()",
+      "source_line": "var nightLog = new global::Iryo.Pharmacy.Logger();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Pharmacy.Logger",
+            "kind": "type",
+            "project": "Iryo.Pharmacy",
+            "assembly": "Iryo.Pharmacy",
+            "via": "nuget",
+            "file": "Iryo.Pharmacy/Logger.cs",
+            "line": 9
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Kernel.Logging.Logger",
+        "Iryo.Kernel.Logging.Logger..ctor()",
+        "Iryo.Kernel.Logging.Logger..ctor(string)"
+      ],
+      "today": {
+        "failure_mode": "namespace-lost",
+        "note": "名前空間はファイルに 1 つ(最後の宣言が勝つ)しか記録されず、同名クラスは 1 行に併合される(V8)"
+      },
+      "why_hard": "クラス影に対して global:: で名前空間へ到達する(完全修飾や別名でも可)"
+    },
+    {
+      "id": "NSP-003",
+      "category": "cross-package-twins",
+      "file": "Iryo.ReceptionDesk/Flows/PharmacyFlow.cs",
+      "line": 44,
+      "token": "Log",
+      "site_kind": "invocation",
+      "snippet": "nightLog.Log(\"夜間在庫確認\")",
+      "source_line": "nightLog.Log(\"夜間在庫確認\");",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Pharmacy.Logger.Log(string)",
+            "kind": "method",
+            "project": "Iryo.Pharmacy",
+            "assembly": "Iryo.Pharmacy",
+            "via": "nuget",
+            "file": "Iryo.Pharmacy/Logger.cs",
+            "line": 13
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Kernel.Logging.Logger.Log(Exception)",
+        "Iryo.Kernel.Logging.Logger.Log(string)",
+        "Iryo.Kernel.Logging.Logger.Log(string, int)",
+        "Iryo.Reporting.KarteExtensions.Log(Logger, Exception)",
+        "Iryo.Reporting.KarteExtensions.Log(Logger, Exception, bool)"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "methodname_to_id / classname_to_id は全体で単純名の先勝ちマップ"
+      },
+      "why_hard": "同名同シグネチャの別パッケージ宣言。呼び出し側ファイルの using 構成だけが区別する"
+    },
+    {
+      "id": "NSP-004",
+      "category": "namespace-tricks/namespace-alias",
+      "file": "Iryo.ReceptionDesk/Flows/PharmacyFlow.cs",
+      "line": 46,
+      "token": "PharmacyNs",
+      "site_kind": "object_creation",
+      "snippet": "new PharmacyNs.Logger()",
+      "source_line": "var aliasLog = new PharmacyNs.Logger();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Pharmacy.Logger",
+            "kind": "type",
+            "project": "Iryo.Pharmacy",
+            "assembly": "Iryo.Pharmacy",
+            "via": "nuget",
+            "file": "Iryo.Pharmacy/Logger.cs",
+            "line": 9
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Kernel.Logging.Logger",
+        "Iryo.Kernel.Logging.Logger..ctor()",
+        "Iryo.Kernel.Logging.Logger..ctor(string)"
+      ],
+      "today": {
+        "failure_mode": "alias-lost",
+        "note": "名前空間はファイルに 1 つ(最後の宣言が勝つ)しか記録されず、同名クラスは 1 行に併合される(V8)"
+      },
+      "why_hard": "名前空間別名 PharmacyNs の展開が必要"
+    },
+    {
+      "id": "NSP-005",
+      "category": "namespace-tricks/one-file-two-namespaces",
+      "file": "Iryo.ReceptionDesk/Flows/ReportFlow.cs",
+      "line": 53,
+      "token": "NorthWard",
+      "site_kind": "object_creation",
+      "snippet": "new NorthWard()",
+      "source_line": "var north = new NorthWard();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Domain.North.Ward",
+            "kind": "type",
+            "project": "Iryo.Domain",
+            "assembly": "Iryo.Domain",
+            "via": "nuget",
+            "file": "Iryo.Domain/Wards/TwoWards.cs",
+            "line": 7
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Domain.South.Ward"
+      ],
+      "today": {
+        "failure_mode": "alias-lost",
+        "note": "名前空間はファイルに 1 つ(最後の宣言が勝つ)しか記録されず、同名クラスは 1 行に併合される(V8)"
+      },
+      "why_hard": "同一ファイルに 2 つの名前空間で宣言された同名クラスの片方(北)への別名"
+    },
+    {
+      "id": "NSP-006",
+      "category": "namespace-tricks/one-file-two-namespaces",
+      "file": "Iryo.ReceptionDesk/Flows/ReportFlow.cs",
+      "line": 54,
+      "token": "SouthWard",
+      "site_kind": "object_creation",
+      "snippet": "new SouthWard()",
+      "source_line": "var south = new SouthWard();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Domain.South.Ward",
+            "kind": "type",
+            "project": "Iryo.Domain",
+            "assembly": "Iryo.Domain",
+            "via": "nuget",
+            "file": "Iryo.Domain/Wards/TwoWards.cs",
+            "line": 19
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Domain.North.Ward"
+      ],
+      "today": {
+        "failure_mode": "alias-lost",
+        "note": "名前空間はファイルに 1 つ(最後の宣言が勝つ)しか記録されず、同名クラスは 1 行に併合される(V8)"
+      },
+      "why_hard": "C# の名前解決規則(型がネームスペースを影で覆う・global::・別名)が正解を決める"
+    },
+    {
+      "id": "NSP-007",
+      "category": "namespace-tricks/one-file-two-namespaces",
+      "file": "Iryo.ReceptionDesk/Flows/ReportFlow.cs",
+      "line": 55,
+      "token": "Locate",
+      "site_kind": "invocation",
+      "snippet": "north.Locate()",
+      "source_line": "Console.WriteLine(\"病棟案内: \" + north.Locate() + \" / \" + south.Locate());",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Domain.North.Ward.Locate()",
+            "kind": "method",
+            "project": "Iryo.Domain",
+            "assembly": "Iryo.Domain",
+            "via": "nuget",
+            "file": "Iryo.Domain/Wards/TwoWards.cs",
+            "line": 9
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Domain.South.Ward.Locate()"
+      ],
+      "today": {
+        "failure_mode": "namespace-lost",
+        "note": "名前空間はファイルに 1 つ(最後の宣言が勝つ)しか記録されず、同名クラスは 1 行に併合される(V8)"
+      },
+      "why_hard": "今日のグラフでは両 Ward が 1 行に併合され、ファイルの名前空間は最後の South になる(V8)"
+    },
+    {
+      "id": "NSP-008",
+      "category": "namespace-tricks/one-file-two-namespaces",
+      "file": "Iryo.ReceptionDesk/Flows/ReportFlow.cs",
+      "line": 55,
+      "token": "Locate",
+      "site_kind": "invocation",
+      "snippet": "south.Locate()",
+      "source_line": "Console.WriteLine(\"病棟案内: \" + north.Locate() + \" / \" + south.Locate());",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Domain.South.Ward.Locate()",
+            "kind": "method",
+            "project": "Iryo.Domain",
+            "assembly": "Iryo.Domain",
+            "via": "nuget",
+            "file": "Iryo.Domain/Wards/TwoWards.cs",
+            "line": 21
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Domain.North.Ward.Locate()"
+      ],
+      "today": {
+        "failure_mode": "namespace-lost",
+        "note": "名前空間はファイルに 1 つ(最後の宣言が勝つ)しか記録されず、同名クラスは 1 行に併合される(V8)"
+      },
+      "why_hard": "C# の名前解決規則(型がネームスペースを影で覆う・global::・別名)が正解を決める"
+    },
+    {
+      "id": "OVL-001",
+      "category": "overloads/exact",
+      "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+      "line": 20,
+      "token": "Calculate",
+      "site_kind": "invocation",
+      "snippet": "fee.Calculate(288, 146);",
+      "source_line": "int basic = fee.Calculate(288, 146);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Billing.FeeCalculator.Calculate(int, int)",
+            "kind": "method",
+            "project": "Iryo.Billing",
+            "assembly": "Iryo.Billing",
+            "via": "nuget",
+            "file": "Iryo.Billing/FeeCalculator.cs",
+            "line": 15
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Billing.FeeCalculator.Calculate(double, double)",
+        "Iryo.Billing.FeeCalculator.Calculate(int, int, int)",
+        "Iryo.Billing.FeeCalculator.Calculate(long, long)",
+        "Iryo.Billing.FeeCalculator.Calculate(params int[])",
+        "Iryo.Legacy.Claims.PointTable.Calculate(int, int)",
+        "Iryo.Pharmacy.DoseCalculator.Calculate(int, int)"
+      ],
+      "today": {
+        "failure_mode": "overload-collapse",
+        "note": "同名オーバーロードは今日 1 ノードに縮退する(method_id は file|class|name のハッシュ)"
+      },
+      "why_hard": "完全一致。薬局 DoseCalculator・旧レセ PointTable にも同名同引数メソッドがある"
+    },
+    {
+      "id": "OVL-002",
+      "category": "overloads/widening",
+      "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+      "line": 21,
+      "token": "Calculate",
+      "site_kind": "invocation",
+      "snippet": "fee.Calculate(288, 146L)",
+      "source_line": "long wide = fee.Calculate(288, 146L);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Billing.FeeCalculator.Calculate(long, long)",
+            "kind": "method",
+            "project": "Iryo.Billing",
+            "assembly": "Iryo.Billing",
+            "via": "nuget",
+            "file": "Iryo.Billing/FeeCalculator.cs",
+            "line": 21
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Billing.FeeCalculator.Calculate(double, double)",
+        "Iryo.Billing.FeeCalculator.Calculate(int, int)",
+        "Iryo.Billing.FeeCalculator.Calculate(int, int, int)",
+        "Iryo.Billing.FeeCalculator.Calculate(params int[])",
+        "Iryo.Legacy.Claims.PointTable.Calculate(int, int)",
+        "Iryo.Pharmacy.DoseCalculator.Calculate(int, int)"
+      ],
+      "today": {
+        "failure_mode": "overload-collapse",
+        "note": "同名オーバーロードは今日 1 ノードに縮退する(method_id は file|class|name のハッシュ)"
+      },
+      "why_hard": "int+long は完全一致なし。(long,long) が (double,double) より良い変換先"
+    },
+    {
+      "id": "OVL-003",
+      "category": "overloads/widening",
+      "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+      "line": 22,
+      "token": "Calculate",
+      "site_kind": "invocation",
+      "snippet": "fee.Calculate(70.5, 2)",
+      "source_line": "double split = fee.Calculate(70.5, 2);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Billing.FeeCalculator.Calculate(double, double)",
+            "kind": "method",
+            "project": "Iryo.Billing",
+            "assembly": "Iryo.Billing",
+            "via": "nuget",
+            "file": "Iryo.Billing/FeeCalculator.cs",
+            "line": 27
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Billing.FeeCalculator.Calculate(int, int)",
+        "Iryo.Billing.FeeCalculator.Calculate(int, int, int)",
+        "Iryo.Billing.FeeCalculator.Calculate(long, long)",
+        "Iryo.Billing.FeeCalculator.Calculate(params int[])",
+        "Iryo.Legacy.Claims.PointTable.Calculate(int, int)",
+        "Iryo.Pharmacy.DoseCalculator.Calculate(int, int)"
+      ],
+      "today": {
+        "failure_mode": "overload-collapse",
+        "note": "同名オーバーロードは今日 1 ノードに縮退する(method_id は file|class|name のハッシュ)"
+      },
+      "why_hard": "実引数 70.5 は int/long へ暗黙変換できず、適用可能候補が (double,double) 1 つに絞られる(betterness 比較は走らない)"
+    },
+    {
+      "id": "OVL-004",
+      "category": "overloads/arity",
+      "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+      "line": 23,
+      "token": "Calculate",
+      "site_kind": "invocation",
+      "snippet": "fee.Calculate(288, 146, 52)",
+      "source_line": "int triple = fee.Calculate(288, 146, 52);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Billing.FeeCalculator.Calculate(int, int, int)",
+            "kind": "method",
+            "project": "Iryo.Billing",
+            "assembly": "Iryo.Billing",
+            "via": "nuget",
+            "file": "Iryo.Billing/FeeCalculator.cs",
+            "line": 33
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Billing.FeeCalculator.Calculate(double, double)",
+        "Iryo.Billing.FeeCalculator.Calculate(int, int)",
+        "Iryo.Billing.FeeCalculator.Calculate(long, long)",
+        "Iryo.Billing.FeeCalculator.Calculate(params int[])",
+        "Iryo.Legacy.Claims.PointTable.Calculate(int, int)",
+        "Iryo.Pharmacy.DoseCalculator.Calculate(int, int)"
+      ],
+      "today": {
+        "failure_mode": "overload-collapse",
+        "note": "同名オーバーロードは今日 1 ノードに縮退する(method_id は file|class|name のハッシュ)"
+      },
+      "why_hard": "厳密 3 引数が params 候補に勝つ"
+    },
+    {
+      "id": "OVL-005",
+      "category": "overloads/params-expanded",
+      "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+      "line": 24,
+      "token": "Calculate",
+      "site_kind": "invocation",
+      "snippet": "fee.Calculate(100, 100, 100, 100)",
+      "source_line": "int tapered = fee.Calculate(100, 100, 100, 100);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Billing.FeeCalculator.Calculate(params int[])",
+            "kind": "method",
+            "project": "Iryo.Billing",
+            "assembly": "Iryo.Billing",
+            "via": "nuget",
+            "file": "Iryo.Billing/FeeCalculator.cs",
+            "line": 39
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Billing.FeeCalculator.Calculate(double, double)",
+        "Iryo.Billing.FeeCalculator.Calculate(int, int)",
+        "Iryo.Billing.FeeCalculator.Calculate(int, int, int)",
+        "Iryo.Billing.FeeCalculator.Calculate(long, long)",
+        "Iryo.Legacy.Claims.PointTable.Calculate(int, int)",
+        "Iryo.Pharmacy.DoseCalculator.Calculate(int, int)"
+      ],
+      "today": {
+        "failure_mode": "overload-collapse",
+        "note": "同名オーバーロードは今日 1 ノードに縮退する(method_id は file|class|name のハッシュ)"
+      },
+      "why_hard": "4 引数に固定アリティ候補がなく params 展開形のみ適用可能"
+    },
+    {
+      "id": "OVL-006",
+      "category": "overloads/params-normal",
+      "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+      "line": 26,
+      "token": "Calculate",
+      "site_kind": "invocation",
+      "snippet": "fee.Calculate(batch)",
+      "source_line": "int batched = fee.Calculate(batch);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Billing.FeeCalculator.Calculate(params int[])",
+            "kind": "method",
+            "project": "Iryo.Billing",
+            "assembly": "Iryo.Billing",
+            "via": "nuget",
+            "file": "Iryo.Billing/FeeCalculator.cs",
+            "line": 39
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Billing.FeeCalculator.Calculate(double, double)",
+        "Iryo.Billing.FeeCalculator.Calculate(int, int)",
+        "Iryo.Billing.FeeCalculator.Calculate(int, int, int)",
+        "Iryo.Billing.FeeCalculator.Calculate(long, long)",
+        "Iryo.Legacy.Claims.PointTable.Calculate(int, int)",
+        "Iryo.Pharmacy.DoseCalculator.Calculate(int, int)"
+      ],
+      "today": {
+        "failure_mode": "overload-collapse",
+        "note": "同名オーバーロードは今日 1 ノードに縮退する(method_id は file|class|name のハッシュ)"
+      },
+      "why_hard": "配列直渡しの params 通常形。OVL-005 と同じ宣言に束縛される"
+    },
+    {
+      "id": "OVL-007",
+      "category": "overloads/lambda-shape",
+      "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+      "line": 30,
+      "token": "Run",
+      "site_kind": "invocation",
+      "snippet": "fee.Run(() => { })",
+      "source_line": "Console.WriteLine(\"締め処理: \" + fee.Run(() => { }));",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Billing.FeeCalculator.Run(Action)",
+            "kind": "method",
+            "project": "Iryo.Billing",
+            "assembly": "Iryo.Billing",
+            "via": "nuget",
+            "file": "Iryo.Billing/FeeCalculator.cs",
+            "line": 54
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Billing.FeeCalculator.Run(Func<Task>)"
+      ],
+      "today": {
+        "failure_mode": "overload-collapse",
+        "note": "同名オーバーロードは今日 1 ノードに縮退する(method_id は file|class|name のハッシュ)"
+      },
+      "why_hard": "同期 void ラムダは Action にのみ変換可能"
+    },
+    {
+      "id": "OVL-008",
+      "category": "overloads/lambda-shape",
+      "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+      "line": 31,
+      "token": "Run",
+      "site_kind": "invocation",
+      "snippet": "fee.Run(async () => await Task.Yield())",
+      "source_line": "Console.WriteLine(\"締め処理: \" + fee.Run(async () => await Task.Yield()));",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Billing.FeeCalculator.Run(Func<Task>)",
+            "kind": "method",
+            "project": "Iryo.Billing",
+            "assembly": "Iryo.Billing",
+            "via": "nuget",
+            "file": "Iryo.Billing/FeeCalculator.cs",
+            "line": 61
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Billing.FeeCalculator.Run(Action)"
+      ],
+      "today": {
+        "failure_mode": "overload-collapse",
+        "note": "同名オーバーロードは今日 1 ノードに縮退する(method_id は file|class|name のハッシュ)"
+      },
+      "why_hard": "非同期ラムダは Action(async void) にも Func<Task> にも変換可能だが、Task 返し委譲が betterness で優先"
+    },
+    {
+      "id": "OVL-009",
+      "category": "overloads/named-args",
+      "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+      "line": 33,
+      "token": "Scale",
+      "site_kind": "invocation",
+      "snippet": "fee.Scale(factor: 2, value: 100)",
+      "source_line": "int scaled = fee.Scale(factor: 2, value: 100);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Billing.FeeCalculator.Scale(int, int)",
+            "kind": "method",
+            "project": "Iryo.Billing",
+            "assembly": "Iryo.Billing",
+            "via": "nuget",
+            "file": "Iryo.Billing/FeeCalculator.cs",
+            "line": 68
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Billing.FeeCalculator.Scale(int, double)"
+      ],
+      "today": {
+        "failure_mode": "overload-collapse",
+        "note": "同名オーバーロードは今日 1 ノードに縮退する(method_id は file|class|name のハッシュ)"
+      },
+      "why_hard": "名前付き引数がパラメータ順と逆。位置ベースの読み取りは両引数を取り違える"
+    },
+    {
+      "id": "OVL-010",
+      "category": "overloads/exact",
+      "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+      "line": 34,
+      "token": "Scale",
+      "site_kind": "invocation",
+      "snippet": "fee.Scale(100, 1.08)",
+      "source_line": "double regional = fee.Scale(100, 1.08);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Billing.FeeCalculator.Scale(int, double)",
+            "kind": "method",
+            "project": "Iryo.Billing",
+            "assembly": "Iryo.Billing",
+            "via": "nuget",
+            "file": "Iryo.Billing/FeeCalculator.cs",
+            "line": 74
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Billing.FeeCalculator.Scale(int, int)"
+      ],
+      "today": {
+        "failure_mode": "overload-collapse",
+        "note": "同名オーバーロードは今日 1 ノードに縮退する(method_id は file|class|name のハッシュ)"
+      },
+      "why_hard": "実引数 1.08 は int へ暗黙変換できず、適用可能候補が (int,double) 1 つに絞られる"
+    },
+    {
+      "id": "OVL-011",
+      "category": "operators",
+      "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+      "line": 39,
+      "token": "+",
+      "site_kind": "operator",
+      "snippet": "var total = consultation + medication",
+      "source_line": "var total = consultation + medication;",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Domain.Money.operator +(Money, Money)",
+            "kind": "operator",
+            "project": "Iryo.Domain",
+            "assembly": "Iryo.Domain",
+            "via": "nuget",
+            "file": "Iryo.Domain/Money.cs",
+            "line": 10
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "missing-node",
+        "note": "演算子・変換演算子の宣言は今日抽出されず、呼び出しにも名前トークンがない"
+      },
+      "why_hard": "ソース上にメソッド名が一切現れない演算子束縛"
+    },
+    {
+      "id": "OVL-012",
+      "category": "operators/user-conversion",
+      "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+      "line": 40,
+      "token": "total",
+      "site_kind": "conversion",
+      "snippet": "decimal asYen = total",
+      "source_line": "decimal asYen = total;",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Domain.Money.implicit operator decimal(Money)",
+            "kind": "conversion_operator",
+            "project": "Iryo.Domain",
+            "assembly": "Iryo.Domain",
+            "via": "nuget",
+            "file": "Iryo.Domain/Money.cs",
+            "line": 15
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "missing-node",
+        "note": "演算子・変換演算子の宣言は今日抽出されず、呼び出しにも名前トークンがない"
+      },
+      "why_hard": "ただの代入に見えてユーザー定義変換演算子が実行される"
+    },
+    {
+      "id": "OVL-013",
+      "category": "overloads/user-conversion",
+      "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+      "line": 41,
+      "token": "Pay",
+      "site_kind": "invocation",
+      "snippet": "fee.Pay(total)",
+      "source_line": "decimal received = fee.Pay(total);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Billing.FeeCalculator.Pay(decimal)",
+            "kind": "method",
+            "project": "Iryo.Billing",
+            "assembly": "Iryo.Billing",
+            "via": "nuget",
+            "file": "Iryo.Billing/FeeCalculator.cs",
+            "line": 81
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "overload-collapse",
+        "note": "同名オーバーロードは今日 1 ノードに縮退する(method_id は file|class|name のハッシュ)"
+      },
+      "why_hard": "Money 実引数は暗黙変換を経由して decimal 仮引数に束縛される(1 サイトに 2 つの真実)"
+    },
+    {
+      "id": "OVL-014",
+      "category": "operators",
+      "file": "Iryo.AdminConsole/ReportDigest.cs",
+      "line": 23,
+      "token": "+",
+      "site_kind": "operator",
+      "snippet": "new Money(150000m) + new Money(98000m)",
+      "source_line": "var revenue = new Money(150000m) + new Money(98000m);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Domain.Money.operator +(Money, Money)",
+            "kind": "operator",
+            "project": "Iryo.Domain",
+            "assembly": "Iryo.Domain",
+            "via": "nuget",
+            "file": "Iryo.Domain/Money.cs",
+            "line": 10
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "missing-node",
+        "note": "演算子・変換演算子の宣言は今日抽出されず、呼び出しにも名前トークンがない"
+      },
+      "why_hard": "ソースにメソッド名が現れない束縛"
+    },
+    {
+      "id": "TWIN-001",
+      "category": "cross-package-twins/using-static",
+      "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+      "line": 44,
+      "token": "ToYen",
+      "site_kind": "invocation",
+      "snippet": "int yen = ToYen(126)",
+      "source_line": "int yen = ToYen(126);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Billing.PointMath.ToYen(int)",
+            "kind": "method",
+            "project": "Iryo.Billing",
+            "assembly": "Iryo.Billing",
+            "via": "nuget",
+            "file": "Iryo.Billing/PointMath.cs",
+            "line": 11
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Pharmacy.PointMath.ToYen(int)",
+        "Iryo.ReceptionDesk.Flows.MaintenanceFlow.Run()/ToYen(int)"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "methodname_to_id / classname_to_id は全体で単純名の先勝ちマップ"
+      },
+      "why_hard": "レシーバなしの裸呼び出し。この行を Billing 版にするのはファイル冒頭の using static だけ"
+    },
+    {
+      "id": "TWIN-002",
+      "category": "cross-package-twins",
+      "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+      "line": 45,
+      "token": "ToYen",
+      "site_kind": "invocation",
+      "snippet": "Iryo.Pharmacy.PointMath.ToYen(126)",
+      "source_line": "int pharmacyYen = Iryo.Pharmacy.PointMath.ToYen(126);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Pharmacy.PointMath.ToYen(int)",
+            "kind": "method",
+            "project": "Iryo.Pharmacy",
+            "assembly": "Iryo.Pharmacy",
+            "via": "nuget",
+            "file": "Iryo.Pharmacy/PointMath.cs",
+            "line": 13
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Billing.PointMath.ToYen(int)",
+        "Iryo.ReceptionDesk.Flows.MaintenanceFlow.Run()/ToYen(int)"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "methodname_to_id / classname_to_id は全体で単純名の先勝ちマップ"
+      },
+      "why_hard": "同名同シグネチャの薬局版(窓口レート換算)。完全修飾のみが区別する"
+    },
+    {
+      "id": "TWIN-003",
+      "category": "cross-package-twins/alias",
+      "file": "Iryo.ReceptionDesk/Flows/PharmacyFlow.cs",
+      "line": 19,
+      "token": "KernelLogger",
+      "site_kind": "object_creation",
+      "snippet": "new KernelLogger(\"薬局窓口\")",
+      "source_line": "var houseLog = new KernelLogger(\"薬局窓口\");",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Kernel.Logging.Logger..ctor(string)",
+            "kind": "constructor",
+            "project": "Iryo.Kernel",
+            "assembly": "Iryo.Kernel",
+            "via": "nuget",
+            "file": "Iryo.Kernel/Logging/Logger.cs",
+            "line": 24
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Kernel.Logging.Logger",
+        "Iryo.Kernel.Logging.Logger..ctor()",
+        "Iryo.Pharmacy.Logger"
+      ],
+      "today": {
+        "failure_mode": "alias-lost",
+        "note": "methodname_to_id / classname_to_id は全体で単純名の先勝ちマップ"
+      },
+      "why_hard": "型別名。実型名 Logger はサイトに現れない"
+    },
+    {
+      "id": "TWIN-004",
+      "category": "cross-package-twins",
+      "file": "Iryo.ReceptionDesk/Flows/PharmacyFlow.cs",
+      "line": 20,
+      "token": "Log",
+      "site_kind": "invocation",
+      "snippet": "houseLog.Log(\"処方箋受領\")",
+      "source_line": "houseLog.Log(\"処方箋受領\");",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Kernel.Logging.Logger.Log(string)",
+            "kind": "method",
+            "project": "Iryo.Kernel",
+            "assembly": "Iryo.Kernel",
+            "via": "nuget",
+            "file": "Iryo.Kernel/Logging/Logger.cs",
+            "line": 29
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Kernel.Logging.Logger.Log(Exception)",
+        "Iryo.Kernel.Logging.Logger.Log(string, int)",
+        "Iryo.Pharmacy.Logger.Log(string)",
+        "Iryo.Reporting.KarteExtensions.Log(Logger, Exception)",
+        "Iryo.Reporting.KarteExtensions.Log(Logger, Exception, bool)"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "methodname_to_id / classname_to_id は全体で単純名の先勝ちマップ"
+      },
+      "why_hard": "TWIN-006 と引数まで同一の呼び出しテキスト。レシーバの型だけが区別する"
+    },
+    {
+      "id": "TWIN-005",
+      "category": "cross-package-twins",
+      "file": "Iryo.ReceptionDesk/Flows/PharmacyFlow.cs",
+      "line": 21,
+      "token": "Logger",
+      "site_kind": "object_creation",
+      "snippet": "var dispenseLog = new Logger()",
+      "source_line": "var dispenseLog = new Logger();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Pharmacy.Logger",
+            "kind": "type",
+            "project": "Iryo.Pharmacy",
+            "assembly": "Iryo.Pharmacy",
+            "via": "nuget",
+            "file": "Iryo.Pharmacy/Logger.cs",
+            "line": 9
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Kernel.Logging.Logger",
+        "Iryo.Kernel.Logging.Logger..ctor()",
+        "Iryo.Kernel.Logging.Logger..ctor(string)"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "methodname_to_id / classname_to_id は全体で単純名の先勝ちマップ"
+      },
+      "why_hard": "このファイルの using Iryo.Pharmacy により裸の Logger は薬局版"
+    },
+    {
+      "id": "TWIN-006",
+      "category": "cross-package-twins",
+      "file": "Iryo.ReceptionDesk/Flows/PharmacyFlow.cs",
+      "line": 22,
+      "token": "Log",
+      "site_kind": "invocation",
+      "snippet": "dispenseLog.Log(\"処方箋受領\")",
+      "source_line": "dispenseLog.Log(\"処方箋受領\");",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Pharmacy.Logger.Log(string)",
+            "kind": "method",
+            "project": "Iryo.Pharmacy",
+            "assembly": "Iryo.Pharmacy",
+            "via": "nuget",
+            "file": "Iryo.Pharmacy/Logger.cs",
+            "line": 13
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Kernel.Logging.Logger.Log(Exception)",
+        "Iryo.Kernel.Logging.Logger.Log(string)",
+        "Iryo.Kernel.Logging.Logger.Log(string, int)",
+        "Iryo.Reporting.KarteExtensions.Log(Logger, Exception)",
+        "Iryo.Reporting.KarteExtensions.Log(Logger, Exception, bool)"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "methodname_to_id / classname_to_id は全体で単純名の先勝ちマップ"
+      },
+      "why_hard": "TWIN-004 と同一テキスト・別パッケージ(オーバーロードではない)"
+    },
+    {
+      "id": "TWIN-007",
+      "category": "cross-package-twins",
+      "file": "Iryo.ReceptionDesk/Flows/PharmacyFlow.cs",
+      "line": 27,
+      "token": "Validate",
+      "site_kind": "invocation",
+      "snippet": "rx.Validate(\"Rp) アモキシシリン 250mg\")",
+      "source_line": "Console.WriteLine(\"処方箋判定: \" + rx.Validate(\"Rp) アモキシシリン 250mg\"));",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Pharmacy.Validator.Validate(string)",
+            "kind": "method",
+            "project": "Iryo.Pharmacy",
+            "assembly": "Iryo.Pharmacy",
+            "via": "nuget",
+            "file": "Iryo.Pharmacy/Validator.cs",
+            "line": 10
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Billing.Validator.Validate(string)"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "methodname_to_id / classname_to_id は全体で単純名の先勝ちマップ"
+      },
+      "why_hard": "同名同シグネチャの別パッケージ宣言。呼び出し側ファイルの using 構成だけが区別する"
+    },
+    {
+      "id": "TWIN-008",
+      "category": "cross-package-twins",
+      "file": "Iryo.ReceptionDesk/Flows/PharmacyFlow.cs",
+      "line": 29,
+      "token": "Validate",
+      "site_kind": "invocation",
+      "snippet": "insurance.Validate(\"H12345678\")",
+      "source_line": "Console.WriteLine(\"保険証判定: \" + insurance.Validate(\"H12345678\"));",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Billing.Validator.Validate(string)",
+            "kind": "method",
+            "project": "Iryo.Billing",
+            "assembly": "Iryo.Billing",
+            "via": "nuget",
+            "file": "Iryo.Billing/Validator.cs",
+            "line": 10
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Pharmacy.Validator.Validate(string)"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "methodname_to_id / classname_to_id は全体で単純名の先勝ちマップ"
+      },
+      "why_hard": "同名クラス Validator の会計版。TWIN-007 と同名メソッド"
+    },
+    {
+      "id": "TWIN-009",
+      "category": "cross-package-twins",
+      "file": "Iryo.ReceptionDesk/Flows/PharmacyFlow.cs",
+      "line": 32,
+      "token": "Calculate",
+      "site_kind": "invocation",
+      "snippet": "dose.Calculate(30, 10)",
+      "source_line": "int mg = dose.Calculate(30, 10);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Pharmacy.DoseCalculator.Calculate(int, int)",
+            "kind": "method",
+            "project": "Iryo.Pharmacy",
+            "assembly": "Iryo.Pharmacy",
+            "via": "nuget",
+            "file": "Iryo.Pharmacy/DoseCalculator.cs",
+            "line": 11
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Billing.FeeCalculator.Calculate(double, double)",
+        "Iryo.Billing.FeeCalculator.Calculate(int, int)",
+        "Iryo.Billing.FeeCalculator.Calculate(int, int, int)",
+        "Iryo.Billing.FeeCalculator.Calculate(long, long)",
+        "Iryo.Billing.FeeCalculator.Calculate(params int[])",
+        "Iryo.Legacy.Claims.PointTable.Calculate(int, int)"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "methodname_to_id / classname_to_id は全体で単純名の先勝ちマップ"
+      },
+      "why_hard": "TWIN-010 と同名同引数だが用量計算(乗算)。名前ベースでは会計版と区別不能"
+    },
+    {
+      "id": "TWIN-010",
+      "category": "cross-package-twins",
+      "file": "Iryo.ReceptionDesk/Flows/PharmacyFlow.cs",
+      "line": 34,
+      "token": "Calculate",
+      "site_kind": "invocation",
+      "snippet": "pointCalc.Calculate(30, 10)",
+      "source_line": "int points = pointCalc.Calculate(30, 10);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Billing.FeeCalculator.Calculate(int, int)",
+            "kind": "method",
+            "project": "Iryo.Billing",
+            "assembly": "Iryo.Billing",
+            "via": "nuget",
+            "file": "Iryo.Billing/FeeCalculator.cs",
+            "line": 15
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Billing.FeeCalculator.Calculate(double, double)",
+        "Iryo.Billing.FeeCalculator.Calculate(int, int, int)",
+        "Iryo.Billing.FeeCalculator.Calculate(long, long)",
+        "Iryo.Billing.FeeCalculator.Calculate(params int[])",
+        "Iryo.Legacy.Claims.PointTable.Calculate(int, int)",
+        "Iryo.Pharmacy.DoseCalculator.Calculate(int, int)"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "methodname_to_id / classname_to_id は全体で単純名の先勝ちマップ"
+      },
+      "why_hard": "同名同シグネチャの別パッケージ宣言。呼び出し側ファイルの using 構成だけが区別する"
+    },
+    {
+      "id": "TWIN-011",
+      "category": "cross-package-twins/alias",
+      "file": "Iryo.ReceptionDesk/Flows/PharmacyFlow.cs",
+      "line": 37,
+      "token": "StockMoney",
+      "site_kind": "object_creation",
+      "snippet": "new StockMoney(52000m)",
+      "source_line": "var stock = new StockMoney(52000m);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Pharmacy.Money..ctor(decimal)",
+            "kind": "constructor",
+            "project": "Iryo.Pharmacy",
+            "assembly": "Iryo.Pharmacy",
+            "via": "nuget",
+            "file": "Iryo.Pharmacy/Money.cs",
+            "line": 11
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "alias-lost",
+        "note": "methodname_to_id / classname_to_id は全体で単純名の先勝ちマップ"
+      },
+      "why_hard": "record の Iryo.Domain.Money と struct の Iryo.Pharmacy.Money の同名衝突を別名で回避している"
+    },
+    {
+      "id": "UNR-001",
+      "category": "unresolvable/reflection",
+      "file": "Iryo.ReceptionDesk/Flows/MaintenanceFlow.cs",
+      "line": 43,
+      "token": "Calculate",
+      "site_kind": "member_access",
+      "snippet": "m.Name == \"Calculate\"",
+      "source_line": ".Where(m => m.Name == \"Calculate\").ToArray();",
+      "expected": {
+        "resolution": "ambiguous",
+        "targets": [
+          {
+            "candidate_count": 5
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "phantom-call",
+        "note": "dynamic とリフレクション文字列は静的な単一解を持たない"
+      },
+      "why_hard": "文字列 \"Calculate\" は FeeCalculator の 5 オーバーロード全体(候補集合)を指す"
+    },
+    {
+      "id": "UNR-002",
+      "category": "unresolvable/dynamic",
+      "file": "Iryo.ReceptionDesk/Flows/MaintenanceFlow.cs",
+      "line": 47,
+      "token": "Execute",
+      "site_kind": "invocation",
+      "snippet": "task.Execute()",
+      "source_line": "Console.WriteLine(\"動的ジョブ: \" + task.Execute());",
+      "expected": {
+        "resolution": "runtime",
+        "targets": []
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "phantom-call",
+        "note": "dynamic とリフレクション文字列は静的な単一解を持たない"
+      },
+      "why_hard": "dynamic レシーバ: 静的束縛先は存在しない。RUNTIME と答えるのが正解"
+    },
+    {
+      "id": "VAR-001",
+      "category": "var-inference",
+      "file": "Iryo.ReceptionDesk/Flows/CheckInFlow.cs",
+      "line": 26,
+      "token": "CreateDefault",
+      "site_kind": "invocation",
+      "snippet": "var repo = RepositoryFactory.CreateDefault()",
+      "source_line": "var repo = RepositoryFactory.CreateDefault();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Data.RepositoryFactory.CreateDefault()",
+            "kind": "method",
+            "project": "Iryo.Data",
+            "assembly": "Iryo.Data",
+            "via": "nuget",
+            "file": "Iryo.Data/SqlPatientRepository.cs",
+            "line": 40
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "misnamed-method",
+        "note": "V1: 戻り値型が単純ユーザー型のため、今日は 'SqlPatientRepository' という名前で抽出される"
+      },
+      "why_hard": "ファクトリ。repo の型は戻り値型からしか得られない"
+    },
+    {
+      "id": "VAR-002",
+      "category": "var-inference",
+      "file": "Iryo.ReceptionDesk/Flows/CheckInFlow.cs",
+      "line": 27,
+      "token": "Find",
+      "site_kind": "invocation",
+      "snippet": "var patient = repo.Find(2)",
+      "source_line": "var patient = repo.Find(2);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Data.SqlPatientRepository.Find(int)",
+            "kind": "method",
+            "project": "Iryo.Data",
+            "assembly": "Iryo.Data",
+            "via": "nuget",
+            "file": "Iryo.Data/SqlPatientRepository.cs",
+            "line": 19
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Data.IRepository<T>.Find(int)"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "レシーバが捨てられるため Find/Ping/Describe は先勝ちで任意の同名へ繋がる"
+      },
+      "why_hard": "レシーバ repo に型トークンがない。CreateDefault の戻り値型の伝播が必要"
+    },
+    {
+      "id": "VAR-003",
+      "category": "var-inference",
+      "file": "Iryo.ReceptionDesk/Flows/CheckInFlow.cs",
+      "line": 28,
+      "token": "Describe",
+      "site_kind": "invocation",
+      "snippet": "var summary = patient.Describe()",
+      "source_line": "var summary = patient.Describe();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Domain.Patients.Patient.Describe()",
+            "kind": "method",
+            "project": "Iryo.Domain",
+            "assembly": "Iryo.Domain",
+            "via": "nuget",
+            "file": "Iryo.Domain/Patients/Patient.cs",
+            "line": 24
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Domain.Patients.Entity.Describe()"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "レシーバが捨てられるため Find/Ping/Describe は先勝ちで任意の同名へ繋がる"
+      },
+      "why_hard": "推論 2 段目(工場→リポジトリ→ドメイン)"
+    },
+    {
+      "id": "VAR-004",
+      "category": "var-inference/null-conditional",
+      "file": "Iryo.ReceptionDesk/Flows/CheckInFlow.cs",
+      "line": 32,
+      "token": "Ping",
+      "site_kind": "invocation",
+      "snippet": "offline?.Ping()",
+      "source_line": "bool? silent = offline?.Ping();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Data.SqlPatientRepository.Ping()",
+            "kind": "method",
+            "project": "Iryo.Data",
+            "assembly": "Iryo.Data",
+            "via": "nuget",
+            "file": "Iryo.Data/SqlPatientRepository.cs",
+            "line": 31
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "missing-edge",
+        "note": "`?.` 呼び出しは今日いっさい呼び出しとして抽出されない(V3)"
+      },
+      "why_hard": "実行時は短絡するが静的束縛先は実在する"
+    },
+    {
+      "id": "VAR-005",
+      "category": "var-inference/null-conditional",
+      "file": "Iryo.ReceptionDesk/Flows/CheckInFlow.cs",
+      "line": 34,
+      "token": "Ping",
+      "site_kind": "invocation",
+      "snippet": "repo?.Ping()",
+      "source_line": "bool? alive = repo?.Ping();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Data.SqlPatientRepository.Ping()",
+            "kind": "method",
+            "project": "Iryo.Data",
+            "assembly": "Iryo.Data",
+            "via": "nuget",
+            "file": "Iryo.Data/SqlPatientRepository.cs",
+            "line": 31
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "missing-edge",
+        "note": "レシーバが捨てられるため Find/Ping/Describe は先勝ちで任意の同名へ繋がる"
+      },
+      "why_hard": "レシーバに型トークンがない。戻り値型の伝播が必要"
+    },
+    {
+      "id": "WEB-001",
+      "category": "web/page-model",
+      "file": "Iryo.Portal.Web/Pages/Index.cshtml.cs",
+      "line": 24,
+      "token": "Reserve",
+      "site_kind": "invocation",
+      "snippet": "_book.Reserve(new Appointment(1, 42",
+      "source_line": "_book.Reserve(new Appointment(1, 42, DateTime.Today.AddHours(10)));",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Scheduling.AppointmentBook.Reserve(Appointment)",
+            "kind": "method",
+            "project": "Iryo.Scheduling",
+            "assembly": "Iryo.Scheduling",
+            "via": "nuget",
+            "file": "Iryo.Scheduling/AppointmentBook.cs",
+            "line": 15
+          }
+        ]
+      },
+      "distractors": [],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "Razor PageModel の呼び出しも通常の C# と同様に名前照合のみ。cshtml 側は今日ツリーシッター解析されない"
+      },
+      "why_hard": "Razor PageModel から予約パッケージへの束縛(コンストラクタ注入されたシングルトン)"
+    },
+    {
+      "id": "WEB-002",
+      "category": "web/page-model",
+      "file": "Iryo.Portal.Web/Pages/Fees.cshtml.cs",
+      "line": 22,
+      "token": "Calculate",
+      "site_kind": "invocation",
+      "snippet": "_calculator.Calculate(288, 146)",
+      "source_line": "BasicPoints = _calculator.Calculate(288, 146);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Billing.FeeCalculator.Calculate(int, int)",
+            "kind": "method",
+            "project": "Iryo.Billing",
+            "assembly": "Iryo.Billing",
+            "via": "nuget",
+            "file": "Iryo.Billing/FeeCalculator.cs",
+            "line": 15
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Billing.FeeCalculator.Calculate(double, double)",
+        "Iryo.Billing.FeeCalculator.Calculate(int, int, int)",
+        "Iryo.Billing.FeeCalculator.Calculate(long, long)",
+        "Iryo.Billing.FeeCalculator.Calculate(params int[])",
+        "Iryo.Legacy.Claims.PointTable.Calculate(int, int)",
+        "Iryo.Pharmacy.DoseCalculator.Calculate(int, int)"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "Razor PageModel の呼び出しも通常の C# と同様に名前照合のみ。cshtml 側は今日ツリーシッター解析されない"
+      },
+      "why_hard": "Web UI からパッケージ境界越しに束縛する通常ケース"
+    },
+    {
+      "id": "WEB-003",
+      "category": "web/page-model",
+      "file": "Iryo.Portal.Web/Pages/Fees.cshtml.cs",
+      "line": 23,
+      "token": "ToYen",
+      "site_kind": "invocation",
+      "snippet": "PointMath.ToYen(BasicPoints)",
+      "source_line": "BasicYen = PointMath.ToYen(BasicPoints);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Billing.PointMath.ToYen(int)",
+            "kind": "method",
+            "project": "Iryo.Billing",
+            "assembly": "Iryo.Billing",
+            "via": "nuget",
+            "file": "Iryo.Billing/PointMath.cs",
+            "line": 11
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Pharmacy.PointMath.ToYen(int)",
+        "Iryo.ReceptionDesk.Flows.MaintenanceFlow.Run()/ToYen(int)"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "Razor PageModel の呼び出しも通常の C# と同様に名前照合のみ。cshtml 側は今日ツリーシッター解析されない"
+      },
+      "why_hard": "Web UI からパッケージ境界越しに束縛する通常ケース"
+    },
+    {
+      "id": "XPR-001",
+      "category": "cross-project-divergence",
+      "file": "Iryo.ReceptionDesk/Flows/DailyCloseFlow.cs",
+      "line": 17,
+      "token": "Logger",
+      "site_kind": "object_creation",
+      "snippet": "var ledger = new Logger()",
+      "source_line": "var ledger = new Logger();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Kernel.Logging.Logger..ctor()",
+            "kind": "constructor",
+            "project": "Iryo.Kernel",
+            "assembly": "Iryo.Kernel",
+            "via": "nuget",
+            "file": "Iryo.Kernel/Logging/Logger.cs",
+            "line": 20
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Kernel.Logging.Logger",
+        "Iryo.Kernel.Logging.Logger..ctor(string)",
+        "Iryo.Pharmacy.Logger"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "同一ソーステキストがプロジェクトごとに別パッケージへ束縛される。今日のグラフはプロジェクト境界を持たない"
+      },
+      "why_hard": "XPR-101 と 1 文字違わぬ行。このプロジェクト(このファイルの using)では共通基盤 Logger"
+    },
+    {
+      "id": "XPR-002",
+      "category": "cross-project-divergence",
+      "file": "Iryo.ReceptionDesk/Flows/DailyCloseFlow.cs",
+      "line": 18,
+      "token": "Log",
+      "site_kind": "invocation",
+      "snippet": "ledger.Log(\"日次点検\")",
+      "source_line": "ledger.Log(\"日次点検\");",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Kernel.Logging.Logger.Log(string)",
+            "kind": "method",
+            "project": "Iryo.Kernel",
+            "assembly": "Iryo.Kernel",
+            "via": "nuget",
+            "file": "Iryo.Kernel/Logging/Logger.cs",
+            "line": 29
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Kernel.Logging.Logger.Log(Exception)",
+        "Iryo.Kernel.Logging.Logger.Log(string, int)",
+        "Iryo.Pharmacy.Logger.Log(string)",
+        "Iryo.Reporting.KarteExtensions.Log(Logger, Exception)",
+        "Iryo.Reporting.KarteExtensions.Log(Logger, Exception, bool)"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "同一ソーステキストがプロジェクトごとに別パッケージへ束縛される。今日のグラフはプロジェクト境界を持たない"
+      },
+      "why_hard": "対になるケースと 1 文字違わぬ行。プロジェクトの using / 参照構成だけが束縛先を分ける"
+    },
+    {
+      "id": "XPR-003",
+      "category": "cross-project-divergence",
+      "file": "Iryo.ReceptionDesk/Flows/DailyCloseFlow.cs",
+      "line": 20,
+      "token": "Validator",
+      "site_kind": "object_creation",
+      "snippet": "var check = new Validator()",
+      "source_line": "var check = new Validator();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Billing.Validator",
+            "kind": "type",
+            "project": "Iryo.Billing",
+            "assembly": "Iryo.Billing",
+            "via": "nuget",
+            "file": "Iryo.Billing/Validator.cs",
+            "line": 7
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Pharmacy.Validator"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "同一ソーステキストがプロジェクトごとに別パッケージへ束縛される。今日のグラフはプロジェクト境界を持たない"
+      },
+      "why_hard": "対になるケースと 1 文字違わぬ行。プロジェクトの using / 参照構成だけが束縛先を分ける"
+    },
+    {
+      "id": "XPR-004",
+      "category": "cross-project-divergence",
+      "file": "Iryo.ReceptionDesk/Flows/DailyCloseFlow.cs",
+      "line": 21,
+      "token": "Validate",
+      "site_kind": "invocation",
+      "snippet": "check.Validate(\"H12345678\")",
+      "source_line": "Console.WriteLine(\"様式判定: \" + check.Validate(\"H12345678\"));",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Billing.Validator.Validate(string)",
+            "kind": "method",
+            "project": "Iryo.Billing",
+            "assembly": "Iryo.Billing",
+            "via": "nuget",
+            "file": "Iryo.Billing/Validator.cs",
+            "line": 10
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Pharmacy.Validator.Validate(string)"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "同一ソーステキストがプロジェクトごとに別パッケージへ束縛される。今日のグラフはプロジェクト境界を持たない"
+      },
+      "why_hard": "実行結果も分岐する: こちらは true、XPR-104(薬局版)は false"
+    },
+    {
+      "id": "XPR-005",
+      "category": "cross-project-divergence",
+      "file": "Iryo.ReceptionDesk/Flows/DailyCloseFlow.cs",
+      "line": 22,
+      "token": "ToYen",
+      "site_kind": "invocation",
+      "snippet": "PointMath.ToYen(15)",
+      "source_line": "int yen = PointMath.ToYen(15);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Billing.PointMath.ToYen(int)",
+            "kind": "method",
+            "project": "Iryo.Billing",
+            "assembly": "Iryo.Billing",
+            "via": "nuget",
+            "file": "Iryo.Billing/PointMath.cs",
+            "line": 11
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Pharmacy.PointMath.ToYen(int)",
+        "Iryo.ReceptionDesk.Flows.MaintenanceFlow.Run()/ToYen(int)"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "同一ソーステキストがプロジェクトごとに別パッケージへ束縛される。今日のグラフはプロジェクト境界を持たない"
+      },
+      "why_hard": "150 円。XPR-105 は同一行テキストで 162 円"
+    },
+    {
+      "id": "XPR-101",
+      "category": "cross-project-divergence",
+      "file": "Iryo.AdminConsole/DailyBatch.cs",
+      "line": 17,
+      "token": "Logger",
+      "site_kind": "object_creation",
+      "snippet": "var ledger = new Logger()",
+      "source_line": "var ledger = new Logger();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Pharmacy.Logger",
+            "kind": "type",
+            "project": "Iryo.Pharmacy",
+            "assembly": "Iryo.Pharmacy",
+            "via": "nuget",
+            "file": "Iryo.Pharmacy/Logger.cs",
+            "line": 9
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Kernel.Logging.Logger",
+        "Iryo.Kernel.Logging.Logger..ctor()",
+        "Iryo.Kernel.Logging.Logger..ctor(string)"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "同一ソーステキストがプロジェクトごとに別パッケージへ束縛される。今日のグラフはプロジェクト境界を持たない"
+      },
+      "why_hard": "XPR-001 と同一行テキスト。プロジェクトの using 構成だけで薬局 Logger に変わる"
+    },
+    {
+      "id": "XPR-102",
+      "category": "cross-project-divergence",
+      "file": "Iryo.AdminConsole/DailyBatch.cs",
+      "line": 18,
+      "token": "Log",
+      "site_kind": "invocation",
+      "snippet": "ledger.Log(\"日次点検\")",
+      "source_line": "ledger.Log(\"日次点検\");",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Pharmacy.Logger.Log(string)",
+            "kind": "method",
+            "project": "Iryo.Pharmacy",
+            "assembly": "Iryo.Pharmacy",
+            "via": "nuget",
+            "file": "Iryo.Pharmacy/Logger.cs",
+            "line": 13
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Kernel.Logging.Logger.Log(Exception)",
+        "Iryo.Kernel.Logging.Logger.Log(string)",
+        "Iryo.Kernel.Logging.Logger.Log(string, int)",
+        "Iryo.Reporting.KarteExtensions.Log(Logger, Exception)",
+        "Iryo.Reporting.KarteExtensions.Log(Logger, Exception, bool)"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "同一ソーステキストがプロジェクトごとに別パッケージへ束縛される。今日のグラフはプロジェクト境界を持たない"
+      },
+      "why_hard": "対になるケースと 1 文字違わぬ行。プロジェクトの using / 参照構成だけが束縛先を分ける"
+    },
+    {
+      "id": "XPR-103",
+      "category": "cross-project-divergence",
+      "file": "Iryo.AdminConsole/DailyBatch.cs",
+      "line": 20,
+      "token": "Validator",
+      "site_kind": "object_creation",
+      "snippet": "var check = new Validator()",
+      "source_line": "var check = new Validator();",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Pharmacy.Validator",
+            "kind": "type",
+            "project": "Iryo.Pharmacy",
+            "assembly": "Iryo.Pharmacy",
+            "via": "nuget",
+            "file": "Iryo.Pharmacy/Validator.cs",
+            "line": 7
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Billing.Validator"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "同一ソーステキストがプロジェクトごとに別パッケージへ束縛される。今日のグラフはプロジェクト境界を持たない"
+      },
+      "why_hard": "対になるケースと 1 文字違わぬ行。プロジェクトの using / 参照構成だけが束縛先を分ける"
+    },
+    {
+      "id": "XPR-104",
+      "category": "cross-project-divergence",
+      "file": "Iryo.AdminConsole/DailyBatch.cs",
+      "line": 21,
+      "token": "Validate",
+      "site_kind": "invocation",
+      "snippet": "check.Validate(\"H12345678\")",
+      "source_line": "Console.WriteLine(\"様式判定: \" + check.Validate(\"H12345678\"));",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Pharmacy.Validator.Validate(string)",
+            "kind": "method",
+            "project": "Iryo.Pharmacy",
+            "assembly": "Iryo.Pharmacy",
+            "via": "nuget",
+            "file": "Iryo.Pharmacy/Validator.cs",
+            "line": 10
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Billing.Validator.Validate(string)"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "同一ソーステキストがプロジェクトごとに別パッケージへ束縛される。今日のグラフはプロジェクト境界を持たない"
+      },
+      "why_hard": "対になるケースと 1 文字違わぬ行。プロジェクトの using / 参照構成だけが束縛先を分ける"
+    },
+    {
+      "id": "XPR-105",
+      "category": "cross-project-divergence",
+      "file": "Iryo.AdminConsole/DailyBatch.cs",
+      "line": 22,
+      "token": "ToYen",
+      "site_kind": "invocation",
+      "snippet": "PointMath.ToYen(15)",
+      "source_line": "int yen = PointMath.ToYen(15);",
+      "expected": {
+        "resolution": "resolved",
+        "targets": [
+          {
+            "symbol": "Iryo.Pharmacy.PointMath.ToYen(int)",
+            "kind": "method",
+            "project": "Iryo.Pharmacy",
+            "assembly": "Iryo.Pharmacy",
+            "via": "nuget",
+            "file": "Iryo.Pharmacy/PointMath.cs",
+            "line": 13
+          }
+        ]
+      },
+      "distractors": [
+        "Iryo.Billing.PointMath.ToYen(int)",
+        "Iryo.ReceptionDesk.Flows.MaintenanceFlow.Run()/ToYen(int)"
+      ],
+      "today": {
+        "failure_mode": "global-name-collision",
+        "note": "同一ソーステキストがプロジェクトごとに別パッケージへ束縛される。今日のグラフはプロジェクト境界を持たない"
+      },
+      "why_hard": "対になるケースと 1 文字違わぬ行。プロジェクトの using / 参照構成だけが束縛先を分ける"
+    }
+  ]
+}

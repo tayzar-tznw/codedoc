@@ -1,0 +1,39 @@
+{
+ "case": "XPR-105",
+ "site_kind": "invocation",
+ "pos": {
+  "line": 21,
+  "character": 28
+ },
+ "file": "Iryo.AdminConsole/DailyBatch.cs",
+ "definition": [
+  {
+   "uri": "csharp:/home/admin/dev/codedoc_csharp/test_codes/iryo-kanri-system/Iryo.AdminConsole/Iryo.AdminConsole.csproj/decompiled/Iryo.Pharmacy.PointMath.cs",
+   "range": {
+    "start": {
+     "line": 6,
+     "character": 19
+    },
+    "end": {
+     "line": 6,
+     "character": 24
+    }
+   }
+  }
+ ],
+ "hover": {
+  "contents": {
+   "kind": "markdown",
+   "value": "```csharp\nint PointMath.ToYen(int points)\n```"
+  }
+ },
+ "metadata_shape": "textDocument",
+ "metadata": {
+  "projectName": "Iryo.AdminConsole",
+  "assemblyName": "Iryo.Pharmacy",
+  "symbolName": "Iryo.Pharmacy.PointMath",
+  "source_head": "using System;\n\nnamespace Iryo.Pharmacy;\n\npublic static class PointMath\n{\n\tpublic static int ToYen(int points)\n\t{\n\t\treturn (int)Math.Ceiling((double)points * 10.8);\n\t}\n}\n",
+  "source_len": 169
+ },
+ "metadata_source": "using System;\n\nnamespace Iryo.Pharmacy;\n\npublic static class PointMath\n{\n\tpublic static int ToYen(int points)\n\t{\n\t\treturn (int)Math.Ceiling((double)points * 10.8);\n\t}\n}\n"
+}

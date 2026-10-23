@@ -1,0 +1,254 @@
+{
+  "local_plain": {
+    "site": "local_plain",
+    "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+    "relative_file": "App.java",
+    "source_line": "        String plain = localPlain(\"局所\");",
+    "token": "localPlain",
+    "token_occurrence": 0,
+    "position": {
+      "line": 26,
+      "character": 23
+    }
+  },
+  "overload_exact": {
+    "site": "overload_exact",
+    "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+    "relative_file": "App.java",
+    "source_line": "        int exact = Calculations.calculate(1, 2);",
+    "token": "calculate",
+    "token_occurrence": 0,
+    "position": {
+      "line": 27,
+      "character": 33
+    }
+  },
+  "overload_mixed": {
+    "site": "overload_mixed",
+    "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+    "relative_file": "App.java",
+    "source_line": "        long widened = Calculations.calculate(1, 2L);",
+    "token": "calculate",
+    "token_occurrence": 0,
+    "position": {
+      "line": 28,
+      "character": 36
+    }
+  },
+  "varargs": {
+    "site": "varargs",
+    "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+    "relative_file": "App.java",
+    "source_line": "        int many = Calculations.calculate(1, 2, 3);",
+    "token": "calculate",
+    "token_occurrence": 0,
+    "position": {
+      "line": 29,
+      "character": 32
+    }
+  },
+  "japanese_method": {
+    "site": "japanese_method",
+    "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+    "relative_file": "App.java",
+    "source_line": "        int japanese = Calculations.点数変換(3);",
+    "token": "点数変換",
+    "token_occurrence": 0,
+    "position": {
+      "line": 30,
+      "character": 36
+    }
+  },
+  "record_ctor": {
+    "site": "record_ctor",
+    "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+    "relative_file": "App.java",
+    "source_line": "        Rec rec = new Rec(5);",
+    "token": "Rec",
+    "token_occurrence": 1,
+    "position": {
+      "line": 33,
+      "character": 22
+    }
+  },
+  "record_accessor": {
+    "site": "record_accessor",
+    "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+    "relative_file": "App.java",
+    "source_line": "        int amount = rec.amount();",
+    "token": "amount",
+    "token_occurrence": 1,
+    "position": {
+      "line": 34,
+      "character": 25
+    }
+  },
+  "cache_get": {
+    "site": "cache_get",
+    "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+    "relative_file": "App.java",
+    "source_line": "        Rec cached = cache.get(\"外来\");",
+    "token": "get",
+    "token_occurrence": 0,
+    "position": {
+      "line": 37,
+      "character": 27
+    }
+  },
+  "method_ref_static": {
+    "site": "method_ref_static",
+    "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+    "relative_file": "App.java",
+    "source_line": "        IntUnaryOperator staticRef = PointMath::toYen;",
+    "token": "toYen",
+    "token_occurrence": 0,
+    "position": {
+      "line": 39,
+      "character": 48
+    }
+  },
+  "method_ref_instance": {
+    "site": "method_ref_instance",
+    "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+    "relative_file": "App.java",
+    "source_line": "        Consumer<String> instanceRef = mail::send;",
+    "token": "send",
+    "token_occurrence": 0,
+    "position": {
+      "line": 41,
+      "character": 45
+    }
+  },
+  "anonymous_notifier": {
+    "site": "anonymous_notifier",
+    "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+    "relative_file": "App.java",
+    "source_line": "        Notifier n = new Notifier() {",
+    "token": "Notifier",
+    "token_occurrence": 1,
+    "position": {
+      "line": 42,
+      "character": 25
+    }
+  },
+  "default_fee": {
+    "site": "default_fee",
+    "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+    "relative_file": "App.java",
+    "source_line": "        double fee = n.fee();",
+    "token": "fee",
+    "token_occurrence": 0,
+    "position": {
+      "line": 45,
+      "character": 15
+    }
+  },
+  "class_literal_notifier": {
+    "site": "class_literal_notifier",
+    "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+    "relative_file": "App.java",
+    "source_line": "        Class<?> notifierType = Notifier.class;",
+    "token": "Notifier",
+    "token_occurrence": 0,
+    "position": {
+      "line": 46,
+      "character": 32
+    }
+  },
+  "class_literal_impl": {
+    "site": "class_literal_impl",
+    "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+    "relative_file": "App.java",
+    "source_line": "        Class<?> implType = MailNotifier.class;",
+    "token": "MailNotifier",
+    "token_occurrence": 0,
+    "position": {
+      "line": 47,
+      "character": 28
+    }
+  },
+  "this_ctor": {
+    "site": "this_ctor",
+    "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+    "relative_file": "App.java",
+    "source_line": "    public App() { this(\"既定\"); }",
+    "token": "this",
+    "token_occurrence": 0,
+    "position": {
+      "line": 17,
+      "character": 19
+    }
+  },
+  "super_ctor": {
+    "site": "super_ctor",
+    "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+    "relative_file": "App.java",
+    "source_line": "    public App(String name) { super(); this.name = name; }",
+    "token": "super",
+    "token_occurrence": 0,
+    "position": {
+      "line": 19,
+      "character": 30
+    }
+  },
+  "static_import": {
+    "site": "static_import",
+    "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+    "relative_file": "App.java",
+    "source_line": "        int yen = toYen(15);",
+    "token": "toYen",
+    "token_occurrence": 0,
+    "position": {
+      "line": 49,
+      "character": 18
+    }
+  },
+  "jdk_list_get": {
+    "site": "jdk_list_get",
+    "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+    "relative_file": "App.java",
+    "source_line": "        String firstVisit = visits.get(0);",
+    "token": "get",
+    "token_occurrence": 0,
+    "position": {
+      "line": 51,
+      "character": 35
+    }
+  },
+  "jdk_println": {
+    "site": "jdk_println",
+    "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+    "relative_file": "App.java",
+    "source_line": "        System.out.println(firstVisit);",
+    "token": "println",
+    "token_occurrence": 0,
+    "position": {
+      "line": 52,
+      "character": 19
+    }
+  },
+  "deprecated_stub": {
+    "site": "deprecated_stub",
+    "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+    "relative_file": "App.java",
+    "source_line": "        int old = new OldTable().calc(1, 2);",
+    "token": "calc",
+    "token_occurrence": 0,
+    "position": {
+      "line": 53,
+      "character": 33
+    }
+  },
+  "never_opened": {
+    "site": "never_opened",
+    "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/NeverOpened.java",
+    "relative_file": "NeverOpened.java",
+    "source_line": "        return PointMath.toYen(99);",
+    "token": "toYen",
+    "token_occurrence": 0,
+    "position": {
+      "line": 6,
+      "character": 25
+    }
+  }
+}

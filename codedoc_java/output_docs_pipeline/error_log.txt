@@ -1,0 +1,8 @@
+[2026-10-23 01:47:30] [Phase 2] summary failed: iryo-domain/src/main/java/iryo/domain/Money.java: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The service is currently unavailable.', 'status': 'UNAVAILABLE'}}
+[2026-10-23 01:47:30] [Phase 2] summary failed: iryo-domain/src/main/java/iryo/domain/ChartEntry.java: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The service is currently unavailable.', 'status': 'UNAVAILABLE'}}
+[2026-10-23 01:47:30] [Phase 2] summary failed: iryo-billing/src/main/java/iryo/billing/PointMath.java: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The service is currently unavailable.', 'status': 'UNAVAILABLE'}}
+[2026-10-23 01:47:31] [Phase 2] summary failed: iryo-interop/src/main/java/iryo/interop/text/ReceiptFormatter.java: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The service is currently unavailable.', 'status': 'UNAVAILABLE'}}
+[2026-10-23 02:24:03] [Phase 5] topic summary failed: システム基盤・保守点検・動作検証: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The service is currently unavailable.', 'status': 'UNAVAILABLE'}}
+[2026-10-23 02:24:03] [Phase 5] topic summary failed: 処方箋・調剤・投薬管理: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The service is currently unavailable.', 'status': 'UNAVAILABLE'}}
+[2026-10-23 02:24:03] [Phase 5] topic summary failed: ポータル・通知連携: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The service is currently unavailable.', 'status': 'UNAVAILABLE'}}
+[2026-10-23 02:24:03] [Phase 5] topic summary failed: 診療報酬・医療会計管理: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The service is currently unavailable.', 'status': 'UNAVAILABLE'}}

@@ -1,0 +1,36 @@
+{
+ "case": "EXT-002",
+ "site_kind": "invocation",
+ "pos": {
+  "line": 45,
+  "character": 15
+ },
+ "file": "Iryo.ReceptionDesk/Flows/ReportFlow.cs",
+ "definition": [
+  {
+   "uri": "csharp:/home/admin/dev/codedoc_csharp/test_codes/iryo-kanri-system/Iryo.ReceptionDesk/Iryo.ReceptionDesk.csproj/decompiled/Iryo.Reporting.KarteExtensions.cs",
+   "range": {
+    "start": {
+     "line": 7,
+     "character": 20
+    },
+    "end": {
+     "line": 7,
+     "character": 23
+    }
+   }
+  }
+ ],
+ "hover": {
+  "contents": {
+   "kind": "markdown",
+   "value": "```csharp\nvoid Logger.Log(Exception error, bool includeStack)\n```"
+  }
+ },
+ "metadata_errors": [
+  {
+   "shape": "flat",
+   "err": "{\"code\": -32603, \"message\": \"Internal error: JsonSerializationException\"}"
+  }
+ ]
+}

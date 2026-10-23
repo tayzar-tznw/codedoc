@@ -1,0 +1,252 @@
+{
+ "label": "AdminConsole",
+ "probes": {
+  "XPR-101": {
+   "case": "XPR-101",
+   "site_kind": "object_creation",
+   "pos": {
+    "line": 16,
+    "character": 25
+   },
+   "definition": [
+    {
+     "uri": "file:///tmp/MetadataAsSource/406ba017dc304e8aba135f83547765f6/DecompilationMetadataAsSourceFileProvider/effe6e9ccb0a4d179e19be0d663d7bd4/Logger.cs",
+     "range": {
+      "start": {
+       "line": 9,
+       "character": 13
+      },
+      "end": {
+       "line": 9,
+       "character": 19
+      }
+     }
+    }
+   ],
+   "hover": {
+    "contents": {
+     "kind": "markdown",
+     "value": "```csharp\nLogger.Logger()\n```\n  \n"
+    },
+    "range": {
+     "start": {
+      "line": 16,
+      "character": 25
+     },
+     "end": {
+      "line": 16,
+      "character": 31
+     }
+    }
+   },
+   "target_uri": "file:///tmp/MetadataAsSource/406ba017dc304e8aba135f83547765f6/DecompilationMetadataAsSourceFileProvider/effe6e9ccb0a4d179e19be0d663d7bd4/Logger.cs",
+   "target_head": "﻿#region Assembly Iryo.Pharmacy, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null\n// /home/admin/.nuget/packages/iryo.pharmacy/1.0.0/lib/net10.0/Iryo.Pharmacy.dll\n// Decompiled with ICSharpCode.Decompiler \n#endregion\n\nusing System.Collections.Generic;\n\nnamespace Iryo.Pharmacy;\n\npublic class Logger\n{\n    private readonly List<string> _lines = new List<string>();\n\n    public IReadOnlyList<string> Lines => _lines;\n\n    public void Log(string message)\n    {\n        _lines.Add(\"[調剤] \" + message);\n    }\n}\n#if false // Decompilation log\n'172' items in cache\n------------------\nResolve: 'System.Ru",
+   "target_len": 1973
+  },
+  "XPR-105": {
+   "case": "XPR-105",
+   "site_kind": "invocation",
+   "pos": {
+    "line": 21,
+    "character": 28
+   },
+   "definition": [
+    {
+     "uri": "file:///tmp/MetadataAsSource/406ba017dc304e8aba135f83547765f6/DecompilationMetadataAsSourceFileProvider/2f5c4b6af1ca442395f01efa2602dc63/PointMath.cs",
+     "range": {
+      "start": {
+       "line": 11,
+       "character": 22
+      },
+      "end": {
+       "line": 11,
+       "character": 27
+      }
+     }
+    }
+   ],
+   "hover": {
+    "contents": {
+     "kind": "markdown",
+     "value": "```csharp\nint PointMath.ToYen(int points)\n```\n  \n"
+    },
+    "range": {
+     "start": {
+      "line": 21,
+      "character": 28
+     },
+     "end": {
+      "line": 21,
+      "character": 33
+     }
+    }
+   },
+   "target_uri": "file:///tmp/MetadataAsSource/406ba017dc304e8aba135f83547765f6/DecompilationMetadataAsSourceFileProvider/2f5c4b6af1ca442395f01efa2602dc63/PointMath.cs",
+   "target_head": "﻿#region Assembly Iryo.Pharmacy, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null\n// /home/admin/.nuget/packages/iryo.pharmacy/1.0.0/lib/net10.0/Iryo.Pharmacy.dll\n// Decompiled with ICSharpCode.Decompiler \n#endregion\n\nusing System;\n\nnamespace Iryo.Pharmacy;\n\npublic static class PointMath\n{\n    public static int ToYen(int points)\n    {\n        return (int)Math.Ceiling((double)points * 10.8);\n    }\n}\n#if false // Decompilation log\n'172' items in cache\n------------------\nResolve: 'System.Runtime, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'\nFound single assembly: 'Syst",
+   "target_len": 1870
+  },
+  "OVL-014": {
+   "case": "OVL-014",
+   "site_kind": "operator",
+   "pos": {
+    "line": 22,
+    "character": 41
+   },
+   "definition": [
+    {
+     "uri": "file:///tmp/MetadataAsSource/406ba017dc304e8aba135f83547765f6/DecompilationMetadataAsSourceFileProvider/a0bdbf8765824937b96a36c981585c37/Money.cs",
+     "range": {
+      "start": {
+       "line": 9,
+       "character": 33
+      },
+      "end": {
+       "line": 9,
+       "character": 34
+      }
+     }
+    }
+   ],
+   "hover": {
+    "contents": {
+     "kind": "markdown",
+     "value": "```csharp\nMoney Money.operator +(Money left, Money right)\n```\n  \n"
+    },
+    "range": {
+     "start": {
+      "line": 22,
+      "character": 41
+     },
+     "end": {
+      "line": 22,
+      "character": 42
+     }
+    }
+   },
+   "target_uri": "file:///tmp/MetadataAsSource/406ba017dc304e8aba135f83547765f6/DecompilationMetadataAsSourceFileProvider/a0bdbf8765824937b96a36c981585c37/Money.cs",
+   "target_head": "﻿#region Assembly Iryo.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null\n// /home/admin/.nuget/packages/iryo.domain/1.0.0/lib/net10.0/Iryo.Domain.dll\n// Decompiled with ICSharpCode.Decompiler \n#endregion\n\nnamespace Iryo.Domain;\n\npublic record Money(decimal Amount)\n{\n    public static Money operator +(Money left, Money right)\n    {\n        return left with\n        {\n            Amount = left.Amount + right.Amount\n        };\n    }\n\n    public static implicit operator decimal(Money money)\n    {\n        return money.Amount;\n    }\n\n    public override string ToString()\n    {\n        ret",
+   "target_len": 2419
+  }
+ },
+ "server_capability_keys": [
+  "_vs_onAutoInsertProvider",
+  "callHierarchyProvider",
+  "codeActionProvider",
+  "codeLensProvider",
+  "completionProvider",
+  "definitionProvider",
+  "documentFormattingProvider",
+  "documentHighlightProvider",
+  "documentOnTypeFormattingProvider",
+  "documentRangeFormattingProvider",
+  "documentSymbolProvider",
+  "executeCommandProvider",
+  "foldingRangeProvider",
+  "hoverProvider",
+  "implementationProvider",
+  "inlayHintProvider",
+  "referencesProvider",
+  "renameProvider",
+  "selectionRangeProvider",
+  "semanticTokensProvider",
+  "signatureHelpProvider",
+  "textDocumentSync",
+  "typeDefinitionProvider",
+  "typeHierarchyProvider",
+  "workspace",
+  "workspaceSymbolProvider"
+ ],
+ "ready_signal": "workspace/projectInitializationComplete",
+ "documentSymbol_ok": true,
+ "warmup_rounds": 1,
+ "server_requests_seen": {
+  "workspace/configuration": 2,
+  "window/workDoneProgress/create": 1,
+  "client/registerCapability": 1
+ },
+ "notifications_seen": {
+  "$/progress": 4,
+  "workspace/projectInitializationComplete": 1
+ },
+ "config_sections": [
+  "code_style.formatting.new_line.insert_final_newline",
+  "csharp|auto_insert.dotnet_enable_auto_insert",
+  "csharp|background_analysis.dotnet_analyzer_diagnostics_scope",
+  "csharp|background_analysis.dotnet_compiler_diagnostics_scope",
+  "csharp|code_lens.dotnet_enable_references_code_lens",
+  "csharp|code_lens.dotnet_enable_tests_code_lens",
+  "csharp|code_style.formatting.indentation_and_spacing.indent_size",
+  "csharp|code_style.formatting.indentation_and_spacing.indent_style",
+  "csharp|code_style.formatting.indentation_and_spacing.tab_width",
+  "csharp|code_style.formatting.new_line.end_of_line",
+  "csharp|completion.dotnet_completion_items_from_unimported_namespaces_commit_behavior",
+  "csharp|completion.dotnet_provide_regex_completions",
+  "csharp|completion.dotnet_show_completion_items_from_unimported_namespaces",
+  "csharp|completion.dotnet_show_name_completion_suggestions",
+  "csharp|completion.dotnet_trigger_completion_in_argument_lists",
+  "csharp|formatting.dotnet_organize_imports_on_format",
+  "csharp|highlighting.dotnet_highlight_related_json_components",
+  "csharp|highlighting.dotnet_highlight_related_regex_components",
+  "csharp|inlay_hints.csharp_enable_inlay_hints_for_collection_expressions",
+  "csharp|inlay_hints.csharp_enable_inlay_hints_for_implicit_object_creation",
+  "csharp|inlay_hints.csharp_enable_inlay_hints_for_implicit_variable_types",
+  "csharp|inlay_hints.csharp_enable_inlay_hints_for_lambda_parameter_types",
+  "csharp|inlay_hints.csharp_enable_inlay_hints_for_types",
+  "csharp|inlay_hints.dotnet_enable_inlay_hints_for_indexer_parameters",
+  "csharp|inlay_hints.dotnet_enable_inlay_hints_for_literal_parameters",
+  "csharp|inlay_hints.dotnet_enable_inlay_hints_for_object_creation_parameters",
+  "csharp|inlay_hints.dotnet_enable_inlay_hints_for_other_parameters",
+  "csharp|inlay_hints.dotnet_enable_inlay_hints_for_parameters",
+  "csharp|inlay_hints.dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix",
+  "csharp|inlay_hints.dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name",
+  "csharp|inlay_hints.dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent",
+  "csharp|quick_info.dotnet_show_remarks_in_quick_info",
+  "csharp|symbol_search.dotnet_search_reference_assemblies",
+  "csharp|type_members.dotnet_member_insertion_location",
+  "csharp|type_members.dotnet_property_generation_behavior",
+  "html.auto_closing_tags",
+  "navigation.dotnet_navigate_to_decompiled_sources",
+  "navigation.dotnet_navigate_to_source_link_and_embedded_sources",
+  "projects.dotnet_binary_log_path",
+  "projects.dotnet_enable_automatic_restore",
+  "projects.dotnet_enable_file_based_programs",
+  "projects.dotnet_enable_file_based_programs_when_ambiguous",
+  "razor.completion.commit_elements_with_space",
+  "razor.format.attribute_indent_style",
+  "razor.format.code_block_brace_on_next_line",
+  "visual_basic|auto_insert.dotnet_enable_auto_insert",
+  "visual_basic|background_analysis.dotnet_analyzer_diagnostics_scope",
+  "visual_basic|background_analysis.dotnet_compiler_diagnostics_scope",
+  "visual_basic|code_lens.dotnet_enable_references_code_lens",
+  "visual_basic|code_lens.dotnet_enable_tests_code_lens",
+  "visual_basic|code_style.formatting.indentation_and_spacing.indent_size",
+  "visual_basic|code_style.formatting.indentation_and_spacing.indent_style",
+  "visual_basic|code_style.formatting.indentation_and_spacing.tab_width",
+  "visual_basic|code_style.formatting.new_line.end_of_line",
+  "visual_basic|completion.dotnet_completion_items_from_unimported_namespaces_commit_behavior",
+  "visual_basic|completion.dotnet_provide_regex_completions",
+  "visual_basic|completion.dotnet_show_completion_items_from_unimported_namespaces",
+  "visual_basic|completion.dotnet_show_name_completion_suggestions",
+  "visual_basic|completion.dotnet_trigger_completion_in_argument_lists",
+  "visual_basic|formatting.dotnet_organize_imports_on_format",
+  "visual_basic|highlighting.dotnet_highlight_related_json_components",
+  "visual_basic|highlighting.dotnet_highlight_related_regex_components",
+  "visual_basic|inlay_hints.csharp_enable_inlay_hints_for_collection_expressions",
+  "visual_basic|inlay_hints.csharp_enable_inlay_hints_for_implicit_object_creation",
+  "visual_basic|inlay_hints.csharp_enable_inlay_hints_for_implicit_variable_types",
+  "visual_basic|inlay_hints.csharp_enable_inlay_hints_for_lambda_parameter_types",
+  "visual_basic|inlay_hints.csharp_enable_inlay_hints_for_types",
+  "visual_basic|inlay_hints.dotnet_enable_inlay_hints_for_indexer_parameters",
+  "visual_basic|inlay_hints.dotnet_enable_inlay_hints_for_literal_parameters",
+  "visual_basic|inlay_hints.dotnet_enable_inlay_hints_for_object_creation_parameters",
+  "visual_basic|inlay_hints.dotnet_enable_inlay_hints_for_other_parameters",
+  "visual_basic|inlay_hints.dotnet_enable_inlay_hints_for_parameters",
+  "visual_basic|inlay_hints.dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix",
+  "visual_basic|inlay_hints.dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name",
+  "visual_basic|inlay_hints.dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent",
+  "visual_basic|quick_info.dotnet_show_remarks_in_quick_info",
+  "visual_basic|symbol_search.dotnet_search_reference_assemblies",
+  "visual_basic|type_members.dotnet_member_insertion_location",
+  "visual_basic|type_members.dotnet_property_generation_behavior"
+ ]
+}

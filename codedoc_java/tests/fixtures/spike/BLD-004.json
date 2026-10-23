@@ -1,0 +1,39 @@
+{
+ "case": "BLD-004",
+ "site_kind": "nameof",
+ "pos": {
+  "line": 40,
+  "character": 44
+ },
+ "file": "Iryo.ReceptionDesk/Flows/MaintenanceFlow.cs",
+ "definition": [
+  {
+   "uri": "csharp:/home/admin/dev/codedoc_csharp/test_codes/iryo-kanri-system/Iryo.ReceptionDesk/Iryo.ReceptionDesk.csproj/decompiled/Iryo.Billing.FeeCalculator.cs",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 13
+    },
+    "end": {
+     "line": 5,
+     "character": 26
+    }
+   }
+  }
+ ],
+ "hover": {
+  "contents": {
+   "kind": "markdown",
+   "value": "```csharp\nFeeCalculator\n```"
+  }
+ },
+ "metadata_shape": "textDocument",
+ "metadata": {
+  "projectName": "Iryo.ReceptionDesk",
+  "assemblyName": "Iryo.Billing",
+  "symbolName": "Iryo.Billing.FeeCalculator",
+  "source_head": "using System;\nusing System.Threading.Tasks;\n\nnamespace Iryo.Billing;\n\npublic class FeeCalculator\n{\n\tpublic int Calculate(int a, int b)\n\t{\n\t\treturn a + b;\n\t}\n\n\tpublic long Calculate(long a, long b)\n\t{\n\t\treturn a + b;\n\t}\n\n\tpublic double Calculate(double a, double b)\n\t{\n\t\treturn a + b;\n\t}\n\n\tpublic int Calculate(int a, int b, int c)\n\t{\n\t\treturn a + b + c;\n\t}\n\n\tpublic int Calculate(params int[] points)",
+  "source_len": 943
+ },
+ "metadata_source": "using System;\nusing System.Threading.Tasks;\n\nnamespace Iryo.Billing;\n\npublic class FeeCalculator\n{\n\tpublic int Calculate(int a, int b)\n\t{\n\t\treturn a + b;\n\t}\n\n\tpublic long Calculate(long a, long b)\n\t{\n\t\treturn a + b;\n\t}\n\n\tpublic double Calculate(double a, double b)\n\t{\n\t\treturn a + b;\n\t}\n\n\tpublic int Calculate(int a, int b, int c)\n\t{\n\t\treturn a + b + c;\n\t}\n\n\tpublic int Calculate(params int[] points)\n\t{\n\t\tint num = 0;\n\t\tforeach (int num2 in points)\n\t\t{\n\t\t\tnum += num2;\n\t\t}\n\t\tif (points.Length > 3)\n\t\t{\n\t\t\tnum = (int)((double)num * 0.9);\n\t\t}\n\t\treturn num;\n\t}\n\n\tpublic string Run(Action task)\n\t{\n\t\ttask();\n\t\treturn \"同期実行\";\n\t}\n\n\tpublic string Run(Func<Task> task)\n\t{\n\t\ttask().GetAwaiter().GetResult();\n\t\treturn \"非同期実行\";\n\t}\n\n\tpublic int Scale(int value, int factor)\n\t{\n\t\treturn value * factor;\n\t}\n\n\tpublic double Scale(int value, double factor)\n\t{\n\t\treturn (double)value * factor;\n\t}\n\n\tpublic decimal Pay(decimal amount)\n\t{\n\t\treturn amount;\n\t}\n}\n"
+}

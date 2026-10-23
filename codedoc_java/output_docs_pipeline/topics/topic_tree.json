@@ -1,0 +1,267 @@
+[
+  {
+    "name": "患者・予約・受付管理",
+    "linked_files": [
+      "Appointment.java",
+      "AppointmentBook.java",
+      "CheckInFlow.java",
+      "Patient.java",
+      "PatientIdKit.java",
+      "Ward.java",
+      "patient_view.jsp"
+    ],
+    "subtopics": [
+      {
+        "name": "来院受付・患者台帳管理",
+        "linked_files": [
+          "CheckInFlow.java",
+          "Patient.java",
+          "PatientIdKit.java",
+          "patient_view.jsp"
+        ]
+      },
+      {
+        "name": "診察予約スケジューリング・集計",
+        "linked_files": [
+          "Appointment.java",
+          "AppointmentBook.java"
+        ]
+      },
+      {
+        "name": "病棟・施設案内",
+        "linked_files": [
+          "Ward.java"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "診療報酬・医療会計管理",
+    "linked_files": [
+      "AccountingFlow.java",
+      "FeeCalculator.java",
+      "Money.java",
+      "OldTable.java",
+      "PaymentPolicy.java",
+      "PointMath.java",
+      "PointTable.java",
+      "ReceiptFormatter.java",
+      "StandardPolicy.java",
+      "UrgentPolicy.java",
+      "Validator.java"
+    ],
+    "subtopics": [
+      {
+        "name": "診療点数計算・請求処理",
+        "linked_files": [
+          "AccountingFlow.java",
+          "FeeCalculator.java",
+          "OldTable.java",
+          "PointMath.java",
+          "PointTable.java"
+        ]
+      },
+      {
+        "name": "支払いポリシー・保険情報検証",
+        "linked_files": [
+          "PaymentPolicy.java",
+          "StandardPolicy.java",
+          "UrgentPolicy.java",
+          "Validator.java"
+        ]
+      },
+      {
+        "name": "領収書整形・会計金額管理",
+        "linked_files": [
+          "Money.java",
+          "ReceiptFormatter.java"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "処方箋・調剤・投薬管理",
+    "linked_files": [
+      "DoseCalculator.java",
+      "PharmacyFlow.java",
+      "Validator.java"
+    ],
+    "subtopics": [
+      {
+        "name": "薬局窓口・調剤連携フロー",
+        "linked_files": [
+          "PharmacyFlow.java"
+        ]
+      },
+      {
+        "name": "用量計算・処方箋検証",
+        "linked_files": [
+          "DoseCalculator.java",
+          "Validator.java"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "カルテ・バイタルデータ管理",
+    "linked_files": [
+      "ChartArchive.java",
+      "ChartCache.java",
+      "ChartEntry.java",
+      "KarteKit.java",
+      "VitalSequence.java"
+    ],
+    "subtopics": [
+      {
+        "name": "カルテ記録・キャッシュ・アーカイブ",
+        "linked_files": [
+          "ChartArchive.java",
+          "ChartCache.java",
+          "ChartEntry.java"
+        ]
+      },
+      {
+        "name": "バイタルデータ変換・カルテ帳票集計",
+        "linked_files": [
+          "KarteKit.java",
+          "VitalSequence.java"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "業務日報・バッチ・データ出力",
+    "linked_files": [
+      "CsvExporter.java",
+      "DailyBatch.java",
+      "DailyCloseFlow.java",
+      "Exporter.java",
+      "ReportDigest.java",
+      "ReportFlow.java",
+      "XmlExporter.java"
+    ],
+    "subtopics": [
+      {
+        "name": "日次締め・点検バッチ処理",
+        "linked_files": [
+          "DailyBatch.java",
+          "DailyCloseFlow.java"
+        ]
+      },
+      {
+        "name": "レポート集計・ダイジェスト出力",
+        "linked_files": [
+          "ReportDigest.java",
+          "ReportFlow.java"
+        ]
+      },
+      {
+        "name": "多形式データエクスポート",
+        "linked_files": [
+          "CsvExporter.java",
+          "Exporter.java",
+          "XmlExporter.java"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "ポータル・通知連携",
+    "linked_files": [
+      "MailNotifier.java",
+      "Notifier.java",
+      "PortalServer.java",
+      "SmsNotifier.java"
+    ],
+    "subtopics": [
+      {
+        "name": "ポータルエンドポイント・ルーティング",
+        "linked_files": [
+          "PortalServer.java"
+        ]
+      },
+      {
+        "name": "メール・SMS通知処理",
+        "linked_files": [
+          "MailNotifier.java",
+          "Notifier.java",
+          "SmsNotifier.java"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "データアクセス・エンティティ基盤",
+    "linked_files": [
+      "AuditedEntity.java",
+      "Entity.java",
+      "Registry.java",
+      "Repository.java",
+      "RepositoryFactory.java",
+      "SqlPatientRepository.java"
+    ],
+    "subtopics": [
+      {
+        "name": "基底エンティティ・監査証跡",
+        "linked_files": [
+          "AuditedEntity.java",
+          "Entity.java"
+        ]
+      },
+      {
+        "name": "リポジトリデータアクセス",
+        "linked_files": [
+          "Repository.java",
+          "SqlPatientRepository.java"
+        ]
+      },
+      {
+        "name": "インスタンス生成・レジストリ管理",
+        "linked_files": [
+          "Registry.java",
+          "RepositoryFactory.java"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "システム基盤・保守点検・動作検証",
+    "linked_files": [
+      "AdminSide.java",
+      "Guard.java",
+      "Logger.java",
+      "MaintenanceFlow.java",
+      "Program.java",
+      "ReceptionSide.java",
+      "ServiceCollection.java",
+      "ServiceProvider.java",
+      "ShadowSide.java"
+    ],
+    "subtopics": [
+      {
+        "name": "アプリケーション起動・DI基盤",
+        "linked_files": [
+          "Program.java",
+          "ServiceCollection.java",
+          "ServiceProvider.java"
+        ]
+      },
+      {
+        "name": "共通ロギング・入力ガード",
+        "linked_files": [
+          "Guard.java",
+          "Logger.java"
+        ]
+      },
+      {
+        "name": "システム保守および振る舞い検証プローブ",
+        "linked_files": [
+          "AdminSide.java",
+          "MaintenanceFlow.java",
+          "ReceptionSide.java",
+          "ShadowSide.java"
+        ]
+      }
+    ]
+  }
+]

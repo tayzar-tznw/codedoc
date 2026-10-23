@@ -1,0 +1,42 @@
+{
+ "case": "XPR-001",
+ "site_kind": "object_creation",
+ "pos": {
+  "line": 16,
+  "character": 25
+ },
+ "definition": [
+  {
+   "uri": "file:///tmp/MetadataAsSource/98d0f9b62c64485abf0118c0d14a5b1d/DecompilationMetadataAsSourceFileProvider/fc1f37909cff4aaeb5dc258fa35d93e0/Logger.cs",
+   "range": {
+    "start": {
+     "line": 31,
+     "character": 11
+    },
+    "end": {
+     "line": 31,
+     "character": 17
+    }
+   }
+  }
+ ],
+ "hover": {
+  "contents": {
+   "kind": "markdown",
+   "value": "```csharp\nLogger.Logger() (+ 1 overload)\n```\n  \n"
+  },
+  "range": {
+   "start": {
+    "line": 16,
+    "character": 25
+   },
+   "end": {
+    "line": 16,
+    "character": 31
+   }
+  }
+ },
+ "target_uri": "file:///tmp/MetadataAsSource/98d0f9b62c64485abf0118c0d14a5b1d/DecompilationMetadataAsSourceFileProvider/fc1f37909cff4aaeb5dc258fa35d93e0/Logger.cs",
+ "target_head": "﻿#region Assembly Iryo.Kernel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null\n// /home/admin/.nuget/packages/iryo.kernel/1.0.0/lib/net10.0/Iryo.Kernel.dll\n// Decompiled with ICSharpCode.Decompiler \n#endregion\n\nusing System;\nusing System.Collections.Generic;\n\nnamespace Iryo.Kernel.Logging;\n\npublic class Logger\n{\n    private readonly string _name;\n\n    private readonly List<string> _lines = new List<string>();\n\n    private string _lastMessage = \"\";\n\n    public string LastMessage\n    {\n        get\n        {\n            Flush();\n            return _lastMessage;\n        }\n    }\n\n    public s",
+ "target_len": 2703
+}

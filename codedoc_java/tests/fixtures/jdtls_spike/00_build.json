@@ -1,0 +1,143 @@
+{
+  "java_version": {
+    "argv": [
+      "/usr/lib/jvm/java-21-openjdk-amd64/bin/java",
+      "-version"
+    ],
+    "cwd": "/tmp/jdtls_spike_mini",
+    "returncode": 0,
+    "elapsed_ms": 29.125,
+    "stdout": "",
+    "stderr": "openjdk version \"21.0.11\" 2026-04-21\nOpenJDK Runtime Environment (build 21.0.11+10-1-deb13u2-Debian)\nOpenJDK 64-Bit Server VM (build 21.0.11+10-1-deb13u2-Debian, mixed mode, sharing)\n"
+  },
+  "maven_version": {
+    "argv": [
+      "/usr/bin/mvn",
+      "-version"
+    ],
+    "cwd": "/tmp/jdtls_spike_mini",
+    "returncode": 0,
+    "elapsed_ms": 140.333,
+    "stdout": "\u001b[1mApache Maven 3.9.9\u001b[m\nMaven home: /usr/share/maven\nJava version: 21.0.11, vendor: Debian, runtime: /usr/lib/jvm/java-21-openjdk-amd64\nDefault locale: en, platform encoding: UTF-8\nOS name: \"linux\", version: \"6.12.95+deb13-cloud-amd64\", arch: \"amd64\", family: \"unix\"\n",
+    "stderr": ""
+  },
+  "deploy": {
+    "argv": [
+      "/usr/bin/mvn",
+      "-q",
+      "-s",
+      "../settings.xml",
+      "clean",
+      "deploy",
+      "-DaltDeploymentRepository=feed::file:///tmp/jdtls_spike_mini/_feed"
+    ],
+    "cwd": "/tmp/jdtls_spike_mini/mini-lib",
+    "returncode": 0,
+    "elapsed_ms": 9945.453,
+    "stdout": "",
+    "stderr": ""
+  },
+  "package": {
+    "argv": [
+      "/usr/bin/mvn",
+      "-q",
+      "-s",
+      "../settings.xml",
+      "clean",
+      "package"
+    ],
+    "cwd": "/tmp/jdtls_spike_mini/mini-app",
+    "returncode": 0,
+    "elapsed_ms": 2199.64,
+    "stdout": "",
+    "stderr": ""
+  },
+  "execute": {
+    "argv": [
+      "/usr/lib/jvm/java-21-openjdk-amd64/bin/java",
+      "-cp",
+      "/tmp/jdtls_spike_mini/mini-app/target/classes:/tmp/jdtls_spike_mini/mini-lib/target/classes",
+      "jp.iryo.spike.app.App"
+    ],
+    "cwd": "/tmp/jdtls_spike_mini/mini-app",
+    "returncode": 0,
+    "elapsed_ms": 41.866,
+    "stdout": "外来\nメール:診療\n",
+    "stderr": ""
+  },
+  "commands": [
+    {
+      "argv": [
+        "/usr/lib/jvm/java-21-openjdk-amd64/bin/java",
+        "-version"
+      ],
+      "cwd": "/tmp/jdtls_spike_mini",
+      "returncode": 0,
+      "elapsed_ms": 29.125,
+      "stdout": "",
+      "stderr": "openjdk version \"21.0.11\" 2026-04-21\nOpenJDK Runtime Environment (build 21.0.11+10-1-deb13u2-Debian)\nOpenJDK 64-Bit Server VM (build 21.0.11+10-1-deb13u2-Debian, mixed mode, sharing)\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/mvn",
+        "-version"
+      ],
+      "cwd": "/tmp/jdtls_spike_mini",
+      "returncode": 0,
+      "elapsed_ms": 140.333,
+      "stdout": "\u001b[1mApache Maven 3.9.9\u001b[m\nMaven home: /usr/share/maven\nJava version: 21.0.11, vendor: Debian, runtime: /usr/lib/jvm/java-21-openjdk-amd64\nDefault locale: en, platform encoding: UTF-8\nOS name: \"linux\", version: \"6.12.95+deb13-cloud-amd64\", arch: \"amd64\", family: \"unix\"\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/mvn",
+        "-q",
+        "-s",
+        "../settings.xml",
+        "clean",
+        "deploy",
+        "-DaltDeploymentRepository=feed::file:///tmp/jdtls_spike_mini/_feed"
+      ],
+      "cwd": "/tmp/jdtls_spike_mini/mini-lib",
+      "returncode": 0,
+      "elapsed_ms": 9945.453,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/mvn",
+        "-q",
+        "-s",
+        "../settings.xml",
+        "clean",
+        "package"
+      ],
+      "cwd": "/tmp/jdtls_spike_mini/mini-app",
+      "returncode": 0,
+      "elapsed_ms": 2199.64,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/lib/jvm/java-21-openjdk-amd64/bin/java",
+        "-cp",
+        "/tmp/jdtls_spike_mini/mini-app/target/classes:/tmp/jdtls_spike_mini/mini-lib/target/classes",
+        "jp.iryo.spike.app.App"
+      ],
+      "cwd": "/tmp/jdtls_spike_mini/mini-app",
+      "returncode": 0,
+      "elapsed_ms": 41.866,
+      "stdout": "外来\nメール:診療\n",
+      "stderr": ""
+    }
+  ],
+  "expected_files": {
+    "binary_jar": "/tmp/jdtls_spike_mini/_feed/jp/iryo/spike/mini-lib/1.0.0/mini-lib-1.0.0.jar",
+    "sources_jar": "/tmp/jdtls_spike_mini/_feed/jp/iryo/spike/mini-lib/1.0.0/mini-lib-1.0.0-sources.jar",
+    "pom": "/tmp/jdtls_spike_mini/_feed/jp/iryo/spike/mini-lib/1.0.0/mini-lib-1.0.0.pom",
+    "app_class": "/tmp/jdtls_spike_mini/mini-app/target/classes/jp/iryo/spike/app/App.class"
+  },
+  "source_jar_sha256": "1af16a4a4660ce6ccd5c41eaac7ba66ebaa841890b2de09cca967d51ee47d82e"
+}

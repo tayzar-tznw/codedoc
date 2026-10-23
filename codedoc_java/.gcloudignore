@@ -1,0 +1,21 @@
+# Default ignore list for any `gcloud builds submit` run from this directory
+# (the MCP deploy passes a stricter allow-list via --ignore-file). This repository
+# root has no .gitignore of its own (it lives in the monorepo root), so without
+# this file gcloud would upload the whole tree, including .env and .venv.
+.git/
+.venv/
+venv/
+.env
+**/.env
+**/.env.*
+**/__pycache__/
+**/*.pyc
+**/.pytest_cache/
+.coverage
+**/node_modules/
+**/.adk/
+.idea/
+.claude/
+.playwright-mcp/
+test_codes/
+tests/

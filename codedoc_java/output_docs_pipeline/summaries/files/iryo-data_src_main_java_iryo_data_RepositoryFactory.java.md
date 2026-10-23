@@ -1,0 +1,3 @@
+`RepositoryFactory.java`は、バッチ処理等で利用される既定のリポジトリインスタンスを一元的に生成・提供することを目的としたファイルです。本ファイルに含まれる`RepositoryFactory`クラスは、外部からのインスタンス化を防ぐためにプライベートコンストラクタを持つ`final`クラスとして定義されており、リポジトリ生成の責務を担うユーティリティクラスとして機能します。
+
+中心となる静的メソッド`createDefault()`は、「工場」という名称で初期化した`Logger`インスタンスを注入し、既定の構成を持つ`SqlPatientRepository`を生成して呼び出し元に返します。依存関係としては、ロギング機能を提供する`iryo.kernel.logging.Logger`および同パッケージ内の`SqlPatientRepository`と関連しています。本実装には、インスタンス生成処理をカプセル化するFactoryパターン（Static Factory Methodパターン）が適用されています。

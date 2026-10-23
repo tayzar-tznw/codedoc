@@ -1,0 +1,39 @@
+{
+ "case": "DI-001",
+ "site_kind": "type_argument",
+ "pos": {
+  "line": 34,
+  "character": 41
+ },
+ "file": "Iryo.ReceptionDesk/Program.cs",
+ "definition": [
+  {
+   "uri": "csharp:/home/admin/dev/codedoc_csharp/test_codes/iryo-kanri-system/Iryo.ReceptionDesk/Iryo.ReceptionDesk.csproj/decompiled/Iryo.Kernel.Notifications.MailNotifier.cs",
+   "range": {
+    "start": {
+     "line": 2,
+     "character": 13
+    },
+    "end": {
+     "line": 2,
+     "character": 25
+    }
+   }
+  }
+ ],
+ "hover": {
+  "contents": {
+   "kind": "markdown",
+   "value": "```csharp\nMailNotifier\n```"
+  }
+ },
+ "metadata_shape": "textDocument",
+ "metadata": {
+  "projectName": "Iryo.ReceptionDesk",
+  "assemblyName": "Iryo.Kernel",
+  "symbolName": "Iryo.Kernel.Notifications.MailNotifier",
+  "source_head": "namespace Iryo.Kernel.Notifications;\n\npublic class MailNotifier : INotifier\n{\n\tpublic string Send(string message)\n\t{\n\t\treturn \"メール送信: \" + message;\n\t}\n}\n",
+  "source_len": 152
+ },
+ "metadata_source": "namespace Iryo.Kernel.Notifications;\n\npublic class MailNotifier : INotifier\n{\n\tpublic string Send(string message)\n\t{\n\t\treturn \"メール送信: \" + message;\n\t}\n}\n"
+}

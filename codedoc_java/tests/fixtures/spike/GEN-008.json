@@ -1,0 +1,39 @@
+{
+ "case": "GEN-008",
+ "site_kind": "indexer",
+ "pos": {
+  "line": 31,
+  "character": 32
+ },
+ "file": "Iryo.ReceptionDesk/Flows/MaintenanceFlow.cs",
+ "definition": [
+  {
+   "uri": "csharp:/home/admin/dev/codedoc_csharp/test_codes/iryo-kanri-system/Iryo.ReceptionDesk/Iryo.ReceptionDesk.csproj/decompiled/Iryo.Data.ChartCache%602.cs",
+   "range": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 0,
+     "character": 1
+    }
+   }
+  }
+ ],
+ "hover": {
+  "contents": {
+   "kind": "markdown",
+   "value": "```csharp\nint ChartCache<string, int>.this[string key]\n```"
+  }
+ },
+ "metadata_shape": "textDocument",
+ "metadata": {
+  "projectName": "Iryo.ReceptionDesk",
+  "assemblyName": "Iryo.Data",
+  "symbolName": "Iryo.Data.ChartCache`2",
+  "source_head": "using System.Collections.Generic;\n\nnamespace Iryo.Data;\n\npublic class ChartCache<TKey, TValue>\n{\n\tprivate readonly Dictionary<TKey, TValue> _map = new Dictionary<TKey, TValue>();\n\n\tpublic TValue this[TKey key]\n\t{\n\t\tget\n\t\t{\n\t\t\treturn _map[key];\n\t\t}\n\t\tset\n\t\t{\n\t\t\t_map[key] = value;\n\t\t}\n\t}\n\n\tpublic bool Has(TKey key)\n\t{\n\t\treturn _map.ContainsKey(key);\n\t}\n}\n",
+  "source_len": 355
+ },
+ "metadata_source": "using System.Collections.Generic;\n\nnamespace Iryo.Data;\n\npublic class ChartCache<TKey, TValue>\n{\n\tprivate readonly Dictionary<TKey, TValue> _map = new Dictionary<TKey, TValue>();\n\n\tpublic TValue this[TKey key]\n\t{\n\t\tget\n\t\t{\n\t\t\treturn _map[key];\n\t\t}\n\t\tset\n\t\t{\n\t\t\t_map[key] = value;\n\t\t}\n\t}\n\n\tpublic bool Has(TKey key)\n\t{\n\t\treturn _map.ContainsKey(key);\n\t}\n}\n"
+}

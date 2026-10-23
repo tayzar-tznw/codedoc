@@ -1,0 +1,42 @@
+{
+ "case": "XPR-105",
+ "site_kind": "invocation",
+ "pos": {
+  "line": 21,
+  "character": 28
+ },
+ "definition": [
+  {
+   "uri": "file:///tmp/MetadataAsSource/406ba017dc304e8aba135f83547765f6/DecompilationMetadataAsSourceFileProvider/2f5c4b6af1ca442395f01efa2602dc63/PointMath.cs",
+   "range": {
+    "start": {
+     "line": 11,
+     "character": 22
+    },
+    "end": {
+     "line": 11,
+     "character": 27
+    }
+   }
+  }
+ ],
+ "hover": {
+  "contents": {
+   "kind": "markdown",
+   "value": "```csharp\nint PointMath.ToYen(int points)\n```\n  \n"
+  },
+  "range": {
+   "start": {
+    "line": 21,
+    "character": 28
+   },
+   "end": {
+    "line": 21,
+    "character": 33
+   }
+  }
+ },
+ "target_uri": "file:///tmp/MetadataAsSource/406ba017dc304e8aba135f83547765f6/DecompilationMetadataAsSourceFileProvider/2f5c4b6af1ca442395f01efa2602dc63/PointMath.cs",
+ "target_head": "﻿#region Assembly Iryo.Pharmacy, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null\n// /home/admin/.nuget/packages/iryo.pharmacy/1.0.0/lib/net10.0/Iryo.Pharmacy.dll\n// Decompiled with ICSharpCode.Decompiler \n#endregion\n\nusing System;\n\nnamespace Iryo.Pharmacy;\n\npublic static class PointMath\n{\n    public static int ToYen(int points)\n    {\n        return (int)Math.Ceiling((double)points * 10.8);\n    }\n}\n#if false // Decompilation log\n'172' items in cache\n------------------\nResolve: 'System.Runtime, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'\nFound single assembly: 'Syst",
+ "target_len": 1870
+}

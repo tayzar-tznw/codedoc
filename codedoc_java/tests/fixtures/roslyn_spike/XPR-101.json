@@ -1,0 +1,42 @@
+{
+ "case": "XPR-101",
+ "site_kind": "object_creation",
+ "pos": {
+  "line": 16,
+  "character": 25
+ },
+ "definition": [
+  {
+   "uri": "file:///tmp/MetadataAsSource/406ba017dc304e8aba135f83547765f6/DecompilationMetadataAsSourceFileProvider/effe6e9ccb0a4d179e19be0d663d7bd4/Logger.cs",
+   "range": {
+    "start": {
+     "line": 9,
+     "character": 13
+    },
+    "end": {
+     "line": 9,
+     "character": 19
+    }
+   }
+  }
+ ],
+ "hover": {
+  "contents": {
+   "kind": "markdown",
+   "value": "```csharp\nLogger.Logger()\n```\n  \n"
+  },
+  "range": {
+   "start": {
+    "line": 16,
+    "character": 25
+   },
+   "end": {
+    "line": 16,
+    "character": 31
+   }
+  }
+ },
+ "target_uri": "file:///tmp/MetadataAsSource/406ba017dc304e8aba135f83547765f6/DecompilationMetadataAsSourceFileProvider/effe6e9ccb0a4d179e19be0d663d7bd4/Logger.cs",
+ "target_head": "﻿#region Assembly Iryo.Pharmacy, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null\n// /home/admin/.nuget/packages/iryo.pharmacy/1.0.0/lib/net10.0/Iryo.Pharmacy.dll\n// Decompiled with ICSharpCode.Decompiler \n#endregion\n\nusing System.Collections.Generic;\n\nnamespace Iryo.Pharmacy;\n\npublic class Logger\n{\n    private readonly List<string> _lines = new List<string>();\n\n    public IReadOnlyList<string> Lines => _lines;\n\n    public void Log(string message)\n    {\n        _lines.Add(\"[調剤] \" + message);\n    }\n}\n#if false // Decompilation log\n'172' items in cache\n------------------\nResolve: 'System.Ru",
+ "target_len": 1973
+}

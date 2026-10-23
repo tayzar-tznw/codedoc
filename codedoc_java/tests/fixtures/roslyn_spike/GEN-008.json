@@ -1,0 +1,42 @@
+{
+ "case": "GEN-008",
+ "site_kind": "indexer",
+ "pos": {
+  "line": 31,
+  "character": 32
+ },
+ "definition": [
+  {
+   "uri": "file:///tmp/MetadataAsSource/98d0f9b62c64485abf0118c0d14a5b1d/DecompilationMetadataAsSourceFileProvider/12119940d3724e1fad933aeec573df85/ChartCache.cs",
+   "range": {
+    "start": {
+     "line": 13,
+     "character": 18
+    },
+    "end": {
+     "line": 13,
+     "character": 22
+    }
+   }
+  }
+ ],
+ "hover": {
+  "contents": {
+   "kind": "markdown",
+   "value": "```csharp\nint ChartCache<string, int>.this[string key] { get; set; }\n```\n  \n"
+  },
+  "range": {
+   "start": {
+    "line": 31,
+    "character": 32
+   },
+   "end": {
+    "line": 31,
+    "character": 33
+   }
+  }
+ },
+ "target_uri": "file:///tmp/MetadataAsSource/98d0f9b62c64485abf0118c0d14a5b1d/DecompilationMetadataAsSourceFileProvider/12119940d3724e1fad933aeec573df85/ChartCache.cs",
+ "target_head": "﻿#region Assembly Iryo.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null\n// /home/admin/.nuget/packages/iryo.data/1.0.0/lib/net10.0/Iryo.Data.dll\n// Decompiled with ICSharpCode.Decompiler \n#endregion\n\nusing System.Collections.Generic;\n\nnamespace Iryo.Data;\n\npublic class ChartCache<TKey, TValue>\n{\n    private readonly Dictionary<TKey, TValue> _map = new Dictionary<TKey, TValue>();\n\n    public TValue this[TKey key]\n    {\n        get\n        {\n            return _map[key];\n        }\n        set\n        {\n            _map[key] = value;\n        }\n    }\n\n    public bool Has(TKey key)\n    {",
+ "target_len": 2662
+}

@@ -1,0 +1,30 @@
+{
+ "case": "EIF-001",
+ "site_kind": "invocation",
+ "pos": {
+  "line": 57,
+  "character": 33
+ },
+ "file": "Iryo.ReceptionDesk/Flows/ReportFlow.cs",
+ "definition": [
+  {
+   "uri": "file:///home/admin/dev/codedoc_csharp/test_codes/iryo-kanri-system/Iryo.ReceptionDesk/Flows/ReportFlow.cs",
+   "range": {
+    "start": {
+     "line": 69,
+     "character": 18
+    },
+    "end": {
+     "line": 69,
+     "character": 24
+    }
+   }
+  }
+ ],
+ "hover": {
+  "contents": {
+   "kind": "markdown",
+   "value": "```csharp\nstring ReceiptWriter.Export()\n```"
+  }
+ }
+}

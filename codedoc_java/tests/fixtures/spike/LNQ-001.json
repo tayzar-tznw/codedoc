@@ -1,0 +1,39 @@
+{
+ "case": "LNQ-001",
+ "site_kind": "query_clause",
+ "pos": {
+  "line": 21,
+  "character": 12
+ },
+ "file": "Iryo.ReceptionDesk/Flows/ReportFlow.cs",
+ "definition": [
+  {
+   "uri": "csharp:/home/admin/dev/codedoc_csharp/test_codes/iryo-kanri-system/Iryo.ReceptionDesk/Iryo.ReceptionDesk.csproj/decompiled/Iryo.Reporting.VitalSequenceLinq.cs",
+   "range": {
+    "start": {
+     "line": 6,
+     "character": 29
+    },
+    "end": {
+     "line": 6,
+     "character": 34
+    }
+   }
+  }
+ ],
+ "hover": {
+  "contents": {
+   "kind": "markdown",
+   "value": "```csharp\nVitalSequence VitalSequence.Where(Func<int, bool> predicate)\n```"
+  }
+ },
+ "metadata_shape": "textDocument",
+ "metadata": {
+  "projectName": "Iryo.ReceptionDesk",
+  "assemblyName": "Iryo.Reporting",
+  "symbolName": "Iryo.Reporting.VitalSequenceLinq",
+  "source_head": "using System;\n\nnamespace Iryo.Reporting;\n\npublic static class VitalSequenceLinq\n{\n\tpublic static VitalSequence Where(this VitalSequence source, Func<int, bool> predicate)\n\t{\n\t\tVitalSequence vitalSequence = new VitalSequence();\n\t\tforeach (int item in source)\n\t\t{\n\t\t\tif (predicate(item))\n\t\t\t{\n\t\t\t\tvitalSequence.Add(item);\n\t\t\t}\n\t\t}\n\t\treturn vitalSequence;\n\t}\n\n\tpublic static VitalSequence Select(this Vi",
+  "source_len": 609
+ },
+ "metadata_source": "using System;\n\nnamespace Iryo.Reporting;\n\npublic static class VitalSequenceLinq\n{\n\tpublic static VitalSequence Where(this VitalSequence source, Func<int, bool> predicate)\n\t{\n\t\tVitalSequence vitalSequence = new VitalSequence();\n\t\tforeach (int item in source)\n\t\t{\n\t\t\tif (predicate(item))\n\t\t\t{\n\t\t\t\tvitalSequence.Add(item);\n\t\t\t}\n\t\t}\n\t\treturn vitalSequence;\n\t}\n\n\tpublic static VitalSequence Select(this VitalSequence source, Func<int, int> projector)\n\t{\n\t\tVitalSequence vitalSequence = new VitalSequence();\n\t\tforeach (int item in source)\n\t\t{\n\t\t\tvitalSequence.Add(projector(item));\n\t\t}\n\t\treturn vitalSequence;\n\t}\n}\n"
+}

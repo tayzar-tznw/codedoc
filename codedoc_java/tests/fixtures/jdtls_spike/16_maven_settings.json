@@ -1,0 +1,46 @@
+{
+  "user_settings": "/tmp/jdtls_spike_mini/settings.xml",
+  "configured_local_repository": "/tmp/jdtls_spike_mini/_m2",
+  "isolated_gav_absent_before_no_source_session": true,
+  "isolated_gav_files_after_no_source_session": [
+    "_remote.repositories",
+    "m2e-lastUpdated.properties",
+    "mini-lib-1.0.0-javadoc.jar.lastUpdated",
+    "mini-lib-1.0.0-sources.jar.lastUpdated",
+    "mini-lib-1.0.0.jar",
+    "mini-lib-1.0.0.jar.sha1",
+    "mini-lib-1.0.0.pom",
+    "mini-lib-1.0.0.pom.sha1"
+  ],
+  "isolated_gav_files_after_with_source_session": [
+    "_remote.repositories",
+    "m2e-lastUpdated.properties",
+    "mini-lib-1.0.0-javadoc.jar.lastUpdated",
+    "mini-lib-1.0.0-sources.jar",
+    "mini-lib-1.0.0.jar",
+    "mini-lib-1.0.0.jar.sha1",
+    "mini-lib-1.0.0.pom",
+    "mini-lib-1.0.0.pom.sha1"
+  ],
+  "isolated_repository_file_count": 966,
+  "home_gav_scope": "/home/admin/.m2/repository/jp/iryo/spike",
+  "home_before": {},
+  "home_after": {},
+  "home_scope_unchanged": true,
+  "workspace_configuration_requests": [],
+  "configuration_section_java": {
+    "maven": {
+      "downloadSources": true
+    },
+    "import": {
+      "gradle": {
+        "enabled": false
+      }
+    },
+    "configuration": {
+      "maven": {
+        "userSettings": "/tmp/jdtls_spike_mini/settings.xml"
+      }
+    }
+  }
+}

@@ -1,0 +1,4434 @@
+{
+  "no_sources_session": {
+    "label": "no_sources",
+    "project_dir": "/tmp/jdtls_spike_mini/mini-app",
+    "command": [
+      "/home/admin/tools/jdt-language-server/bin/jdtls",
+      "--java-executable",
+      "/usr/lib/jvm/java-21-openjdk-amd64/bin/java",
+      "--jvm-arg=-Xms128m",
+      "--jvm-arg=-Xmx700m",
+      "--jvm-arg=-Dosgi.configuration.area=/tmp/jdtls_spike_mini/_jdtls/no_sources/configuration",
+      "-data",
+      "/tmp/jdtls_spike_mini/_jdtls/no_sources/data"
+    ],
+    "data_dir": "/tmp/jdtls_spike_mini/_jdtls/no_sources/data",
+    "configuration_dir": "/tmp/jdtls_spike_mini/_jdtls/no_sources/configuration",
+    "initialize": {
+      "method": "initialize",
+      "params": {
+        "processId": 2,
+        "rootUri": "file:///tmp/jdtls_spike_mini/mini-app",
+        "workspaceFolders": [
+          {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app",
+            "name": "mini-app"
+          }
+        ],
+        "capabilities": {
+          "workspace": {
+            "configuration": true,
+            "workspaceFolders": true
+          },
+          "window": {
+            "workDoneProgress": true
+          },
+          "textDocument": {
+            "documentSymbol": {
+              "hierarchicalDocumentSymbolSupport": true
+            },
+            "definition": {},
+            "hover": {
+              "contentFormat": [
+                "markdown",
+                "plaintext"
+              ]
+            }
+          }
+        },
+        "initializationOptions": {
+          "extendedClientCapabilities": {
+            "classFileContentsSupport": true
+          },
+          "settings": {
+            "java": {
+              "maven": {
+                "downloadSources": true
+              },
+              "import": {
+                "gradle": {
+                  "enabled": false
+                }
+              },
+              "configuration": {
+                "maven": {
+                  "userSettings": "/tmp/jdtls_spike_mini/settings.xml"
+                }
+              }
+            }
+          }
+        }
+      },
+      "response": {
+        "capabilities": {
+          "textDocumentSync": {
+            "openClose": true,
+            "change": 2,
+            "save": {
+              "includeText": true
+            }
+          },
+          "hoverProvider": true,
+          "completionProvider": {
+            "resolveProvider": true,
+            "triggerCharacters": [
+              ".",
+              "@",
+              "#",
+              "*",
+              " "
+            ]
+          },
+          "signatureHelpProvider": {
+            "triggerCharacters": [
+              "(",
+              ","
+            ]
+          },
+          "definitionProvider": true,
+          "typeDefinitionProvider": true,
+          "implementationProvider": true,
+          "referencesProvider": true,
+          "documentHighlightProvider": true,
+          "documentSymbolProvider": true,
+          "workspaceSymbolProvider": true,
+          "codeActionProvider": {
+            "codeActionKinds": [],
+            "resolveProvider": false
+          },
+          "codeLensProvider": {
+            "resolveProvider": true
+          },
+          "documentFormattingProvider": true,
+          "documentRangeFormattingProvider": true,
+          "documentOnTypeFormattingProvider": {
+            "firstTriggerCharacter": ";",
+            "moreTriggerCharacter": [
+              "\n",
+              "}"
+            ]
+          },
+          "renameProvider": {
+            "prepareProvider": true
+          },
+          "foldingRangeProvider": true,
+          "declarationProvider": true,
+          "executeCommandProvider": {
+            "commands": [
+              "java.project.import",
+              "java.project.changeImportedProjects",
+              "java.navigate.openTypeHierarchy",
+              "java.project.resolveStackTraceLocation",
+              "java.edit.handlePasteEvent",
+              "java.edit.stringFormatting",
+              "java.project.getSettings",
+              "java.project.resolveWorkspaceSymbol",
+              "java.project.upgradeGradle",
+              "java.project.createModuleInfo",
+              "java.vm.getAllInstalls",
+              "java.edit.organizeImports",
+              "java.project.refreshDiagnostics",
+              "java.getFullyQualifiedName",
+              "java.project.removeFromSourcePath",
+              "java.project.listSourcePaths",
+              "java.project.updateSettings",
+              "java.project.getAll",
+              "java.reloadBundles",
+              "java.project.isTestFile",
+              "java.project.resolveText",
+              "java.project.getClasspaths",
+              "java.navigate.resolveTypeHierarchy",
+              "java.getTroubleshootingInfo",
+              "java.edit.smartSemicolonDetection",
+              "java.project.updateSourceAttachment",
+              "java.project.updateClassPaths",
+              "java.decompile",
+              "java.protobuf.generateSources",
+              "java.project.resolveSourceAttachment",
+              "java.project.updateJdk",
+              "java.project.addToSourcePath",
+              "java.completion.onDidSelect"
+            ]
+          },
+          "workspace": {
+            "workspaceFolders": {
+              "supported": true,
+              "changeNotifications": true
+            }
+          },
+          "typeHierarchyProvider": true,
+          "callHierarchyProvider": true,
+          "selectionRangeProvider": true,
+          "semanticTokensProvider": {
+            "legend": {
+              "tokenTypes": [
+                "namespace",
+                "class",
+                "interface",
+                "enum",
+                "enumMember",
+                "type",
+                "typeParameter",
+                "method",
+                "property",
+                "variable",
+                "parameter",
+                "modifier",
+                "keyword",
+                "decorator",
+                "annotationMember",
+                "record",
+                "recordComponent"
+              ],
+              "tokenModifiers": [
+                "abstract",
+                "static",
+                "readonly",
+                "deprecated",
+                "declaration",
+                "documentation",
+                "public",
+                "private",
+                "protected",
+                "native",
+                "generic",
+                "typeArgument",
+                "importDeclaration",
+                "constructor"
+              ]
+            },
+            "range": false,
+            "full": {
+              "delta": false
+            },
+            "documentSelector": [
+              {
+                "language": "java",
+                "scheme": "file"
+              },
+              {
+                "language": "java",
+                "scheme": "jdt"
+              }
+            ]
+          },
+          "inlayHintProvider": true
+        },
+        "serverInfo": {
+          "name": "JDT Language Server (Standard)",
+          "version": "1.61.0-SNAPSHOT"
+        }
+      }
+    },
+    "effective_process": {
+      "pid": 277,
+      "is_alive": true,
+      "returncode": null,
+      "cmdline": "-Declipse.application=org.eclipse.jdt.ls.core.id1 -Dosgi.bundles.defaultStartLevel=4 -Declipse.product=org.eclipse.jdt.ls.core.product -Dosgi.checkConfiguration=true -Dosgi.sharedConfiguration.area=/home/admin/tools/jdt-language-server/config_linux -Dosgi.sharedConfiguration.area.readOnly=true -Dosgi.configuration.cascaded=true -Xms1G --add-modules=ALL-SYSTEM --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED -Xms128m -Xmx700m -Dosgi.configuration.area=/tmp/jdtls_spike_mini/_jdtls/no_sources/configuration -jar /home/admin/tools/jdt-language-server/plugins/org.eclipse.equinox.launcher_1.7.200.v20260619-2039.jar -data /tmp/jdtls_spike_mini/_jdtls/no_sources/data",
+      "ps_argv": [
+        "ps",
+        "-o",
+        "pid=,ppid=,rss=,etime=,args=",
+        "-p",
+        "277"
+      ],
+      "ps_stdout": "    277       2 340380      00:02 -Declipse.application=org.eclipse.jdt.ls.core.id1 -Dosgi.bundles.defaultStartLevel=4 -Declipse.product=org.eclipse.jdt.ls.core.product -Dosgi.checkConfiguration=true -Dosgi.sharedConfiguration.area=/home/admin/tools/jdt-language-server/config_linux -Dosgi.sharedConfiguration.area.readOnly=true -Dosgi.configuration.cascaded=true -Xms1G --add-modules=ALL-SYSTEM --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED -Xms128m -Xmx700m -Dosgi.configuration.area=/tmp/jdtls_spike_mini/_jdtls/no_sources/configuration -jar /home/admin/tools/jdt-language-server/plugins/org.eclipse.equinox.launcher_1.7.200.v20260619-2039.jar -data /tmp/jdtls_spike_mini/_jdtls/no_sources/data\n",
+      "ps_stderr": "",
+      "ps_returncode": 0,
+      "rss_kib": 340380
+    },
+    "stderr": "WARNING: Using incubator modules: jdk.incubator.vector\nJul 29, 2026 6:23:40 AM org.apache.aries.spifly.BaseActivator log\nINFO: Registered provider ch.qos.logback.classic.spi.LogbackServiceProvider of service org.slf4j.spi.SLF4JServiceProvider in bundle ch.qos.logback.classic\n",
+    "process": {
+      "pid": 277,
+      "is_alive": true,
+      "returncode": null,
+      "cmdline": "-Declipse.application=org.eclipse.jdt.ls.core.id1 -Dosgi.bundles.defaultStartLevel=4 -Declipse.product=org.eclipse.jdt.ls.core.product -Dosgi.checkConfiguration=true -Dosgi.sharedConfiguration.area=/home/admin/tools/jdt-language-server/config_linux -Dosgi.sharedConfiguration.area.readOnly=true -Dosgi.configuration.cascaded=true -Xms1G --add-modules=ALL-SYSTEM --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED -Xms128m -Xmx700m -Dosgi.configuration.area=/tmp/jdtls_spike_mini/_jdtls/no_sources/configuration -jar /home/admin/tools/jdt-language-server/plugins/org.eclipse.equinox.launcher_1.7.200.v20260619-2039.jar -data /tmp/jdtls_spike_mini/_jdtls/no_sources/data",
+      "ps_argv": [
+        "ps",
+        "-o",
+        "pid=,ppid=,rss=,etime=,args=",
+        "-p",
+        "277"
+      ],
+      "ps_stdout": "    277       2 995912      00:08 -Declipse.application=org.eclipse.jdt.ls.core.id1 -Dosgi.bundles.defaultStartLevel=4 -Declipse.product=org.eclipse.jdt.ls.core.product -Dosgi.checkConfiguration=true -Dosgi.sharedConfiguration.area=/home/admin/tools/jdt-language-server/config_linux -Dosgi.sharedConfiguration.area.readOnly=true -Dosgi.configuration.cascaded=true -Xms1G --add-modules=ALL-SYSTEM --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED -Xms128m -Xmx700m -Dosgi.configuration.area=/tmp/jdtls_spike_mini/_jdtls/no_sources/configuration -jar /home/admin/tools/jdt-language-server/plugins/org.eclipse.equinox.launcher_1.7.200.v20260619-2039.jar -data /tmp/jdtls_spike_mini/_jdtls/no_sources/data\n",
+      "ps_stderr": "",
+      "ps_returncode": 0,
+      "rss_kib": 995912
+    },
+    "service_ready_ms": 3928.66,
+    "language_statuses": [
+      {
+        "params": {
+          "type": "Starting",
+          "message": "Init..."
+        },
+        "elapsed_ms": 2508.239
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "0% Starting Java Language Server"
+        },
+        "elapsed_ms": 2508.465
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "27% Starting Java Language Server - 0% https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-resources-plugin/3.4.0/maven-resources-plugin-3.4.0.jar"
+        },
+        "elapsed_ms": 2775.377
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "27% Starting Java Language Server - file:///tmp/jdtls_spike_mini/_feed/jp/iryo/spike/mini-lib/1.0.0/mini-lib-1.0.0.pom"
+        },
+        "elapsed_ms": 3078.096
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "59% Starting Java Language Server - 0% https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/4.0.2/plexus-utils-4.0.2.pom"
+        },
+        "elapsed_ms": 3288.882
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "59% Starting Java Language Server - 0% https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-filtering/3.4.0/maven-filtering-3.4.0.jar"
+        },
+        "elapsed_ms": 3490.223
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "70% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3901.4
+      },
+      {
+        "params": {
+          "type": "ProjectStatus",
+          "message": "OK"
+        },
+        "elapsed_ms": 3904.11
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "100% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3904.219
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "1000% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3904.782
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "1005% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3904.922
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "1010% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3906.246
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "1100% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3906.373
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "1100% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3906.453
+      },
+      {
+        "params": {
+          "type": "Started",
+          "message": "Ready"
+        },
+        "elapsed_ms": 3906.926
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "1100% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3920.549
+      },
+      {
+        "params": {
+          "type": "ServiceReady",
+          "message": "ServiceReady"
+        },
+        "elapsed_ms": 3928.66
+      }
+    ],
+    "server_requests": [
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "2",
+        "params": {
+          "token": "f6cadb89-8e76-4512-a137-345d6aa15f55"
+        },
+        "elapsed_ms": 2472.667
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "1",
+        "params": {
+          "token": "0b00f42f-fcef-4c87-b9aa-3bf113267c3c"
+        },
+        "elapsed_ms": 2472.735
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "3",
+        "params": {
+          "token": "a4ccf92f-1fb2-424a-991e-6b54a85e0e5a"
+        },
+        "elapsed_ms": 2481.687
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "4",
+        "params": {
+          "token": "c7c6b3a3-ddb5-4cb1-95b0-2800b59e276c"
+        },
+        "elapsed_ms": 2504.638
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "5",
+        "params": {
+          "token": "47b64035-9a81-42d0-a40c-5aef5f8df349"
+        },
+        "elapsed_ms": 2508.556
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "6",
+        "params": {
+          "token": "65aa5056-7f9a-44b6-8360-68a7ceff4993"
+        },
+        "elapsed_ms": 2517.859
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "7",
+        "params": {
+          "token": "aa5f9233-85a7-4479-8fe3-4b1e6c29a79b"
+        },
+        "elapsed_ms": 3064.243
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "8",
+        "params": {
+          "token": "4b81d793-37b9-4aa8-a7bc-8424bbc9b07e"
+        },
+        "elapsed_ms": 3947.862
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "9",
+        "params": {
+          "token": "d465bbe3-76c3-450a-b053-cbb220b4ac99"
+        },
+        "elapsed_ms": 4095.373
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "10",
+        "params": {
+          "token": "70525160-4685-4719-bfba-599e39e4c8e1"
+        },
+        "elapsed_ms": 4134.975
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "11",
+        "params": {
+          "token": "afe0fa98-6b6f-4408-b8ea-22f1618884ab"
+        },
+        "elapsed_ms": 4164.035
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "12",
+        "params": {
+          "token": "15456338-febb-496d-ac38-92bf10e9caf1"
+        },
+        "elapsed_ms": 4194.201
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "13",
+        "params": {
+          "token": "f960cdc7-a8c5-467f-bfef-bb3ec7d68dea"
+        },
+        "elapsed_ms": 4205.414
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "14",
+        "params": {
+          "token": "262add2f-50e1-4c6f-a0ad-fe2b0decf991"
+        },
+        "elapsed_ms": 4538.27
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "15",
+        "params": {
+          "token": "06f0c5b0-e8bc-4849-921c-2d33d04b52d0"
+        },
+        "elapsed_ms": 5151.285
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "16",
+        "params": {
+          "token": "e93e0b63-6386-429c-8225-ec160a646595"
+        },
+        "elapsed_ms": 7236.608
+      }
+    ],
+    "notifications": [
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "f6cadb89-8e76-4512-a137-345d6aa15f55",
+          "value": {
+            "kind": "begin",
+            "title": "Detect installed JVMs",
+            "message": "Detect installed JVMs"
+          }
+        },
+        "elapsed_ms": 2475.34
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "0b00f42f-fcef-4c87-b9aa-3bf113267c3c",
+          "value": {
+            "kind": "begin",
+            "title": "Synchronizing projects",
+            "message": "Synchronizing projects"
+          }
+        },
+        "elapsed_ms": 2475.38
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "0b00f42f-fcef-4c87-b9aa-3bf113267c3c",
+          "value": {
+            "kind": "report",
+            "message": "Synchronizing projects - 0% ",
+            "percentage": 0
+          }
+        },
+        "elapsed_ms": 2476.101
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "f6cadb89-8e76-4512-a137-345d6aa15f55",
+          "value": {
+            "kind": "report",
+            "message": "Detect installed JVMs - 0% ",
+            "percentage": 0
+          }
+        },
+        "elapsed_ms": 2476.149
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "0b00f42f-fcef-4c87-b9aa-3bf113267c3c",
+          "value": {
+            "kind": "end",
+            "message": "Synchronizing projects"
+          }
+        },
+        "elapsed_ms": 2481.446
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "a4ccf92f-1fb2-424a-991e-6b54a85e0e5a",
+          "value": {
+            "kind": "begin",
+            "title": "Synchronizing projects",
+            "message": "Synchronizing projects"
+          }
+        },
+        "elapsed_ms": 2481.758
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "a4ccf92f-1fb2-424a-991e-6b54a85e0e5a",
+          "value": {
+            "kind": "report",
+            "message": "Synchronizing projects - 0% ",
+            "percentage": 0
+          }
+        },
+        "elapsed_ms": 2481.985
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "f6cadb89-8e76-4512-a137-345d6aa15f55",
+          "value": {
+            "kind": "end",
+            "message": "/usr/lib/jvm/java-17-openjdk-amd64"
+          }
+        },
+        "elapsed_ms": 2482.25
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "a4ccf92f-1fb2-424a-991e-6b54a85e0e5a",
+          "value": {
+            "kind": "end",
+            "message": "Synchronizing projects"
+          }
+        },
+        "elapsed_ms": 2482.307
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "c7c6b3a3-ddb5-4cb1-95b0-2800b59e276c",
+          "value": {
+            "kind": "begin",
+            "title": "Building",
+            "message": "Building"
+          }
+        },
+        "elapsed_ms": 2504.725
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "c7c6b3a3-ddb5-4cb1-95b0-2800b59e276c",
+          "value": {
+            "kind": "report",
+            "message": "Building - 0% ",
+            "percentage": 0
+          }
+        },
+        "elapsed_ms": 2504.871
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "c7c6b3a3-ddb5-4cb1-95b0-2800b59e276c",
+          "value": {
+            "kind": "end",
+            "message": "Building"
+          }
+        },
+        "elapsed_ms": 2505.145
+      },
+      {
+        "method": "language/status",
+        "params": {
+          "type": "Starting",
+          "message": "Init..."
+        },
+        "elapsed_ms": 2508.239
+      },
+      {
+        "method": "language/status",
+        "params": {
+          "type": "Starting",
+          "message": "0% Starting Java Language Server"
+        },
+        "elapsed_ms": 2508.465
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "47b64035-9a81-42d0-a40c-5aef5f8df349",
+          "value": {
+            "kind": "begin",
+            "title": "Initialize Workspace",
+            "message": "Initialize Workspace"
+          }
+        },
+        "elapsed_ms": 2508.775
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "47b64035-9a81-42d0-a40c-5aef5f8df349",
+          "value": {
+            "kind": "report",
+            "message": "Initialize Workspace - 0% ",
+            "percentage": 0
+          }
+        },
+        "elapsed_ms": 2508.94
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "65aa5056-7f9a-44b6-8360-68a7ceff4993",
+          "value": {
+            "kind": "begin",
+            "title": "Repository registry initialization",
+            "message": "Repository registry initialization"
+          }
+        },
+        "elapsed_ms": 2517.903
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "65aa5056-7f9a-44b6-8360-68a7ceff4993",
+          "value": {
+            "kind": "end",
+            "message": "Repository registry initialization"
+          }
+        },
+        "elapsed_ms": 2517.914
+      },
+      {
+        "method": "language/status",
+        "params": {
+          "type": "Starting",
+          "message": "27% Starting Java Language Server - 0% https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-resources-plugin/3.4.0/maven-resources-plugin-3.4.0.jar"
+        },
+        "elapsed_ms": 2775.377
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "47b64035-9a81-42d0-a40c-5aef5f8df349",
+          "value": {
+            "kind": "report",
+            "message": "Importing Maven project(s) - 0% https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-resources-plugin/3.4.0/maven-resources-plugin-3.4.0.jar",
+            "percentage": 27
+          }
+        },
+        "elapsed_ms": 2775.433
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "aa5f9233-85a7-4479-8fe3-4b1e6c29a79b",
+          "value": {
+            "kind": "begin",
+            "title": "LookupJDKToolchainsJob",
+            "message": "LookupJDKToolchainsJob"
+          }
+        },
+        "elapsed_ms": 3064.326
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "aa5f9233-85a7-4479-8fe3-4b1e6c29a79b",
+          "value": {
+            "kind": "end",
+            "message": "LookupJDKToolchainsJob"
+          }
+        },
+        "elapsed_ms": 3064.362
+      },
+      {
+        "method": "language/status",
+        "params": {
+          "type": "Starting",
+          "message": "27% Starting Java Language Server - file:///tmp/jdtls_spike_mini/_feed/jp/iryo/spike/mini-lib/1.0.0/mini-lib-1.0.0.pom"
+        },
+        "elapsed_ms": 3078.096
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "47b64035-9a81-42d0-a40c-5aef5f8df349",
+          "value": {
+            "kind": "report",
+            "message": "Importing Maven project(s) - file:///tmp/jdtls_spike_mini/_feed/jp/iryo/spike/mini-lib/1.0.0/mini-lib-1.0.0.pom",
+            "percentage": 27
+          }
+        },
+        "elapsed_ms": 3078.194
+      },
+      {
+        "method": "language/status",
+        "params": {
+          "type": "Starting",
+          "message": "59% Starting Java Language Server - 0% https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/4.0.2/plexus-utils-4.0.2.pom"
+        },
+        "elapsed_ms": 3288.882
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "47b64035-9a81-42d0-a40c-5aef5f8df349",
+          "value": {
+            "kind": "report",
+            "message": "Configuring java project mini-app - 59% 0% https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/4.0.2/plexus-utils-4.0.2.pom",
+            "percentage": 58
+          }
+        },
+        "elapsed_ms": 3288.966
+      },
+      {
+        "method": "language/status",
+        "params": {
+          "type": "Starting",
+          "message": "59% Starting Java Language Server - 0% https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-filtering/3.4.0/maven-filtering-3.4.0.jar"
+        },
+        "elapsed_ms": 3490.223
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "47b64035-9a81-42d0-a40c-5aef5f8df349",
+          "value": {
+            "kind": "report",
+            "message": "Configuring java project mini-app - 59% 0% https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-filtering/3.4.0/maven-filtering-3.4.0.jar",
+            "percentage": 58
+          }
+        },
+        "elapsed_ms": 3490.305
+      },
+      {
+        "method": "language/status",
+        "params": {
+          "type": "Starting",
+          "message": "70% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3901.4
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "47b64035-9a81-42d0-a40c-5aef5f8df349",
+          "value": {
+            "kind": "report",
+            "message": "Resolve plugin dependency - 70% Refreshing '/mini-app/src/test/java'.",
+            "percentage": 70
+          }
+        },
+        "elapsed_ms": 3901.473
+      },
+      {
+        "method": "language/eventNotification",
+        "params": {
+          "eventType": 200,
+          "data": [
+            "file:/tmp/jdtls_spike_mini/mini-app/"
+          ]
+        },
+        "elapsed_ms": 3903.38
+      },
+      {
+        "method": "language/status",
+        "params": {
+          "type": "ProjectStatus",
+          "message": "OK"
+        },
+        "elapsed_ms": 3904.11
+      },
+      {
+        "method": "language/status",
+        "params": {
+          "type": "Starting",
+          "message": "100% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3904.219
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "47b64035-9a81-42d0-a40c-5aef5f8df349",
+          "value": {
+            "kind": "end",
+            "message": "Resolve plugin dependency"
+          }
+        },
+        "elapsed_ms": 3904.266
+      },
+      {
+        "method": "language/status",
+        "params": {
+          "type": "Starting",
+          "message": "1000% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3904.782
+      },
+      {
+        "method": "language/status",
+        "params": {
+          "type": "Starting",
+          "message": "1005% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3904.922
+      },
+      {
+        "method": "language/status",
+        "params": {
+          "type": "Starting",
+          "message": "1010% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3906.246
+      },
+      {
+        "method": "language/status",
+        "params": {
+          "type": "Starting",
+          "message": "1100% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3906.373
+      },
+      {
+        "method": "language/status",
+        "params": {
+          "type": "Starting",
+          "message": "1100% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3906.453
+      },
+      {
+        "method": "language/status",
+        "params": {
+          "type": "Started",
+          "message": "Ready"
+        },
+        "elapsed_ms": 3906.926
+      },
+      {
+        "method": "language/status",
+        "params": {
+          "type": "Starting",
+          "message": "1100% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3920.549
+      },
+      {
+        "method": "language/status",
+        "params": {
+          "type": "ServiceReady",
+          "message": "ServiceReady"
+        },
+        "elapsed_ms": 3928.66
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "4b81d793-37b9-4aa8-a7bc-8424bbc9b07e",
+          "value": {
+            "kind": "begin",
+            "title": "Building",
+            "message": "Building"
+          }
+        },
+        "elapsed_ms": 3947.942
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "4b81d793-37b9-4aa8-a7bc-8424bbc9b07e",
+          "value": {
+            "kind": "report",
+            "message": "Building - 0% ",
+            "percentage": 0
+          }
+        },
+        "elapsed_ms": 3948.019
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "d465bbe3-76c3-450a-b053-cbb220b4ac99",
+          "value": {
+            "kind": "begin",
+            "title": "Download sources and javadoc",
+            "message": "Download sources and javadoc"
+          }
+        },
+        "elapsed_ms": 4095.462
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "d465bbe3-76c3-450a-b053-cbb220b4ac99",
+          "value": {
+            "kind": "report",
+            "message": "Download sources and javadoc - 0% ",
+            "percentage": 0
+          }
+        },
+        "elapsed_ms": 4095.509
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "d465bbe3-76c3-450a-b053-cbb220b4ac99",
+          "value": {
+            "kind": "end",
+            "message": "Download sources and javadoc: mini-lib"
+          }
+        },
+        "elapsed_ms": 4134.765
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "70525160-4685-4719-bfba-599e39e4c8e1",
+          "value": {
+            "kind": "begin",
+            "title": "Refreshing workspace",
+            "message": "Refreshing workspace"
+          }
+        },
+        "elapsed_ms": 4135.09
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "70525160-4685-4719-bfba-599e39e4c8e1",
+          "value": {
+            "kind": "report",
+            "message": "Refreshing workspace - 0% ",
+            "percentage": 0
+          }
+        },
+        "elapsed_ms": 4135.164
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "4b81d793-37b9-4aa8-a7bc-8424bbc9b07e",
+          "value": {
+            "kind": "report",
+            "message": "Building - 8% (Found 2 warnings) Compiling mini-app/src/main/java/jp/iryo/spike/app",
+            "percentage": 8
+          }
+        },
+        "elapsed_ms": 4153.419
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "4b81d793-37b9-4aa8-a7bc-8424bbc9b07e",
+          "value": {
+            "kind": "end",
+            "message": "Building"
+          }
+        },
+        "elapsed_ms": 4157.399
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "afe0fa98-6b6f-4408-b8ea-22f1618884ab",
+          "value": {
+            "kind": "begin",
+            "title": "Building",
+            "message": "Building"
+          }
+        },
+        "elapsed_ms": 4164.171
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "afe0fa98-6b6f-4408-b8ea-22f1618884ab",
+          "value": {
+            "kind": "report",
+            "message": "Building - 0% ",
+            "percentage": 0
+          }
+        },
+        "elapsed_ms": 4164.346
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "70525160-4685-4719-bfba-599e39e4c8e1",
+          "value": {
+            "kind": "end",
+            "message": "Refreshing workspace"
+          }
+        },
+        "elapsed_ms": 4167.021
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "afe0fa98-6b6f-4408-b8ea-22f1618884ab",
+          "value": {
+            "kind": "end",
+            "message": "Building"
+          }
+        },
+        "elapsed_ms": 4192.93
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "15456338-febb-496d-ac38-92bf10e9caf1",
+          "value": {
+            "kind": "begin",
+            "title": "Building",
+            "message": "Building"
+          }
+        },
+        "elapsed_ms": 4194.278
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "15456338-febb-496d-ac38-92bf10e9caf1",
+          "value": {
+            "kind": "report",
+            "message": "Building - 0% ",
+            "percentage": 0
+          }
+        },
+        "elapsed_ms": 4194.373
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "15456338-febb-496d-ac38-92bf10e9caf1",
+          "value": {
+            "kind": "end",
+            "message": "Building"
+          }
+        },
+        "elapsed_ms": 4194.652
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "f960cdc7-a8c5-467f-bfef-bb3ec7d68dea",
+          "value": {
+            "kind": "begin",
+            "title": "Searching...",
+            "message": "Searching..."
+          }
+        },
+        "elapsed_ms": 4205.512
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "f960cdc7-a8c5-467f-bfef-bb3ec7d68dea",
+          "value": {
+            "kind": "report",
+            "message": "Searching... - 0% ",
+            "percentage": 0
+          }
+        },
+        "elapsed_ms": 4205.563
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "262add2f-50e1-4c6f-a0ad-fe2b0decf991",
+          "value": {
+            "kind": "begin",
+            "title": "Validate documents",
+            "message": "Validate documents"
+          }
+        },
+        "elapsed_ms": 4538.355
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "262add2f-50e1-4c6f-a0ad-fe2b0decf991",
+          "value": {
+            "kind": "report",
+            "message": "Validate documents - 0% ",
+            "percentage": 0
+          }
+        },
+        "elapsed_ms": 4538.602
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "262add2f-50e1-4c6f-a0ad-fe2b0decf991",
+          "value": {
+            "kind": "end",
+            "message": "Validate documents"
+          }
+        },
+        "elapsed_ms": 4540.437
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "06f0c5b0-e8bc-4849-921c-2d33d04b52d0",
+          "value": {
+            "kind": "begin",
+            "title": "Publish Diagnostics",
+            "message": "Publish Diagnostics"
+          }
+        },
+        "elapsed_ms": 5151.362
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "06f0c5b0-e8bc-4849-921c-2d33d04b52d0",
+          "value": {
+            "kind": "report",
+            "message": "Publish Diagnostics - 0% ",
+            "percentage": 0
+          }
+        },
+        "elapsed_ms": 5151.451
+      },
+      {
+        "method": "textDocument/publishDiagnostics",
+        "params": {
+          "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+          "diagnostics": [
+            {
+              "range": {
+                "start": {
+                  "line": 15,
+                  "character": 25
+                },
+                "end": {
+                  "line": 15,
+                  "character": 29
+                }
+              },
+              "severity": 2,
+              "code": "570425421",
+              "source": "Java",
+              "message": "The value of the field App.name is not used"
+            },
+            {
+              "range": {
+                "start": {
+                  "line": 53,
+                  "character": 22
+                },
+                "end": {
+                  "line": 53,
+                  "character": 30
+                }
+              },
+              "severity": 2,
+              "code": "16777221",
+              "source": "Java",
+              "message": "The type OldTable is deprecated"
+            }
+          ]
+        },
+        "elapsed_ms": 5241.795
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "06f0c5b0-e8bc-4849-921c-2d33d04b52d0",
+          "value": {
+            "kind": "end",
+            "message": "Publish Diagnostics"
+          }
+        },
+        "elapsed_ms": 5242.205
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "f960cdc7-a8c5-467f-bfef-bb3ec7d68dea",
+          "value": {
+            "kind": "report",
+            "message": "Searching... - 80% 3 files to index (/tmp/jdtls_spike_mini/_m2/jp/iryo/spike/mini-lib/1.0.0/mini-lib-1.0.0.jar)",
+            "percentage": 79
+          }
+        },
+        "elapsed_ms": 7117.39
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "f960cdc7-a8c5-467f-bfef-bb3ec7d68dea",
+          "value": {
+            "kind": "end",
+            "message": "Searching..."
+          }
+        },
+        "elapsed_ms": 7228.806
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "e93e0b63-6386-429c-8225-ec160a646595",
+          "value": {
+            "kind": "begin",
+            "title": "Download sources and javadoc",
+            "message": "Download sources and javadoc"
+          }
+        },
+        "elapsed_ms": 7236.709
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "e93e0b63-6386-429c-8225-ec160a646595",
+          "value": {
+            "kind": "report",
+            "message": "Download sources and javadoc - 0% ",
+            "percentage": 0
+          }
+        },
+        "elapsed_ms": 7236.759
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "e93e0b63-6386-429c-8225-ec160a646595",
+          "value": {
+            "kind": "end",
+            "message": "Download sources and javadoc: mini-lib"
+          }
+        },
+        "elapsed_ms": 7272.855
+      }
+    ],
+    "request_records": [
+      {
+        "method": "initialize",
+        "params": {
+          "processId": 2,
+          "rootUri": "file:///tmp/jdtls_spike_mini/mini-app",
+          "workspaceFolders": [
+            {
+              "uri": "file:///tmp/jdtls_spike_mini/mini-app",
+              "name": "mini-app"
+            }
+          ],
+          "capabilities": {
+            "workspace": {
+              "configuration": true,
+              "workspaceFolders": true
+            },
+            "window": {
+              "workDoneProgress": true
+            },
+            "textDocument": {
+              "documentSymbol": {
+                "hierarchicalDocumentSymbolSupport": true
+              },
+              "definition": {},
+              "hover": {
+                "contentFormat": [
+                  "markdown",
+                  "plaintext"
+                ]
+              }
+            }
+          },
+          "initializationOptions": {
+            "extendedClientCapabilities": {
+              "classFileContentsSupport": true
+            },
+            "settings": {
+              "java": {
+                "maven": {
+                  "downloadSources": true
+                },
+                "import": {
+                  "gradle": {
+                    "enabled": false
+                  }
+                },
+                "configuration": {
+                  "maven": {
+                    "userSettings": "/tmp/jdtls_spike_mini/settings.xml"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "started_ms": 0.031,
+        "completed_ms": 2517.995,
+        "result": {
+          "capabilities": {
+            "textDocumentSync": {
+              "openClose": true,
+              "change": 2,
+              "save": {
+                "includeText": true
+              }
+            },
+            "hoverProvider": true,
+            "completionProvider": {
+              "resolveProvider": true,
+              "triggerCharacters": [
+                ".",
+                "@",
+                "#",
+                "*",
+                " "
+              ]
+            },
+            "signatureHelpProvider": {
+              "triggerCharacters": [
+                "(",
+                ","
+              ]
+            },
+            "definitionProvider": true,
+            "typeDefinitionProvider": true,
+            "implementationProvider": true,
+            "referencesProvider": true,
+            "documentHighlightProvider": true,
+            "documentSymbolProvider": true,
+            "workspaceSymbolProvider": true,
+            "codeActionProvider": {
+              "codeActionKinds": [],
+              "resolveProvider": false
+            },
+            "codeLensProvider": {
+              "resolveProvider": true
+            },
+            "documentFormattingProvider": true,
+            "documentRangeFormattingProvider": true,
+            "documentOnTypeFormattingProvider": {
+              "firstTriggerCharacter": ";",
+              "moreTriggerCharacter": [
+                "\n",
+                "}"
+              ]
+            },
+            "renameProvider": {
+              "prepareProvider": true
+            },
+            "foldingRangeProvider": true,
+            "declarationProvider": true,
+            "executeCommandProvider": {
+              "commands": [
+                "java.project.import",
+                "java.project.changeImportedProjects",
+                "java.navigate.openTypeHierarchy",
+                "java.project.resolveStackTraceLocation",
+                "java.edit.handlePasteEvent",
+                "java.edit.stringFormatting",
+                "java.project.getSettings",
+                "java.project.resolveWorkspaceSymbol",
+                "java.project.upgradeGradle",
+                "java.project.createModuleInfo",
+                "java.vm.getAllInstalls",
+                "java.edit.organizeImports",
+                "java.project.refreshDiagnostics",
+                "java.getFullyQualifiedName",
+                "java.project.removeFromSourcePath",
+                "java.project.listSourcePaths",
+                "java.project.updateSettings",
+                "java.project.getAll",
+                "java.reloadBundles",
+                "java.project.isTestFile",
+                "java.project.resolveText",
+                "java.project.getClasspaths",
+                "java.navigate.resolveTypeHierarchy",
+                "java.getTroubleshootingInfo",
+                "java.edit.smartSemicolonDetection",
+                "java.project.updateSourceAttachment",
+                "java.project.updateClassPaths",
+                "java.decompile",
+                "java.protobuf.generateSources",
+                "java.project.resolveSourceAttachment",
+                "java.project.updateJdk",
+                "java.project.addToSourcePath",
+                "java.completion.onDidSelect"
+              ]
+            },
+            "workspace": {
+              "workspaceFolders": {
+                "supported": true,
+                "changeNotifications": true
+              }
+            },
+            "typeHierarchyProvider": true,
+            "callHierarchyProvider": true,
+            "selectionRangeProvider": true,
+            "semanticTokensProvider": {
+              "legend": {
+                "tokenTypes": [
+                  "namespace",
+                  "class",
+                  "interface",
+                  "enum",
+                  "enumMember",
+                  "type",
+                  "typeParameter",
+                  "method",
+                  "property",
+                  "variable",
+                  "parameter",
+                  "modifier",
+                  "keyword",
+                  "decorator",
+                  "annotationMember",
+                  "record",
+                  "recordComponent"
+                ],
+                "tokenModifiers": [
+                  "abstract",
+                  "static",
+                  "readonly",
+                  "deprecated",
+                  "declaration",
+                  "documentation",
+                  "public",
+                  "private",
+                  "protected",
+                  "native",
+                  "generic",
+                  "typeArgument",
+                  "importDeclaration",
+                  "constructor"
+                ]
+              },
+              "range": false,
+              "full": {
+                "delta": false
+              },
+              "documentSelector": [
+                {
+                  "language": "java",
+                  "scheme": "file"
+                },
+                {
+                  "language": "java",
+                  "scheme": "jdt"
+                }
+              ]
+            },
+            "inlayHintProvider": true
+          },
+          "serverInfo": {
+            "name": "JDT Language Server (Standard)",
+            "version": "1.61.0-SNAPSHOT"
+          }
+        }
+      },
+      {
+        "method": "textDocument/definition",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 28,
+            "character": 36
+          }
+        },
+        "started_ms": 2522.284,
+        "completed_ms": 7438.928,
+        "result": [
+          {
+            "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Calculations.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Calculations.class",
+            "range": {
+              "start": {
+                "line": 13,
+                "character": 3
+              },
+              "end": {
+                "line": 15,
+                "character": 4
+              }
+            }
+          }
+        ]
+      },
+      {
+        "method": "textDocument/documentSymbol",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          }
+        },
+        "started_ms": 7439.026,
+        "completed_ms": 7449.709,
+        "result": [
+          {
+            "name": "jp.iryo.spike.app",
+            "kind": 4,
+            "range": {
+              "start": {
+                "line": 0,
+                "character": 0
+              },
+              "end": {
+                "line": 0,
+                "character": 26
+              }
+            },
+            "selectionRange": {
+              "start": {
+                "line": 0,
+                "character": 0
+              },
+              "end": {
+                "line": 0,
+                "character": 26
+              }
+            },
+            "detail": ""
+          },
+          {
+            "name": "App",
+            "kind": 5,
+            "range": {
+              "start": {
+                "line": 14,
+                "character": 0
+              },
+              "end": {
+                "line": 65,
+                "character": 1
+              }
+            },
+            "selectionRange": {
+              "start": {
+                "line": 14,
+                "character": 13
+              },
+              "end": {
+                "line": 14,
+                "character": 16
+              }
+            },
+            "detail": "",
+            "children": [
+              {
+                "name": "name",
+                "kind": 8,
+                "range": {
+                  "start": {
+                    "line": 15,
+                    "character": 4
+                  },
+                  "end": {
+                    "line": 15,
+                    "character": 30
+                  }
+                },
+                "selectionRange": {
+                  "start": {
+                    "line": 15,
+                    "character": 25
+                  },
+                  "end": {
+                    "line": 15,
+                    "character": 29
+                  }
+                },
+                "detail": ""
+              },
+              {
+                "name": "App()",
+                "kind": 9,
+                "range": {
+                  "start": {
+                    "line": 17,
+                    "character": 4
+                  },
+                  "end": {
+                    "line": 17,
+                    "character": 32
+                  }
+                },
+                "selectionRange": {
+                  "start": {
+                    "line": 17,
+                    "character": 11
+                  },
+                  "end": {
+                    "line": 17,
+                    "character": 14
+                  }
+                },
+                "detail": ""
+              },
+              {
+                "name": "App(String)",
+                "kind": 9,
+                "range": {
+                  "start": {
+                    "line": 19,
+                    "character": 4
+                  },
+                  "end": {
+                    "line": 19,
+                    "character": 58
+                  }
+                },
+                "selectionRange": {
+                  "start": {
+                    "line": 19,
+                    "character": 11
+                  },
+                  "end": {
+                    "line": 19,
+                    "character": 14
+                  }
+                },
+                "detail": ""
+              },
+              {
+                "name": "localPlain(String)",
+                "kind": 6,
+                "range": {
+                  "start": {
+                    "line": 21,
+                    "character": 4
+                  },
+                  "end": {
+                    "line": 23,
+                    "character": 5
+                  }
+                },
+                "selectionRange": {
+                  "start": {
+                    "line": 21,
+                    "character": 18
+                  },
+                  "end": {
+                    "line": 21,
+                    "character": 28
+                  }
+                },
+                "detail": " : String"
+              },
+              {
+                "name": "main(String[])",
+                "kind": 6,
+                "range": {
+                  "start": {
+                    "line": 25,
+                    "character": 4
+                  },
+                  "end": {
+                    "line": 60,
+                    "character": 5
+                  }
+                },
+                "selectionRange": {
+                  "start": {
+                    "line": 25,
+                    "character": 23
+                  },
+                  "end": {
+                    "line": 25,
+                    "character": 27
+                  }
+                },
+                "detail": " : void",
+                "children": [
+                  {
+                    "name": "new Notifier() {...}",
+                    "kind": 5,
+                    "range": {
+                      "start": {
+                        "line": 42,
+                        "character": 21
+                      },
+                      "end": {
+                        "line": 44,
+                        "character": 9
+                      }
+                    },
+                    "selectionRange": {
+                      "start": {
+                        "line": 42,
+                        "character": 25
+                      },
+                      "end": {
+                        "line": 42,
+                        "character": 33
+                      }
+                    },
+                    "detail": "",
+                    "children": [
+                      {
+                        "name": "send(String)",
+                        "kind": 6,
+                        "range": {
+                          "start": {
+                            "line": 43,
+                            "character": 12
+                          },
+                          "end": {
+                            "line": 43,
+                            "character": 51
+                          }
+                        },
+                        "selectionRange": {
+                          "start": {
+                            "line": 43,
+                            "character": 34
+                          },
+                          "end": {
+                            "line": 43,
+                            "character": 38
+                          }
+                        },
+                        "detail": " : void"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "nameOf(Object...)",
+                "kind": 6,
+                "range": {
+                  "start": {
+                    "line": 62,
+                    "character": 4
+                  },
+                  "end": {
+                    "line": 64,
+                    "character": 5
+                  }
+                },
+                "selectionRange": {
+                  "start": {
+                    "line": 62,
+                    "character": 26
+                  },
+                  "end": {
+                    "line": 62,
+                    "character": 32
+                  }
+                },
+                "detail": " : String"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "method": "textDocument/definition",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 28,
+            "character": 36
+          }
+        },
+        "started_ms": 7449.918,
+        "completed_ms": 7469.064,
+        "result": [
+          {
+            "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Calculations.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Calculations.class",
+            "range": {
+              "start": {
+                "line": 13,
+                "character": 3
+              },
+              "end": {
+                "line": 15,
+                "character": 4
+              }
+            }
+          }
+        ]
+      },
+      {
+        "method": "java/classFileContents",
+        "params": {
+          "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Calculations.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Calculations.class"
+        },
+        "started_ms": 7469.075,
+        "completed_ms": 7488.924,
+        "result": "// Source code is decompiled from a .class file using FernFlower decompiler (from Intellij IDEA).\npackage jp.iryo.spike.lib;\n\npublic final class Calculations {\n   public static final String 日本語定数 = \"診療\";\n\n   private Calculations() {\n   }\n\n   public static int calculate(int a, int b) {\n      return a + b;\n   }\n\n   public static long calculate(long a, long b) {\n      return a + b;\n   }\n\n   public static int calculate(int... values) {\n      int total = 0;\n\n      for(int value : values) {\n         total += value;\n      }\n\n      return total;\n   }\n\n   public static int 点数変換(int 点数) {\n      return 点数 * 10;\n   }\n}\n"
+      },
+      {
+        "method": "textDocument/hover",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 53,
+            "character": 33
+          }
+        },
+        "started_ms": 7489.14,
+        "completed_ms": 7532.77,
+        "result": {
+          "contents": [
+            {
+              "language": "java",
+              "value": "int jp.iryo.spike.lib.OldTable.calc(int a, int b)"
+            },
+            "Source: *[mini-lib-1.0.0.jar](jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/OldTable.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28OldTable.class#1)*"
+          ]
+        }
+      },
+      {
+        "method": "textDocument/definition",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 53,
+            "character": 33
+          }
+        },
+        "started_ms": 7532.994,
+        "completed_ms": 7561.152,
+        "result": [
+          {
+            "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/OldTable.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28OldTable.class",
+            "range": {
+              "start": {
+                "line": 9,
+                "character": 3
+              },
+              "end": {
+                "line": 11,
+                "character": 4
+              }
+            }
+          }
+        ]
+      },
+      {
+        "method": "shutdown",
+        "params": null,
+        "started_ms": 8568.183,
+        "completed_ms": 8569.291,
+        "result": {}
+      }
+    ],
+    "opened_files": [
+      "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+    ]
+  },
+  "with_sources_session": {
+    "label": "with_sources",
+    "project_dir": "/tmp/jdtls_spike_mini/mini-app",
+    "command": [
+      "/home/admin/tools/jdt-language-server/bin/jdtls",
+      "--java-executable",
+      "/usr/lib/jvm/java-21-openjdk-amd64/bin/java",
+      "--jvm-arg=-Xms128m",
+      "--jvm-arg=-Xmx700m",
+      "--jvm-arg=-Dosgi.configuration.area=/tmp/jdtls_spike_mini/_jdtls/with_sources/configuration",
+      "-data",
+      "/tmp/jdtls_spike_mini/_jdtls/with_sources/data"
+    ],
+    "data_dir": "/tmp/jdtls_spike_mini/_jdtls/with_sources/data",
+    "configuration_dir": "/tmp/jdtls_spike_mini/_jdtls/with_sources/configuration",
+    "initialize": {
+      "method": "initialize",
+      "params": {
+        "processId": 2,
+        "rootUri": "file:///tmp/jdtls_spike_mini/mini-app",
+        "workspaceFolders": [
+          {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app",
+            "name": "mini-app"
+          }
+        ],
+        "capabilities": {
+          "workspace": {
+            "configuration": true,
+            "workspaceFolders": true
+          },
+          "window": {
+            "workDoneProgress": true
+          },
+          "textDocument": {
+            "documentSymbol": {
+              "hierarchicalDocumentSymbolSupport": true
+            },
+            "definition": {},
+            "hover": {
+              "contentFormat": [
+                "markdown",
+                "plaintext"
+              ]
+            }
+          }
+        },
+        "initializationOptions": {
+          "extendedClientCapabilities": {
+            "classFileContentsSupport": true
+          },
+          "settings": {
+            "java": {
+              "maven": {
+                "downloadSources": true
+              },
+              "import": {
+                "gradle": {
+                  "enabled": false
+                }
+              },
+              "configuration": {
+                "maven": {
+                  "userSettings": "/tmp/jdtls_spike_mini/settings.xml"
+                }
+              }
+            }
+          }
+        }
+      },
+      "response": {
+        "capabilities": {
+          "textDocumentSync": {
+            "openClose": true,
+            "change": 2,
+            "save": {
+              "includeText": true
+            }
+          },
+          "hoverProvider": true,
+          "completionProvider": {
+            "resolveProvider": true,
+            "triggerCharacters": [
+              ".",
+              "@",
+              "#",
+              "*",
+              " "
+            ]
+          },
+          "signatureHelpProvider": {
+            "triggerCharacters": [
+              "(",
+              ","
+            ]
+          },
+          "definitionProvider": true,
+          "typeDefinitionProvider": true,
+          "implementationProvider": true,
+          "referencesProvider": true,
+          "documentHighlightProvider": true,
+          "documentSymbolProvider": true,
+          "workspaceSymbolProvider": true,
+          "codeActionProvider": {
+            "codeActionKinds": [],
+            "resolveProvider": false
+          },
+          "codeLensProvider": {
+            "resolveProvider": true
+          },
+          "documentFormattingProvider": true,
+          "documentRangeFormattingProvider": true,
+          "documentOnTypeFormattingProvider": {
+            "firstTriggerCharacter": ";",
+            "moreTriggerCharacter": [
+              "\n",
+              "}"
+            ]
+          },
+          "renameProvider": {
+            "prepareProvider": true
+          },
+          "foldingRangeProvider": true,
+          "declarationProvider": true,
+          "executeCommandProvider": {
+            "commands": [
+              "java.project.import",
+              "java.project.changeImportedProjects",
+              "java.navigate.openTypeHierarchy",
+              "java.project.resolveStackTraceLocation",
+              "java.edit.handlePasteEvent",
+              "java.edit.stringFormatting",
+              "java.project.getSettings",
+              "java.project.resolveWorkspaceSymbol",
+              "java.project.upgradeGradle",
+              "java.project.createModuleInfo",
+              "java.vm.getAllInstalls",
+              "java.edit.organizeImports",
+              "java.project.refreshDiagnostics",
+              "java.getFullyQualifiedName",
+              "java.project.removeFromSourcePath",
+              "java.project.listSourcePaths",
+              "java.project.updateSettings",
+              "java.project.getAll",
+              "java.reloadBundles",
+              "java.project.isTestFile",
+              "java.project.resolveText",
+              "java.project.getClasspaths",
+              "java.navigate.resolveTypeHierarchy",
+              "java.getTroubleshootingInfo",
+              "java.edit.smartSemicolonDetection",
+              "java.project.updateSourceAttachment",
+              "java.project.updateClassPaths",
+              "java.decompile",
+              "java.protobuf.generateSources",
+              "java.project.resolveSourceAttachment",
+              "java.project.updateJdk",
+              "java.project.addToSourcePath",
+              "java.completion.onDidSelect"
+            ]
+          },
+          "workspace": {
+            "workspaceFolders": {
+              "supported": true,
+              "changeNotifications": true
+            }
+          },
+          "typeHierarchyProvider": true,
+          "callHierarchyProvider": true,
+          "selectionRangeProvider": true,
+          "semanticTokensProvider": {
+            "legend": {
+              "tokenTypes": [
+                "namespace",
+                "class",
+                "interface",
+                "enum",
+                "enumMember",
+                "type",
+                "typeParameter",
+                "method",
+                "property",
+                "variable",
+                "parameter",
+                "modifier",
+                "keyword",
+                "decorator",
+                "annotationMember",
+                "record",
+                "recordComponent"
+              ],
+              "tokenModifiers": [
+                "abstract",
+                "static",
+                "readonly",
+                "deprecated",
+                "declaration",
+                "documentation",
+                "public",
+                "private",
+                "protected",
+                "native",
+                "generic",
+                "typeArgument",
+                "importDeclaration",
+                "constructor"
+              ]
+            },
+            "range": false,
+            "full": {
+              "delta": false
+            },
+            "documentSelector": [
+              {
+                "language": "java",
+                "scheme": "file"
+              },
+              {
+                "language": "java",
+                "scheme": "jdt"
+              }
+            ]
+          },
+          "inlayHintProvider": true
+        },
+        "serverInfo": {
+          "name": "JDT Language Server (Standard)",
+          "version": "1.61.0-SNAPSHOT"
+        }
+      }
+    },
+    "effective_process": {
+      "pid": 429,
+      "is_alive": true,
+      "returncode": null,
+      "cmdline": "-Declipse.application=org.eclipse.jdt.ls.core.id1 -Dosgi.bundles.defaultStartLevel=4 -Declipse.product=org.eclipse.jdt.ls.core.product -Dosgi.checkConfiguration=true -Dosgi.sharedConfiguration.area=/home/admin/tools/jdt-language-server/config_linux -Dosgi.sharedConfiguration.area.readOnly=true -Dosgi.configuration.cascaded=true -Xms1G --add-modules=ALL-SYSTEM --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED -Xms128m -Xmx700m -Dosgi.configuration.area=/tmp/jdtls_spike_mini/_jdtls/with_sources/configuration -jar /home/admin/tools/jdt-language-server/plugins/org.eclipse.equinox.launcher_1.7.200.v20260619-2039.jar -data /tmp/jdtls_spike_mini/_jdtls/with_sources/data",
+      "ps_argv": [
+        "ps",
+        "-o",
+        "pid=,ppid=,rss=,etime=,args=",
+        "-p",
+        "429"
+      ],
+      "ps_stdout": "    429       2 345428      00:02 -Declipse.application=org.eclipse.jdt.ls.core.id1 -Dosgi.bundles.defaultStartLevel=4 -Declipse.product=org.eclipse.jdt.ls.core.product -Dosgi.checkConfiguration=true -Dosgi.sharedConfiguration.area=/home/admin/tools/jdt-language-server/config_linux -Dosgi.sharedConfiguration.area.readOnly=true -Dosgi.configuration.cascaded=true -Xms1G --add-modules=ALL-SYSTEM --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED -Xms128m -Xmx700m -Dosgi.configuration.area=/tmp/jdtls_spike_mini/_jdtls/with_sources/configuration -jar /home/admin/tools/jdt-language-server/plugins/org.eclipse.equinox.launcher_1.7.200.v20260619-2039.jar -data /tmp/jdtls_spike_mini/_jdtls/with_sources/data\n",
+      "ps_stderr": "",
+      "ps_returncode": 0,
+      "rss_kib": 345428
+    },
+    "stderr": "WARNING: Using incubator modules: jdk.incubator.vector\nJul 29, 2026 6:23:50 AM org.apache.aries.spifly.BaseActivator log\nINFO: Registered provider ch.qos.logback.classic.spi.LogbackServiceProvider of service org.slf4j.spi.SLF4JServiceProvider in bundle ch.qos.logback.classic\n",
+    "process": {
+      "pid": 429,
+      "is_alive": true,
+      "returncode": null,
+      "cmdline": "-Declipse.application=org.eclipse.jdt.ls.core.id1 -Dosgi.bundles.defaultStartLevel=4 -Declipse.product=org.eclipse.jdt.ls.core.product -Dosgi.checkConfiguration=true -Dosgi.sharedConfiguration.area=/home/admin/tools/jdt-language-server/config_linux -Dosgi.sharedConfiguration.area.readOnly=true -Dosgi.configuration.cascaded=true -Xms1G --add-modules=ALL-SYSTEM --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED -Xms128m -Xmx700m -Dosgi.configuration.area=/tmp/jdtls_spike_mini/_jdtls/with_sources/configuration -jar /home/admin/tools/jdt-language-server/plugins/org.eclipse.equinox.launcher_1.7.200.v20260619-2039.jar -data /tmp/jdtls_spike_mini/_jdtls/with_sources/data",
+      "ps_argv": [
+        "ps",
+        "-o",
+        "pid=,ppid=,rss=,etime=,args=",
+        "-p",
+        "429"
+      ],
+      "ps_stdout": "    429       2 1186712     00:20 -Declipse.application=org.eclipse.jdt.ls.core.id1 -Dosgi.bundles.defaultStartLevel=4 -Declipse.product=org.eclipse.jdt.ls.core.product -Dosgi.checkConfiguration=true -Dosgi.sharedConfiguration.area=/home/admin/tools/jdt-language-server/config_linux -Dosgi.sharedConfiguration.area.readOnly=true -Dosgi.configuration.cascaded=true -Xms1G --add-modules=ALL-SYSTEM --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED -Xms128m -Xmx700m -Dosgi.configuration.area=/tmp/jdtls_spike_mini/_jdtls/with_sources/configuration -jar /home/admin/tools/jdt-language-server/plugins/org.eclipse.equinox.launcher_1.7.200.v20260619-2039.jar -data /tmp/jdtls_spike_mini/_jdtls/with_sources/data\n",
+      "ps_stderr": "",
+      "ps_returncode": 0,
+      "rss_kib": 1186712
+    },
+    "service_ready_ms": 3287.702,
+    "language_statuses": [
+      {
+        "params": {
+          "type": "Starting",
+          "message": "Init..."
+        },
+        "elapsed_ms": 2488.856
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "0% Starting Java Language Server"
+        },
+        "elapsed_ms": 2489.084
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "27% Starting Java Language Server - file:///tmp/jdtls_spike_mini/_feed/jp/iryo/spike/mini-lib/1.0.0/mini-lib-1.0.0.pom"
+        },
+        "elapsed_ms": 2841.475
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "51% Starting Java Language Server"
+        },
+        "elapsed_ms": 3112.151
+      },
+      {
+        "params": {
+          "type": "ProjectStatus",
+          "message": "OK"
+        },
+        "elapsed_ms": 3269.369
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "100% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3269.488
+      },
+      {
+        "params": {
+          "type": "Started",
+          "message": "Ready"
+        },
+        "elapsed_ms": 3270.319
+      },
+      {
+        "params": {
+          "type": "Starting",
+          "message": "100% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3282.697
+      },
+      {
+        "params": {
+          "type": "ServiceReady",
+          "message": "ServiceReady"
+        },
+        "elapsed_ms": 3287.702
+      }
+    ],
+    "server_requests": [
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "1",
+        "params": {
+          "token": "d30097e3-f752-4b5f-995e-e3c4e4582ec7"
+        },
+        "elapsed_ms": 2462.616
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "2",
+        "params": {
+          "token": "f0185884-42b2-44a6-9a78-bd58e44a3250"
+        },
+        "elapsed_ms": 2462.698
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "3",
+        "params": {
+          "token": "36ad5505-454e-4607-a348-8d6a2a307feb"
+        },
+        "elapsed_ms": 2467.329
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "4",
+        "params": {
+          "token": "604fc4ae-6c97-4133-bc7d-114697404a8c"
+        },
+        "elapsed_ms": 2485.233
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "5",
+        "params": {
+          "token": "eb7fdd9d-2934-4fc5-aa0a-a5c16cd219e8"
+        },
+        "elapsed_ms": 2489.149
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "6",
+        "params": {
+          "token": "08766dc7-a6a0-44b8-94e3-41e0c831ff2e"
+        },
+        "elapsed_ms": 2501.708
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "7",
+        "params": {
+          "token": "f482cbef-d271-4f20-ac9f-6bb5b820fc6a"
+        },
+        "elapsed_ms": 2582.215
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "8",
+        "params": {
+          "token": "45599570-393a-4038-9329-99568a49b5ac"
+        },
+        "elapsed_ms": 3282.941
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "9",
+        "params": {
+          "token": "f5c9d9cc-e023-408f-b9f2-611b48299af1"
+        },
+        "elapsed_ms": 3357.189
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "10",
+        "params": {
+          "token": "83b742bc-7c8f-49b8-bce7-94412a95b306"
+        },
+        "elapsed_ms": 3549.804
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "11",
+        "params": {
+          "token": "ca4b4e97-7a8e-4a2e-b087-6001598ab88a"
+        },
+        "elapsed_ms": 3843.889
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "12",
+        "params": {
+          "token": "12b3a876-0790-4c72-901b-d5f09dc3cfb6"
+        },
+        "elapsed_ms": 4449.74
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "13",
+        "params": {
+          "token": "449ad071-be9f-4acb-87a4-c006533b9a8a"
+        },
+        "elapsed_ms": 4549.901
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "14",
+        "params": {
+          "token": "468a9f17-c9bc-4a42-8589-242c4bc9f9d2"
+        },
+        "elapsed_ms": 7206.931
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "15",
+        "params": {
+          "token": "0dcf29cb-b0dc-4152-be04-8a7e915b6c5e"
+        },
+        "elapsed_ms": 7558.675
+      },
+      {
+        "method": "window/workDoneProgress/create",
+        "id": "16",
+        "params": {
+          "token": "c23243da-b0e7-4361-8432-d4b2c37c2f6d"
+        },
+        "elapsed_ms": 8630.943
+      }
+    ],
+    "notifications": [
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "d30097e3-f752-4b5f-995e-e3c4e4582ec7",
+          "value": {
+            "kind": "begin",
+            "title": "Detect installed JVMs",
+            "message": "Detect installed JVMs"
+          }
+        },
+        "elapsed_ms": 2465.774
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "f0185884-42b2-44a6-9a78-bd58e44a3250",
+          "value": {
+            "kind": "begin",
+            "title": "Synchronizing projects",
+            "message": "Synchronizing projects"
+          }
+        },
+        "elapsed_ms": 2465.811
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "f0185884-42b2-44a6-9a78-bd58e44a3250",
+          "value": {
+            "kind": "report",
+            "message": "Synchronizing projects - 0% ",
+            "percentage": 0
+          }
+        },
+        "elapsed_ms": 2466.723
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "d30097e3-f752-4b5f-995e-e3c4e4582ec7",
+          "value": {
+            "kind": "report",
+            "message": "Detect installed JVMs - 0% ",
+            "percentage": 0
+          }
+        },
+        "elapsed_ms": 2466.767
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "f0185884-42b2-44a6-9a78-bd58e44a3250",
+          "value": {
+            "kind": "end",
+            "message": "Synchronizing projects"
+          }
+        },
+        "elapsed_ms": 2467.099
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "36ad5505-454e-4607-a348-8d6a2a307feb",
+          "value": {
+            "kind": "begin",
+            "title": "Synchronizing projects",
+            "message": "Synchronizing projects"
+          }
+        },
+        "elapsed_ms": 2467.427
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "d30097e3-f752-4b5f-995e-e3c4e4582ec7",
+          "value": {
+            "kind": "end",
+            "message": "/usr/lib/jvm/java-17-openjdk-amd64"
+          }
+        },
+        "elapsed_ms": 2467.476
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "36ad5505-454e-4607-a348-8d6a2a307feb",
+          "value": {
+            "kind": "report",
+            "message": "Synchronizing projects - 0% ",
+            "percentage": 0
+          }
+        },
+        "elapsed_ms": 2467.544
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "36ad5505-454e-4607-a348-8d6a2a307feb",
+          "value": {
+            "kind": "end",
+            "message": "Synchronizing projects"
+          }
+        },
+        "elapsed_ms": 2467.742
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "604fc4ae-6c97-4133-bc7d-114697404a8c",
+          "value": {
+            "kind": "begin",
+            "title": "Building",
+            "message": "Building"
+          }
+        },
+        "elapsed_ms": 2485.331
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "604fc4ae-6c97-4133-bc7d-114697404a8c",
+          "value": {
+            "kind": "report",
+            "message": "Building - 0% ",
+            "percentage": 0
+          }
+        },
+        "elapsed_ms": 2485.459
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "604fc4ae-6c97-4133-bc7d-114697404a8c",
+          "value": {
+            "kind": "end",
+            "message": "Building"
+          }
+        },
+        "elapsed_ms": 2485.801
+      },
+      {
+        "method": "language/status",
+        "params": {
+          "type": "Starting",
+          "message": "Init..."
+        },
+        "elapsed_ms": 2488.856
+      },
+      {
+        "method": "language/status",
+        "params": {
+          "type": "Starting",
+          "message": "0% Starting Java Language Server"
+        },
+        "elapsed_ms": 2489.084
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "eb7fdd9d-2934-4fc5-aa0a-a5c16cd219e8",
+          "value": {
+            "kind": "begin",
+            "title": "Initialize Workspace",
+            "message": "Initialize Workspace"
+          }
+        },
+        "elapsed_ms": 2489.258
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "eb7fdd9d-2934-4fc5-aa0a-a5c16cd219e8",
+          "value": {
+            "kind": "report",
+            "message": "Initialize Workspace - 0% ",
+            "percentage": 0
+          }
+        },
+        "elapsed_ms": 2489.704
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "08766dc7-a6a0-44b8-94e3-41e0c831ff2e",
+          "value": {
+            "kind": "begin",
+            "title": "Repository registry initialization",
+            "message": "Repository registry initialization"
+          }
+        },
+        "elapsed_ms": 2501.801
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "08766dc7-a6a0-44b8-94e3-41e0c831ff2e",
+          "value": {
+            "kind": "end",
+            "message": "Repository registry initialization"
+          }
+        },
+        "elapsed_ms": 2501.846
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "f482cbef-d271-4f20-ac9f-6bb5b820fc6a",
+          "value": {
+            "kind": "begin",
+            "title": "LookupJDKToolchainsJob",
+            "message": "LookupJDKToolchainsJob"
+          }
+        },
+        "elapsed_ms": 2582.274
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "f482cbef-d271-4f20-ac9f-6bb5b820fc6a",
+          "value": {
+            "kind": "end",
+            "message": "LookupJDKToolchainsJob"
+          }
+        },
+        "elapsed_ms": 2582.286
+      },
+      {
+        "method": "language/status",
+        "params": {
+          "type": "Starting",
+          "message": "27% Starting Java Language Server - file:///tmp/jdtls_spike_mini/_feed/jp/iryo/spike/mini-lib/1.0.0/mini-lib-1.0.0.pom"
+        },
+        "elapsed_ms": 2841.475
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "eb7fdd9d-2934-4fc5-aa0a-a5c16cd219e8",
+          "value": {
+            "kind": "report",
+            "message": "Importing Maven project(s) - file:///tmp/jdtls_spike_mini/_feed/jp/iryo/spike/mini-lib/1.0.0/mini-lib-1.0.0.pom",
+            "percentage": 27
+          }
+        },
+        "elapsed_ms": 2841.606
+      },
+      {
+        "method": "language/status",
+        "params": {
+          "type": "Starting",
+          "message": "51% Starting Java Language Server"
+        },
+        "elapsed_ms": 3112.151
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "eb7fdd9d-2934-4fc5-aa0a-a5c16cd219e8",
+          "value": {
+            "kind": "report",
+            "message": "Setting classpath containers - 51% ",
+            "percentage": 50
+          }
+        },
+        "elapsed_ms": 3112.218
+      },
+      {
+        "method": "language/eventNotification",
+        "params": {
+          "eventType": 200,
+          "data": [
+            "file:/tmp/jdtls_spike_mini/mini-app/"
+          ]
+        },
+        "elapsed_ms": 3268.737
+      },
+      {
+        "method": "language/status",
+        "params": {
+          "type": "ProjectStatus",
+          "message": "OK"
+        },
+        "elapsed_ms": 3269.369
+      },
+      {
+        "method": "language/status",
+        "params": {
+          "type": "Starting",
+          "message": "100% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3269.488
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "eb7fdd9d-2934-4fc5-aa0a-a5c16cd219e8",
+          "value": {
+            "kind": "end",
+            "message": "Resolve plugin dependency"
+          }
+        },
+        "elapsed_ms": 3269.567
+      },
+      {
+        "method": "language/status",
+        "params": {
+          "type": "Started",
+          "message": "Ready"
+        },
+        "elapsed_ms": 3270.319
+      },
+      {
+        "method": "language/status",
+        "params": {
+          "type": "Starting",
+          "message": "100% Starting Java Language Server - Refreshing '/mini-app/src/test/java'."
+        },
+        "elapsed_ms": 3282.697
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "45599570-393a-4038-9329-99568a49b5ac",
+          "value": {
+            "kind": "begin",
+            "title": "Reporting encoding changes.",
+            "message": "Reporting encoding changes."
+          }
+        },
+        "elapsed_ms": 3283.008
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "45599570-393a-4038-9329-99568a49b5ac",
+          "value": {
+            "kind": "report",
+            "message": "Reporting encoding changes. - 0% ",
+            "percentage": 0
+          }
+        },
+        "elapsed_ms": 3283.037
+      },
+      {
+        "method": "language/status",
+        "params": {
+          "type": "ServiceReady",
+          "message": "ServiceReady"
+        },
+        "elapsed_ms": 3287.702
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "45599570-393a-4038-9329-99568a49b5ac",
+          "value": {
+            "kind": "end",
+            "message": "Reporting encoding changes."
+          }
+        },
+        "elapsed_ms": 3336.288
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "f5c9d9cc-e023-408f-b9f2-611b48299af1",
+          "value": {
+            "kind": "begin",
+            "title": "Building",
+            "message": "Building"
+          }
+        },
+        "elapsed_ms": 3357.265
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "f5c9d9cc-e023-408f-b9f2-611b48299af1",
+          "value": {
+            "kind": "report",
+            "message": "Building - 0% ",
+            "percentage": 0
+          }
+        },
+        "elapsed_ms": 3357.321
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "f5c9d9cc-e023-408f-b9f2-611b48299af1",
+          "value": {
+            "kind": "end",
+            "message": "Building"
+          }
+        },
+        "elapsed_ms": 3540.895
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "83b742bc-7c8f-49b8-bce7-94412a95b306",
+          "value": {
+            "kind": "begin",
+            "title": "Searching...",
+            "message": "Searching..."
+          }
+        },
+        "elapsed_ms": 3549.88
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "83b742bc-7c8f-49b8-bce7-94412a95b306",
+          "value": {
+            "kind": "report",
+            "message": "Searching... - 0% ",
+            "percentage": 0
+          }
+        },
+        "elapsed_ms": 3549.997
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "ca4b4e97-7a8e-4a2e-b087-6001598ab88a",
+          "value": {
+            "kind": "begin",
+            "title": "Validate documents",
+            "message": "Validate documents"
+          }
+        },
+        "elapsed_ms": 3843.97
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "ca4b4e97-7a8e-4a2e-b087-6001598ab88a",
+          "value": {
+            "kind": "report",
+            "message": "Validate documents - 0% ",
+            "percentage": 0
+          }
+        },
+        "elapsed_ms": 3844.033
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "ca4b4e97-7a8e-4a2e-b087-6001598ab88a",
+          "value": {
+            "kind": "end",
+            "message": "Validate documents"
+          }
+        },
+        "elapsed_ms": 3844.824
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "12b3a876-0790-4c72-901b-d5f09dc3cfb6",
+          "value": {
+            "kind": "begin",
+            "title": "Publish Diagnostics",
+            "message": "Publish Diagnostics"
+          }
+        },
+        "elapsed_ms": 4449.837
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "12b3a876-0790-4c72-901b-d5f09dc3cfb6",
+          "value": {
+            "kind": "report",
+            "message": "Publish Diagnostics - 0% ",
+            "percentage": 0
+          }
+        },
+        "elapsed_ms": 4450.162
+      },
+      {
+        "method": "textDocument/publishDiagnostics",
+        "params": {
+          "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+          "diagnostics": [
+            {
+              "range": {
+                "start": {
+                  "line": 15,
+                  "character": 25
+                },
+                "end": {
+                  "line": 15,
+                  "character": 29
+                }
+              },
+              "severity": 2,
+              "code": "570425421",
+              "source": "Java",
+              "message": "The value of the field App.name is not used"
+            },
+            {
+              "range": {
+                "start": {
+                  "line": 53,
+                  "character": 22
+                },
+                "end": {
+                  "line": 53,
+                  "character": 30
+                }
+              },
+              "severity": 2,
+              "code": "16777221",
+              "source": "Java",
+              "message": "The type OldTable is deprecated"
+            }
+          ]
+        },
+        "elapsed_ms": 4549.222
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "12b3a876-0790-4c72-901b-d5f09dc3cfb6",
+          "value": {
+            "kind": "end",
+            "message": "Publish Diagnostics"
+          }
+        },
+        "elapsed_ms": 4549.673
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "449ad071-be9f-4acb-87a4-c006533b9a8a",
+          "value": {
+            "kind": "begin",
+            "title": "Building",
+            "message": "Building"
+          }
+        },
+        "elapsed_ms": 4549.994
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "449ad071-be9f-4acb-87a4-c006533b9a8a",
+          "value": {
+            "kind": "report",
+            "message": "Building - 0% ",
+            "percentage": 0
+          }
+        },
+        "elapsed_ms": 4550.161
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "449ad071-be9f-4acb-87a4-c006533b9a8a",
+          "value": {
+            "kind": "end",
+            "message": "Building"
+          }
+        },
+        "elapsed_ms": 4551.628
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "83b742bc-7c8f-49b8-bce7-94412a95b306",
+          "value": {
+            "kind": "report",
+            "message": "Searching... - 80% 6 files to index (/tmp/jdtls_spike_mini/_m2/jp/iryo/spike/mini-lib/1.0.0/mini-lib-1.0.0.jar)",
+            "percentage": 79
+          }
+        },
+        "elapsed_ms": 6852.309
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "83b742bc-7c8f-49b8-bce7-94412a95b306",
+          "value": {
+            "kind": "end",
+            "message": "Searching..."
+          }
+        },
+        "elapsed_ms": 6991.593
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "468a9f17-c9bc-4a42-8589-242c4bc9f9d2",
+          "value": {
+            "kind": "begin",
+            "title": "Download sources and javadoc",
+            "message": "Download sources and javadoc"
+          }
+        },
+        "elapsed_ms": 7207.034
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "468a9f17-c9bc-4a42-8589-242c4bc9f9d2",
+          "value": {
+            "kind": "report",
+            "message": "Download sources and javadoc - 0% ",
+            "percentage": 0
+          }
+        },
+        "elapsed_ms": 7207.445
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "468a9f17-c9bc-4a42-8589-242c4bc9f9d2",
+          "value": {
+            "kind": "end",
+            "message": "Associate sources and javadoc with classpath - mini-app"
+          }
+        },
+        "elapsed_ms": 7371.679
+      },
+      {
+        "method": "language/eventNotification",
+        "params": {
+          "eventType": 100,
+          "data": "file:/tmp/jdtls_spike_mini/mini-app/"
+        },
+        "elapsed_ms": 7390.236
+      },
+      {
+        "method": "language/eventNotification",
+        "params": {
+          "eventType": 500,
+          "data": {
+            "affectedRootPaths": {
+              "/tmp/jdtls_spike_mini/_m2/jp/iryo/spike/mini-lib/1.0.0/mini-lib-1.0.0.jar": true
+            }
+          }
+        },
+        "elapsed_ms": 7391.908
+      },
+      {
+        "method": "textDocument/publishDiagnostics",
+        "params": {
+          "uri": "file:///tmp/jdtls_spike_mini/mini-app",
+          "diagnostics": []
+        },
+        "elapsed_ms": 7394.619
+      },
+      {
+        "method": "textDocument/publishDiagnostics",
+        "params": {
+          "uri": "file:///tmp/jdtls_spike_mini/mini-app/pom.xml",
+          "diagnostics": []
+        },
+        "elapsed_ms": 7407.715
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "0dcf29cb-b0dc-4152-be04-8a7e915b6c5e",
+          "value": {
+            "kind": "begin",
+            "title": "Building",
+            "message": "Building"
+          }
+        },
+        "elapsed_ms": 7558.76
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "0dcf29cb-b0dc-4152-be04-8a7e915b6c5e",
+          "value": {
+            "kind": "report",
+            "message": "Building - 0% ",
+            "percentage": 0
+          }
+        },
+        "elapsed_ms": 7558.903
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "0dcf29cb-b0dc-4152-be04-8a7e915b6c5e",
+          "value": {
+            "kind": "end",
+            "message": "Building"
+          }
+        },
+        "elapsed_ms": 7580.569
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "c23243da-b0e7-4361-8432-d4b2c37c2f6d",
+          "value": {
+            "kind": "begin",
+            "title": "Building",
+            "message": "Building"
+          }
+        },
+        "elapsed_ms": 8631.025
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "c23243da-b0e7-4361-8432-d4b2c37c2f6d",
+          "value": {
+            "kind": "report",
+            "message": "Building - 0% ",
+            "percentage": 0
+          }
+        },
+        "elapsed_ms": 8631.054
+      },
+      {
+        "method": "$/progress",
+        "params": {
+          "token": "c23243da-b0e7-4361-8432-d4b2c37c2f6d",
+          "value": {
+            "kind": "end",
+            "message": "Building"
+          }
+        },
+        "elapsed_ms": 8631.465
+      },
+      {
+        "method": "window/logMessage",
+        "params": {
+          "type": 1,
+          "message": "Jul 29, 2026, 6:24:07 AM request timed out\njava.net.http.HttpTimeoutException: request timed out\n\tat java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:953)\n\tat java.net.http/jdk.internal.net.http.HttpClientFacade.send(HttpClientFacade.java:133)\n\tat org.eclipse.jdt.ls.core.internal.managers.MavenCentralIdentifier.find(MavenCentralIdentifier.java:119)\n\tat org.eclipse.jdt.ls.core.internal.managers.MavenCentralIdentifier.identifySha1(MavenCentralIdentifier.java:81)\n\tat org.eclipse.jdt.ls.core.internal.managers.MavenCentralIdentifier.identify(MavenCentralIdentifier.java:72)\n\tat org.eclipse.jdt.ls.core.internal.managers.MavenCentralIdentifier.identify(MavenCentralIdentifier.java:58)\n\tat org.eclipse.jdt.ls.core.internal.managers.MavenSourceDownloader.discoverSource(MavenSourceDownloader.java:78)\n\tat org.eclipse.jdt.ls.core.internal.managers.MavenBuildSupport.discoverSource(MavenBuildSupport.java:141)\n\tat org.eclipse.jdt.ls.core.internal.SourceContentProvider.getSource(SourceContentProvider.java:48)\n\tat org.eclipse.jdt.ls.core.internal.IDecompiler.getDecompiledSource(IDecompiler.java:46)\n\tat org.eclipse.jdt.ls.core.internal.managers.ContentProviderManager.getContentResult(ContentProviderManager.java:127)\n\tat org.eclipse.jdt.ls.core.internal.managers.ContentProviderManager.getContent(ContentProviderManager.java:94)\n\tat org.eclipse.jdt.ls.core.internal.managers.ContentProviderManager.getSource(ContentProviderManager.java:67)\n\tat org.eclipse.jdt.ls.core.internal.JDTUtils.searchDecompiledSources(JDTUtils.java:1775)\n\tat org.eclipse.jdt.ls.core.internal.handlers.NavigateToDefinitionHandler.computeDefinitionNavigation(NavigateToDefinitionHandler.java:191)\n\tat org.eclipse.jdt.ls.core.internal.handlers.NavigateToDefinitionHandler.computeDefinitionNavigation(NavigateToDefinitionHandler.java:91)\n\tat org.eclipse.jdt.ls.core.internal.handlers.NavigateToDefinitionHandler.definition(NavigateToDefinitionHandler.java:74)\n\tat org.eclipse.jdt.ls.core.internal.handlers.JDTLanguageServer.lambda$7(JDTLanguageServer.java:724)\n\tat org.eclipse.jdt.ls.core.internal.BaseJDTLanguageServer.lambda$0(BaseJDTLanguageServer.java:87)\n\tat java.base/java.util.concurrent.CompletableFuture$UniApply.tryFire(CompletableFuture.java:646)\n\tat java.base/java.util.concurrent.CompletableFuture$Completion.exec(CompletableFuture.java:483)\n\tat java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387)\n\tat java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312)\n\tat java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)\n\tat java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)\n\tat java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)\n"
+        },
+        "elapsed_ms": 17402.363
+      }
+    ],
+    "request_records": [
+      {
+        "method": "initialize",
+        "params": {
+          "processId": 2,
+          "rootUri": "file:///tmp/jdtls_spike_mini/mini-app",
+          "workspaceFolders": [
+            {
+              "uri": "file:///tmp/jdtls_spike_mini/mini-app",
+              "name": "mini-app"
+            }
+          ],
+          "capabilities": {
+            "workspace": {
+              "configuration": true,
+              "workspaceFolders": true
+            },
+            "window": {
+              "workDoneProgress": true
+            },
+            "textDocument": {
+              "documentSymbol": {
+                "hierarchicalDocumentSymbolSupport": true
+              },
+              "definition": {},
+              "hover": {
+                "contentFormat": [
+                  "markdown",
+                  "plaintext"
+                ]
+              }
+            }
+          },
+          "initializationOptions": {
+            "extendedClientCapabilities": {
+              "classFileContentsSupport": true
+            },
+            "settings": {
+              "java": {
+                "maven": {
+                  "downloadSources": true
+                },
+                "import": {
+                  "gradle": {
+                    "enabled": false
+                  }
+                },
+                "configuration": {
+                  "maven": {
+                    "userSettings": "/tmp/jdtls_spike_mini/settings.xml"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "started_ms": 0.022,
+        "completed_ms": 2502.586,
+        "result": {
+          "capabilities": {
+            "textDocumentSync": {
+              "openClose": true,
+              "change": 2,
+              "save": {
+                "includeText": true
+              }
+            },
+            "hoverProvider": true,
+            "completionProvider": {
+              "resolveProvider": true,
+              "triggerCharacters": [
+                ".",
+                "@",
+                "#",
+                "*",
+                " "
+              ]
+            },
+            "signatureHelpProvider": {
+              "triggerCharacters": [
+                "(",
+                ","
+              ]
+            },
+            "definitionProvider": true,
+            "typeDefinitionProvider": true,
+            "implementationProvider": true,
+            "referencesProvider": true,
+            "documentHighlightProvider": true,
+            "documentSymbolProvider": true,
+            "workspaceSymbolProvider": true,
+            "codeActionProvider": {
+              "codeActionKinds": [],
+              "resolveProvider": false
+            },
+            "codeLensProvider": {
+              "resolveProvider": true
+            },
+            "documentFormattingProvider": true,
+            "documentRangeFormattingProvider": true,
+            "documentOnTypeFormattingProvider": {
+              "firstTriggerCharacter": ";",
+              "moreTriggerCharacter": [
+                "\n",
+                "}"
+              ]
+            },
+            "renameProvider": {
+              "prepareProvider": true
+            },
+            "foldingRangeProvider": true,
+            "declarationProvider": true,
+            "executeCommandProvider": {
+              "commands": [
+                "java.project.import",
+                "java.project.changeImportedProjects",
+                "java.navigate.openTypeHierarchy",
+                "java.project.resolveStackTraceLocation",
+                "java.edit.handlePasteEvent",
+                "java.edit.stringFormatting",
+                "java.project.getSettings",
+                "java.project.resolveWorkspaceSymbol",
+                "java.project.upgradeGradle",
+                "java.project.createModuleInfo",
+                "java.vm.getAllInstalls",
+                "java.edit.organizeImports",
+                "java.project.refreshDiagnostics",
+                "java.getFullyQualifiedName",
+                "java.project.removeFromSourcePath",
+                "java.project.listSourcePaths",
+                "java.project.updateSettings",
+                "java.project.getAll",
+                "java.reloadBundles",
+                "java.project.isTestFile",
+                "java.project.resolveText",
+                "java.project.getClasspaths",
+                "java.navigate.resolveTypeHierarchy",
+                "java.getTroubleshootingInfo",
+                "java.edit.smartSemicolonDetection",
+                "java.project.updateSourceAttachment",
+                "java.project.updateClassPaths",
+                "java.decompile",
+                "java.protobuf.generateSources",
+                "java.project.resolveSourceAttachment",
+                "java.project.updateJdk",
+                "java.project.addToSourcePath",
+                "java.completion.onDidSelect"
+              ]
+            },
+            "workspace": {
+              "workspaceFolders": {
+                "supported": true,
+                "changeNotifications": true
+              }
+            },
+            "typeHierarchyProvider": true,
+            "callHierarchyProvider": true,
+            "selectionRangeProvider": true,
+            "semanticTokensProvider": {
+              "legend": {
+                "tokenTypes": [
+                  "namespace",
+                  "class",
+                  "interface",
+                  "enum",
+                  "enumMember",
+                  "type",
+                  "typeParameter",
+                  "method",
+                  "property",
+                  "variable",
+                  "parameter",
+                  "modifier",
+                  "keyword",
+                  "decorator",
+                  "annotationMember",
+                  "record",
+                  "recordComponent"
+                ],
+                "tokenModifiers": [
+                  "abstract",
+                  "static",
+                  "readonly",
+                  "deprecated",
+                  "declaration",
+                  "documentation",
+                  "public",
+                  "private",
+                  "protected",
+                  "native",
+                  "generic",
+                  "typeArgument",
+                  "importDeclaration",
+                  "constructor"
+                ]
+              },
+              "range": false,
+              "full": {
+                "delta": false
+              },
+              "documentSelector": [
+                {
+                  "language": "java",
+                  "scheme": "file"
+                },
+                {
+                  "language": "java",
+                  "scheme": "jdt"
+                }
+              ]
+            },
+            "inlayHintProvider": true
+          },
+          "serverInfo": {
+            "name": "JDT Language Server (Standard)",
+            "version": "1.61.0-SNAPSHOT"
+          }
+        }
+      },
+      {
+        "method": "textDocument/definition",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 28,
+            "character": 36
+          }
+        },
+        "started_ms": 2506.733,
+        "completed_ms": 7144.643,
+        "result": [
+          {
+            "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Calculations.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Calculations.class",
+            "range": {
+              "start": {
+                "line": 13,
+                "character": 3
+              },
+              "end": {
+                "line": 15,
+                "character": 4
+              }
+            }
+          }
+        ]
+      },
+      {
+        "method": "textDocument/documentSymbol",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          }
+        },
+        "started_ms": 7144.738,
+        "completed_ms": 7156.883,
+        "result": [
+          {
+            "name": "jp.iryo.spike.app",
+            "kind": 4,
+            "range": {
+              "start": {
+                "line": 0,
+                "character": 0
+              },
+              "end": {
+                "line": 0,
+                "character": 26
+              }
+            },
+            "selectionRange": {
+              "start": {
+                "line": 0,
+                "character": 0
+              },
+              "end": {
+                "line": 0,
+                "character": 26
+              }
+            },
+            "detail": ""
+          },
+          {
+            "name": "App",
+            "kind": 5,
+            "range": {
+              "start": {
+                "line": 14,
+                "character": 0
+              },
+              "end": {
+                "line": 65,
+                "character": 1
+              }
+            },
+            "selectionRange": {
+              "start": {
+                "line": 14,
+                "character": 13
+              },
+              "end": {
+                "line": 14,
+                "character": 16
+              }
+            },
+            "detail": "",
+            "children": [
+              {
+                "name": "name",
+                "kind": 8,
+                "range": {
+                  "start": {
+                    "line": 15,
+                    "character": 4
+                  },
+                  "end": {
+                    "line": 15,
+                    "character": 30
+                  }
+                },
+                "selectionRange": {
+                  "start": {
+                    "line": 15,
+                    "character": 25
+                  },
+                  "end": {
+                    "line": 15,
+                    "character": 29
+                  }
+                },
+                "detail": ""
+              },
+              {
+                "name": "App()",
+                "kind": 9,
+                "range": {
+                  "start": {
+                    "line": 17,
+                    "character": 4
+                  },
+                  "end": {
+                    "line": 17,
+                    "character": 32
+                  }
+                },
+                "selectionRange": {
+                  "start": {
+                    "line": 17,
+                    "character": 11
+                  },
+                  "end": {
+                    "line": 17,
+                    "character": 14
+                  }
+                },
+                "detail": ""
+              },
+              {
+                "name": "App(String)",
+                "kind": 9,
+                "range": {
+                  "start": {
+                    "line": 19,
+                    "character": 4
+                  },
+                  "end": {
+                    "line": 19,
+                    "character": 58
+                  }
+                },
+                "selectionRange": {
+                  "start": {
+                    "line": 19,
+                    "character": 11
+                  },
+                  "end": {
+                    "line": 19,
+                    "character": 14
+                  }
+                },
+                "detail": ""
+              },
+              {
+                "name": "localPlain(String)",
+                "kind": 6,
+                "range": {
+                  "start": {
+                    "line": 21,
+                    "character": 4
+                  },
+                  "end": {
+                    "line": 23,
+                    "character": 5
+                  }
+                },
+                "selectionRange": {
+                  "start": {
+                    "line": 21,
+                    "character": 18
+                  },
+                  "end": {
+                    "line": 21,
+                    "character": 28
+                  }
+                },
+                "detail": " : String"
+              },
+              {
+                "name": "main(String[])",
+                "kind": 6,
+                "range": {
+                  "start": {
+                    "line": 25,
+                    "character": 4
+                  },
+                  "end": {
+                    "line": 60,
+                    "character": 5
+                  }
+                },
+                "selectionRange": {
+                  "start": {
+                    "line": 25,
+                    "character": 23
+                  },
+                  "end": {
+                    "line": 25,
+                    "character": 27
+                  }
+                },
+                "detail": " : void",
+                "children": [
+                  {
+                    "name": "new Notifier() {...}",
+                    "kind": 5,
+                    "range": {
+                      "start": {
+                        "line": 42,
+                        "character": 21
+                      },
+                      "end": {
+                        "line": 44,
+                        "character": 9
+                      }
+                    },
+                    "selectionRange": {
+                      "start": {
+                        "line": 42,
+                        "character": 25
+                      },
+                      "end": {
+                        "line": 42,
+                        "character": 33
+                      }
+                    },
+                    "detail": "",
+                    "children": [
+                      {
+                        "name": "send(String)",
+                        "kind": 6,
+                        "range": {
+                          "start": {
+                            "line": 43,
+                            "character": 12
+                          },
+                          "end": {
+                            "line": 43,
+                            "character": 51
+                          }
+                        },
+                        "selectionRange": {
+                          "start": {
+                            "line": 43,
+                            "character": 34
+                          },
+                          "end": {
+                            "line": 43,
+                            "character": 38
+                          }
+                        },
+                        "detail": " : void"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "nameOf(Object...)",
+                "kind": 6,
+                "range": {
+                  "start": {
+                    "line": 62,
+                    "character": 4
+                  },
+                  "end": {
+                    "line": 64,
+                    "character": 5
+                  }
+                },
+                "selectionRange": {
+                  "start": {
+                    "line": 62,
+                    "character": 26
+                  },
+                  "end": {
+                    "line": 62,
+                    "character": 32
+                  }
+                },
+                "detail": " : String"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "method": "textDocument/definition",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 26,
+            "character": 23
+          }
+        },
+        "started_ms": 7157.107,
+        "completed_ms": 7166.718,
+        "result": [
+          {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+            "range": {
+              "start": {
+                "line": 21,
+                "character": 18
+              },
+              "end": {
+                "line": 21,
+                "character": 28
+              }
+            }
+          }
+        ]
+      },
+      {
+        "method": "textDocument/definition",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 27,
+            "character": 33
+          }
+        },
+        "started_ms": 7166.901,
+        "completed_ms": 7183.686,
+        "result": [
+          {
+            "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Calculations.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Calculations.class",
+            "range": {
+              "start": {
+                "line": 9,
+                "character": 3
+              },
+              "end": {
+                "line": 11,
+                "character": 4
+              }
+            }
+          }
+        ]
+      },
+      {
+        "method": "textDocument/definition",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 28,
+            "character": 36
+          }
+        },
+        "started_ms": 7183.885,
+        "completed_ms": 7207.086,
+        "result": [
+          {
+            "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Calculations.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Calculations.class",
+            "range": {
+              "start": {
+                "line": 13,
+                "character": 3
+              },
+              "end": {
+                "line": 15,
+                "character": 4
+              }
+            }
+          }
+        ]
+      },
+      {
+        "method": "textDocument/definition",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 29,
+            "character": 32
+          }
+        },
+        "started_ms": 7207.335,
+        "completed_ms": 7221.718,
+        "result": [
+          {
+            "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Calculations.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Calculations.class",
+            "range": {
+              "start": {
+                "line": 17,
+                "character": 3
+              },
+              "end": {
+                "line": 25,
+                "character": 4
+              }
+            }
+          }
+        ]
+      },
+      {
+        "method": "textDocument/definition",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 30,
+            "character": 36
+          }
+        },
+        "started_ms": 7222.086,
+        "completed_ms": 7238.798,
+        "result": [
+          {
+            "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Calculations.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Calculations.class",
+            "range": {
+              "start": {
+                "line": 27,
+                "character": 3
+              },
+              "end": {
+                "line": 29,
+                "character": 4
+              }
+            }
+          }
+        ]
+      },
+      {
+        "method": "textDocument/definition",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 33,
+            "character": 22
+          }
+        },
+        "started_ms": 7239.114,
+        "completed_ms": 7283.665,
+        "result": [
+          {
+            "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Rec.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Rec.class",
+            "range": {
+              "start": {
+                "line": 0,
+                "character": 0
+              },
+              "end": {
+                "line": 0,
+                "character": 0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "method": "textDocument/definition",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 34,
+            "character": 25
+          }
+        },
+        "started_ms": 7283.973,
+        "completed_ms": 7301.163,
+        "result": [
+          {
+            "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Rec.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Rec.class",
+            "range": {
+              "start": {
+                "line": 0,
+                "character": 0
+              },
+              "end": {
+                "line": 0,
+                "character": 0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "method": "textDocument/definition",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 37,
+            "character": 27
+          }
+        },
+        "started_ms": 7301.454,
+        "completed_ms": 7342.865,
+        "result": [
+          {
+            "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Cache.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Cache.class",
+            "range": {
+              "start": {
+                "line": 0,
+                "character": 0
+              },
+              "end": {
+                "line": 0,
+                "character": 0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "method": "textDocument/definition",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 39,
+            "character": 48
+          }
+        },
+        "started_ms": 7343.113,
+        "completed_ms": 17438.739,
+        "result": [
+          {
+            "uri": "jdt://contents/java.base/java.util.function/IntUnaryOperator.java?=mini-app/%5C/usr%5C/lib%5C/jvm%5C/java-21-openjdk-amd64%5C/lib%5C/jrt-fs.jar%60java.base=/javadoc_location=/https:%5C/%5C/docs.oracle.com%5C/en%5C/java%5C/javase%5C/21%5C/docs%5C/api%5C/=/=/maven.pomderived=/true=/%3Cjava.util.function%28IntUnaryOperator.class",
+            "range": {
+              "start": {
+                "line": 7,
+                "character": 3
+              },
+              "end": {
+                "line": 7,
+                "character": 28
+              }
+            }
+          }
+        ]
+      },
+      {
+        "method": "textDocument/definition",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 41,
+            "character": 45
+          }
+        },
+        "started_ms": 17439.055,
+        "completed_ms": 17468.695,
+        "result": [
+          {
+            "uri": "jdt://contents/java.base/java.util.function/Consumer.java?=mini-app/%5C/usr%5C/lib%5C/jvm%5C/java-21-openjdk-amd64%5C/lib%5C/jrt-fs.jar%60java.base=/javadoc_location=/https:%5C/%5C/docs.oracle.com%5C/en%5C/java%5C/javase%5C/21%5C/docs%5C/api%5C/=/=/maven.pomderived=/true=/%3Cjava.util.function%28Consumer.class",
+            "range": {
+              "start": {
+                "line": 0,
+                "character": 0
+              },
+              "end": {
+                "line": 0,
+                "character": 0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "method": "textDocument/definition",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 42,
+            "character": 25
+          }
+        },
+        "started_ms": 17469.013,
+        "completed_ms": 17481.245,
+        "result": [
+          {
+            "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Notifier.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Notifier.class",
+            "range": {
+              "start": {
+                "line": 2,
+                "character": 17
+              },
+              "end": {
+                "line": 2,
+                "character": 25
+              }
+            }
+          }
+        ]
+      },
+      {
+        "method": "textDocument/definition",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 45,
+            "character": 15
+          }
+        },
+        "started_ms": 17481.555,
+        "completed_ms": 17488.328,
+        "result": [
+          {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+            "range": {
+              "start": {
+                "line": 45,
+                "character": 15
+              },
+              "end": {
+                "line": 45,
+                "character": 18
+              }
+            }
+          }
+        ]
+      },
+      {
+        "method": "textDocument/definition",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 46,
+            "character": 32
+          }
+        },
+        "started_ms": 17488.569,
+        "completed_ms": 17497.674,
+        "result": [
+          {
+            "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Notifier.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Notifier.class",
+            "range": {
+              "start": {
+                "line": 2,
+                "character": 17
+              },
+              "end": {
+                "line": 2,
+                "character": 25
+              }
+            }
+          }
+        ]
+      },
+      {
+        "method": "textDocument/definition",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 47,
+            "character": 28
+          }
+        },
+        "started_ms": 17497.868,
+        "completed_ms": 17507.855,
+        "result": [
+          {
+            "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/MailNotifier.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28MailNotifier.class",
+            "range": {
+              "start": {
+                "line": 2,
+                "character": 19
+              },
+              "end": {
+                "line": 2,
+                "character": 31
+              }
+            }
+          }
+        ]
+      },
+      {
+        "method": "textDocument/definition",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 17,
+            "character": 19
+          }
+        },
+        "started_ms": 17508.063,
+        "completed_ms": 17514.884,
+        "result": [
+          {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+            "range": {
+              "start": {
+                "line": 19,
+                "character": 11
+              },
+              "end": {
+                "line": 19,
+                "character": 14
+              }
+            }
+          }
+        ]
+      },
+      {
+        "method": "textDocument/definition",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 19,
+            "character": 30
+          }
+        },
+        "started_ms": 17515.167,
+        "completed_ms": 17522.525,
+        "result": [
+          {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/BaseThing.java",
+            "range": {
+              "start": {
+                "line": 3,
+                "character": 4
+              },
+              "end": {
+                "line": 3,
+                "character": 13
+              }
+            }
+          }
+        ]
+      },
+      {
+        "method": "textDocument/definition",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 49,
+            "character": 18
+          }
+        },
+        "started_ms": 17522.72,
+        "completed_ms": 17533.03,
+        "result": [
+          {
+            "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/PointMath.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28PointMath.class",
+            "range": {
+              "start": {
+                "line": 5,
+                "character": 22
+              },
+              "end": {
+                "line": 5,
+                "character": 27
+              }
+            }
+          }
+        ]
+      },
+      {
+        "method": "textDocument/definition",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 51,
+            "character": 35
+          }
+        },
+        "started_ms": 17533.294,
+        "completed_ms": 17668.755,
+        "result": [
+          {
+            "uri": "jdt://contents/java.base/java.util/List.java?=mini-app/%5C/usr%5C/lib%5C/jvm%5C/java-21-openjdk-amd64%5C/lib%5C/jrt-fs.jar%60java.base=/javadoc_location=/https:%5C/%5C/docs.oracle.com%5C/en%5C/java%5C/javase%5C/21%5C/docs%5C/api%5C/=/=/maven.pomderived=/true=/%3Cjava.util%28List.class",
+            "range": {
+              "start": {
+                "line": 60,
+                "character": 3
+              },
+              "end": {
+                "line": 60,
+                "character": 19
+              }
+            }
+          }
+        ]
+      },
+      {
+        "method": "textDocument/definition",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 52,
+            "character": 19
+          }
+        },
+        "started_ms": 17669.013,
+        "completed_ms": 17957.55,
+        "result": [
+          {
+            "uri": "jdt://contents/java.base/java.io/PrintStream.java?=mini-app/%5C/usr%5C/lib%5C/jvm%5C/java-21-openjdk-amd64%5C/lib%5C/jrt-fs.jar%60java.base=/javadoc_location=/https:%5C/%5C/docs.oracle.com%5C/en%5C/java%5C/javase%5C/21%5C/docs%5C/api%5C/=/=/maven.pomderived=/true=/%3Cjava.io%28PrintStream.class",
+            "range": {
+              "start": {
+                "line": 581,
+                "character": 3
+              },
+              "end": {
+                "line": 591,
+                "character": 4
+              }
+            }
+          }
+        ]
+      },
+      {
+        "method": "textDocument/definition",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 53,
+            "character": 33
+          }
+        },
+        "started_ms": 17957.801,
+        "completed_ms": 17967.147,
+        "result": [
+          {
+            "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/OldTable.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28OldTable.class",
+            "range": {
+              "start": {
+                "line": 4,
+                "character": 15
+              },
+              "end": {
+                "line": 4,
+                "character": 19
+              }
+            }
+          }
+        ]
+      },
+      {
+        "method": "textDocument/hover",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 26,
+            "character": 23
+          }
+        },
+        "started_ms": 17967.382,
+        "completed_ms": 18031.991,
+        "result": {
+          "contents": [
+            {
+              "language": "java",
+              "value": "String jp.iryo.spike.app.App.localPlain(String value)"
+            },
+            "Source: *[mini-app](file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java#22)*"
+          ]
+        }
+      },
+      {
+        "method": "textDocument/hover",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 28,
+            "character": 36
+          }
+        },
+        "started_ms": 18032.259,
+        "completed_ms": 18041.566,
+        "result": {
+          "contents": [
+            {
+              "language": "java",
+              "value": "long jp.iryo.spike.lib.Calculations.calculate(long a, long b)"
+            },
+            "Source: *[mini-lib-1.0.0.jar](jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Calculations.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Calculations.class#13)*"
+          ]
+        }
+      },
+      {
+        "method": "textDocument/hover",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 37,
+            "character": 27
+          }
+        },
+        "started_ms": 18041.841,
+        "completed_ms": 18049.367,
+        "result": {
+          "contents": [
+            {
+              "language": "java",
+              "value": "Rec jp.iryo.spike.lib.Cache.get(String key)"
+            },
+            "Source: *[mini-lib-1.0.0.jar](jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Cache.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Cache.class#9)*"
+          ]
+        }
+      },
+      {
+        "method": "textDocument/hover",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 29,
+            "character": 32
+          }
+        },
+        "started_ms": 18049.574,
+        "completed_ms": 18056.252,
+        "result": {
+          "contents": [
+            {
+              "language": "java",
+              "value": "int jp.iryo.spike.lib.Calculations.calculate(int... values)"
+            },
+            "Source: *[mini-lib-1.0.0.jar](jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Calculations.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Calculations.class#17)*"
+          ]
+        }
+      },
+      {
+        "method": "textDocument/hover",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 33,
+            "character": 22
+          }
+        },
+        "started_ms": 18056.513,
+        "completed_ms": 18094.461,
+        "result": {
+          "contents": [
+            {
+              "language": "java",
+              "value": "jp.iryo.spike.lib.Rec"
+            },
+            "Source: *[mini-lib-1.0.0.jar](jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Rec.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Rec.class#3)*"
+          ]
+        }
+      },
+      {
+        "method": "textDocument/hover",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+          },
+          "position": {
+            "line": 34,
+            "character": 25
+          }
+        },
+        "started_ms": 18094.694,
+        "completed_ms": 18105.021,
+        "result": {
+          "contents": [
+            {
+              "language": "java",
+              "value": "int jp.iryo.spike.lib.Rec.amount()"
+            },
+            "Source: *[mini-lib-1.0.0.jar](jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Rec.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Rec.class#3)*"
+          ]
+        }
+      },
+      {
+        "method": "java/classFileContents",
+        "params": {
+          "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Calculations.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Calculations.class"
+        },
+        "started_ms": 18105.044,
+        "completed_ms": 18107.113,
+        "result": "package jp.iryo.spike.lib;\n\n/** SOURCE_SENTINEL_JDTLS_SPIKE real attached source. */\npublic final class Calculations {\n    public static final String 日本語定数 = \"診療\";\n\n    private Calculations() {}\n\n    public static int calculate(int a, int b) {\n        return a + b;\n    }\n\n    public static long calculate(long a, long b) {\n        return a + b;\n    }\n\n    public static int calculate(int... values) {\n        int total = 0;\n        for (int value : values) {\n            total += value;\n        }\n        return total;\n    }\n\n    public static int 点数変換(int 点数) {\n        return 点数 * 10;\n    }\n}\n"
+      },
+      {
+        "method": "textDocument/definition",
+        "params": {
+          "textDocument": {
+            "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/NeverOpened.java"
+          },
+          "position": {
+            "line": 6,
+            "character": 25
+          }
+        },
+        "started_ms": 18107.391,
+        "completed_ms": 18112.88,
+        "result": [
+          {
+            "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/PointMath.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28PointMath.class",
+            "range": {
+              "start": {
+                "line": 5,
+                "character": 22
+              },
+              "end": {
+                "line": 5,
+                "character": 27
+              }
+            }
+          }
+        ]
+      },
+      {
+        "method": "shutdown",
+        "params": null,
+        "started_ms": 20120.609,
+        "completed_ms": 20121.794,
+        "result": {}
+      }
+    ],
+    "opened_files": [
+      "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+    ]
+  }
+}

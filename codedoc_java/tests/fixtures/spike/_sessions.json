@@ -1,0 +1,76 @@
+[
+ {
+  "sln": "Iryo.ReceptionDesk/Iryo.ReceptionDesk.sln",
+  "server_capabilities_keys": [
+   "callHierarchyProvider",
+   "codeActionProvider",
+   "codeLensProvider",
+   "completionProvider",
+   "definitionProvider",
+   "diagnosticProvider",
+   "documentFormattingProvider",
+   "documentHighlightProvider",
+   "documentOnTypeFormattingProvider",
+   "documentRangeFormattingProvider",
+   "documentSymbolProvider",
+   "foldingRangeProvider",
+   "hoverProvider",
+   "implementationProvider",
+   "inlayHintProvider",
+   "referencesProvider",
+   "renameProvider",
+   "semanticTokensProvider",
+   "signatureHelpProvider",
+   "textDocumentSync",
+   "typeDefinitionProvider",
+   "typeHierarchyProvider",
+   "workspace",
+   "workspaceSymbolProvider"
+  ],
+  "ready": {
+   "ready": true,
+   "progress_ends": 1,
+   "server_requests": [
+    "window/workDoneProgress/create",
+    "workspace/configuration"
+   ]
+  }
+ },
+ {
+  "sln": "Iryo.AdminConsole/Iryo.AdminConsole.sln",
+  "server_capabilities_keys": [
+   "callHierarchyProvider",
+   "codeActionProvider",
+   "codeLensProvider",
+   "completionProvider",
+   "definitionProvider",
+   "diagnosticProvider",
+   "documentFormattingProvider",
+   "documentHighlightProvider",
+   "documentOnTypeFormattingProvider",
+   "documentRangeFormattingProvider",
+   "documentSymbolProvider",
+   "foldingRangeProvider",
+   "hoverProvider",
+   "implementationProvider",
+   "inlayHintProvider",
+   "referencesProvider",
+   "renameProvider",
+   "semanticTokensProvider",
+   "signatureHelpProvider",
+   "textDocumentSync",
+   "typeDefinitionProvider",
+   "typeHierarchyProvider",
+   "workspace",
+   "workspaceSymbolProvider"
+  ],
+  "ready": {
+   "ready": true,
+   "progress_ends": 1,
+   "server_requests": [
+    "window/workDoneProgress/create",
+    "workspace/configuration"
+   ]
+  }
+ }
+]

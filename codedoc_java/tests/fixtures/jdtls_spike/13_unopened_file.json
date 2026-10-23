@@ -1,0 +1,42 @@
+{
+  "site": {
+    "site": "never_opened",
+    "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/NeverOpened.java",
+    "relative_file": "NeverOpened.java",
+    "source_line": "        return PointMath.toYen(99);",
+    "token": "toYen",
+    "token_occurrence": 0,
+    "position": {
+      "line": 6,
+      "character": 25
+    }
+  },
+  "did_open": false,
+  "request": {
+    "method": "textDocument/definition",
+    "params": {
+      "textDocument": {
+        "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/NeverOpened.java"
+      },
+      "position": {
+        "line": 6,
+        "character": 25
+      }
+    }
+  },
+  "response": [
+    {
+      "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/PointMath.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28PointMath.class",
+      "range": {
+        "start": {
+          "line": 5,
+          "character": 22
+        },
+        "end": {
+          "line": 5,
+          "character": 27
+        }
+      }
+    }
+  ]
+}

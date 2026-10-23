@@ -1,0 +1,42 @@
+{
+  "site": {
+    "site": "local_plain",
+    "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+    "relative_file": "App.java",
+    "source_line": "        String plain = localPlain(\"局所\");",
+    "token": "localPlain",
+    "token_occurrence": 0,
+    "position": {
+      "line": 26,
+      "character": 23
+    }
+  },
+  "did_open": true,
+  "request": {
+    "method": "textDocument/definition",
+    "params": {
+      "textDocument": {
+        "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+      },
+      "position": {
+        "line": 26,
+        "character": 23
+      }
+    }
+  },
+  "response": [
+    {
+      "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+      "range": {
+        "start": {
+          "line": 21,
+          "character": 18
+        },
+        "end": {
+          "line": 21,
+          "character": 28
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+ "case": "VAR-001",
+ "site_kind": "invocation",
+ "pos": {
+  "line": 25,
+  "character": 37
+ },
+ "definition": [
+  {
+   "uri": "file:///tmp/MetadataAsSource/98d0f9b62c64485abf0118c0d14a5b1d/DecompilationMetadataAsSourceFileProvider/1d4fc29d780347ef9330076224f5e0c4/RepositoryFactory.cs",
+   "range": {
+    "start": {
+     "line": 11,
+     "character": 39
+    },
+    "end": {
+     "line": 11,
+     "character": 52
+    }
+   }
+  }
+ ],
+ "hover": {
+  "contents": {
+   "kind": "markdown",
+   "value": "```csharp\nSqlPatientRepository RepositoryFactory.CreateDefault()\n```\n  \n"
+  },
+  "range": {
+   "start": {
+    "line": 25,
+    "character": 37
+   },
+   "end": {
+    "line": 25,
+    "character": 50
+   }
+  }
+ },
+ "target_uri": "file:///tmp/MetadataAsSource/98d0f9b62c64485abf0118c0d14a5b1d/DecompilationMetadataAsSourceFileProvider/1d4fc29d780347ef9330076224f5e0c4/RepositoryFactory.cs",
+ "target_head": "﻿#region Assembly Iryo.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null\n// /home/admin/.nuget/packages/iryo.data/1.0.0/lib/net10.0/Iryo.Data.dll\n// Decompiled with ICSharpCode.Decompiler \n#endregion\n\nusing Iryo.Kernel.Logging;\n\nnamespace Iryo.Data;\n\npublic static class RepositoryFactory\n{\n    public static SqlPatientRepository CreateDefault()\n    {\n        return new SqlPatientRepository(new Logger(\"工場\"));\n    }\n}\n#if false // Decompilation log\n'178' items in cache\n------------------\nResolve: 'System.Runtime, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'\nFound ",
+ "target_len": 2444
+}

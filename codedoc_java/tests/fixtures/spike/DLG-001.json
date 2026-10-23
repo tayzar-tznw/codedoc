@@ -1,0 +1,30 @@
+{
+ "case": "DLG-001",
+ "site_kind": "event_subscription",
+ "pos": {
+  "line": 51,
+  "character": 30
+ },
+ "file": "Iryo.ReceptionDesk/Flows/CheckInFlow.cs",
+ "definition": [
+  {
+   "uri": "file:///home/admin/dev/codedoc_csharp/test_codes/iryo-kanri-system/Iryo.ReceptionDesk/Flows/CheckInFlow.cs",
+   "range": {
+    "start": {
+     "line": 57,
+     "character": 24
+    },
+    "end": {
+     "line": 57,
+     "character": 36
+    }
+   }
+  }
+ ],
+ "hover": {
+  "contents": {
+   "kind": "markdown",
+   "value": "```csharp\nvoid CheckInFlow.OnDischarged(string notice)\n```"
+  }
+ }
+}

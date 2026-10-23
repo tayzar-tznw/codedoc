@@ -1,0 +1,30 @@
+{
+ "case": "GEN-005",
+ "site_kind": "object_creation",
+ "pos": {
+  "line": 24,
+  "character": 24
+ },
+ "file": "Iryo.ReceptionDesk/Flows/MaintenanceFlow.cs",
+ "definition": [
+  {
+   "uri": "file:///home/admin/dev/codedoc_csharp/test_codes/iryo-kanri-system/Iryo.ReceptionDesk/Flows/MaintenanceFlow.cs",
+   "range": {
+    "start": {
+     "line": 6,
+     "character": 6
+    },
+    "end": {
+     "line": 6,
+     "character": 16
+    }
+   }
+  }
+ ],
+ "hover": {
+  "contents": {
+   "kind": "markdown",
+   "value": "```csharp\nKarteCache=ChartCache<ChartEntry>\n```"
+  }
+ }
+}

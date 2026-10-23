@@ -1,0 +1,39 @@
+{
+ "case": "XPR-101",
+ "site_kind": "object_creation",
+ "pos": {
+  "line": 16,
+  "character": 25
+ },
+ "file": "Iryo.AdminConsole/DailyBatch.cs",
+ "definition": [
+  {
+   "uri": "csharp:/home/admin/dev/codedoc_csharp/test_codes/iryo-kanri-system/Iryo.AdminConsole/Iryo.AdminConsole.csproj/decompiled/Iryo.Pharmacy.Logger.cs",
+   "range": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 0,
+     "character": 1
+    }
+   }
+  }
+ ],
+ "hover": {
+  "contents": {
+   "kind": "markdown",
+   "value": "```csharp\nLogger.Logger()\n```"
+  }
+ },
+ "metadata_shape": "textDocument",
+ "metadata": {
+  "projectName": "Iryo.AdminConsole",
+  "assemblyName": "Iryo.Pharmacy",
+  "symbolName": "Iryo.Pharmacy.Logger",
+  "source_head": "using System.Collections.Generic;\n\nnamespace Iryo.Pharmacy;\n\npublic class Logger\n{\n\tprivate readonly List<string> _lines = new List<string>();\n\n\tpublic IReadOnlyList<string> Lines => _lines;\n\n\tpublic void Log(string message)\n\t{\n\t\t_lines.Add(\"[調剤] \" + message);\n\t}\n}\n",
+  "source_len": 266
+ },
+ "metadata_source": "using System.Collections.Generic;\n\nnamespace Iryo.Pharmacy;\n\npublic class Logger\n{\n\tprivate readonly List<string> _lines = new List<string>();\n\n\tpublic IReadOnlyList<string> Lines => _lines;\n\n\tpublic void Log(string message)\n\t{\n\t\t_lines.Add(\"[調剤] \" + message);\n\t}\n}\n"
+}

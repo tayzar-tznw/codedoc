@@ -1,0 +1,13 @@
+{
+  "generation_info": {
+    "timestamp": "2026-10-23T02:25:16.330645",
+    "model": "gemini-3.8-flash",
+    "generator": "pipeline_v2 (google-genai)",
+    "repo_path": "/home/admin/dev/code/codedoc_java/test_codes/iryo-kanri-system"
+  },
+  "statistics": {
+    "total_files": 62,
+    "total_directories": 90,
+    "total_topics": 8
+  }
+}

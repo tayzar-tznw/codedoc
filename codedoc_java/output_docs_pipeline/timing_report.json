@@ -1,0 +1,30 @@
+{
+  "target_dir": "/home/admin/dev/code/codedoc_java/test_codes/iryo-kanri-system",
+  "model": "gemini-3.8-flash",
+  "concurrency": 100,
+  "total_seconds": 1792689977.0918825,
+  "timings": {
+    "phase1_scan": 0.011419057846069336,
+    "phase1b_treesitter": 0.025509357452392578,
+    "phase2_file_summaries": 652.6635315418243,
+    "phase3_dir_summaries": 1417.957316160202,
+    "phase4_topics": 123.54307579994202,
+    "phase5_topic_summaries": 669.801237821579,
+    "phase6_index": 0.017220258712768555,
+    "phase1c_semantic_resolution": 52.091310024261475,
+    "phase8_write_nodes": 0.7536435127258301,
+    "phase9_write_edges": 0.8617291450500488,
+    "phase10_embeddings": 7.04820990562439
+  },
+  "statistics": {
+    "files_summarized": 62,
+    "dirs_summarized": 90,
+    "topics_extracted": 8,
+    "entities_extracted": 61,
+    "graph_files": 62,
+    "graph_classes": 74,
+    "graph_methods": 206,
+    "graph_modules": 8,
+    "graph_dirs": 91
+  }
+}

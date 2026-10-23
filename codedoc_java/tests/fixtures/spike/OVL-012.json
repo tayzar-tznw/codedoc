@@ -1,0 +1,30 @@
+{
+ "case": "OVL-012",
+ "site_kind": "conversion",
+ "pos": {
+  "line": 39,
+  "character": 24
+ },
+ "file": "Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+ "definition": [
+  {
+   "uri": "file:///home/admin/dev/codedoc_csharp/test_codes/iryo-kanri-system/Iryo.ReceptionDesk/Flows/AccountingFlow.cs",
+   "range": {
+    "start": {
+     "line": 38,
+     "character": 12
+    },
+    "end": {
+     "line": 38,
+     "character": 17
+    }
+   }
+  }
+ ],
+ "hover": {
+  "contents": {
+   "kind": "markdown",
+   "value": "```csharp\nMoney total\n```"
+  }
+ }
+}

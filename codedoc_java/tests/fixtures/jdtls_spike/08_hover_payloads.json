@@ -1,0 +1,261 @@
+{
+  "plain_method": {
+    "site": {
+      "site": "local_plain",
+      "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+      "relative_file": "App.java",
+      "source_line": "        String plain = localPlain(\"局所\");",
+      "token": "localPlain",
+      "token_occurrence": 0,
+      "position": {
+        "line": 26,
+        "character": 23
+      }
+    },
+    "did_open": true,
+    "request": {
+      "method": "textDocument/hover",
+      "params": {
+        "textDocument": {
+          "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+        },
+        "position": {
+          "line": 26,
+          "character": 23
+        }
+      }
+    },
+    "response": {
+      "contents": [
+        {
+          "language": "java",
+          "value": "String jp.iryo.spike.app.App.localPlain(String value)"
+        },
+        "Source: *[mini-app](file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java#22)*"
+      ]
+    },
+    "observed_shape": "MarkedString[]"
+  },
+  "overload": {
+    "site": {
+      "site": "overload_mixed",
+      "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+      "relative_file": "App.java",
+      "source_line": "        long widened = Calculations.calculate(1, 2L);",
+      "token": "calculate",
+      "token_occurrence": 0,
+      "position": {
+        "line": 28,
+        "character": 36
+      }
+    },
+    "did_open": true,
+    "request": {
+      "method": "textDocument/hover",
+      "params": {
+        "textDocument": {
+          "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+        },
+        "position": {
+          "line": 28,
+          "character": 36
+        }
+      }
+    },
+    "response": {
+      "contents": [
+        {
+          "language": "java",
+          "value": "long jp.iryo.spike.lib.Calculations.calculate(long a, long b)"
+        },
+        "Source: *[mini-lib-1.0.0.jar](jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Calculations.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Calculations.class#13)*"
+      ]
+    },
+    "observed_shape": "MarkedString[]"
+  },
+  "generic_instantiated_receiver": {
+    "site": {
+      "site": "cache_get",
+      "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+      "relative_file": "App.java",
+      "source_line": "        Rec cached = cache.get(\"外来\");",
+      "token": "get",
+      "token_occurrence": 0,
+      "position": {
+        "line": 37,
+        "character": 27
+      }
+    },
+    "did_open": true,
+    "request": {
+      "method": "textDocument/hover",
+      "params": {
+        "textDocument": {
+          "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+        },
+        "position": {
+          "line": 37,
+          "character": 27
+        }
+      }
+    },
+    "response": {
+      "contents": [
+        {
+          "language": "java",
+          "value": "Rec jp.iryo.spike.lib.Cache.get(String key)"
+        },
+        "Source: *[mini-lib-1.0.0.jar](jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Cache.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Cache.class#9)*"
+      ]
+    },
+    "observed_shape": "MarkedString[]"
+  },
+  "varargs": {
+    "site": {
+      "site": "varargs",
+      "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+      "relative_file": "App.java",
+      "source_line": "        int many = Calculations.calculate(1, 2, 3);",
+      "token": "calculate",
+      "token_occurrence": 0,
+      "position": {
+        "line": 29,
+        "character": 32
+      }
+    },
+    "did_open": true,
+    "request": {
+      "method": "textDocument/hover",
+      "params": {
+        "textDocument": {
+          "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+        },
+        "position": {
+          "line": 29,
+          "character": 32
+        }
+      }
+    },
+    "response": {
+      "contents": [
+        {
+          "language": "java",
+          "value": "int jp.iryo.spike.lib.Calculations.calculate(int... values)"
+        },
+        "Source: *[mini-lib-1.0.0.jar](jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Calculations.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Calculations.class#17)*"
+      ]
+    },
+    "observed_shape": "MarkedString[]"
+  },
+  "constructor": {
+    "site": {
+      "site": "record_ctor",
+      "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+      "relative_file": "App.java",
+      "source_line": "        Rec rec = new Rec(5);",
+      "token": "Rec",
+      "token_occurrence": 1,
+      "position": {
+        "line": 33,
+        "character": 22
+      }
+    },
+    "did_open": true,
+    "request": {
+      "method": "textDocument/hover",
+      "params": {
+        "textDocument": {
+          "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+        },
+        "position": {
+          "line": 33,
+          "character": 22
+        }
+      }
+    },
+    "response": {
+      "contents": [
+        {
+          "language": "java",
+          "value": "jp.iryo.spike.lib.Rec"
+        },
+        "Source: *[mini-lib-1.0.0.jar](jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Rec.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Rec.class#3)*"
+      ]
+    },
+    "observed_shape": "MarkedString[]"
+  },
+  "record_accessor": {
+    "site": {
+      "site": "record_accessor",
+      "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+      "relative_file": "App.java",
+      "source_line": "        int amount = rec.amount();",
+      "token": "amount",
+      "token_occurrence": 1,
+      "position": {
+        "line": 34,
+        "character": 25
+      }
+    },
+    "did_open": true,
+    "request": {
+      "method": "textDocument/hover",
+      "params": {
+        "textDocument": {
+          "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+        },
+        "position": {
+          "line": 34,
+          "character": 25
+        }
+      }
+    },
+    "response": {
+      "contents": [
+        {
+          "language": "java",
+          "value": "int jp.iryo.spike.lib.Rec.amount()"
+        },
+        "Source: *[mini-lib-1.0.0.jar](jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Rec.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Rec.class#3)*"
+      ]
+    },
+    "observed_shape": "MarkedString[]"
+  },
+  "binary_stub_without_sources": {
+    "site": {
+      "site": "deprecated_stub",
+      "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+      "relative_file": "App.java",
+      "source_line": "        int old = new OldTable().calc(1, 2);",
+      "token": "calc",
+      "token_occurrence": 0,
+      "position": {
+        "line": 53,
+        "character": 33
+      }
+    },
+    "did_open": true,
+    "request": {
+      "method": "textDocument/hover",
+      "params": {
+        "textDocument": {
+          "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+        },
+        "position": {
+          "line": 53,
+          "character": 33
+        }
+      }
+    },
+    "response": {
+      "contents": [
+        {
+          "language": "java",
+          "value": "int jp.iryo.spike.lib.OldTable.calc(int a, int b)"
+        },
+        "Source: *[mini-lib-1.0.0.jar](jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/OldTable.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28OldTable.class#1)*"
+      ]
+    },
+    "observed_shape": "MarkedString[]"
+  }
+}

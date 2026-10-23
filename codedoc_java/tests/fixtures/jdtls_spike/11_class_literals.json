@@ -1,0 +1,86 @@
+{
+  "interface": {
+    "site": {
+      "site": "class_literal_notifier",
+      "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+      "relative_file": "App.java",
+      "source_line": "        Class<?> notifierType = Notifier.class;",
+      "token": "Notifier",
+      "token_occurrence": 0,
+      "position": {
+        "line": 46,
+        "character": 32
+      }
+    },
+    "did_open": true,
+    "request": {
+      "method": "textDocument/definition",
+      "params": {
+        "textDocument": {
+          "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+        },
+        "position": {
+          "line": 46,
+          "character": 32
+        }
+      }
+    },
+    "response": [
+      {
+        "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/Notifier.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28Notifier.class",
+        "range": {
+          "start": {
+            "line": 2,
+            "character": 17
+          },
+          "end": {
+            "line": 2,
+            "character": 25
+          }
+        }
+      }
+    ]
+  },
+  "implementation": {
+    "site": {
+      "site": "class_literal_impl",
+      "file": "/tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java",
+      "relative_file": "App.java",
+      "source_line": "        Class<?> implType = MailNotifier.class;",
+      "token": "MailNotifier",
+      "token_occurrence": 0,
+      "position": {
+        "line": 47,
+        "character": 28
+      }
+    },
+    "did_open": true,
+    "request": {
+      "method": "textDocument/definition",
+      "params": {
+        "textDocument": {
+          "uri": "file:///tmp/jdtls_spike_mini/mini-app/src/main/java/jp/iryo/spike/app/App.java"
+        },
+        "position": {
+          "line": 47,
+          "character": 28
+        }
+      }
+    },
+    "response": [
+      {
+        "uri": "jdt://contents/mini-lib-1.0.0.jar/jp.iryo.spike.lib/MailNotifier.java?=mini-app/%5C/tmp%5C/jdtls_spike_mini%5C/_m2%5C/jp%5C/iryo%5C/spike%5C/mini-lib%5C/1.0.0%5C/mini-lib-1.0.0.jar=/maven.pomderived=/true=/=/maven.groupId=/jp.iryo.spike=/=/maven.artifactId=/mini-lib=/=/maven.version=/1.0.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/%3Cjp.iryo.spike.lib%28MailNotifier.class",
+        "range": {
+          "start": {
+            "line": 2,
+            "character": 19
+          },
+          "end": {
+            "line": 2,
+            "character": 31
+          }
+        }
+      }
+    ]
+  }
+}

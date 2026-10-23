@@ -1,0 +1,39 @@
+{
+ "case": "XPR-001",
+ "site_kind": "object_creation",
+ "pos": {
+  "line": 16,
+  "character": 25
+ },
+ "file": "Iryo.ReceptionDesk/Flows/DailyCloseFlow.cs",
+ "definition": [
+  {
+   "uri": "csharp:/home/admin/dev/codedoc_csharp/test_codes/iryo-kanri-system/Iryo.ReceptionDesk/Iryo.ReceptionDesk.csproj/decompiled/Iryo.Kernel.Logging.Logger.cs",
+   "range": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 0,
+     "character": 1
+    }
+   }
+  }
+ ],
+ "hover": {
+  "contents": {
+   "kind": "markdown",
+   "value": "```csharp\nLogger.Logger()\n```"
+  }
+ },
+ "metadata_shape": "textDocument",
+ "metadata": {
+  "projectName": "Iryo.ReceptionDesk",
+  "assemblyName": "Iryo.Kernel",
+  "symbolName": "Iryo.Kernel.Logging.Logger",
+  "source_head": "using System;\nusing System.Collections.Generic;\n\nnamespace Iryo.Kernel.Logging;\n\npublic class Logger\n{\n\tprivate readonly string _name;\n\n\tprivate readonly List<string> _lines = new List<string>();\n\n\tprivate string _lastMessage = \"\";\n\n\tpublic string LastMessage\n\t{\n\t\tget\n\t\t{\n\t\t\tFlush();\n\t\t\treturn _lastMessage;\n\t\t}\n\t}\n\n\tpublic string Name => _name;\n\n\tpublic IReadOnlyList<string> Lines => _lines;\n\n\tpub",
+  "source_len": 861
+ },
+ "metadata_source": "using System;\nusing System.Collections.Generic;\n\nnamespace Iryo.Kernel.Logging;\n\npublic class Logger\n{\n\tprivate readonly string _name;\n\n\tprivate readonly List<string> _lines = new List<string>();\n\n\tprivate string _lastMessage = \"\";\n\n\tpublic string LastMessage\n\t{\n\t\tget\n\t\t{\n\t\t\tFlush();\n\t\t\treturn _lastMessage;\n\t\t}\n\t}\n\n\tpublic string Name => _name;\n\n\tpublic IReadOnlyList<string> Lines => _lines;\n\n\tpublic Logger()\n\t\t: this(\"既定\")\n\t{\n\t}\n\n\tpublic Logger(string name)\n\t{\n\t\t_name = name;\n\t}\n\n\tpublic void Log(string message)\n\t{\n\t\t_lastMessage = message;\n\t\t_lines.Add(\"[記録] \" + message);\n\t}\n\n\tpublic void Log(Exception error)\n\t{\n\t\t_lastMessage = error.Message;\n\t\t_lines.Add(\"[例外] \" + error.Message);\n\t}\n\n\tpublic void Log(string message, int severity = 1)\n\t{\n\t\t_lastMessage = message;\n\t\t_lines.Add(\"[重要度\" + severity + \"] \" + message);\n\t}\n\n\tprivate void Flush()\n\t{\n\t}\n}\n"
+}

@@ -1,0 +1,39 @@
+{
+ "case": "VAR-001",
+ "site_kind": "invocation",
+ "pos": {
+  "line": 25,
+  "character": 37
+ },
+ "file": "Iryo.ReceptionDesk/Flows/CheckInFlow.cs",
+ "definition": [
+  {
+   "uri": "csharp:/home/admin/dev/codedoc_csharp/test_codes/iryo-kanri-system/Iryo.ReceptionDesk/Iryo.ReceptionDesk.csproj/decompiled/Iryo.Data.RepositoryFactory.cs",
+   "range": {
+    "start": {
+     "line": 6,
+     "character": 36
+    },
+    "end": {
+     "line": 6,
+     "character": 49
+    }
+   }
+  }
+ ],
+ "hover": {
+  "contents": {
+   "kind": "markdown",
+   "value": "```csharp\nSqlPatientRepository RepositoryFactory.CreateDefault()\n```"
+  }
+ },
+ "metadata_shape": "textDocument",
+ "metadata": {
+  "projectName": "Iryo.ReceptionDesk",
+  "assemblyName": "Iryo.Data",
+  "symbolName": "Iryo.Data.RepositoryFactory",
+  "source_head": "using Iryo.Kernel.Logging;\n\nnamespace Iryo.Data;\n\npublic static class RepositoryFactory\n{\n\tpublic static SqlPatientRepository CreateDefault()\n\t{\n\t\t//IL_0005: Unknown result type (might be due to invalid IL or missing references)\n\t\t//IL_000f: Expected O, but got Unknown\n\t\treturn new SqlPatientRepository(new Logger(\"工場\"));\n\t}\n}\n",
+  "source_len": 328
+ },
+ "metadata_source": "using Iryo.Kernel.Logging;\n\nnamespace Iryo.Data;\n\npublic static class RepositoryFactory\n{\n\tpublic static SqlPatientRepository CreateDefault()\n\t{\n\t\t//IL_0005: Unknown result type (might be due to invalid IL or missing references)\n\t\t//IL_000f: Expected O, but got Unknown\n\t\treturn new SqlPatientRepository(new Logger(\"工場\"));\n\t}\n}\n"
+}

@@ -1,0 +1,39 @@
+{
+ "case": "XPR-004",
+ "site_kind": "invocation",
+ "pos": {
+  "line": 20,
+  "character": 43
+ },
+ "file": "Iryo.ReceptionDesk/Flows/DailyCloseFlow.cs",
+ "definition": [
+  {
+   "uri": "csharp:/home/admin/dev/codedoc_csharp/test_codes/iryo-kanri-system/Iryo.ReceptionDesk/Iryo.ReceptionDesk.csproj/decompiled/Iryo.Billing.Validator.cs",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 13
+    },
+    "end": {
+     "line": 4,
+     "character": 21
+    }
+   }
+  }
+ ],
+ "hover": {
+  "contents": {
+   "kind": "markdown",
+   "value": "```csharp\nbool Validator.Validate(string insuranceCard)\n```"
+  }
+ },
+ "metadata_shape": "textDocument",
+ "metadata": {
+  "projectName": "Iryo.ReceptionDesk",
+  "assemblyName": "Iryo.Billing",
+  "symbolName": "Iryo.Billing.Validator",
+  "source_head": "namespace Iryo.Billing;\n\npublic class Validator\n{\n\tpublic bool Validate(string insuranceCard)\n\t{\n\t\tif (!string.IsNullOrWhiteSpace(insuranceCard))\n\t\t{\n\t\t\treturn insuranceCard.StartsWith(\"H\");\n\t\t}\n\t\treturn false;\n\t}\n}\n",
+  "source_len": 216
+ },
+ "metadata_source": "namespace Iryo.Billing;\n\npublic class Validator\n{\n\tpublic bool Validate(string insuranceCard)\n\t{\n\t\tif (!string.IsNullOrWhiteSpace(insuranceCard))\n\t\t{\n\t\t\treturn insuranceCard.StartsWith(\"H\");\n\t\t}\n\t\treturn false;\n\t}\n}\n"
+}
